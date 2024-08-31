@@ -30,12 +30,12 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="700.0" layoutY="197.0" mnemonicParsing="false" onAction="#onStart" prefHeight="37.0" prefWidth="128.0" text="start game">
+      <Button fx:id="startButton" layoutX="700.0" layoutY="197.0" mnemonicParsing="false" onAction="#onStart" prefHeight="37.0" prefWidth="128.0" text="investigate">
          <font>
             <Font name="Georgia" size="20.0" />
          </font>
       </Button>
-      <Label layoutX="656.0" layoutY="148.0" prefHeight="52.0" prefWidth="188.0" text="created by girlpower &lt;33" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+      <Label layoutX="458.0" layoutY="146.0" prefHeight="52.0" prefWidth="379.0" text="The wedding is about to start and the ring is missing!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Georgia" size="16.0" />
          </font>
