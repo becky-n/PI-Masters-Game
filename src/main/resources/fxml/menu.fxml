@@ -30,7 +30,7 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="700.0" layoutY="198.0" mnemonicParsing="false" onAction="#onStart" prefHeight="37.0" prefWidth="128.0" text="start game">
+      <Button fx:id="startButton" layoutX="700.0" layoutY="197.0" mnemonicParsing="false" onAction="#onStart" prefHeight="37.0" prefWidth="128.0" text="start game">
          <font>
             <Font name="Georgia" size="20.0" />
          </font>
