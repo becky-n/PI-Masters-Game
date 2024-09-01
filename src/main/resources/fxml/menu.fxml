@@ -30,9 +30,9 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="700.0" layoutY="197.0" mnemonicParsing="false" onAction="#onStart" prefHeight="37.0" prefWidth="128.0" text="investigate">
+      <Button fx:id="startButton" layoutX="648.0" layoutY="194.0" mnemonicParsing="false" onAction="#onStart" prefHeight="45.0" prefWidth="176.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="investigate">
          <font>
-            <Font name="Georgia" size="20.0" />
+            <Font name="Georgia Bold" size="24.0" />
          </font>
       </Button>
       <Label layoutX="458.0" layoutY="146.0" prefHeight="52.0" prefWidth="379.0" text="The wedding is about to start and the ring is missing!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
