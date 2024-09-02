@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import nz.ac.auckland.se206.App;
 import java.io.IOException; 
 
 
