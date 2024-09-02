@@ -25,7 +25,7 @@ public class Navigation {
     gerald.setOnAction(e -> changeScene("aisle"));
     jesin.setOnAction(e -> changeScene("ballroom"));
     crimeScene.setOnAction(e -> changeScene("crime"));
-    andrea.setOnAction(e -> changeScene("suite"));
+    andrea.setOnAction(e -> changeScene("lobby"));
 
   }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LobbyController">
+   <children>
+      <Pane fx:id="lobby" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
+         <children>
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="Menu">
+            </MenuButton>
+         </children>
+      </Pane>
+   </children>
+</StackPane>

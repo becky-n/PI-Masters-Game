@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import nz.ac.auckland.se206.Navigation;
 
-public class SuiteController {
+public class LobbyController {
   @FXML
   private MenuButton menuButton;
 

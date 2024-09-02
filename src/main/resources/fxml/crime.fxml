@@ -8,7 +8,7 @@
    <children>
       <Pane fx:id="crime" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="MenuButton"> </MenuButton>
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="Menu"> </MenuButton>
          </children>
       </Pane>
    </children>
