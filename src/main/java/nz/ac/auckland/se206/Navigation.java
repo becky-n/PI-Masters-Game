@@ -21,6 +21,7 @@ public class Navigation {
 
     menuButton.getItems().addAll(gerald, jesin, crimeScene, andrea);
 
+
     // Set the action
     gerald.setOnAction(e -> changeScene("aisle"));
     jesin.setOnAction(e -> changeScene("ballroom"));

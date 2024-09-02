@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BallroomController">
    <children>
@@ -15,8 +16,10 @@
                   <Image url="@../images/ballroom.jpg" />
                </image>
             </ImageView>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="Menu">
-            </MenuButton>
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Menu" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font></MenuButton>
          </children>
       </Pane>
    </children>
