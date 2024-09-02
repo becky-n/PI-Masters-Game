@@ -4,8 +4,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.media.AudioClip;
 
-import java.io.IOException; 
-
+import java.io.IOException;
 
 public class Navigation {
   private AudioClip buttonClickSound;
@@ -25,12 +24,23 @@ public class Navigation {
 
     menuButton.getItems().addAll(gerald, jesin, crimeScene, andrea);
 
-
     // Set the action
-    gerald.setOnAction(e -> { changeScene("aisle"); buttonClickSound.play(); });
-    jesin.setOnAction(e -> {changeScene("ballroom"); buttonClickSound.play(); });
-    crimeScene.setOnAction(e -> {changeScene("crime"); buttonClickSound.play(); });
-    andrea.setOnAction(e -> {changeScene("lobby");buttonClickSound.play(); });
+    gerald.setOnAction(e -> {
+      changeScene("aisle");
+      buttonClickSound.play();
+    });
+    jesin.setOnAction(e -> {
+      changeScene("ballroom");
+      buttonClickSound.play();
+    });
+    crimeScene.setOnAction(e -> {
+      changeScene("crime");
+      buttonClickSound.play();
+    });
+    andrea.setOnAction(e -> {
+      changeScene("lobby");
+      buttonClickSound.play();
+    });
 
     menuButton.setOnShowing(e -> buttonClickSound.play());
   }

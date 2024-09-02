@@ -12,7 +12,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.menu-button{
+.menu-button {
   -fx-background-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
   -fx-border-radius: 5;
@@ -20,17 +20,16 @@
   -fx-background-radius: 5;
 }
 
-.menu-button:hover{
+.menu-button:hover {
   -fx-background-color: rgba(0, 0, 0, 0.7);
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* styles.css */
 .menu-item {
-  -fx-font-family: "Georgia";          
-  font-family: "Georgia";              
+  -fx-font-family: "Georgia";
+  font-family: "Georgia";
   -fx-background-color: rgba(0, 0, 0, 0.5);
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5);
   -fx-padding: 10px 30px 10px 0;
   padding: 10px 30px 10px 0;
 }
@@ -38,4 +37,10 @@
 .menu-item:hover {
   -fx-background-color: rgba(0, 0, 0, 0.7);
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.context-menu {
+  -fx-text-fill: rgb(255, 255, 255);
+  -fx-background-color: transparent;
+  background-color: transparent;
 }
