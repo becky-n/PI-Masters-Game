@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
  */
 public class MenuController {
   private AudioClip backgroundMusic;
+  private AudioClip buttonClickSound;
 
   @FXML private Button startButton;
 
@@ -23,6 +24,7 @@ public class MenuController {
   @FXML
   public void initialize() {
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/wedding_march.mp3").toString());
+    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     backgroundMusic.play();
   }
 
@@ -30,6 +32,7 @@ public class MenuController {
   @FXML
   private void onStart(ActionEvent event) throws ApiProxyException, IOException {
     backgroundMusic.stop();
+    buttonClickSound.play();
 
     // Get the root of the current scene
     Parent root = startButton.getScene().getRoot();

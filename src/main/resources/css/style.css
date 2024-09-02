@@ -2,6 +2,9 @@
   -fx-background-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
   -fx-text-fill: rgb(255, 255, 255);
+  -fx-border-radius: 5;
+  border-radius: 5;
+  -fx-background-radius: 5;
 }
 
 .button:hover {
