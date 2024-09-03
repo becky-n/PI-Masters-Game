@@ -18,9 +18,9 @@ public class Navigation {
     menuButton.getItems().clear();
 
     MenuItem crimeScene = new MenuItem("Crime Scene");
-    MenuItem gerald = new MenuItem("Gerald (The Plus One)");
-    MenuItem jesin = new MenuItem("Jesin (The Mother In Law)");
-    MenuItem andrea = new MenuItem("Andrea (The Bridesmaid)");
+    MenuItem gerald = new MenuItem("Gerald | Plus One");
+    MenuItem jesin = new MenuItem("Jesin | Mother In Law ");
+    MenuItem andrea = new MenuItem("Andrea | Bridesmaid");
 
     String style = "-fx-text-fill: white; -fx-padding: 0 10px 0 10px;";
     gerald.setStyle(style);

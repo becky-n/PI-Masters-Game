@@ -16,7 +16,7 @@
                   <Image url="@../images/andrea.png" />
                </image>
             </ImageView>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Andrea (The Bridesmaid) " textFill="WHITE" wrapText="true">
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Andrea | Bridesmaid" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>
