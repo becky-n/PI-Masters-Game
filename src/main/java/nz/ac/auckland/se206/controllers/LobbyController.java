@@ -14,7 +14,6 @@ public class LobbyController {
   private MenuButton menuButton;
   @FXML
   private Label timerLabel;
-  private Timeline updateTimerTimeline;
 
   @FXML
   private void initialize() {

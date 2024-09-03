@@ -15,8 +15,6 @@ public class CrimeController {
   @FXML
   private Label timerLabel;
 
-  private Timeline updateTimerTimeline;
-
   @FXML
   private void initialize() {
     // Initialize the controller
