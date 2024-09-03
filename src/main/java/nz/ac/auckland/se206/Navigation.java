@@ -22,6 +22,12 @@ public class Navigation {
     MenuItem crimeScene = new MenuItem("Crime Scene");
     MenuItem andrea = new MenuItem("Andrea");
 
+    String style = " -fx-text-fill: white;";
+    gerald.setStyle(style);
+    jesin.setStyle(style);
+    crimeScene.setStyle(style);
+    andrea.setStyle(style);
+
     menuButton.getItems().addAll(gerald, jesin, crimeScene, andrea);
 
     // Set the action

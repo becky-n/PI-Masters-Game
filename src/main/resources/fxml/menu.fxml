@@ -12,9 +12,9 @@
 
 <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <ImageView blendMode="SRC_ATOP" fitHeight="629.0" fitWidth="1113.0" layoutX="-207.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="SRC_ATOP" fitHeight="629.0" fitWidth="1113.0" layoutX="-77.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/menu_scene.jpg" />
+            <Image url="@../images/opening.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="112.0" layoutX="312.0" layoutY="79.0" opacity="0.78" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="541.0">
@@ -22,20 +22,20 @@
             <BoxBlur height="100.0" width="100.0" />
          </effect>
       </Rectangle>
-      <Label layoutX="324.0" layoutY="46.0" prefHeight="152.0" prefWidth="529.0" text="The Missing Ring" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+      <Label layoutX="84.0" layoutY="191.0" prefHeight="125.0" prefWidth="541.0" text="The Missing Ring" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
-            <Font name="Georgia" size="66.0" />
+            <Font name="Georgia" size="64.0" />
          </font>
          <effect>
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="648.0" layoutY="194.0" mnemonicParsing="false" onAction="#onStart" prefHeight="45.0" prefWidth="176.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="investigate">
+      <Button fx:id="startButton" layoutX="267.0" layoutY="323.0" mnemonicParsing="false" onAction="#onStart" prefHeight="45.0" prefWidth="176.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="investigate">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="458.0" layoutY="146.0" prefHeight="52.0" prefWidth="379.0" text="The wedding is about to start and the ring is missing!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="165.0" layoutY="280.0" prefHeight="52.0" prefWidth="379.0" text="The wedding is about to start and the ring is missing!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Georgia" size="16.0" />
          </font>
