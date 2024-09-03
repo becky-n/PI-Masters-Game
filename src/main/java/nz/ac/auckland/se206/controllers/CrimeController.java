@@ -24,7 +24,7 @@ public class CrimeController {
     nav.setMenu(menuButton);
 
     TimerManager timerManager = TimerManager.getInstance();
-    timerManager.start(120);
+    timerManager.start(300);
 
     Timeline updateTimerTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       int timeRemaining = timerManager.getTimeRemaining();
