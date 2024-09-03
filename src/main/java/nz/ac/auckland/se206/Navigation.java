@@ -17,18 +17,18 @@ public class Navigation {
     // Set the menu
     menuButton.getItems().clear();
 
-    MenuItem gerald = new MenuItem("Gerald");
-    MenuItem jesin = new MenuItem("Jesin");
     MenuItem crimeScene = new MenuItem("Crime Scene");
-    MenuItem andrea = new MenuItem("Andrea");
+    MenuItem gerald = new MenuItem("Gerald (The Plus One)");
+    MenuItem jesin = new MenuItem("Jesin (The Mother In Law)");
+    MenuItem andrea = new MenuItem("Andrea (The Bridesmaid)");
 
-    String style = " -fx-text-fill: white;";
+    String style = "-fx-text-fill: white; -fx-padding: 0 10px 0 10px;";
     gerald.setStyle(style);
     jesin.setStyle(style);
     crimeScene.setStyle(style);
     andrea.setStyle(style);
 
-    menuButton.getItems().addAll(gerald, jesin, crimeScene, andrea);
+    menuButton.getItems().addAll(crimeScene, jesin, gerald, andrea);
 
     // Set the action
     gerald.setOnAction(e -> {
@@ -36,7 +36,7 @@ public class Navigation {
       buttonClickSound.play();
     });
     jesin.setOnAction(e -> {
-      changeScene("ballroom");
+      changeScene("lobby");
       buttonClickSound.play();
     });
     crimeScene.setOnAction(e -> {
@@ -44,7 +44,7 @@ public class Navigation {
       buttonClickSound.play();
     });
     andrea.setOnAction(e -> {
-      changeScene("lobby");
+      changeScene("ballroom");
       buttonClickSound.play();
     });
 
