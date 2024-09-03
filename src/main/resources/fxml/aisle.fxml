@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,6 +21,7 @@
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="27.0" prefHeight="71.0" prefWidth="67.0" textAlignment="CENTER" />
          </children>
       </Pane>
    </children>
