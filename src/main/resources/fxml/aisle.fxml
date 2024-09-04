@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AisleController">
@@ -20,6 +22,12 @@
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>
+            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: 0.5;" />
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="810.0" layoutY="19.0" prefHeight="71.0" prefWidth="67.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
