@@ -2,20 +2,22 @@ package nz.ac.auckland.se206;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 
 public class TimerManager {
     private static TimerManager instance;
     private Timeline timer;
-    private int timeRemaining;
+    private IntegerProperty timeRemaining = new SimpleIntegerProperty();
     private boolean running;
 
     private TimerManager() {
         // Initialize the timer with a 1-second interval
         timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            timeRemaining--;
+            timeRemaining.set(timeRemaining.get() - 1);
             // Update UI or perform actions based on the timer here
-            if (timeRemaining <= 0) {
+            if (timeRemaining.get() <= 0) {
                 timer.stop();
                 handleTimeOut(); // Handle timeout event
             }
@@ -32,7 +34,7 @@ public class TimerManager {
 
     public void start(int durationInSeconds) {
         if (!running) {
-            timeRemaining = durationInSeconds;
+            timeRemaining.set(durationInSeconds);
             running = true;
             timer.play();
         }
@@ -46,10 +48,19 @@ public class TimerManager {
     }
 
     public int getTimeRemaining() {
+        return timeRemaining.get();
+    }
+
+    public IntegerProperty timeRemainingProperty() {
         return timeRemaining;
     }
 
     private void handleTimeOut() {
         // Handle timeout logic, such as transitioning to a game over state
+    }
+
+    public boolean isRunning() {
+      // TODO Auto-generated method stub
+      return running;
     }
 }
