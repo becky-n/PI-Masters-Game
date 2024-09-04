@@ -19,7 +19,7 @@
                   <Image url="@../images/bride.png" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" layoutX="513.0" layoutY="373.0" mnemonicParsing="false" onAction="#onStart" prefHeight="49.0" prefWidth="326.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Take me to the crime scene!">
+            <Button fx:id="startButton" layoutX="513.0" layoutY="373.0" mnemonicParsing="false" onAction="#onStart" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="326.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Take me to the crime scene!">
                <font>
                   <Font name="Georgia Bold" size="20.0" />
                </font>

@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.App;
 public class MenuController {
   private AudioClip backgroundMusic;
   private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
   @FXML
   private Button startButton;
@@ -27,7 +28,14 @@ public class MenuController {
   public void initialize() {
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/wedding_march.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     backgroundMusic.play();
+  }
+
+  /** Handles the button hover event and plays a sound effect. */
+  @FXML
+  private void buttonHover() {
+    twinkleSound.play();
   }
 
   /** Handles the start button pressed event and switches to the next scene. */

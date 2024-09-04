@@ -33,6 +33,7 @@ public class BackstoryController {
   private MediaPlayer screamPlayer;
   private AudioClip backgroundMusic;
   private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
   /** The string to animate. */
   private final String str = "Thank goodness you're with PI Masters! "
@@ -49,6 +50,7 @@ public class BackstoryController {
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     // after scream, load the backstory and play the background music
     screamPlayer = new MediaPlayer(screamMedia);
@@ -77,6 +79,12 @@ public class BackstoryController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  /** Handles the button hover event and plays a sound effect. */
+  @FXML
+  private void buttonHover() {
+    twinkleSound.play();
   }
 
   /** Handles the start button pressed event and switches to the next scene. */
