@@ -1,7 +1,7 @@
 {
     "editor.formatOnSave": true,
     "[java]": {
-        "editor.defaultFormatter": "josevseb.google-java-format-for-vs-code",
+        "editor.defaultFormatter": "redhat.java",
     },
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,

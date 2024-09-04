@@ -48,7 +48,7 @@ public class MenuController {
     fadeOut.setOnFinished(
         e -> {
           try {
-            App.setRoot("room");
+            App.setRoot("crime");
           } catch (IOException ioException) {
             ioException.printStackTrace();
           }
