@@ -7,60 +7,59 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 
 public class TimerManager {
-    private static TimerManager instance;
-    private Timeline timer;
-    private IntegerProperty timeRemaining = new SimpleIntegerProperty();
-    private boolean running;
+  private static TimerManager instance;
+  private Timeline timer;
+  private IntegerProperty timeRemaining = new SimpleIntegerProperty();
+  private boolean running;
 
-    private TimerManager() {
-        // Initialize the timer with a 1-second interval
-        timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            timeRemaining.set(timeRemaining.get() - 1);
-            // Update UI or perform actions based on the timer here
-            if (timeRemaining.get() <= 0) {
-                timer.stop();
-                handleTimeOut(); // Handle timeout event
-            }
-        }));
-        timer.setCycleCount(Timeline.INDEFINITE);
-    }
+  private TimerManager() {
+    // Initialize the timer with a 1-second interval
+    timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+      timeRemaining.set(timeRemaining.get() - 1);
 
-    public static synchronized TimerManager getInstance() {
-        if (instance == null) {
-            instance = new TimerManager();
-        }
-        return instance;
-    }
+      if (timeRemaining.get() <= 0) {
+        timer.stop();
+        handleTimeOut(); // Handle timeout event
+      }
+    }));
+    timer.setCycleCount(Timeline.INDEFINITE);
+  }
 
-    public void start(int durationInSeconds) {
-        if (!running) {
-            timeRemaining.set(durationInSeconds);
-            running = true;
-            timer.play();
-        }
+  public static synchronized TimerManager getInstance() {
+    if (instance == null) {
+      instance = new TimerManager();
     }
+    return instance;
+  }
 
-    public void stop() {
-        if (running) {
-            running = false;
-            timer.pause();
-        }
+  public void start(int durationInSeconds) {
+    if (!running) {
+      timeRemaining.set(durationInSeconds);
+      running = true;
+      timer.play();
     }
+  }
 
-    public int getTimeRemaining() {
-        return timeRemaining.get();
+  public void stop() {
+    if (running) {
+      running = false;
+      timer.pause();
     }
+  }
 
-    public IntegerProperty timeRemainingProperty() {
-        return timeRemaining;
-    }
+  public int getTimeRemaining() {
+    return timeRemaining.get();
+  }
 
-    private void handleTimeOut() {
-        // Handle timeout logic, such as transitioning to a game over state
-    }
+  public IntegerProperty timeRemainingProperty() {
+    return timeRemaining;
+  }
 
-    public boolean isRunning() {
-      // TODO Auto-generated method stub
-      return running;
-    }
+  private void handleTimeOut() {
+    // Handle timeout logic, (transitioning to a game over state)
+  }
+
+  public boolean isRunning() {
+    return running;
+  }
 }
