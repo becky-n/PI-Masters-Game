@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BackstoryController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="615.0" layoutX="-5.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" width="914.0" />
+      <Pane fx:id="backstoryPane" layoutY="1.0" prefHeight="600.0" prefWidth="897.0">
+         <children>
+            <ImageView blendMode="SRC_ATOP" fitHeight="644.0" fitWidth="1081.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bride.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="startButton" layoutX="606.0" layoutY="371.0" mnemonicParsing="false" onAction="#onStart" prefHeight="49.0" prefWidth="233.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Go to crime scene">
+               <font>
+                  <Font name="Georgia Bold" size="20.0" />
+               </font>
+            </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="33.0" layoutX="131.0" layoutY="401.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="193.0">
+               <effect>
+                  <BoxBlur height="0.0" width="132.51" />
+               </effect>
+            </Rectangle>
+         </children>
+      </Pane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="131.0" layoutX="77.0" layoutY="432.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="756.0">
+         <effect>
+            <BoxBlur height="0.0" width="132.51" />
+         </effect>
+      </Rectangle>
+      <Label fx:id="backstoryLabel" layoutX="71.0" layoutY="443.0" prefHeight="110.0" prefWidth="769.0" text="Thank goodness you're with PI Masters! My wedding is in 5 minutes, and the ring is missing! I'm suspicious of Gerald, Jesin, and Andrea. Can you talk with them and gather clues from the bridal suite before it's too late?" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Georgia" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
