@@ -19,27 +19,28 @@
                   <Image url="@../images/bride.png" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" layoutX="606.0" layoutY="371.0" mnemonicParsing="false" onAction="#onStart" prefHeight="49.0" prefWidth="233.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Go to crime scene">
+            <Button fx:id="startButton" layoutX="606.0" layoutY="373.0" mnemonicParsing="false" onAction="#onStart" prefHeight="49.0" prefWidth="233.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Go to crime scene">
                <font>
                   <Font name="Georgia Bold" size="20.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="33.0" layoutX="131.0" layoutY="401.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="193.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="42.0" layoutX="61.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="163.0" />
+            <Label fx:id="name" layoutX="77.0" layoutY="379.0" prefHeight="42.0" prefWidth="128.0" text="Bride" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Georgia Bold" size="20.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="131.0" layoutX="71.0" layoutY="429.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="756.0">
                <effect>
                   <BoxBlur height="0.0" width="132.51" />
                </effect>
             </Rectangle>
+            <Label fx:id="backstoryLabel" layoutX="65.0" layoutY="440.0" prefHeight="110.0" prefWidth="769.0" text="Thank goodness you're with PI Masters! My wedding is in 5 minutes, and the ring is missing! I'm suspicious of Gerald, Jesin, and Andrea. Can you talk with them and gather clues from the bridal suite before it's too late?" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Georgia" size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="131.0" layoutX="77.0" layoutY="432.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="756.0">
-         <effect>
-            <BoxBlur height="0.0" width="132.51" />
-         </effect>
-      </Rectangle>
-      <Label fx:id="backstoryLabel" layoutX="71.0" layoutY="443.0" prefHeight="110.0" prefWidth="769.0" text="Thank goodness you're with PI Masters! My wedding is in 5 minutes, and the ring is missing! I'm suspicious of Gerald, Jesin, and Andrea. Can you talk with them and gather clues from the bridal suite before it's too late?" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Georgia" size="20.0" />
-         </font>
-      </Label>
    </children>
 </Pane>
