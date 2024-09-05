@@ -11,12 +11,12 @@
 
 <Pane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BackstoryController">
    <children>
-      <ImageView fx:id="screamImg" blendMode="SRC_ATOP" fitHeight="1305.0" fitWidth="2319.0" layoutX="-753.0" layoutY="-449.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="screamImg" blendMode="SRC_ATOP" fitHeight="700.0" fitWidth="1155.0" layoutX="-209.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/scream.jpg" />
          </image>
       </ImageView>
-      <Pane fx:id="backstoryPane" layoutY="1.0" prefHeight="600.0" prefWidth="926.0">
+      <Pane fx:id="backstoryPane" prefHeight="600.0" prefWidth="897.0">
          <children>
             <ImageView blendMode="SRC_ATOP" fitHeight="644.0" fitWidth="1081.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>

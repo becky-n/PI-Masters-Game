@@ -40,7 +40,7 @@ public class BackstoryController {
 
   /** The string to animate. */
   private final String str = "Thank goodness you're with PI Masters! "
-      + "The wedding is in 5 minutes, and the ring is missing! "
+      + "My ring is missing and the wedding is in 5 minutes! "
       + "I'm suspicious of Gerald, Jesin, and Andrea... "
       + "Can you talk with them and gather clues before it's too late?"; // string to animate
 
