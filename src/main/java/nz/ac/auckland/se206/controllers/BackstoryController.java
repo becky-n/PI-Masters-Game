@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class BackstoryController {
@@ -27,6 +28,8 @@ public class BackstoryController {
   private Button startButton;
   @FXML
   private Pane backstoryPane;
+  @FXML
+  private ImageView screamImg;
   @FXML
   private Label backstoryLabel;
 
@@ -47,19 +50,46 @@ public class BackstoryController {
     // Backstory pane is initially invisible
     backstoryPane.setVisible(false);
 
+    // Initialize media resources
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-
-    // after scream, load the backstory and play the background music
     screamPlayer = new MediaPlayer(screamMedia);
+
+    // Start the scream sound and apply the shake effect
+    screamPlayer.play();
+    applyShakeEffect();
+  }
+
+  /** Adds a shake effect to the screamImg during the scream sound */
+  private void applyShakeEffect() {
+    // Create a Timeline to shake the ImageView
+    Timeline shakeTimeline = new Timeline();
+
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.millis(50), // Change position every 50 milliseconds
+        event -> {
+          double xOffset = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double yOffset = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+          screamImg.setTranslateX(xOffset);
+          screamImg.setTranslateY(yOffset);
+        });
+
+    // Add the keyframe to the timeline
+    shakeTimeline.getKeyFrames().add(keyFrame);
+    shakeTimeline.setCycleCount(Animation.INDEFINITE); // Make it indefinite until stopped
+
+    // Start the shaking when the scream starts
+    shakeTimeline.play();
+
+    // Stop the shake effect and initiate backstory and background music
     screamPlayer.setOnEndOfMedia(() -> {
+      shakeTimeline.stop();
       backstoryPane.setVisible(true);
       backgroundMusic.play();
       animateText();
     });
-    screamPlayer.play();
   }
 
   /** Animates the text in the motive label. */
