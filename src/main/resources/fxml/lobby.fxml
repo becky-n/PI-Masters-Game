@@ -22,10 +22,10 @@
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>
-            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: .5;" />
+            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="14.0" />
+                  <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
          </children>

@@ -8,10 +8,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.TimerManager;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
@@ -32,6 +34,8 @@ public class BackstoryController {
   private ImageView screamImg;
   @FXML
   private Label backstoryLabel;
+  @FXML
+  private Label timerLabel;
 
   private MediaPlayer screamPlayer;
   private AudioClip backgroundMusic;
@@ -52,10 +56,24 @@ public class BackstoryController {
 
     // Initialize media resources
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
+    TimerManager timerManager = TimerManager.getInstance();
+
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     screamPlayer = new MediaPlayer(screamMedia);
+
+    // Bind the timerLabel to the timeRemaining property
+    timerLabel.textProperty().bind(
+        Bindings.createStringBinding(() -> String.format("%02d:%02d",
+            timerManager.getTimeRemaining() / 60,
+            timerManager.getTimeRemaining() % 60),
+            timerManager.timeRemainingProperty()));
+
+    // Start the timer if it's the first scene
+    if (!timerManager.isRunning()) {
+      timerManager.start(300);
+    }
 
     // Start the scream sound and apply the shake effect
     screamPlayer.play();
