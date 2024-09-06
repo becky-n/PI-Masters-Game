@@ -11,21 +11,31 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 
 /**
- * Controller class for the menu view. Handles user interactions within the menu where the user can
+ * Controller class for the menu view. Handles user interactions within the menu
+ * where the user can
  * start the game.
  */
 public class MenuController {
   private AudioClip backgroundMusic;
   private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
-  @FXML private Button startButton;
+  @FXML
+  private Button startButton;
 
   /** Initialises the menu scene. */
   @FXML
   public void initialize() {
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/wedding_march.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     backgroundMusic.play();
+  }
+
+  /** Handles the button hover event and plays a sound effect. */
+  @FXML
+  private void buttonHover() {
+    twinkleSound.play();
   }
 
   /** Handles the start button pressed event and switches to the next scene. */
@@ -48,7 +58,7 @@ public class MenuController {
     fadeOut.setOnFinished(
         e -> {
           try {
-            App.setRoot("crime");
+            App.setRoot("backstory");
           } catch (IOException ioException) {
             ioException.printStackTrace();
           }

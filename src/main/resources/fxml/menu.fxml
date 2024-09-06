@@ -30,12 +30,12 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="241.0" layoutY="323.0" mnemonicParsing="false" onAction="#onStart" prefHeight="45.0" prefWidth="176.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="investigate">
+      <Button fx:id="startButton" layoutX="267.0" layoutY="329.0" mnemonicParsing="false" onAction="#onStart" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="123.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="attend">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="139.0" layoutY="280.0" prefHeight="52.0" prefWidth="379.0" text="The wedding is about to start and the ring is missing!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="94.0" layoutY="278.0" prefHeight="52.0" prefWidth="468.0" text="You are cordially invited to join us in celebrating our special day." textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Georgia" size="16.0" />
          </font>
