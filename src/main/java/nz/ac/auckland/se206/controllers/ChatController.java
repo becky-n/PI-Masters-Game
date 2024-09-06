@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
@@ -26,7 +25,6 @@ public class ChatController {
 
   @FXML private TextArea txtaChat;
   @FXML private TextField txtInput;
-  @FXML private Button btnSend;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
@@ -107,12 +105,11 @@ public class ChatController {
   /**
    * Sends a message to the GPT model.
    *
-   * @param event the action event triggered by the send button
    * @throws ApiProxyException if there is an error communicating with the API proxy
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+  private void onSendMessage() throws ApiProxyException, IOException {
     String message = txtInput.getText().trim();
     if (message.isEmpty()) {
       return;
