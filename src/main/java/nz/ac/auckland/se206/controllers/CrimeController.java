@@ -27,10 +27,5 @@ public class CrimeController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
-
-    // Start the timer if it's the first scene
-    if (!timerManager.isRunning()) {
-      timerManager.start(300);
-    }
   }
 }
