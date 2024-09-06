@@ -7,6 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
 import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
@@ -18,25 +21,44 @@ import nz.ac.auckland.se206.prompts.PromptEngineering;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
- * Controller class for the chat view. Handles user interactions and communication with the GPT
+ * Controller class for the chat view. Handles user interactions and
+ * communication with the GPT
  * model via the API proxy.
  */
 public class ChatController {
 
-  @FXML private TextArea txtaChat;
-  @FXML private TextField txtInput;
+  @FXML
+  private TextArea txtaChat;
+  @FXML
+  private TextField txtInput;
+  @FXML
+  private ImageView btnSend;
 
   private ChatCompletionRequest chatCompletionRequest;
   private String profession;
+  private AudioClip buttonClickSound;
 
   /**
    * Initializes the chat view.
    *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws ApiProxyException if there is an error communicating with the API
+   *                           proxy
    */
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+
+    txtInput.setOnKeyPressed(event -> {
+      if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
+        try {
+          onSendMessage(); // Call the method to send the message
+        } catch (ApiProxyException | IOException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+
   }
 
   /**
@@ -51,7 +73,8 @@ public class ChatController {
   }
 
   /**
-   * Sets the profession for the chat context and initializes the ChatCompletionRequest.
+   * Sets the profession for the chat context and initializes the
+   * ChatCompletionRequest.
    *
    * @param profession the profession to set
    */
@@ -59,12 +82,11 @@ public class ChatController {
     this.profession = profession;
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
-      chatCompletionRequest =
-          new ChatCompletionRequest(config)
-              .setN(1)
-              .setTemperature(0.2)
-              .setTopP(0.5)
-              .setMaxTokens(100);
+      chatCompletionRequest = new ChatCompletionRequest(config)
+          .setN(1)
+          .setTemperature(0.2)
+          .setTopP(0.5)
+          .setMaxTokens(100);
       runGpt(new ChatMessage("system", getSystemPrompt()));
     } catch (ApiProxyException e) {
       e.printStackTrace();
@@ -85,7 +107,8 @@ public class ChatController {
    *
    * @param msg the chat message to process
    * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws ApiProxyException if there is an error communicating with the API
+   *                           proxy
    */
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
@@ -105,11 +128,13 @@ public class ChatController {
   /**
    * Sends a message to the GPT model.
    *
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @throws ApiProxyException if there is an error communicating with the API
+   *                           proxy
+   * @throws IOException       if there is an I/O error
    */
   @FXML
   private void onSendMessage() throws ApiProxyException, IOException {
+    buttonClickSound.play();
     String message = txtInput.getText().trim();
     if (message.isEmpty()) {
       return;
@@ -120,12 +145,23 @@ public class ChatController {
     runGpt(msg);
   }
 
+  @FXML
+  private void onHover() {
+    btnSend.setOpacity(1);
+  }
+
+  @FXML
+  private void offHover() {
+    btnSend.setOpacity(0.5);
+  }
+
   /**
    * Navigates back to the previous view.
    *
    * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
+   * @throws ApiProxyException if there is an error communicating with the API
+   *                           proxy
+   * @throws IOException       if there is an I/O error
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {

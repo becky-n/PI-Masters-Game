@@ -87,6 +87,12 @@
   -fx-background-radius: 5;
 }
 
+.text-area .scroll-pane .scroll-bar .increment-button,
+.text-area .scroll-pane .scroll-bar .decrement-button {
+  -fx-background-color: transparent;
+  background-color: transparent;
+}
+
 /* Optional: Transparent on hover */
 .text-area .scroll-pane .scroll-bar:hover .thumb {
   background-color: transparent;

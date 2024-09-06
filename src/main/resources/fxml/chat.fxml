@@ -35,7 +35,7 @@
             <Insets left="20.0" right="60.0" />
          </padding>
       </TextField>
-      <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="28.0" layoutX="783.0" layoutY="198.0" onMouseClicked="#onSendMessage" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="28.0" layoutX="783.0" layoutY="198.0" onMouseClicked="#onSendMessage" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/send.png" />
          </image>
