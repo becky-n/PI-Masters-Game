@@ -3,6 +3,8 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.media.AudioClip;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
@@ -11,6 +13,8 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class LobbyController {
+  private AudioClip buttonClickSound;
+
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -20,6 +24,7 @@ public class LobbyController {
 
   @FXML
   private void initialize() {
+    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
@@ -44,6 +49,8 @@ public class LobbyController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.play();
+    App.setRoot("guess");
     context.handleGuessClick();
   }
 }
