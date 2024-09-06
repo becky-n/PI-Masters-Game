@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
+import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+import java.io.IOException;
 
 public class BallroomController {
 
@@ -14,6 +17,8 @@ public class BallroomController {
 
   @FXML
   private Label timerLabel;
+
+  private static GameStateContext context = new GameStateContext();
 
   @FXML
   private void initialize() {
@@ -28,5 +33,16 @@ public class BallroomController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
+  }
+
+  /**
+   * Handles the guess button click event.
+   *
+   * @param event the action event triggered by clicking the guess button
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleGuessClick(ActionEvent event) throws IOException {
+    context.handleGuessClick();
   }
 }
