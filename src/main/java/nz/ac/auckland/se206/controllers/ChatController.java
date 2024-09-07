@@ -2,7 +2,12 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
 import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
@@ -111,7 +117,7 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    txtaChat.appendText(msg.getContent());
+    animateText(msg.getContent());
   }
 
   /**
@@ -200,4 +206,26 @@ public class ChatController {
   private void offHover() {
     btnSend.setOpacity(0.5);
   }
+
+   /** Animates the text in the motive label. */
+   private void animateText(String str) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    txtaChat.clear();  // Clear the TextArea before starting the animation
+
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.015), // Adjust speed for smoother animation
+        event -> {
+          if (i.get() < str.length()) {
+            txtaChat.appendText(String.valueOf(str.charAt(i.get())));  // Append one character
+            i.set(i.get() + 1);
+          } else {
+            timeline.stop();  // Stop the timeline when all characters are appended
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);  // Keep the timeline running
+    timeline.play();
+}
+
 }
