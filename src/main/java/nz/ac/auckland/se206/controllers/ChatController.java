@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -87,6 +90,8 @@ public class ChatController {
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
+    txtaChat.setPromptText(suspect + " is thinking...\n\n");
+
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
       chatCompletionRequest = new ChatCompletionRequest(config)
@@ -117,18 +122,50 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API
    *                           proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-    chatCompletionRequest.addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      e.printStackTrace();
-      return null;
+  private void runGpt(ChatMessage msg) throws ApiProxyException {
+    if (chatCompletionRequest == null) {
+      throw new IllegalStateException("ChatCompletionRequest is not initialized.");
     }
+
+    // Add loading message
+    txtaChat.clear();
+    txtaChat.setPromptText(suspect + " is thinking...\n\n");
+
+    // Create a task to run the GPT model
+    Task<ChatMessage> task = new Task<ChatMessage>() {
+      // Run the GPT model
+      @Override
+      protected ChatMessage call() throws ApiProxyException {
+
+        // Add the user message
+        chatCompletionRequest.addMessage(msg);
+        ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+        Choice result = chatCompletionResult.getChoices().iterator().next();
+        chatCompletionRequest.addMessage(result.getChatMessage());
+        return result.getChatMessage();
+      }
+
+      @Override
+      protected void succeeded() {
+
+        // Handle the result
+        ChatMessage chatMessage = getValue();
+        appendChatMessage(chatMessage);
+      }
+
+      // Handle the error
+      @Override
+      protected void failed() {
+        Platform.runLater(
+            () -> {
+              Throwable exception = getException();
+              exception.printStackTrace();
+            });
+      }
+    };
+
+    // Run the task on a background thread
+    new Thread(task).start();
   }
 
   /**
@@ -147,7 +184,6 @@ public class ChatController {
     }
     txtInput.clear();
     ChatMessage msg = new ChatMessage("user", message);
-    appendChatMessage(msg);
     runGpt(msg);
   }
 
