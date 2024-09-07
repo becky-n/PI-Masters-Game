@@ -4,16 +4,16 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.media.AudioClip;
 
-import java.io.IOException;
-
 public class Navigation {
   private AudioClip buttonClickSound;
+  private AudioClip doorSound;
 
   public Navigation() {
   }
 
   public void setMenu(MenuButton menuButton) {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    doorSound = new AudioClip(getClass().getResource("/sounds/door.mp3").toString());
     // Set the menu
     menuButton.getItems().clear();
 
@@ -51,29 +51,26 @@ public class Navigation {
     // Set the action
     gerald.setOnAction(e -> {
       changeScene("aisle");
-      buttonClickSound.play();
+      doorSound.play();
     });
     jesin.setOnAction(e -> {
       changeScene("lobby");
-      buttonClickSound.play();
+      doorSound.play();
     });
     crimeScene.setOnAction(e -> {
       changeScene("crime");
-      buttonClickSound.play();
+      doorSound.play();
     });
     andrea.setOnAction(e -> {
       changeScene("ballroom");
-      buttonClickSound.play();
+      doorSound.play();
     });
 
     menuButton.setOnShowing(e -> buttonClickSound.play());
   }
 
   private void changeScene(String scene) {
-    try {
-      App.setRoot(scene);
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
+    App.fadeScenes(scene);
   }
+
 }

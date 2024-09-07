@@ -38,8 +38,4 @@ public class BallroomController {
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
   }
-
-  public Pane getChatPane() {
-    return chatPane;
-  }
 }

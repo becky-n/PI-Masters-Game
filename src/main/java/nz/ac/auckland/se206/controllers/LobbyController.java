@@ -38,8 +38,4 @@ public class LobbyController {
             timerManager.timeRemainingProperty()));
 
   }
-
-  public Pane getChatPane() {
-    return chatPane;
-  }
 }

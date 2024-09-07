@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,6 +54,45 @@ public class App extends Application {
    */
   private static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+  }
+
+  /**
+   * Changes the scene to the specified FXML file with a fade-in and fade-out
+   * @param scene
+   */
+  public static void fadeScenes(String scene) {
+    // Get root of the current scene
+    Parent oldRoot = getScene().getRoot();
+
+    // Create a fade-out transition for the old scene
+    FadeTransition fadeOut = new FadeTransition(javafx.util.Duration.millis(500), oldRoot);
+    fadeOut.setFromValue(1.0);
+    fadeOut.setToValue(0.0);
+
+    // Set the action to perform after fade-out completes
+    fadeOut.setOnFinished(e -> {
+      try {
+        // Set the new root (new scene)
+        setRoot(scene);
+
+        // Get the new root of the scene
+        Parent newRoot = getScene().getRoot();
+
+        // Create a fade-in transition for the new scene
+        FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), newRoot);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+
+        // Start the fade-in transition
+        fadeIn.play();
+      } catch (IOException ioException) {
+        ioException.printStackTrace();
+        // Optionally display an error dialog here
+      }
+    });
+
+    // Start the fade-out transition
+    fadeOut.play();
   }
 
   /**
@@ -108,5 +149,9 @@ public class App extends Application {
 
   public static String getCurrentSceneId() {
     return currentSceneId;
+  }
+
+  public static Scene getScene() {
+    return scene;
   }
 }
