@@ -26,8 +26,8 @@ public class LobbyController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    //load the chat
-        App.openChat("Jesin", chatPane);
+    // load the chat
+    App.openChat("Jesin", chatPane);
 
     TimerManager timerManager = TimerManager.getInstance();
 

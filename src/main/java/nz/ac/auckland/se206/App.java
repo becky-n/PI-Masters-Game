@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 public class App extends Application {
 
   private static Scene scene;
+  private static String currentSceneId;
 
   /**
    * The main method that launches the JavaFX application.
@@ -36,6 +37,7 @@ public class App extends Application {
    * @throws IOException if the FXML file is not found
    */
   public static void setRoot(String fxml) throws IOException {
+    currentSceneId = fxml;
     scene.setRoot(loadFxml(fxml));
   }
 
@@ -102,5 +104,9 @@ public class App extends Application {
 
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
+  }
+
+  public static String getCurrentSceneId() {
+    return currentSceneId;
   }
 }

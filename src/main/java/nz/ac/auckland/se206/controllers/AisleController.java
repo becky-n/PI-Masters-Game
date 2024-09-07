@@ -37,4 +37,5 @@ public class AisleController {
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
   }
+
 }

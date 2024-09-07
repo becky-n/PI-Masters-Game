@@ -207,25 +207,25 @@ public class ChatController {
     btnSend.setOpacity(0.5);
   }
 
-   /** Animates the text in the motive label. */
-   private void animateText(String str) {
+  /** Animates the text in the motive label. */
+  private void animateText(String str) {
     final IntegerProperty i = new SimpleIntegerProperty(0);
-    txtaChat.clear();  // Clear the TextArea before starting the animation
+    txtaChat.clear(); // Clear the TextArea before starting the animation
 
     Timeline timeline = new Timeline();
     KeyFrame keyFrame = new KeyFrame(
         Duration.seconds(0.015), // Adjust speed for smoother animation
         event -> {
           if (i.get() < str.length()) {
-            txtaChat.appendText(String.valueOf(str.charAt(i.get())));  // Append one character
+            txtaChat.appendText(String.valueOf(str.charAt(i.get()))); // Append one character
             i.set(i.get() + 1);
           } else {
-            timeline.stop();  // Stop the timeline when all characters are appended
+            timeline.stop(); // Stop the timeline when all characters are appended
           }
         });
     timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);  // Keep the timeline running
+    timeline.setCycleCount(Animation.INDEFINITE); // Keep the timeline running
     timeline.play();
-}
+  }
 
 }

@@ -28,7 +28,25 @@ public class Navigation {
     crimeScene.setStyle(style);
     andrea.setStyle(style);
 
-    menuButton.getItems().addAll(crimeScene, jesin, gerald, andrea);
+    String currentSceneId = App.getCurrentSceneId(); // Get the ID of the current scene
+
+    // Add menu items based on the current scene using switch statement
+    switch (currentSceneId) {
+      case "crime":
+        menuButton.getItems().addAll(jesin, gerald, andrea);
+        break;
+      case "lobby":
+        menuButton.getItems().addAll(crimeScene, gerald, andrea);
+        break;
+      case "aisle":
+        menuButton.getItems().addAll(crimeScene, jesin, andrea);
+        break;
+      case "ballroom":
+        menuButton.getItems().addAll(crimeScene, jesin, gerald);
+        break;
+      default:
+        menuButton.getItems().addAll(crimeScene, jesin, gerald, andrea);
+    }
 
     // Set the action
     gerald.setOnAction(e -> {
@@ -58,5 +76,4 @@ public class Navigation {
       ex.printStackTrace();
     }
   }
-
 }
