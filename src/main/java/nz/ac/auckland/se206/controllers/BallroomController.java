@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.Pane;
@@ -28,12 +27,8 @@ public class BallroomController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    // load chat.fxml
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
-    Pane chatContent = fxmlLoader.load();
-    chatPane.getChildren().clear();
-    chatPane.getChildren().add(chatContent);
-    chatPane.setVisible(true);
+    // load the chat
+    App.openChat("Andrea", chatPane);
 
     TimerManager timerManager = TimerManager.getInstance();
 
@@ -42,5 +37,9 @@ public class BallroomController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
+  }
+
+  public Pane getChatPane() {
+    return chatPane;
   }
 }

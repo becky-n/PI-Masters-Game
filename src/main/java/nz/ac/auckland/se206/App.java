@@ -3,17 +3,17 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
- * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
+ * This is the entry point of the JavaFX application. This class initializes and
+ * runs the JavaFX
  * application.
  */
 public class App extends Application {
@@ -40,7 +40,8 @@ public class App extends Application {
   }
 
   /**
-   * Loads the FXML file and returns the associated node. The method expects that the file is
+   * Loads the FXML file and returns the associated node. The method expects that
+   * the file is
    * located in "src/main/resources/fxml".
    *
    * @param fxml the name of the FXML file (without extension)
@@ -52,30 +53,42 @@ public class App extends Application {
   }
 
   /**
-   * Opens the chat view and sets the profession in the chat controller.
+   * Opens the chat view and sets the student in the chat controller.
    *
    * @param event the mouse event that triggered the method
-   * @param profession the profession to set in the chat controller
+   * @param name  the suspect to set in the chat controller
    * @throws IOException if the FXML file is not found
    */
-  public static void openChat(MouseEvent event, String profession) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
-    Parent root = loader.load();
+  public static void openChat(String name, Pane chatPane)
+      throws IOException {
 
-    ChatController chatController = loader.getController();
-    chatController.setProfession(profession);
+    try {
 
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
+      // Load the chat view
+      FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
+      Pane chatContent = fxmlLoader.load();
+      ChatController chat = fxmlLoader.getController();
+
+      // Set the suspect in the chat controller
+      chat.setSuspect(name);
+
+      // Clear the chat pane and add the chat view
+      chatPane.getChildren().clear();
+      chatPane.getChildren().add(chatContent);
+      chatPane.setVisible(true);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "menu" scene.
+   * This method is invoked when the application starts. It loads and shows the
+   * "menu" scene.
    *
    * @param stage the primary stage of the application
-   * @throws IOException if the "src/main/resources/fxml/menu.fxml" file is not found
+   * @throws IOException if the "src/main/resources/fxml/menu.fxml" file is not
+   *                     found
    */
   @Override
   public void start(final Stage stage) throws IOException {

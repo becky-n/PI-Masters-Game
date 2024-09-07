@@ -1,10 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -16,14 +14,11 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
-import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
  * Controller class for the chat view. Handles user interactions and
- * communication with the GPT
- * model via the API proxy.
+ * communication with the GPT model via the API proxy.
  */
 public class ChatController {
 
@@ -33,9 +28,12 @@ public class ChatController {
   private TextField txtInput;
   @FXML
   private ImageView btnSend;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private String suspect;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private String profession;
   private AudioClip buttonClickSound;
 
   /**
@@ -62,24 +60,33 @@ public class ChatController {
   }
 
   /**
-   * Generates the system prompt based on the profession.
+   * Generates the system prompt based on the student.
    *
    * @return the system prompt string
    */
   private String getSystemPrompt() {
-    Map<String, String> map = new HashMap<>();
-    map.put("profession", profession);
-    return PromptEngineering.getPrompt("chat.txt", map);
+    String promptId;
+    if (suspect.equals("Jesin")) {
+      promptId = "prompts/jesin.txt";
+    } else if (suspect.equals("Andrea")) {
+      promptId = "prompts/andrea.txt";
+    } else {
+      promptId = "prompts/gerald.txt";
+    }
+    return PromptEngineering.getPrompt(promptId);
   }
 
   /**
-   * Sets the profession for the chat context and initializes the
+   * Sets the student for the chat context and initializes the
    * ChatCompletionRequest.
    *
-   * @param profession the profession to set
+   * @param student the student to set
    */
-  public void setProfession(String profession) {
-    this.profession = profession;
+
+  public void setSuspect(String suspect) {
+    this.suspect = suspect;
+    nameLabel.setText(suspect);
+
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
       chatCompletionRequest = new ChatCompletionRequest(config)
@@ -99,7 +106,7 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    txtaChat.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    txtaChat.appendText(msg.getContent() + "\n\n");
   }
 
   /**
@@ -117,7 +124,6 @@ public class ChatController {
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
       appendChatMessage(result.getChatMessage());
-      FreeTextToSpeech.speak(result.getChatMessage().getContent());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       e.printStackTrace();
@@ -153,18 +159,5 @@ public class ChatController {
   @FXML
   private void offHover() {
     btnSend.setOpacity(0.5);
-  }
-
-  /**
-   * Navigates back to the previous view.
-   *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API
-   *                           proxy
-   * @throws IOException       if there is an I/O error
-   */
-  @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
   }
 }

@@ -19,7 +19,7 @@
             <BoxBlur height="0.0" width="78.73" />
          </effect>
       </Rectangle>
-      <TextArea fx:id="txtaChat" editable="false" layoutX="106.0" layoutY="79.0" prefHeight="87.0" prefWidth="727.0" stylesheets="@../css/style.css" text="Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky Hi Phoebe and Becky " wrapText="true">
+      <TextArea fx:id="txtaChat" editable="false" layoutX="106.0" layoutY="79.0" prefHeight="87.0" prefWidth="727.0" stylesheets="@../css/style.css" wrapText="true">
          <font>
             <Font name="Georgia" size="18.0" />
          </font>
@@ -35,13 +35,13 @@
             <Insets left="20.0" right="60.0" />
          </padding>
       </TextField>
-      <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="28.0" layoutX="783.0" layoutY="198.0" onMouseClicked="#onSendMessage" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="28.0" layoutX="783.0" layoutY="198.0" onMouseClicked="#onSendMessage" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/send.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="42.0" layoutX="106.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="163.0" />
-      <Label fx:id="name" layoutX="124.0" layoutY="20.0" prefHeight="42.0" prefWidth="128.0" text="Name" textAlignment="CENTER" textFill="#eb7373" wrapText="true">
+      <Label fx:id="nameLabel" layoutX="124.0" layoutY="20.0" prefHeight="42.0" prefWidth="128.0" text="Name" textAlignment="CENTER" textFill="#eb7373" wrapText="true">
          <font>
             <Font name="Georgia Bold" size="20.0" />
          </font>
