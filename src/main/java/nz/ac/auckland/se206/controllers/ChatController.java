@@ -90,7 +90,7 @@ public class ChatController {
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
-    txtaChat.setPromptText(suspect + " is thinking...\n\n");
+    txtaChat.setPromptText(suspect + " is thinking...");
 
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
@@ -111,7 +111,7 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    txtaChat.appendText(msg.getContent() + "\n\n");
+    txtaChat.appendText(msg.getContent());
   }
 
   /**
@@ -129,7 +129,7 @@ public class ChatController {
 
     // Add loading message
     txtaChat.clear();
-    txtaChat.setPromptText(suspect + " is thinking...\n\n");
+    txtaChat.setPromptText(suspect + " is thinking...");
 
     // Create a task to run the GPT model
     Task<ChatMessage> task = new Task<ChatMessage>() {
@@ -180,6 +180,10 @@ public class ChatController {
     buttonClickSound.play();
     String message = txtInput.getText().trim();
     if (message.isEmpty()) {
+      // case where user tries to send an empty message
+      return;
+    } else if (txtaChat.getText().trim().isEmpty()) {
+      // case where user tries to enter something while system is loading
       return;
     }
     txtInput.clear();
