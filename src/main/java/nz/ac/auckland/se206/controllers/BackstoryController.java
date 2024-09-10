@@ -34,6 +34,8 @@ public class BackstoryController {
   private Label backstoryLabel;
   @FXML
   private Label timerLabel;
+  @FXML
+  private Button skipButton;
 
   private MediaPlayer screamPlayer;
   private AudioClip backgroundMusic;
@@ -98,6 +100,14 @@ public class BackstoryController {
 
     // Start the shaking when the scream starts
     shakeTimeline.play();
+
+    // if player clicks skip, stop the scream and shake effect
+    skipButton.setOnAction(event -> {
+      screamPlayer.stop();
+      shakeTimeline.stop();
+      buttonClickSound.play();
+      App.fadeScenes("crime");
+    });
 
     // Stop the shake effect and initiate backstory and background music
     screamPlayer.setOnEndOfMedia(() -> {
