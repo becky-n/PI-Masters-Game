@@ -28,6 +28,7 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
+            <Pane fx:id="chatPane" layoutY="350.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="897.0" />
          </children>
       </Pane>
    </children>

@@ -49,9 +49,63 @@
   -fx-background-color: transparent;
   background-color: transparent;
   -fx-border-width: 2;
-    border-width:2;
+  border-width: 2;
   -fx-border-color: white;
-   border-color: white;
-   -fx-border-radius: 5;
-   border-radius: 5;
+  border-color: white;
+  -fx-border-radius: 5;
+  border-radius: 5;
+}
+
+.text-area {
+  -fx-text-fill: rgb(255, 255, 255);
+  -fx-background-color: transparent;
+  background-color: transparent;
+}
+
+.text-area .scroll-pane,
+.text-area .scroll-pane .viewport,
+.text-area .scroll-pane .content {
+  -fx-background-color: transparent;
+  background-color: transparent;
+}
+
+
+/* Transparent ScrollBar */
+.text-area .scroll-pane .scroll-bar {
+  background-color: transparent;
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .scroll-bar .track {
+  background-color: transparent;
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .scroll-bar .thumb {
+  background-color: transparent;
+  -fx-background-color: rgba(255, 255, 255, 0.3);
+  -fx-background-radius: 5;
+}
+
+.text-area .scroll-pane .scroll-bar .increment-button,
+.text-area .scroll-pane .scroll-bar .decrement-button {
+  -fx-background-color: transparent;
+  background-color: transparent;
+}
+
+/* Optional: Transparent on hover */
+.text-area .scroll-pane .scroll-bar:hover .thumb {
+  background-color: transparent;
+  -fx-background-color: rgba(255, 255, 255, 0.8);
+}
+
+.text-field {
+  -fx-text-fill: rgb(255, 255, 255);
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  -fx-border-color: white;
+  border-color: white;
+  -fx-border-radius: 5;
+  border-radius: 5;
+  -fx-background-radius: 5;
 }

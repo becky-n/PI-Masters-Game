@@ -10,7 +10,6 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -18,7 +17,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -36,6 +34,8 @@ public class BackstoryController {
   private Label backstoryLabel;
   @FXML
   private Label timerLabel;
+  @FXML
+  private Button skipButton;
 
   private MediaPlayer screamPlayer;
   private AudioClip backgroundMusic;
@@ -101,6 +101,14 @@ public class BackstoryController {
     // Start the shaking when the scream starts
     shakeTimeline.play();
 
+    // if player clicks skip, stop the scream and shake effect
+    skipButton.setOnAction(event -> {
+      screamPlayer.stop();
+      shakeTimeline.stop();
+      buttonClickSound.play();
+      App.fadeScenes("crime");
+    });
+
     // Stop the shake effect and initiate backstory and background music
     screamPlayer.setOnEndOfMedia(() -> {
       shakeTimeline.stop();
@@ -140,28 +148,6 @@ public class BackstoryController {
   private void onStart(ActionEvent event) throws ApiProxyException, IOException {
     backgroundMusic.stop();
     buttonClickSound.play();
-
-    // Get the root of the current scene
-    Parent root = startButton.getScene().getRoot();
-
-    // Create a fade transition
-    FadeTransition fadeOut = new FadeTransition();
-    fadeOut.setDuration(javafx.util.Duration.millis(500)); // Set duration to 1 second
-    fadeOut.setNode(root);
-    fadeOut.setFromValue(1.0);
-    fadeOut.setToValue(0.0);
-
-    // When the fade out finishes, switch to the new scene
-    fadeOut.setOnFinished(
-        e -> {
-          try {
-            App.setRoot("crime");
-          } catch (IOException ioException) {
-            ioException.printStackTrace();
-          }
-        });
-
-    // Start the fade out
-    fadeOut.play();
+    App.fadeScenes("crime");
   }
 }
