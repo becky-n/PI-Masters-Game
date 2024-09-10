@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
-
+<?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ClueMenuController">
    <children>
       <Pane prefHeight="400.0" prefWidth="300.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="248.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6d6f" height="60.0" layoutX="10.0" layoutY="18.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6d6f" height="60.0" layoutX="10.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6b6d6f" height="60.0" layoutX="10.0" layoutY="171.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-            <ImageView fx:id="clue1" fitHeight="60.0" fitWidth="60.0" layoutX="9.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue2" fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue3" fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000a8" height="248.0" layoutX="2.0" layoutY="28.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="80.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="42.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="122.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+            <ImageView fx:id="clue1" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue2" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue3" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label id="cluesFound" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Clues Found ">
+               <font>
+                  <Font name="Georgia Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

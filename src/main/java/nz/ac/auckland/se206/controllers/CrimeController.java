@@ -31,6 +31,7 @@ public class CrimeController {
   private static boolean letter=false;
 
   private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
 
   @FXML
@@ -44,6 +45,7 @@ public class CrimeController {
   @FXML
   private void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     try {
       handleClueMenu(clueMenu);
@@ -72,6 +74,7 @@ public class CrimeController {
 
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
+    twinkleSound.play();
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
