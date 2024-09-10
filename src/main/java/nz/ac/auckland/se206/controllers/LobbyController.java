@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import nz.ac.auckland.ClueMenu;
 
 public class LobbyController {
   private AudioClip buttonClickSound;
@@ -48,8 +47,6 @@ public class LobbyController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
-
-
             
   }
 

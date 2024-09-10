@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-import nz.ac.auckland.se206.controllers.CrimeController;
 
 public class ClueMenuController {
 

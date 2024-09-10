@@ -10,17 +10,20 @@
    <children>
       <Pane fx:id="guess" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView fitHeight="306.0" fitWidth="401.0" layoutX="393.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" rotate="12.1">
+            <ImageView fitHeight="362.0" fitWidth="495.0" layoutX="360.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" rotate="12.1">
                <image>
                   <Image url="@../images/files.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="440.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageView1" fitHeight="118.0" fitWidth="102.0" layoutX="560.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageView2" fitHeight="118.0" fitWidth="102.0" layoutX="659.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" />
-            <Rectangle fx:id="guessRect2" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="120.0" layoutX="563.0" layoutY="204.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="12.0" stroke="BLACK" strokeType="INSIDE" width="95.0" />
-            <Rectangle fx:id="guessRect1" arcHeight="5.0" arcWidth="5.0" fill="#612020" focusTraversable="true" height="124.0" layoutX="447.0" layoutY="194.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
-            <Rectangle fx:id="guessRect3" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="113.0" layoutX="661.0" layoutY="226.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="1.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+            <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="428.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="568.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView2" fitHeight="136.0" fitWidth="102.0" layoutX="688.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle fx:id="guessRect2" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="147.0" layoutX="563.0" layoutY="169.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="12.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
+            <Rectangle fx:id="guessRect1" arcHeight="5.0" arcWidth="5.0" fill="#612020" focusTraversable="true" height="150.0" layoutX="427.0" layoutY="158.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+            <Rectangle fx:id="guessRect3" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="136.0" layoutX="683.0" layoutY="198.0" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="1.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
+            <ImageView fx:id="clue1" fitHeight="85.0" fitWidth="90.0" layoutX="378.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" rotate="18.4" />
+            <ImageView fx:id="clue2" fitHeight="85.0" fitWidth="90.0" layoutX="530.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue3" fitHeight="85.0" fitWidth="90.0" layoutX="645.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" rotate="21.3" />
          
          </children>
       </Pane>

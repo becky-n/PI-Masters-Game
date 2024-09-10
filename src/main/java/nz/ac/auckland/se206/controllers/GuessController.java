@@ -21,8 +21,28 @@ public class GuessController {
   private ImageView imageView2;
 
   @FXML
+  private ImageView clue1;
+
+  @FXML
+  private ImageView clue2;
+
+  @FXML
+  private ImageView clue3;
+
+  @FXML
   public void initialize() {
     markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
+    boolean[] clues = CrimeController.cluesGuessed();
+
+    if (clues[0]) {
+      clue1.setImage(new Image("/images/circle.png"));
+    }
+    if (clues[1]) {
+      clue2.setImage(new Image("/images/circle.png"));
+    }
+    if (clues[2]) {
+      clue3.setImage(new Image("/images/circle.png"));
+    }
   }
 
   @FXML

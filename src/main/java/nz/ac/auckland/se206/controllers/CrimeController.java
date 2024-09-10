@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -28,6 +30,8 @@ public class CrimeController {
   private static boolean glass=false;
   private static boolean letter=false;
 
+  private AudioClip buttonClickSound;
+
 
   @FXML
   private MenuButton menuButton;
@@ -39,6 +43,8 @@ public class CrimeController {
 
   @FXML
   private void initialize() {
+    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
@@ -80,6 +86,19 @@ public class CrimeController {
 
     App.setRoot("crime");
     
+  }
+
+  /**
+   * Handles the guess button click event.
+   *
+   * @param event the action event triggered by clicking the guess button
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void handleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.play();
+    App.setRoot("guess");
+    context.handleGuessClick();
   }
 
   @FXML
