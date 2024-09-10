@@ -34,6 +34,7 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
+            <Pane fx:id="clueMenu" layoutX="803.0" layoutY="112.0" prefHeight="248.0" prefWidth="80.0" />
          </children>
       </Pane>
    </children>

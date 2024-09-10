@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -21,10 +23,22 @@ public class BallroomController {
   @FXML
   private Label timerLabel;
 
+  @FXML
+  private Pane clueMenu;
+
+  
+
   private static GameStateContext context = new GameStateContext();
 
   @FXML
   private void initialize() {
+    try {
+      handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -52,4 +66,16 @@ public class BallroomController {
     context.handleGuessClick();
 
   }
+
+  @FXML
+  public static void handleClueMenu(Pane pane) throws IOException {
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+
+  }
+
+   
 }

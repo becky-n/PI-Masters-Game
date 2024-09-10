@@ -45,6 +45,11 @@ public class GameStarted implements GameState {
     App.openChat(event, context.getProfession(rectangleId));
   }
 
+  @Override
+  public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
+    
+  }
+
   /**
    * Handles the event when the guess button is clicked. Prompts the player to make a guess and
    * transitions to the guessing state.

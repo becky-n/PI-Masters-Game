@@ -46,6 +46,11 @@ public class Guessing implements GameState {
     // context.setState(context.getGameOverState());
   }
 
+  @Override
+  public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
+    
+  }
+
   /**
    * Handles the event when the guess button is clicked. Since the player has already guessed, it
    * notifies the player.

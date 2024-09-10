@@ -18,6 +18,8 @@ public interface GameState {
    */
   void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException;
 
+  void handleClueClick(MouseEvent event, String rectangleId) throws IOException;
+
   /**
    * Handles the event when the guess button is clicked.
    *
