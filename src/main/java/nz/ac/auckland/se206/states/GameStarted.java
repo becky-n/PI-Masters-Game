@@ -43,6 +43,11 @@ public class GameStarted implements GameState {
     }
   }
 
+  @Override
+  public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
+    
+  }
+
   /**
    * Handles the event when the guess button is clicked. Prompts the player to make a guess and
    * transitions to the guessing state.
@@ -51,7 +56,6 @@ public class GameStarted implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
     context.setState(context.getGuessingState());
   }
 }

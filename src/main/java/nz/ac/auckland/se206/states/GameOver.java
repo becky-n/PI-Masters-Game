@@ -39,6 +39,11 @@ public class GameOver implements GameState {
     TextToSpeech.speak("Game Over, you have already guessed! This is the " + clickedProfession);
   }
 
+  @Override
+  public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
+
+  }
+
   /**
    * Handles the event when the guess button is clicked. Informs the player that the game is over
    * and no further guesses can be made.
