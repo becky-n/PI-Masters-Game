@@ -5,8 +5,10 @@ import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -164,6 +166,8 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
+    Image image = new Image(getClass().getResourceAsStream("/images/ring.png"));
+    scene.setCursor(new ImageCursor(image));
   }
 
   private void handleWindowClose(WindowEvent event) {

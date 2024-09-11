@@ -24,6 +24,14 @@
                   <Image url="@../images/files.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="218.0" fitWidth="496.0" layoutX="55.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" rotate="12.0">
+               <image>
+                  <Image url="@../../../../../../../../../Downloads/suspects.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="AndreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="130.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
+            <ImageView fx:id="MadJesin" fitHeight="112.0" fitWidth="95.0" layoutX="271.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
+            <ImageView fx:id="GeraldMad" fitHeight="98.0" fitWidth="115.0" layoutX="372.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" rotate="1.0" />
             <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="122.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="262.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView2" fitHeight="136.0" fitWidth="102.0" layoutX="382.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
