@@ -2,7 +2,12 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,12 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.media.AudioClip;
 
 public class GuessController {
-  private AudioClip markerSound;
 
   @FXML
   private ImageView imageView;
@@ -42,10 +47,19 @@ public class GuessController {
   private Pane tabletPane;
 
   @FXML
-  public void initialize() {
+  private Label infoLabel;
 
+  private AudioClip markerSound;
+  private AudioClip typingSound;
+  private AudioClip screenOnSound;;
+
+  @FXML
+  public void initialize() {
     markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
+    typingSound = new AudioClip(getClass().getResource("/sounds/typing.mp3").toString());
+    screenOnSound = new AudioClip(getClass().getResource("/sounds/screen-on.mp3").toString());
     TimerManager timerManager = TimerManager.getInstance();
+    animateText("Click on who stole the ring");
 
     // Bind the timerLabel to the timeRemaining property
     timerLabel.textProperty().bind(
@@ -118,6 +132,38 @@ public class GuessController {
 
       imageView2.setImage(null);
     }
+  }
+
+  @FXML
+  private void handleIpadClick(MouseEvent event) throws IOException {
+    screenOnSound.play();
+    animateText("Choose a suspect first");
+  }
+
+  /**
+   * Animates the text in the info label with an underscore following each
+   * character.
+   */
+  private void animateText(String str) {
+    typingSound.play();
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.07), // Adjusted for smoother animation
+        event -> {
+          if (i.get() > str.length()) {
+            timeline.stop();
+            typingSound.stop();
+          } else {
+            // Append underscore to the current substring
+            String animatedText = str.substring(0, i.get()) + "_";
+            infoLabel.setText(animatedText);
+            i.set(i.get() + 1);
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -44,7 +45,15 @@
                   <Image url="@../images/tablet.png" />
                </image>
             </ImageView>
-            <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" prefHeight="436.0" prefWidth="300.0" />
+            <Label fx:id="infoLabel" layoutX="574.0" layoutY="274.0" prefHeight="112.0" prefWidth="242.0" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
+               <font>
+                  <Font name="Courier New Bold" size="22.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Label>
+            <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" />
          
          </children>
       </Pane>
