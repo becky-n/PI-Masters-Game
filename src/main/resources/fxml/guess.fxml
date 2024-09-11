@@ -26,7 +26,7 @@
             </ImageView>
             <ImageView fitHeight="218.0" fitWidth="496.0" layoutX="55.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" rotate="12.0">
                <image>
-                  <Image url="@../../../../../../../../../Downloads/suspects.png" />
+                  <Image url="@../images/suspects.png" />
                </image>
             </ImageView>
             <ImageView fx:id="AndreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="130.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
@@ -58,13 +58,13 @@
                   <Image url="@../images/viginette.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070707" height="402.0" layoutX="557.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="276.0" />
-            <ImageView fx:id="glitch" fitHeight="378.0" fitWidth="269.0" layoutX="559.0" layoutY="149.0" opacity="0.18">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070707" height="402.0" layoutX="557.0" layoutY="128.0" rotate="-2.5" stroke="BLACK" strokeType="INSIDE" width="276.0" />
+            <ImageView fx:id="glitch" fitHeight="378.0" fitWidth="269.0" layoutX="559.0" layoutY="149.0" opacity="0.18" rotate="-2.5">
                <image>
                   <Image url="@../images/static.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="471.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="471.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" rotate="-2.5">
                <image>
                   <Image url="@../images/tablet.png" />
                </image>
@@ -72,7 +72,7 @@
             <Rectangle fx:id="guessRect2" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="147.0" layoutX="257.0" layoutY="121.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="12.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
             <Rectangle fx:id="guessRect1" arcHeight="5.0" arcWidth="5.0" fill="#612020" focusTraversable="true" height="150.0" layoutX="121.0" layoutY="110.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
             <Rectangle fx:id="guessRect3" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="136.0" layoutX="377.0" layoutY="150.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="1.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
-            <Label fx:id="infoLabel" layoutX="574.0" layoutY="274.0" prefHeight="112.0" prefWidth="242.0" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
+            <Label fx:id="infoLabel" layoutX="574.0" layoutY="274.0" prefHeight="112.0" prefWidth="242.0" rotate="-2.5" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
                <font>
                   <Font name="Courier New Bold" size="22.0" />
                </font>
@@ -80,9 +80,9 @@
                   <Glow level="1.0" />
                </effect>
             </Label>
-            <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" />
+            <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" rotate="-2.5" />
             <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
-            <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" rotate="-2.0" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>

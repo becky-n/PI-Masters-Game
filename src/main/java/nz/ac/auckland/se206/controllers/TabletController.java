@@ -93,7 +93,7 @@ public class TabletController {
     nameLabel.setText(suspect);
 
     this.str = "Why do you think " + suspect + " stole the ring?";
-    animateText();
+    txtaChat.appendText(str);
 
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();

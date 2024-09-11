@@ -5,9 +5,11 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -62,6 +64,7 @@ public class GuessController {
   private AudioClip typingSound;
   private AudioClip screenOnSound;
   private Boolean isTabletOpen;
+  private String suspect = "";
 
   @FXML
   public void initialize() {
@@ -103,29 +106,32 @@ public class GuessController {
     }
   }
 
-  @FXML
-  private void handleGuessClick(MouseEvent event) throws IOException {
+ @FXML
+private void handleGuessClick(MouseEvent event) throws IOException {
     if (isTabletOpen) {
-      return;
+        return;
     }
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
-    clickedRectangle.getId();
-    screenOnSound.play();
 
+    // Determine which rectangle was clicked
     if (clickedRectangle.getId().equals("guessRect1")) {
-      App.openTablet("Andrea", tabletPane);
-      circleAndrea.setVisible(true);
+        this.suspect = "Andrea";
+        circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
-      App.openTablet("Jesin", tabletPane);
-      circleJesin.setVisible(true);
+        this.suspect = "Jesin";
+        circleJesin.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
-      App.openTablet("Gerald", tabletPane);
-      circleGerald.setVisible(true);
+        this.suspect = "Gerald";
+        circleGerald.setVisible(true);
     }
 
+    screenOnSound.play();
+
+    App.openTablet(suspect, tabletPane); 
     isTabletOpen = true;
-  }
+}
+
 
   @FXML
   private void handleHover(MouseEvent event) {
