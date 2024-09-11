@@ -44,6 +44,7 @@ public class ChatController {
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
+  private String str = "";
 
   /**
    * Initializes the chat view.
@@ -86,7 +87,7 @@ public class ChatController {
   }
 
   /**
-   * Sets the student for the chat context and initializes the
+   * Sets the suspect for the chat context and initializes the
    * ChatCompletionRequest.
    *
    * @param student the student to set
@@ -96,7 +97,7 @@ public class ChatController {
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
-    txtaChat.setPromptText(suspect + " is thinking...");
+    txtaChat.setText("✨ " + suspect + " is thinking...✨");
 
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
@@ -117,7 +118,8 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    animateText(msg.getContent());
+    this.str = msg.getContent();
+    animateText();
   }
 
   /**
@@ -133,9 +135,13 @@ public class ChatController {
       throw new IllegalStateException("ChatCompletionRequest is not initialized.");
     }
 
+    // Disable input while processing
+    txtInput.setDisable(true);
+    btnSend.setDisable(true);
+
     // Add loading message
     txtaChat.clear();
-    txtaChat.setPromptText(suspect + " is thinking...");
+    txtaChat.setText("✨ " + suspect + " is thinking...✨");
 
     // Create a task to run the GPT model
     Task<ChatMessage> task = new Task<ChatMessage>() {
@@ -153,10 +159,14 @@ public class ChatController {
 
       @Override
       protected void succeeded() {
+        txtaChat.clear();
 
         // Handle the result
         ChatMessage chatMessage = getValue();
         appendChatMessage(chatMessage);
+
+        txtInput.setDisable(false);  // Re-enable the input field
+        btnSend.setDisable(false);   // Re-enable the send button
       }
 
       // Handle the error
@@ -188,10 +198,9 @@ public class ChatController {
     if (message.isEmpty()) {
       // case where user tries to send an empty message
       return;
-    } else if (txtaChat.getText().trim().isEmpty()) {
-      // case where user tries to enter something while system is loading
-      return;
     }
+
+    str = ""; // Clear the string
     txtInput.clear();
     ChatMessage msg = new ChatMessage("user", message);
     runGpt(msg);
@@ -208,7 +217,7 @@ public class ChatController {
   }
 
   /** Animates the text in the motive label. */
-  private void animateText(String str) {
+  private void animateText() {
     final IntegerProperty i = new SimpleIntegerProperty(0);
     txtaChat.clear(); // Clear the TextArea before starting the animation
 
