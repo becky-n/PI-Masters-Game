@@ -12,24 +12,33 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
- * Controller class for the room view. Handles user interactions within the room where the user can
+ * Controller class for the room view. Handles user interactions within the room
+ * where the user can
  * chat with customers and guess their profession.
  */
 public class RoomController {
 
-  @FXML private Rectangle rectCashier;
-  @FXML private Rectangle rectPerson1;
-  @FXML private Rectangle rectPerson2;
-  @FXML private Rectangle rectPerson3;
-  @FXML private Rectangle rectWaitress;
-  @FXML private Label lblProfession;
-  @FXML private Button btnGuess;
+  @FXML
+  private Rectangle rectCashier;
+  @FXML
+  private Rectangle rectPerson1;
+  @FXML
+  private Rectangle rectPerson2;
+  @FXML
+  private Rectangle rectPerson3;
+  @FXML
+  private Rectangle rectWaitress;
+  @FXML
+  private Label lblProfession;
+  @FXML
+  private Button btnGuess;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context = new GameStateContext();
 
   /**
-   * Initializes the room view. If it's the first time initialization, it will provide instructions
+   * Initializes the room view. If it's the first time initialization, it will
+   * provide instructions
    * via text-to-speech.
    */
   @FXML

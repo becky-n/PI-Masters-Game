@@ -165,8 +165,8 @@ public class ChatController {
         ChatMessage chatMessage = getValue();
         appendChatMessage(chatMessage);
 
-        txtInput.setDisable(false);  // Re-enable the input field
-        btnSend.setDisable(false);   // Re-enable the send button
+        txtInput.setDisable(false); // Re-enable the input field
+        btnSend.setDisable(false); // Re-enable the send button
       }
 
       // Handle the error

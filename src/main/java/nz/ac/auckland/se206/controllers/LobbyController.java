@@ -35,14 +35,14 @@ public class LobbyController {
 
   @FXML
   private void initialize() throws IOException {
-      try {
+    try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    
+
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
@@ -57,7 +57,6 @@ public class LobbyController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
-            
   }
 
   /**
