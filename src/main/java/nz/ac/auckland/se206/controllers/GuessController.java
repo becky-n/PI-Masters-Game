@@ -41,6 +41,15 @@ public class GuessController {
   private ImageView clue3;
 
   @FXML
+  private ImageView circleAndrea;
+
+  @FXML
+  private ImageView circleJesin;
+
+  @FXML
+  private ImageView circleGerald;
+
+  @FXML
   private Label timerLabel;
 
   @FXML
@@ -51,13 +60,25 @@ public class GuessController {
 
   private AudioClip markerSound;
   private AudioClip typingSound;
-  private AudioClip screenOnSound;;
+  private AudioClip screenOnSound;
+  private Boolean isTabletOpen;
 
   @FXML
   public void initialize() {
+
+    // reset for each new game
+    isTabletOpen = false;
+
+    // Initialize the sounds
     markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
     typingSound = new AudioClip(getClass().getResource("/sounds/typing.mp3").toString());
     screenOnSound = new AudioClip(getClass().getResource("/sounds/screen-on.mp3").toString());
+
+    // make all circles invisible
+    circleAndrea.setVisible(false);
+    circleJesin.setVisible(false);
+    circleGerald.setVisible(false);
+
     TimerManager timerManager = TimerManager.getInstance();
     animateText("Click on who stole the ring");
 
@@ -70,6 +91,7 @@ public class GuessController {
 
     boolean[] clues = CrimeController.cluesGuessed();
 
+    // Show the clues if the clues have been guessed
     if (clues[0]) {
       clue1.setImage(new Image("/images/circle.png"));
     }
@@ -83,20 +105,34 @@ public class GuessController {
 
   @FXML
   private void handleGuessClick(MouseEvent event) throws IOException {
+    if (isTabletOpen) {
+      return;
+    }
+
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     clickedRectangle.getId();
+    screenOnSound.play();
 
     if (clickedRectangle.getId().equals("guessRect1")) {
       App.openTablet("Andrea", tabletPane);
+      circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
       App.openTablet("Jesin", tabletPane);
+      circleJesin.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
       App.openTablet("Gerald", tabletPane);
+      circleGerald.setVisible(true);
     }
+
+    isTabletOpen = true;
   }
 
   @FXML
   private void handleHover(MouseEvent event) {
+    if (isTabletOpen) {
+      return;
+    }
+
     markerSound.play();
     Image image = new Image(App.class.getResource("/images/scribble.gif").toExternalForm());
 
@@ -136,7 +172,6 @@ public class GuessController {
 
   @FXML
   private void handleIpadClick(MouseEvent event) throws IOException {
-    screenOnSound.play();
     animateText("Choose a suspect first");
   }
 

@@ -35,24 +35,43 @@
             <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="122.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="262.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView2" fitHeight="136.0" fitWidth="102.0" layoutX="382.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-            <Rectangle fx:id="guessRect2" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="147.0" layoutX="257.0" layoutY="121.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="12.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
-            <Rectangle fx:id="guessRect1" arcHeight="5.0" arcWidth="5.0" fill="#612020" focusTraversable="true" height="150.0" layoutX="121.0" layoutY="110.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
-            <Rectangle fx:id="guessRect3" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="136.0" layoutX="377.0" layoutY="150.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="1.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
             <ImageView fx:id="clue1" fitHeight="85.0" fitWidth="90.0" layoutX="72.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" rotate="18.4" />
             <ImageView fx:id="clue2" fitHeight="85.0" fitWidth="90.0" layoutX="224.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clue3" fitHeight="85.0" fitWidth="90.0" layoutX="339.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" rotate="21.3" />
-            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
-            <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
-               </font>
-            </Label>
+            <ImageView fx:id="circleAndrea" fitHeight="80.0" fitWidth="102.0" layoutX="128.0" layoutY="131.0">
+               <image>
+                  <Image url="@../images/red-circle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="circleJesin" fitHeight="91.0" fitWidth="102.0" layoutX="275.0" layoutY="138.0">
+               <image>
+                  <Image url="@../images/red-circle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="circleGerald" fitHeight="98.0" fitWidth="112.0" layoutX="380.0" layoutY="151.0">
+               <image>
+                  <Image url="@../images/red-circle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="viginette" fitHeight="600.0" fitWidth="904.0" opacity="0.71">
+               <image>
+                  <Image url="@../images/viginette.png" />
+               </image>
+            </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070707" height="402.0" layoutX="557.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="276.0" />
+            <ImageView fx:id="glitch" fitHeight="378.0" fitWidth="269.0" layoutX="559.0" layoutY="149.0" opacity="0.18">
+               <image>
+                  <Image url="@../images/static.gif" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="471.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/tablet.png" />
                </image>
             </ImageView>
+            <Rectangle fx:id="guessRect2" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="147.0" layoutX="257.0" layoutY="121.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="12.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
+            <Rectangle fx:id="guessRect1" arcHeight="5.0" arcWidth="5.0" fill="#612020" focusTraversable="true" height="150.0" layoutX="121.0" layoutY="110.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" width="126.0" />
+            <Rectangle fx:id="guessRect3" arcHeight="5.0" arcWidth="5.0" fill="#63202000" height="136.0" layoutX="377.0" layoutY="150.0" onMouseClicked="#handleGuessClick" onMouseEntered="#handleHover" onMouseExited="#handleExitHover" opacity="0.0" rotate="1.0" stroke="BLACK" strokeType="INSIDE" width="112.0" />
             <Label fx:id="infoLabel" layoutX="574.0" layoutY="274.0" prefHeight="112.0" prefWidth="242.0" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
                <font>
                   <Font name="Courier New Bold" size="22.0" />
@@ -62,6 +81,12 @@
                </effect>
             </Label>
             <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" />
+            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </Label>
          
          </children>
       </Pane>
