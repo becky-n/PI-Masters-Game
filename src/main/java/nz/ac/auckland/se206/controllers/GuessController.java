@@ -32,7 +32,7 @@ public class GuessController {
   @FXML
   private ImageView clue3;
 
-   @FXML
+  @FXML
   private Label timerLabel;
 
   @FXML
@@ -46,7 +46,6 @@ public class GuessController {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
-    
 
     boolean[] clues = CrimeController.cluesGuessed();
 
