@@ -8,8 +8,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+
+import java.io.IOException;
+
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import java.io.IOException;
@@ -21,6 +25,8 @@ public class LobbyController {
   private MenuButton menuButton;
   @FXML
   private Label timerLabel;
+  @FXML
+  private Pane chatPane;
 
   @FXML
   private Pane clueMenu;
@@ -28,17 +34,21 @@ public class LobbyController {
   private static GameStateContext context = new GameStateContext();
 
   @FXML
-  private void initialize() {
-    try {
+  private void initialize() throws IOException {
+      try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
+
+    // load the chat
+    App.openChat("Jesin", chatPane);
 
     TimerManager timerManager = TimerManager.getInstance();
 

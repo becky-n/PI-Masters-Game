@@ -30,7 +30,7 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="startButton" layoutX="267.0" layoutY="329.0" mnemonicParsing="false" onAction="#onStart" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="123.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="attend">
+      <Button fx:id="startButton" layoutX="267.0" layoutY="329.0" mnemonicParsing="false" onAction="#onStart" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="123.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Attend">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>
