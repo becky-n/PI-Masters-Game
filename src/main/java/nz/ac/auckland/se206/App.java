@@ -131,7 +131,6 @@ public class App extends Application {
       throws IOException {
 
     try {
-
       // Load the chat view
       FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/tablet.fxml"));
       Pane chatContent = fxmlLoader.load();
