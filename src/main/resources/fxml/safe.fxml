@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SafeController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="897.0">
+         <children>
+            <Slider layoutX="643.0" layoutY="397.0" />
+            <Spinner layoutX="442.0" layoutY="196.0" />
+            <Spinner layoutX="443.0" layoutY="154.0" />
+            <Spinner layoutX="444.0" layoutY="235.0" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>
