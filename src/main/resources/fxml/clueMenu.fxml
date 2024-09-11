@@ -18,9 +18,9 @@
             <ImageView fx:id="clue1" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clue2" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clue3" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label id="cluesFound" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Clues Found ">
+            <Label id="cluesFound" layoutX="7.0" layoutY="6.0" stylesheets="@../css/style.css" text="Clues Found " textFill="WHITE">
                <font>
-                  <Font name="Georgia Bold" size="12.0" />
+                  <Font name="Georgia" size="12.0" />
                </font>
             </Label>
          </children>
