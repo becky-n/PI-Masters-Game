@@ -29,9 +29,9 @@
                   <Image url="@../../../../../../../../../Downloads/suspects.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="AndreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="130.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
-            <ImageView fx:id="MadJesin" fitHeight="112.0" fitWidth="95.0" layoutX="271.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
-            <ImageView fx:id="GeraldMad" fitHeight="98.0" fitWidth="115.0" layoutX="372.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" rotate="1.0" />
+            <ImageView fx:id="JesinMad" fitHeight="109.0" fitWidth="94.0" layoutX="272.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
+            <ImageView fx:id="AndreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="132.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
+            <ImageView fx:id="GeraldMad" fitHeight="106.0" fitWidth="117.0" layoutX="369.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true" rotate="1.0" />
             <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="122.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="262.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView2" fitHeight="136.0" fitWidth="102.0" layoutX="382.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
@@ -80,7 +80,7 @@
                   <Glow level="1.0" />
                </effect>
             </Label>
-            <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" />
+            <Pane fx:id="tabletPane" layoutX="546.0" layoutY="121.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" />
             <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
                <font>
