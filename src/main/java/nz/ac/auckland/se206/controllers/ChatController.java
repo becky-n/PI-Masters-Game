@@ -70,7 +70,7 @@ public class ChatController {
   }
 
   /**
-   * Generates the system prompt based on the student.
+   * Generates the system prompt based on the suspect.
    *
    * @return the system prompt string
    */
@@ -90,7 +90,7 @@ public class ChatController {
    * Sets the suspect for the chat context and initializes the
    * ChatCompletionRequest.
    *
-   * @param student the student to set
+   * @param suspect the suspect to set
    */
 
   public void setSuspect(String suspect) {

@@ -41,6 +41,8 @@ public class TabletController {
   private Label nameLabel;
   @FXML
   private String suspect;
+  @FXML
+  private ImageView loading;
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
@@ -55,6 +57,7 @@ public class TabletController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
     txtInput.setOnKeyPressed(event -> {
@@ -82,14 +85,15 @@ public class TabletController {
    * Sets the suspect for the chat context and initializes the
    * ChatCompletionRequest.
    *
-   * @param student the student to set
+   * @param suspect the suspect to set
    */
 
   public void setSuspect(String suspect) {
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
-    txtaChat.setText("✨ " + suspect + " is thinking...✨");
+    this.str = "Why do you think " + suspect + " stole the ring?";
+    animateText();
 
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
@@ -98,10 +102,11 @@ public class TabletController {
           .setTemperature(0.2)
           .setTopP(0.5)
           .setMaxTokens(100);
-      runGpt(new ChatMessage("system", getSystemPrompt()));
+          chatCompletionRequest.addMessage(new ChatMessage("system", getSystemPrompt()));
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
+    
   }
 
   /**
@@ -133,7 +138,7 @@ public class TabletController {
 
     // Add loading message
     txtaChat.clear();
-    txtaChat.setText("✨ " + suspect + " is thinking...✨");
+    loading.setVisible(true);
 
     // Create a task to run the GPT model
     Task<ChatMessage> task = new Task<ChatMessage>() {
@@ -151,7 +156,7 @@ public class TabletController {
 
       @Override
       protected void succeeded() {
-        txtaChat.clear();
+        loading.setVisible(false);
 
         // Handle the result
         ChatMessage chatMessage = getValue();
