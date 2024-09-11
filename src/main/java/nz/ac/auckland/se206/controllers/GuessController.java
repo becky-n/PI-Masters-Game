@@ -190,6 +190,10 @@ public class GuessController {
 
   @FXML
   private void handleIpadClick(MouseEvent event) throws IOException {
+    if (isTabletOpen) {
+      return;
+    }
+
     animateText("Choose a suspect first");
   }
 

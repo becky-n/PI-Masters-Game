@@ -138,14 +138,13 @@ public class App extends Application {
       Pane chatContent = fxmlLoader.load();
       TabletController chat = fxmlLoader.getController();
 
-      // Set the suspect in the chat controller
-      chat.setSuspect(name);
-
       // Clear the chat pane and add the chat view
       chatPane.getChildren().clear();
       chatPane.getChildren().add(chatContent);
       chatPane.setVisible(true);
-
+      
+      // Set the suspect in the chat controller
+      chat.setSuspect(name);
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -106,6 +106,7 @@ public class BackstoryController {
       screamPlayer.stop();
       shakeTimeline.stop();
       buttonClickSound.play();
+      backgroundMusic.stop();
       App.fadeScenes("crime");
     });
 
