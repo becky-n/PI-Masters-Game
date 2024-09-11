@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
@@ -58,6 +59,7 @@ public class App extends Application {
 
   /**
    * Changes the scene to the specified FXML file with a fade-in and fade-out
+   * 
    * @param scene
    */
   public static void fadeScenes(String scene) {
@@ -111,6 +113,29 @@ public class App extends Application {
       FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
       Pane chatContent = fxmlLoader.load();
       ChatController chat = fxmlLoader.getController();
+
+      // Set the suspect in the chat controller
+      chat.setSuspect(name);
+
+      // Clear the chat pane and add the chat view
+      chatPane.getChildren().clear();
+      chatPane.getChildren().add(chatContent);
+      chatPane.setVisible(true);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void openTablet(String name, Pane chatPane)
+      throws IOException {
+
+    try {
+
+      // Load the chat view
+      FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/tablet.fxml"));
+      Pane chatContent = fxmlLoader.load();
+      TabletController chat = fxmlLoader.getController();
 
       // Set the suspect in the chat controller
       chat.setSuspect(name);

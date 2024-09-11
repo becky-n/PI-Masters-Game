@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
@@ -36,7 +39,11 @@ public class GuessController {
   private Label timerLabel;
 
   @FXML
+  private Pane tabletPane;
+
+  @FXML
   public void initialize() {
+
     markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
     TimerManager timerManager = TimerManager.getInstance();
 
@@ -57,6 +64,20 @@ public class GuessController {
     }
     if (clues[2]) {
       clue3.setImage(new Image("/images/circle.png"));
+    }
+  }
+
+  @FXML
+  private void handleGuessClick(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    clickedRectangle.getId();
+
+    if (clickedRectangle.getId().equals("guessRect1")) {
+      App.openTablet("Andrea", tabletPane);
+    } else if (clickedRectangle.getId().equals("guessRect2")) {
+      App.openTablet("Jesin", tabletPane);
+    } else if (clickedRectangle.getId().equals("guessRect3")) {
+      App.openTablet("Gerald", tabletPane);
     }
   }
 

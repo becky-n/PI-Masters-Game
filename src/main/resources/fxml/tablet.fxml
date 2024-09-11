@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TabletController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b1722" height="386.0" layoutX="16.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e3d4a" height="62.0" layoutX="8.0" layoutY="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="286.0" />
+            <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="-72.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tablet.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pi" fitHeight="240.0" fitWidth="253.0" layoutX="32.0" layoutY="101.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pi-masters.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtInput" layoutX="34.0" layoutY="352.0" prefHeight="37.0" prefWidth="238.0" promptText="Enter your log here" stylesheets="@../css/style.css" text="Enter your answer">
+               <font>
+                  <Font name="Courier New" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <padding>
+                  <Insets left="20.0" right="60.0" />
+               </padding>
+            </TextField>
+            <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" layoutX="237.0" layoutY="359.0" onMouseClicked="#onSendMessage" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/send.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="45.0" layoutY="47.0" prefHeight="28.0" prefWidth="123.0" text="You chose:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Courier New Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="txtaChat" editable="false" layoutX="32.0" layoutY="101.0" prefHeight="240.0" prefWidth="241.0" promptText="placeholder text" stylesheets="@../css/style.css" wrapText="true">
+               <font>
+                  <Font name="Courier New" size="20.0" />
+               </font>
+            </TextArea>
+            <Label fx:id="nameLabel" layoutX="172.0" layoutY="47.0" prefHeight="28.0" prefWidth="83.0" text="Andrea" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Courier New Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</StackPane>
