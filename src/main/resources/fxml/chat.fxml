@@ -40,8 +40,11 @@
             <Image url="@../images/send.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="42.0" layoutX="106.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="163.0" />
-      <Label fx:id="nameLabel" layoutX="124.0" layoutY="20.0" prefHeight="42.0" prefWidth="128.0" text="Name" textAlignment="CENTER" textFill="#eb7373" wrapText="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="42.0" layoutX="106.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="163.0">
+         <effect>
+            <BoxBlur height="0.0" width="52.81" />
+         </effect></Rectangle>
+      <Label fx:id="nameLabel" layoutX="137.0" layoutY="20.0" prefHeight="42.0" prefWidth="128.0" text="Name" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
          <font>
             <Font name="Georgia Bold" size="20.0" />
          </font>
