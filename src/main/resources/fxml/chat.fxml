@@ -19,7 +19,7 @@
             <BoxBlur height="0.0" width="78.73" />
          </effect>
       </Rectangle>
-      <TextArea fx:id="txtaChat" editable="false" layoutX="106.0" layoutY="79.0" prefHeight="87.0" prefWidth="727.0" stylesheets="@../css/style.css" wrapText="true">
+      <TextArea fx:id="txtaChat" editable="false" layoutX="106.0" layoutY="79.0" prefHeight="87.0" prefWidth="727.0" promptText="They are still thinking!" stylesheets="@../css/style.css" wrapText="true">
          <font>
             <Font name="Georgia" size="18.0" />
          </font>
