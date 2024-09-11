@@ -26,13 +26,12 @@ import java.io.IOException;
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
 
-  private static boolean safe =false;
-  private static boolean glass=false;
-  private static boolean letter=false;
+  private static boolean safe = false;
+  private static boolean glass = false;
+  private static boolean letter = false;
 
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
-
 
   @FXML
   private MenuButton menuButton;
@@ -40,7 +39,6 @@ public class CrimeController {
   private Label timerLabel;
   @FXML
   private Pane clueMenu;
-
 
   @FXML
   private void initialize() {
@@ -81,14 +79,16 @@ public class CrimeController {
 
     if (clickedRectangle.getId().equals("safe")) {
       safe = true;
-    }  if (clickedRectangle.getId().equals("glass")) {
+    }
+    if (clickedRectangle.getId().equals("glass")) {
       glass = true;
-    }  if (clickedRectangle.getId().equals("letter")) {
+    }
+    if (clickedRectangle.getId().equals("letter")) {
       letter = true;
     }
 
     App.setRoot("crime");
-    
+
   }
 
   /**
@@ -116,9 +116,9 @@ public class CrimeController {
 
   public static boolean[] cluesGuessed() {
     boolean[] clues = new boolean[3];
-    clues[0] = safe;  // represents clue1
+    clues[0] = safe; // represents clue1
     clues[1] = glass; // represents clue2
     clues[2] = letter; // represents clue3
     return clues;
-}
+  }
 }

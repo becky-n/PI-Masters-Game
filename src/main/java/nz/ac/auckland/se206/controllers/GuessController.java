@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.media.AudioClip;
 
 public class GuessController {
@@ -29,9 +32,22 @@ public class GuessController {
   @FXML
   private ImageView clue3;
 
+   @FXML
+  private Label timerLabel;
+
   @FXML
   public void initialize() {
     markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
+    TimerManager timerManager = TimerManager.getInstance();
+
+    // Bind the timerLabel to the timeRemaining property
+    timerLabel.textProperty().bind(
+        Bindings.createStringBinding(() -> String.format("%02d:%02d",
+            timerManager.getTimeRemaining() / 60,
+            timerManager.getTimeRemaining() % 60),
+            timerManager.timeRemainingProperty()));
+    
+
     boolean[] clues = CrimeController.cluesGuessed();
 
     if (clues[0]) {

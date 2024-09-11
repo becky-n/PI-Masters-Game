@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.GuessController">
    <children>
       <Pane fx:id="guess" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
+            <ImageView blendMode="SRC_ATOP" fitHeight="1008.0" fitWidth="1705.0" layoutX="-465.0" layoutY="-288.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/desk.jpg" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="362.0" fitWidth="495.0" layoutX="360.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" rotate="12.1">
                <image>
                   <Image url="@../images/files.png" />
@@ -24,6 +32,12 @@
             <ImageView fx:id="clue1" fitHeight="85.0" fitWidth="90.0" layoutX="378.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" rotate="18.4" />
             <ImageView fx:id="clue2" fitHeight="85.0" fitWidth="90.0" layoutX="530.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="clue3" fitHeight="85.0" fitWidth="90.0" layoutX="645.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" rotate="21.3" />
+            <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="810.0" layoutY="19.0" prefHeight="71.0" prefWidth="67.0" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
          
          </children>
       </Pane>
