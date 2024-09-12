@@ -68,7 +68,6 @@ public class CrimeController {
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
     twinkleSound.play();
-    App.setRoot("window");
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
@@ -77,7 +76,9 @@ public class CrimeController {
       safe = true;
     }
     if (clickedRectangle.getId().equals("glass")) {
+      App.setRoot("window");
       glass = true;
+      return;
     }
     if (clickedRectangle.getId().equals("letter")) {
       letter = true;

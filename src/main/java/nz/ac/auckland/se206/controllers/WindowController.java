@@ -28,11 +28,17 @@ public class WindowController {
   @FXML
   private Label timerLabel;
   @FXML
-  private ImageView test;
-  @FXML
   private Pane clueMenu;
   @FXML
-  private Rectangle glass;
+  private ImageView glass1;
+  @FXML
+  private ImageView glass2;
+  @FXML
+  private ImageView glass3;
+  @FXML
+  private ImageView glass4;
+  @FXML
+  private ImageView glass5;
 
   private static GameStateContext context = new GameStateContext();
 
@@ -40,8 +46,11 @@ public class WindowController {
   private void initialize() throws IOException {
 
     DraggableMaker dm = new DraggableMaker();
-    dm.makeDraggable(test);
-    dm.makeDraggable(glass);
+    dm.makeDraggable(glass1);
+    dm.makeDraggable(glass2);
+    dm.makeDraggable(glass3);
+    dm.makeDraggable(glass4);
+    dm.makeDraggable(glass5);
 
     try {
       handleClueMenu(clueMenu);

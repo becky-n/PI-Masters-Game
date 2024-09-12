@@ -8,14 +8,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WindowController">
    <children>
       <Pane fx:id="crime" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView blendMode="SRC_ATOP" fitHeight="1109.0" fitWidth="1239.0" layoutX="-123.0" layoutY="-439.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="1459.0" fitWidth="2738.0" layoutX="-23.0" layoutY="-835.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/broken-window.png" />
                </image>
@@ -37,12 +36,36 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="test" fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="147.0" fitWidth="126.0" layoutX="350.0" layoutY="263.0">
                <image>
-                  <Image url="@../images/madAndrea.png" />
+                  <Image url="@../images/madJesin.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="73.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <ImageView fx:id="glass1" fitHeight="134.0" fitWidth="248.0" layoutX="198.0" layoutY="336.0">
+               <image>
+                  <Image url="@../images/glass1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass2" fitHeight="99.0" fitWidth="324.0" layoutX="322.0" layoutY="319.0">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass3" fitHeight="117.0" fitWidth="126.0" layoutX="294.0" layoutY="260.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass4" fitHeight="95.0" fitWidth="346.0" layoutX="265.0" layoutY="271.0" rotate="-143.3">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass5" fitHeight="117.0" fitWidth="126.0" layoutX="421.0" layoutY="353.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
