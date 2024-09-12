@@ -78,7 +78,9 @@ public class CrimeController {
     context.handleClueClick(event, clickedRectangle.getId());
 
     if (clickedRectangle.getId().equals("safe")) {
+      App.setRoot("lock");
       safe = true;
+      return;
     }
     if (clickedRectangle.getId().equals("glass")) {
       glass = true;

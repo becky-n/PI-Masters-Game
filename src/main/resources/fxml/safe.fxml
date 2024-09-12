@@ -9,11 +9,12 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView blendMode="SRC_ATOP" fitHeight="618.0" fitWidth="649.0" layoutX="134.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="932.0" fitWidth="1025.0" layoutX="-53.0" layoutY="-153.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/safe3.png" />
+                  <Image url="@../images/safe4.png" />
                </image>
             </ImageView>
+            <Pane fx:id="lockPane" layoutX="566.0" layoutY="358.0" prefHeight="116.0" prefWidth="108.0" />
          </children></Pane>
    </children>
 </StackPane>
