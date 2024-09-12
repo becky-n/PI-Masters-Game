@@ -42,6 +42,6 @@ public class MenuController {
     backgroundMusic.stop();
     buttonClickSound.play();
 
-    App.fadeScenes("backstory");
+    App.fadeScenes("window");
   }
 }
