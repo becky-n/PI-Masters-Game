@@ -26,46 +26,32 @@ public class GuessController {
 
   @FXML
   private ImageView imageView;
-
   @FXML
   private ImageView imageView1;
-
   @FXML
   private ImageView imageView2;
-
   @FXML
   private ImageView clue1;
-
   @FXML
   private ImageView clue2;
-
   @FXML
   private ImageView clue3;
-
   @FXML
   private ImageView circleAndrea;
-
   @FXML
   private ImageView circleJesin;
-
   @FXML
   private ImageView circleGerald;
-
   @FXML
   private ImageView AndreaMad;
-
   @FXML
   private ImageView JesinMad;
-
   @FXML
   private ImageView GeraldMad;
-
   @FXML
   private Label timerLabel;
-
   @FXML
   private Pane tabletPane;
-
   @FXML
   private Label infoLabel;
 
@@ -115,32 +101,31 @@ public class GuessController {
     }
   }
 
- @FXML
-private void handleGuessClick(MouseEvent event) throws IOException {
+  @FXML
+  private void handleGuessClick(MouseEvent event) throws IOException {
     if (isTabletOpen) {
-        return;
+      return;
     }
-
+    
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
     // Determine which rectangle was clicked
     if (clickedRectangle.getId().equals("guessRect1")) {
-        this.suspect = "Andrea";
-        circleAndrea.setVisible(true);
+      this.suspect = "Andrea";
+      circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
-        this.suspect = "Jesin";
-        circleJesin.setVisible(true);
+      this.suspect = "Jesin";
+      circleJesin.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
-        this.suspect = "Gerald";
-        circleGerald.setVisible(true);
+      this.suspect = "Gerald";
+      circleGerald.setVisible(true);
     }
 
     screenOnSound.play();
 
-    App.openTablet(suspect, tabletPane); 
+    App.openTablet(suspect, tabletPane);
     isTabletOpen = true;
-}
-
+  }
 
   @FXML
   private void handleHover(MouseEvent event) {

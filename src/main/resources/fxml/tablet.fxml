@@ -51,7 +51,7 @@
                   <Glow level="0.72" />
                </effect>
             </ImageView>
-            <Label layoutX="32.0" layoutY="47.0" prefHeight="28.0" prefWidth="123.0" text="You chose" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label layoutX="47.0" layoutY="45.0" prefHeight="28.0" prefWidth="123.0" text="You chose" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Courier New Bold" size="20.0" />
                </font>
@@ -67,7 +67,7 @@
                   <Glow level="0.72" />
                </effect>
             </TextArea>
-            <Label fx:id="nameLabel" layoutX="151.0" layoutY="47.0" prefHeight="28.0" prefWidth="83.0" text="name" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+            <Label fx:id="nameLabel" layoutX="166.0" layoutY="45.0" prefHeight="28.0" prefWidth="83.0" text="name" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
                <font>
                   <Font name="Courier New Bold" size="20.0" />
                </font>
