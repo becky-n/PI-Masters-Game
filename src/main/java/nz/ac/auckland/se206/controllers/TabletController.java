@@ -29,7 +29,7 @@ import nz.ac.auckland.se206.prompts.PromptEngineering;
  * Controller class for the chat view. Handles user interactions and
  * communication with the GPT model via the API proxy.
  */
-public class ChatController {
+public class TabletController {
 
   @FXML
   private TextArea txtaChat;
@@ -41,6 +41,8 @@ public class ChatController {
   private Label nameLabel;
   @FXML
   private String suspect;
+  @FXML
+  private ImageView loading;
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
@@ -55,6 +57,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
     txtInput.setOnKeyPressed(event -> {
@@ -70,20 +73,12 @@ public class ChatController {
   }
 
   /**
-   * Generates the system prompt based on the suspect.
+   * Generates the system prompt based on the student.
    *
    * @return the system prompt string
    */
   private String getSystemPrompt() {
-    String promptId;
-    if (suspect.equals("Jesin")) {
-      promptId = "prompts/jesin.txt";
-    } else if (suspect.equals("Andrea")) {
-      promptId = "prompts/andrea.txt";
-    } else {
-      promptId = "prompts/gerald.txt";
-    }
-    return PromptEngineering.getPrompt(promptId);
+    return PromptEngineering.getPrompt("prompts/tablet.txt");
   }
 
   /**
@@ -97,7 +92,8 @@ public class ChatController {
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
-    txtaChat.setText("✨ " + suspect + " is thinking...✨");
+    this.str = "Why do you think " + suspect + " stole the ring?";
+    txtaChat.appendText(str);
 
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
@@ -106,10 +102,11 @@ public class ChatController {
           .setTemperature(0.2)
           .setTopP(0.5)
           .setMaxTokens(100);
-      runGpt(new ChatMessage("system", getSystemPrompt()));
+          chatCompletionRequest.addMessage(new ChatMessage("system", getSystemPrompt()));
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
+    
   }
 
   /**
@@ -141,7 +138,7 @@ public class ChatController {
 
     // Add loading message
     txtaChat.clear();
-    txtaChat.setText("✨ " + suspect + " is thinking...✨");
+    loading.setVisible(true);
 
     // Create a task to run the GPT model
     Task<ChatMessage> task = new Task<ChatMessage>() {
@@ -159,7 +156,7 @@ public class ChatController {
 
       @Override
       protected void succeeded() {
-        txtaChat.clear();
+        loading.setVisible(false);
 
         // Handle the result
         ChatMessage chatMessage = getValue();

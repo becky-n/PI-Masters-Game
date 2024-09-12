@@ -5,12 +5,15 @@ import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
@@ -58,6 +61,7 @@ public class App extends Application {
 
   /**
    * Changes the scene to the specified FXML file with a fade-in and fade-out
+   * 
    * @param scene
    */
   public static void fadeScenes(String scene) {
@@ -125,6 +129,27 @@ public class App extends Application {
     }
   }
 
+  public static void openTablet(String name, Pane chatPane)
+      throws IOException {
+
+    try {
+      // Load the chat view
+      FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/tablet.fxml"));
+      Pane chatContent = fxmlLoader.load();
+      TabletController chat = fxmlLoader.getController();
+
+      // Clear the chat pane and add the chat view
+      chatPane.getChildren().clear();
+      chatPane.getChildren().add(chatContent);
+      chatPane.setVisible(true);
+      
+      // Set the suspect in the chat controller
+      chat.setSuspect(name);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the
    * "menu" scene.
@@ -141,6 +166,8 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
+    Image image = new Image(getClass().getResourceAsStream("/images/ring.png"));
+    scene.setCursor(new ImageCursor(image));
   }
 
   private void handleWindowClose(WindowEvent event) {
