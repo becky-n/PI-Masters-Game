@@ -1,50 +1,52 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
-import java.io.IOException;
-
-import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
-
 public class WindowController {
   private AudioClip buttonClickSound;
 
-  @FXML
-  private MenuButton menuButton;
-  @FXML
-  private Label timerLabel;
-  @FXML
-  private Pane clueMenu;
-  @FXML
-  private ImageView glass1;
-  @FXML
-  private ImageView glass2;
-  @FXML
-  private ImageView glass3;
-  @FXML
-  private ImageView glass4;
-  @FXML
-  private ImageView glass5;
+  @FXML private MenuButton menuButton;
+  @FXML private Label timerLabel;
+  @FXML private Pane clueMenu;
+  @FXML private ImageView glass1;
+  @FXML private ImageView glass2;
+  @FXML private ImageView glass3;
+  @FXML private ImageView glass4;
+  @FXML private ImageView glass5;
+  @FXML private Label infoLabel;
+  @FXML private ImageView fabric;
 
   private static GameStateContext context = new GameStateContext();
 
   @FXML
   private void initialize() throws IOException {
 
+    // initialize fabric image
+    fabric.setImage(new Image("/images/fabric1.png"));
+
+
+    // Make the glass images draggable
     DraggableMaker dm = new DraggableMaker();
     dm.makeDraggable(glass1);
     dm.makeDraggable(glass2);
@@ -52,6 +54,7 @@ public class WindowController {
     dm.makeDraggable(glass4);
     dm.makeDraggable(glass5);
 
+    // load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
@@ -66,11 +69,21 @@ public class WindowController {
 
     TimerManager timerManager = TimerManager.getInstance();
 
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
+    // Bind the timerLabel to the timeRemaining property
+    timerLabel
+        .textProperty()
+        .bind(
+            Bindings.createStringBinding(
+                () ->
+                    String.format(
+                        "%02d:%02d",
+                        timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
+                timerManager.timeRemainingProperty()));
+
+    // animate the text in the info label
+    animateText(
+        "It seems there's something hidden beneath the broken glass… try moving the shards aside to"
+            + " uncover it.");
   }
 
   /**
@@ -93,7 +106,48 @@ public class WindowController {
 
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
-
   }
 
+  @FXML
+  public void onFabricClick() {
+    buttonClickSound.play();
+    // if image is fabric1, change to fabric2
+    if (fabric.getImage().getUrl().contains("fabric1")) {
+      System.out.println("changing to fabric2");
+      fabric.setImage(new Image("/images/fabric2.png"));
+    } else if (fabric.getImage().getUrl().contains("fabric2")) {
+      System.out.println("changing to fabric3");
+      fabric.setImage(new Image("/images/fabric3.png"));
+    } else if (fabric.getImage().getUrl().contains("fabric3")) {
+      System.out.println("changing to fabric4");
+      fabric.setImage(new Image("/images/fabric4.png"));
+      animateText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
+    }
+  }
+
+  @FXML
+  public void onBack() throws IOException {
+    buttonClickSound.play();
+    App.setRoot("crime");
+  }
+
+  /** Animates the text in the info label. */
+  private void animateText(String str) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame =
+        new KeyFrame(
+            Duration.seconds(0.015), // Adjusted for smoother animation
+            event -> {
+              if (i.get() > str.length()) {
+                timeline.stop();
+              } else {
+                infoLabel.setText(str.substring(0, i.get()));
+                i.set(i.get() + 1);
+              }
+            });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
+  }
 }
