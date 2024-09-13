@@ -21,32 +21,42 @@
                   <Image url="@../images/desk.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" preserveRatio="true">
+            <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
                <image>
                   <Image url="@../images/fabric1.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="glass1" fitHeight="134.0" fitWidth="248.0" layoutX="439.0" layoutY="236.0">
-               <image>
-                  <Image url="@../images/glass1.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="glass2" fitHeight="99.0" fitWidth="324.0" layoutX="309.0" layoutY="175.0">
+            <ImageView fx:id="glass6" fitHeight="95.0" fitWidth="346.0" layoutX="438.0" layoutY="396.0" rotate="160.8">
                <image>
                   <Image url="@../images/glass2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="glass3" fitHeight="117.0" fitWidth="126.0" layoutX="426.0" layoutY="178.0">
+            <ImageView fx:id="glass7" fitHeight="117.0" fitWidth="126.0" layoutX="185.0" layoutY="58.0">
                <image>
                   <Image url="@../images/glass3.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="glass4" fitHeight="95.0" fitWidth="346.0" layoutX="216.0" layoutY="238.0" rotate="-143.3">
+            <ImageView fx:id="glass1" fitHeight="134.0" fitWidth="248.0" layoutX="437.0" layoutY="169.0">
+               <image>
+                  <Image url="@../images/glass1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass2" fitHeight="99.0" fitWidth="324.0" layoutX="287.0" layoutY="144.0">
                <image>
                   <Image url="@../images/glass2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="glass5" fitHeight="117.0" fitWidth="126.0" layoutX="300.0" layoutY="241.0">
+            <ImageView fx:id="glass3" fitHeight="117.0" fitWidth="126.0" layoutX="394.0" layoutY="169.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass4" fitHeight="95.0" fitWidth="346.0" layoutX="221.0" layoutY="226.0" rotate="-143.3">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass5" fitHeight="117.0" fitWidth="126.0" layoutX="287.0" layoutY="228.0">
                <image>
                   <Image url="@../images/glass3.png" />
                </image>
