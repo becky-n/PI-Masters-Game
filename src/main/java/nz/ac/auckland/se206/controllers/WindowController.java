@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.TimerManager;
 public class WindowController {
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+  public static boolean fabricFound = false;
 
   @FXML
   private MenuButton menuButton;
@@ -53,8 +54,29 @@ public class WindowController {
   @FXML
   private void initialize() throws IOException {
 
-    // initialize fabric image
-    fabric.setImage(new Image("/images/fabric1.png"));
+    // if they have already found the fabric
+    if (fabricFound) {
+      fabric.setImage(new Image("/images/fabric4.png"));
+      infoLabel.setText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
+
+      // hide the glass images
+      glass1.setVisible(false);
+      glass2.setVisible(false);
+      glass3.setVisible(false);
+      glass4.setVisible(false);
+      glass5.setVisible(false);
+    } else {
+      animateText(
+          "It seems there's something hidden beneath the broken glass… try moving the shards aside to"
+              + " uncover it.");
+
+      // show the glass images (in the case of they are replaying the game)
+      glass1.setVisible(true);
+      glass2.setVisible(true);
+      glass3.setVisible(true);
+      glass4.setVisible(true);
+      glass5.setVisible(true);
+    }
 
     // Make the glass images draggable
     DraggableMaker dm = new DraggableMaker();
@@ -70,7 +92,6 @@ public class WindowController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
@@ -89,11 +110,6 @@ public class WindowController {
                     "%02d:%02d",
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
-
-    // animate the text in the info label
-    animateText(
-        "It seems there's something hidden beneath the broken glass… try moving the shards aside to"
-            + " uncover it.");
   }
 
   /**
@@ -129,6 +145,7 @@ public class WindowController {
     } else if (fabric.getImage().getUrl().contains("fabric3")) {
       fabric.setImage(new Image("/images/fabric4.png"));
       twinkleSound.play();
+      fabricFound = true;
       animateText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
     }
 
@@ -180,5 +197,14 @@ public class WindowController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  public static boolean fabricFound() {
+    if (fabricFound) {
+      System.out.println("Fabric found");
+      return true;
+    } else {
+      return false;
+    }
   }
 }
