@@ -78,7 +78,9 @@ public class CrimeController {
       return;
     }
     if (clickedRectangle.getId().equals("glass")) {
+      App.setRoot("window");
       glass = true;
+      return;
     }
     if (clickedRectangle.getId().equals("letter")) {
       letter = true;

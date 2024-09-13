@@ -22,7 +22,9 @@ public class ClueMenuController {
       clue1.setImage(new Image("/images/circle.png"));
     }
     if (clues[1]) {
-      clue2.setImage(new Image("/images/circle.png"));
+      if (WindowController.fabricFound()) {
+        clue2.setImage(new Image("/images/fabric-outline.png"));
+      }
     }
     if (clues[2]) {
       clue3.setImage(new Image("/images/circle.png"));
