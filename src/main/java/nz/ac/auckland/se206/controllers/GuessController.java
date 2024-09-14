@@ -5,9 +5,11 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,46 +26,32 @@ public class GuessController {
 
   @FXML
   private ImageView imageView;
-
   @FXML
   private ImageView imageView1;
-
   @FXML
   private ImageView imageView2;
-
   @FXML
   private ImageView clue1;
-
   @FXML
   private ImageView clue2;
-
   @FXML
   private ImageView clue3;
-
   @FXML
   private ImageView circleAndrea;
-
   @FXML
   private ImageView circleJesin;
-
   @FXML
   private ImageView circleGerald;
-
   @FXML
   private ImageView AndreaMad;
-
   @FXML
   private ImageView JesinMad;
-
   @FXML
   private ImageView GeraldMad;
-
   @FXML
   private Label timerLabel;
-
   @FXML
   private Pane tabletPane;
-
   @FXML
   private Label infoLabel;
 
@@ -71,6 +59,7 @@ public class GuessController {
   private AudioClip typingSound;
   private AudioClip screenOnSound;
   private Boolean isTabletOpen;
+  private String suspect = "";
 
   @FXML
   public void initialize() {
@@ -105,7 +94,7 @@ public class GuessController {
       clue1.setImage(new Image("/images/circle.png"));
     }
     if (clues[1]) {
-      clue2.setImage(new Image("/images/circle.png"));
+      clue2.setImage(new Image("/images/fabric-outline.png"));
     }
     if (clues[2]) {
       clue3.setImage(new Image("/images/circle.png"));
@@ -117,22 +106,24 @@ public class GuessController {
     if (isTabletOpen) {
       return;
     }
-
+    
     Rectangle clickedRectangle = (Rectangle) event.getSource();
-    clickedRectangle.getId();
-    screenOnSound.play();
 
+    // Determine which rectangle was clicked
     if (clickedRectangle.getId().equals("guessRect1")) {
-      App.openTablet("Andrea", tabletPane);
+      this.suspect = "Andrea";
       circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
-      App.openTablet("Jesin", tabletPane);
+      this.suspect = "Jesin";
       circleJesin.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
-      App.openTablet("Gerald", tabletPane);
+      this.suspect = "Gerald";
       circleGerald.setVisible(true);
     }
 
+    screenOnSound.play();
+
+    App.openTablet(suspect, tabletPane);
     isTabletOpen = true;
   }
 

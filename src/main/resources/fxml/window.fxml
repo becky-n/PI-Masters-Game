@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WindowController">
+   <children>
+      <Pane fx:id="crime" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
+         <children>
+            <ImageView fx:id="fabricImg" blendMode="SRC_ATOP" fitHeight="1101.0" fitWidth="2016.0" layoutX="-618.0" layoutY="-299.0" onMouseClicked="#onFabricClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/desk.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
+               <image>
+                  <Image url="@../images/fabric1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass6" fitHeight="95.0" fitWidth="346.0" layoutX="438.0" layoutY="396.0" rotate="160.8">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass7" fitHeight="117.0" fitWidth="126.0" layoutX="185.0" layoutY="58.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass1" fitHeight="134.0" fitWidth="248.0" layoutX="437.0" layoutY="169.0">
+               <image>
+                  <Image url="@../images/glass1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass2" fitHeight="99.0" fitWidth="324.0" layoutX="287.0" layoutY="144.0">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass3" fitHeight="117.0" fitWidth="126.0" layoutX="394.0" layoutY="169.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass4" fitHeight="95.0" fitWidth="346.0" layoutX="221.0" layoutY="226.0" rotate="-143.3">
+               <image>
+                  <Image url="@../images/glass2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glass5" fitHeight="117.0" fitWidth="126.0" layoutX="287.0" layoutY="228.0">
+               <image>
+                  <Image url="@../images/glass3.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b3" height="112.0" layoutX="42.0" layoutY="444.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+               <effect>
+                  <BoxBlur height="0.0" width="78.73" />
+               </effect>
+            </Rectangle>
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="49.0" layoutY="405.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Button>
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </MenuButton>
+            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
+            <Label fx:id="timerLabel" alignment="CENTER" layoutX="809.0" layoutY="22.0" prefHeight="65.0" prefWidth="68.0" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </Label>
+            <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
+            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</StackPane>
