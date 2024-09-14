@@ -142,7 +142,7 @@ public class App extends Application {
       chatPane.getChildren().clear();
       chatPane.getChildren().add(chatContent);
       chatPane.setVisible(true);
-      
+
       // Set the suspect in the chat controller
       chat.setSuspect(name);
     } catch (Exception e) {
@@ -166,7 +166,7 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
-    Image image = new Image(getClass().getResourceAsStream("/images/magnifying_glass.png"));
+    Image image = new Image(getClass().getResourceAsStream("/images/magnifying.png"));
     scene.setCursor(new ImageCursor(image));
   }
 
