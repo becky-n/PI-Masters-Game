@@ -4,17 +4,23 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SafeController">
    <children>
       <Pane prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView blendMode="SRC_ATOP" fitHeight="932.0" fitWidth="1025.0" layoutX="-53.0" layoutY="-153.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="439.0" fitWidth="863.0" layoutX="-63.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/safe4.png" />
+                  <Image url="@../images/boxClosed3.png" />
                </image>
             </ImageView>
-            <Pane fx:id="lockPane" layoutX="566.0" layoutY="358.0" prefHeight="116.0" prefWidth="108.0" />
+            <Rectangle fx:id="target" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="309.0" layoutY="242.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
+            <ImageView fx:id="key" fitHeight="69.0" fitWidth="163.0" layoutX="703.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" rotate="-23.2">
+               <image>
+                  <Image url="@../images/key2.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </StackPane>
