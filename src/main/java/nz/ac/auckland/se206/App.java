@@ -166,7 +166,7 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
-    Image image = new Image(getClass().getResourceAsStream("/images/ring.png"));
+    Image image = new Image(getClass().getResourceAsStream("/images/magnifying_glass.png"));
     scene.setCursor(new ImageCursor(image));
   }
 
