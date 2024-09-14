@@ -19,7 +19,10 @@ public class ClueMenuController {
     boolean[] clues = CrimeController.cluesGuessed();
 
     if (clues[0]) {
-      clue1.setImage(new Image("/images/circle.png"));
+      if(LockController.isBoxUnlocked()){
+        clue1.setImage(new Image("/images/hair.png"));
+      }
+      
     }
     if (clues[1]) {
       if (WindowController.fabricFound()) {

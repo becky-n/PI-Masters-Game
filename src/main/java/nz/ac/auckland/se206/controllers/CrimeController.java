@@ -76,6 +76,7 @@ public class CrimeController {
     if (clickedRectangle.getId().equals("safe")) {
       if(LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
+        return;
       }
       App.setRoot("safe");
       safe = true;
