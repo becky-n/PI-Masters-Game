@@ -14,13 +14,14 @@ public class LockController {
   private double angle = 0; 
   private List<String> expectedSequence = List.of("right", "left", "right", "right"); 
   private List<String> userSequence = new ArrayList<>();
+  public static boolean safeUnlocked = false;
   
   @FXML
   private ImageView key;
 
   @FXML
   public void initialize() {
-    // Initialization logic if necessary
+   
   }
 
   @FXML
@@ -49,6 +50,7 @@ public class LockController {
 
     // Check if the user sequence matches the expected sequence
     if (userSequence.equals(expectedSequence)) {
+      safeUnlocked = true;
        try {
            App.setRoot("unlockBox");
        } catch (IOException e) {
@@ -57,5 +59,9 @@ public class LockController {
     
         userSequence.clear(); 
     } 
+}
+
+public static boolean isBoxUnlocked(){
+    return safeUnlocked;
 }
 }

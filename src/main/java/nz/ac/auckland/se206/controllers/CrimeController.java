@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.locks.Lock;
 
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
@@ -73,6 +74,9 @@ public class CrimeController {
     context.handleClueClick(event, clickedRectangle.getId());
 
     if (clickedRectangle.getId().equals("safe")) {
+      if(LockController.isBoxUnlocked()) {
+        App.setRoot("unlockBox");
+      }
       App.setRoot("safe");
       safe = true;
       return;
