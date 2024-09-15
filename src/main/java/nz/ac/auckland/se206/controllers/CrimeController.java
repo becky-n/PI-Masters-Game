@@ -18,6 +18,8 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
+import org.eclipse.jgit.util.IO;
+
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
 
@@ -42,7 +44,8 @@ public class CrimeController {
   private ImageView invitationGlow;
 
   @FXML
-  private void initialize() {
+  private void initialize() throws IOException {
+    handleClueMenu(clueMenu);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
@@ -110,13 +113,11 @@ public class CrimeController {
       if (LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
         return;
-      } else if (SafeController.isUnlocked()) {
-        App.setRoot("lock");
-        return;
       }
       App.setRoot("safe");
       safe = true;
       return;
+
     }
     if (clickedRectangle.getId().equals("glass")) {
       App.setRoot("window");
@@ -154,8 +155,15 @@ public class CrimeController {
 
   }
 
+  public static void resetClues() {
+    safe = false;
+    glass = false;
+    letter = false;
+  }
+
   public static boolean[] cluesGuessed() {
     boolean[] clues = new boolean[3];
+
     clues[0] = safe; // represents clue1
     clues[1] = glass; // represents clue2
     clues[2] = letter; // represents clue3

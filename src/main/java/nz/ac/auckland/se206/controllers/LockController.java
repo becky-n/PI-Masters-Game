@@ -51,6 +51,7 @@ public class LockController {
 
   @FXML
   public void initialize() {
+    
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     keySound = new AudioClip(getClass().getResource("/sounds/keySound.mp3").toString());
@@ -117,12 +118,23 @@ public class LockController {
        }
     
         userSequence.clear(); 
-    } 
+    }
+    
 }
 
+
 public static boolean isBoxUnlocked(){
-    return safeUnlocked;
+    if(safeUnlocked){
+        return true;
+    }else{
+        return false;
+    }
 }
+
+public static void resetLock(){
+    safeUnlocked = false;
+}
+
  @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -134,7 +146,7 @@ public static boolean isBoxUnlocked(){
 
   @FXML
   public void onBack() throws IOException {
-    App.setRoot("safe");
+    App.setRoot("crime");
   }
 
   /**

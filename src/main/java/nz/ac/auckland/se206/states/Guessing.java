@@ -63,6 +63,6 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("You have already guessed!");
+    
   }
 }

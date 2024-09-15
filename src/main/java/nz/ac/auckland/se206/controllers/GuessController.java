@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +24,8 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.media.AudioClip;
 
 public class GuessController {
+  public static boolean play=false;
+  public static boolean guess=false;
 
   @FXML
   private ImageView imageView;
@@ -61,8 +64,14 @@ public class GuessController {
   private Boolean isTabletOpen;
   private String suspect = "";
 
+  public static boolean inGuessingState(){
+    return guess;
+  }
+
   @FXML
   public void initialize() {
+    guess=true;
+    
 
     // reset for each new game
     isTabletOpen = false;
@@ -90,10 +99,10 @@ public class GuessController {
     boolean[] clues = CrimeController.cluesGuessed();
 
     // Show the clues if the clues have been guessed
-    if (clues[0]) {
+    if (clues[0] && LockController.isBoxUnlocked()) {
       clue1.setImage(new Image("/images/hairCloseUp.png"));
     }
-    if (clues[1]) {
+    if (clues[1] && WindowController.fabricFound()) {
       clue2.setImage(new Image("/images/fabric-outline.png"));
     }
     if (clues[2]) {
@@ -157,6 +166,17 @@ public class GuessController {
     }
 
   }
+
+  @FXML
+  private void handlePlayAgain() throws IOException {
+    CrimeController.resetClues(); // Reset clues
+    LockController.resetLock();
+    WindowController.resetFabric();
+    TimerManager.getInstance().reset(300);
+    guess=false;
+    App.setRoot("menu");
+  }
+
 
   @FXML
   private void handleExitHover(MouseEvent event) {

@@ -79,6 +79,10 @@ public class GameStateContext {
     this.gameState = state;
   }
 
+  public GameState getGameState() {
+    return gameState;
+  }
+
   /**
    * Gets the initial game started state.
    *
@@ -155,6 +159,7 @@ public class GameStateContext {
    * @throws IOException if there is an I/O error
    */
   public void handleGuessClick() throws IOException {
+    TimerManager.getInstance().reset(60);
     gameState.handleGuessClick();
   }
 }
