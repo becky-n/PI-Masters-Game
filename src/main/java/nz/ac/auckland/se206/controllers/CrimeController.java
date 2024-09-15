@@ -4,14 +4,10 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.ClueMenu;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
@@ -19,10 +15,8 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.locks.Lock;
 
 import org.eclipse.jgit.util.IO;
 
@@ -42,12 +36,29 @@ public class CrimeController {
   private Label timerLabel;
   @FXML
   private Pane clueMenu;
+  @FXML
+  private ImageView safeGlow;
+  @FXML
+  private ImageView glassPileGlow;
+  @FXML
+  private ImageView invitationGlow;
 
   @FXML
   private void initialize() throws IOException {
     handleClueMenu(clueMenu);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+
+    // set hover effects invisible
+    safeGlow.setVisible(false);
+    glassPileGlow.setVisible(false);
+    invitationGlow.setVisible(false);
+
+    try {
+      handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -64,14 +75,42 @@ public class CrimeController {
   }
 
   @FXML
-  private void handleClueClick(MouseEvent event) throws IOException {
+  private void onHover(MouseEvent event) throws IOException {
     twinkleSound.play();
+
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("safe")) {
+      safeGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("glass")) {
+      glassPileGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("letter")) {
+      invitationGlow.setVisible(true);
+    }
+  }
+
+  @FXML
+  private void offHover(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("safe")) {
+      safeGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("glass")) {
+      glassPileGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("letter")) {
+      invitationGlow.setVisible(false);
+    }
+  }
+
+  @FXML
+  private void handleClueClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
 
     if (clickedRectangle.getId().equals("safe")) {
-      if(LockController.isBoxUnlocked()){
+      if (LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
         return;
       }

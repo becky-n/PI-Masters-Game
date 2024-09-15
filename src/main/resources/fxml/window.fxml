@@ -16,11 +16,12 @@
    <children>
       <Pane fx:id="crime" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView fx:id="fabricImg" blendMode="SRC_ATOP" fitHeight="1101.0" fitWidth="2016.0" layoutX="-618.0" layoutY="-299.0" onMouseClicked="#onFabricClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fabricImg" blendMode="SRC_ATOP" fitHeight="1323.0" fitWidth="1719.0" layoutX="-683.0" layoutY="-297.0" onMouseClicked="#onFabricClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/desk.jpg" />
+                  <Image url="@../images/floorboards.png" />
                </image>
             </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.65" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
             <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
                <image>
                   <Image url="@../images/fabric1.png" />
