@@ -46,7 +46,7 @@ public class UnlockBoxController {
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     
-    animateText("A white hair, who does it belong to?");
+    animateText("A white hair on the empty ring box, who does it belong to?");
   
 
     try {
