@@ -172,7 +172,8 @@ public class GuessController {
     CrimeController.resetClues(); // Reset clues
     LockController.resetLock();
     WindowController.resetFabric();
-    TimerManager.getInstance().reset(10);
+    TimerManager.getInstance().reset(300);
+    guess=false;
     App.setRoot("menu");
   }
 

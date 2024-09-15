@@ -32,7 +32,7 @@ public class TimerManager {
         timer.stop();
         try {
           App.setRoot("guess");
-          TimerManager.getInstance().reset(5);
+          TimerManager.getInstance().reset(60);
           context.setState(context.getGuessingState());
         } catch (IOException e) {
           e.printStackTrace();

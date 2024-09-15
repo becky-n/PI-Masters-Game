@@ -159,7 +159,7 @@ public class GameStateContext {
    * @throws IOException if there is an I/O error
    */
   public void handleGuessClick() throws IOException {
-    TimerManager.getInstance().reset(5);
+    TimerManager.getInstance().reset(60);
     gameState.handleGuessClick();
   }
 }
