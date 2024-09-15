@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,30 +13,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-
-import java.io.IOException;
-
-public class SafeController {
-  public static boolean unlocked=false;
+public class UnlockBoxController {
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
-
-  @FXML
-  private ImageView key;
-
-  @FXML
-  private Rectangle target;
 
   @FXML
   private MenuButton menuButton;
@@ -44,16 +35,20 @@ public class SafeController {
   private Pane clueMenu;
   @FXML
   private Label infoLabel;
+  @FXML
+  private ImageView closeUp;
 
   private static GameStateContext context = new GameStateContext();
 
   @FXML
-  private void initialize() throws IOException {
+  private void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+
     
-    animateText("There appears to be a key! Would this unlock the jewellery box?");
-    // load the clue menu
+    animateText("A white hair on the empty ring box, who does it belong to?");
+  
+
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
@@ -76,27 +71,6 @@ public class SafeController {
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
 
-    DraggableMaker dm = new DraggableMaker();
-    dm.makeDraggable(key);
-
-    key.setOnMouseReleased(event -> {
-      if (isKeyOverTarget(key, target)) {
-        unlocked=true;
-        try {
-          App.setRoot("lock");
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    });
-
-  }
-  private boolean isKeyOverTarget(ImageView key, Rectangle target) {
-    return key.getBoundsInParent().intersects(target.getBoundsInParent());
-  }
-
-  public static boolean isUnlocked(){
-    return unlocked;
   }
 
   @FXML
@@ -125,6 +99,17 @@ public class SafeController {
     context.handleGuessClick();
   }
 
+  @FXML 
+  private void handleCloseUp(){
+    closeUp.setImage(new Image("/images/hairCloseUp.png"));
+
+  }
+
+  @FXML
+  private void handleCloseOut(){
+    closeUp.setImage(null);
+
+  }
 
   /** Animates the text in the info label. */
   private void animateText(String str) {
@@ -144,4 +129,5 @@ public class SafeController {
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
+
 }

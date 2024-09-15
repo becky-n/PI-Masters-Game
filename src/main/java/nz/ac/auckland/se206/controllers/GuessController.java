@@ -91,7 +91,7 @@ public class GuessController {
 
     // Show the clues if the clues have been guessed
     if (clues[0]) {
-      clue1.setImage(new Image("/images/circle.png"));
+      clue1.setImage(new Image("/images/hairCloseUp.png"));
     }
     if (clues[1]) {
       clue2.setImage(new Image("/images/fabric-outline.png"));
@@ -106,7 +106,7 @@ public class GuessController {
     if (isTabletOpen) {
       return;
     }
-    
+
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
     // Determine which rectangle was clicked
