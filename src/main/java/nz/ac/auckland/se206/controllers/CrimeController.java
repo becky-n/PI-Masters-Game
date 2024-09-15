@@ -40,11 +40,16 @@ public class CrimeController {
   private Label timerLabel;
   @FXML
   private Pane clueMenu;
+  @FXML
+  private ImageView safeGlow;
 
   @FXML
   private void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+
+    // set hover effects invisible
+    safeGlow.setVisible(false);
 
     try {
       handleClueMenu(clueMenu);
@@ -67,17 +72,37 @@ public class CrimeController {
   }
 
   @FXML
-  private void handleClueClick(MouseEvent event) throws IOException {
+  private void onHover(MouseEvent event) throws IOException {
     twinkleSound.play();
+
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("safe")) {
+      safeGlow.setVisible(true);
+    }
+  }
+
+  @FXML
+  private void offHover(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("safe")) {
+      safeGlow.setVisible(false);
+    }
+  }
+
+  @FXML
+  private void handleClueClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
 
     if (clickedRectangle.getId().equals("safe")) {
-      if(LockController.isBoxUnlocked()) {
+      if (LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
         return;
-      }else if(SafeController.isUnlocked()) {
+      } else if (SafeController.isUnlocked()) {
         App.setRoot("lock");
         return;
       }
