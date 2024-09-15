@@ -36,8 +36,10 @@ public class LetterCloseUpController {
 
   @FXML
   private MenuButton menuButton;
+
   @FXML
   private Label timerLabel;
+
   @FXML
   private Pane clueMenu;
 
@@ -87,25 +89,27 @@ public class LetterCloseUpController {
   @FXML
   private void eraseLetter(MouseEvent event) {
     // Set up the canvas for erasing
-    letterOpened.setImage(null);
-    GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
-    gc.setFill(javafx.scene.paint.Color.WHITE); // Start with a solid white cover (or other color)
-    gc.fillRect(0, 0, eraseCanvas.getWidth(), eraseCanvas.getHeight());
+    // letterOpened.setImage(null);
+    // GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
+    // gc.setFill(javafx.scene.paint.Color.WHITE); // Start with a solid white cover
+    // (or other color)
+    // gc.fillRect(0, 0, eraseCanvas.getWidth(), eraseCanvas.getHeight());
 
-    // Handle the drag event to "erase" parts of the canvas
-    eraseCanvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleErase);
+    // // Handle the drag event to "erase" parts of the canvas
+    // eraseCanvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleErase);
   }
 
-  private void handleErase(MouseEvent event) {
-    GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
+  // private void handleErase(MouseEvent event) {
+  // GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
 
-    // Get the coordinates of the mouse
-    double x = event.getX();
-    double y = event.getY();
+  // // Get the coordinates of the mouse
+  // double x = event.getX();
+  // double y = event.getY();
 
-    // Clear a circular area where the mouse is dragged to "reveal" the image
-    gc.clearRect(x - 15, y - 15, 30, 30); // Erase a 30x30 area around the drag point
-  }
+  // // Clear a circular area where the mouse is dragged to "reveal" the image
+  // gc.clearRect(x - 15, y - 15, 30, 30); // Erase a 30x30 area around the drag
+  // point
+  // }
 
   /**
    * Handles the guess button click event.
