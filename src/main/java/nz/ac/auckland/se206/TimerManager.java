@@ -5,9 +5,12 @@ import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.controllers.GuessController;
+import java.io.IOException;
 
 public class TimerManager {
   private static TimerManager instance;
+  private GameStateContext context = new GameStateContext();
   private Timeline timer;
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
   private boolean running;
@@ -17,9 +20,24 @@ public class TimerManager {
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       timeRemaining.set(timeRemaining.get() - 1);
 
-      if (timeRemaining.get() <= 0) {
+      if(GuessController.inGuessingState()){
+        if (timeRemaining.get() <= 0) {
+          timer.stop();
+          handleTimeOut();
+          
+        }
+      }
+
+      if (timeRemaining.get() <= 0 && !GuessController.inGuessingState()) {
         timer.stop();
-        handleTimeOut(); // Handle timeout event
+        try {
+          App.setRoot("guess");
+          TimerManager.getInstance().reset(5);
+          context.setState(context.getGuessingState());
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
       }
     }));
     timer.setCycleCount(Timeline.INDEFINITE);

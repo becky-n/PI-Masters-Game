@@ -72,7 +72,7 @@ public class BackstoryController {
 
     // Start the timer if it's the first scene
     if (!timerManager.isRunning()) {
-      timerManager.start(300);
+      timerManager.start(10);
     }
 
     // Start the scream sound and apply the shake effect
