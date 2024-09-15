@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -23,6 +24,7 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.media.AudioClip;
 
 public class GuessController {
+  public static boolean play=false;
 
   @FXML
   private ImageView imageView;
@@ -159,6 +161,13 @@ public class GuessController {
   }
 
   @FXML
+  private void handlePlayAgain() throws IOException {
+    play=true;
+    App.setRoot("menu");
+  }
+
+
+  @FXML
   private void handleExitHover(MouseEvent event) {
     markerSound.stop();
     Rectangle clickedRectangle = (Rectangle) event.getSource();
@@ -212,6 +221,10 @@ public class GuessController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  public static boolean playAgain(){
+    return play;
   }
 
 }
