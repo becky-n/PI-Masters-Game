@@ -21,7 +21,7 @@
                   <Image url="@../images/floorboards.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.25" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.65" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
             <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
                <image>
                   <Image url="@../images/fabric1.png" />
