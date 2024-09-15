@@ -102,11 +102,11 @@ public class TabletController {
           .setTemperature(0.2)
           .setTopP(0.5)
           .setMaxTokens(100);
-          chatCompletionRequest.addMessage(new ChatMessage("system", getSystemPrompt()));
+      chatCompletionRequest.addMessage(new ChatMessage("system", getSystemPrompt()));
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
-    
+
   }
 
   /**
@@ -128,13 +128,14 @@ public class TabletController {
    *                           proxy
    */
   private void runGpt(ChatMessage msg) throws ApiProxyException {
+
     if (chatCompletionRequest == null) {
       throw new IllegalStateException("ChatCompletionRequest is not initialized.");
     }
 
-    // Disable input while processing
-    txtInput.setDisable(true);
-    btnSend.setDisable(true);
+    // hide the input field and send button after 1 message
+    txtInput.setVisible(false);
+    btnSend.setVisible(false);
 
     // Add loading message
     txtaChat.clear();
@@ -161,9 +162,6 @@ public class TabletController {
         // Handle the result
         ChatMessage chatMessage = getValue();
         appendChatMessage(chatMessage);
-
-        txtInput.setDisable(false); // Re-enable the input field
-        btnSend.setDisable(false); // Re-enable the send button
       }
 
       // Handle the error
