@@ -20,7 +20,7 @@ public class ClueMenuController {
 
     if (clues[0]) {
       if(LockController.isBoxUnlocked()){
-        clue1.setImage(new Image("/images/hair.png"));
+        clue1.setImage(new Image("/images/hairCloseUp.png"));
       }
       
     }

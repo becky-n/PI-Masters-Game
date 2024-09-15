@@ -26,6 +26,7 @@ import nz.ac.auckland.se206.TimerManager;
 import java.io.IOException;
 
 public class SafeController {
+  public static boolean unlocked=false;
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
 
@@ -80,6 +81,7 @@ public class SafeController {
 
     key.setOnMouseReleased(event -> {
       if (isKeyOverTarget(key, target)) {
+        unlocked=true;
         try {
           App.setRoot("lock");
         } catch (IOException e) {
@@ -91,6 +93,10 @@ public class SafeController {
   }
   private boolean isKeyOverTarget(ImageView key, Rectangle target) {
     return key.getBoundsInParent().intersects(target.getBoundsInParent());
+  }
+
+  public static boolean isUnlocked(){
+    return unlocked;
   }
 
   @FXML

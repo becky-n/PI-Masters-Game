@@ -20,6 +20,8 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UnlockBoxController {
   private AudioClip buttonClickSound;
@@ -33,6 +35,8 @@ public class UnlockBoxController {
   private Pane clueMenu;
   @FXML
   private Label infoLabel;
+  @FXML
+  private ImageView closeUp;
 
   private static GameStateContext context = new GameStateContext();
 
@@ -41,7 +45,9 @@ public class UnlockBoxController {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
+    
     animateText("A white hair, who does it belong to?");
+  
 
     try {
       handleClueMenu(clueMenu);
@@ -91,6 +97,18 @@ public class UnlockBoxController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     App.setRoot("guess");
     context.handleGuessClick();
+  }
+
+  @FXML 
+  private void handleCloseUp(){
+    closeUp.setImage(new Image("/images/hairCloseUp.png"));
+
+  }
+
+  @FXML
+  private void handleCloseOut(){
+    closeUp.setImage(null);
+
   }
 
   /** Animates the text in the info label. */

@@ -33,6 +33,7 @@ public class LockController {
   public static boolean safeUnlocked = false;
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+  private AudioClip keySound;
   
   @FXML
   private ImageView key;
@@ -52,6 +53,8 @@ public class LockController {
   public void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+    keySound = new AudioClip(getClass().getResource("/sounds/keySound.mp3").toString());
+    
     animateText("Try rotating the key, is there a pattern needed to unlock the box?");
 
     try {
@@ -80,6 +83,7 @@ public class LockController {
 
   @FXML
   private void handleLeftRotate() {
+    buttonClickSound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS); 
     trackAction("left");
@@ -87,6 +91,7 @@ public class LockController {
 
   @FXML
   private void handleRightRotate() {
+    buttonClickSound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS); 
     trackAction("right");

@@ -77,6 +77,9 @@ public class CrimeController {
       if(LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
         return;
+      }else if(SafeController.isUnlocked()) {
+        App.setRoot("lock");
+        return;
       }
       App.setRoot("safe");
       safe = true;

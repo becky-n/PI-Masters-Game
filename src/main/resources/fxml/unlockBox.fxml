@@ -54,11 +54,12 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fitHeight="57.0" fitWidth="168.0" layoutX="438.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ringBox" fitHeight="141.0" fitWidth="129.0" layoutX="449.0" layoutY="259.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/hair.png" />
+                  <Image url="@../images/ringBox2.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="closeUp" fitHeight="174.0" fitWidth="178.0" layoutX="626.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>
