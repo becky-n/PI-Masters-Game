@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LetterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LetterCloseUpController">
    <children>
-      <ImageView blendMode="SRC_ATOP" fitHeight="1379.0" fitWidth="2528.0" layoutX="-589.0" layoutY="-577.0" pickOnBounds="true" preserveRatio="true" rotate="20.0">
+      <ImageView blendMode="SRC_ATOP" fitHeight="1269.0" fitWidth="2276.0" layoutX="-598.0" layoutY="-464.0" pickOnBounds="true" preserveRatio="true" rotate="20.0">
          <image>
             <Image url="@../images/desk1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="envelopeCloseUp" fitHeight="350.0" fitWidth="365.0" layoutX="284.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-      <Rectangle fx:id="envelopeCloseUpRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="359.0" layoutY="210.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <ImageView fx:id="envelopeCloseUp" fitHeight="533.0" fitWidth="533.0" layoutX="212.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/closed-envelope.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="letterOpenedReveal" fitHeight="528.0" fitWidth="375.0" layoutX="294.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="letterOpened" fitHeight="528.0" fitWidth="375.0" layoutX="294.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <Canvas fx:id="eraseCanvas" height="528.0" layoutX="441.0" layoutY="43.0" onMouseDragEntered="#eraseLetter" onMouseDragged="#eraseLetter" width="375.0" />
+      <Rectangle fx:id="envelopeCloseUpRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="196.0" layoutX="328.0" layoutY="183.0" onMouseClicked="#envelopeClicked" stroke="TRANSPARENT" strokeType="INSIDE" width="291.0" />
    </children>
 </Pane>

@@ -16,8 +16,6 @@ public class LetterController {
   @FXML
   private ImageView envelope;
 
-  @FXML
-  private ImageView envelopeCloseUp;
 
   public void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -31,8 +29,7 @@ public class LetterController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
-   // envelopeCloseUp.setImage(image);
+    
   }
 
 }
