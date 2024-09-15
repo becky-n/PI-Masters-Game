@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LetterController">
+   <children>
+      <ImageView blendMode="SRC_ATOP" fitHeight="1379.0" fitWidth="2528.0" layoutX="-589.0" layoutY="-577.0" pickOnBounds="true" preserveRatio="true" rotate="20.0">
+         <image>
+            <Image url="@../images/desk1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="envelopeCloseUp" fitHeight="350.0" fitWidth="365.0" layoutX="284.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle fx:id="envelopeCloseUpRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="359.0" layoutY="210.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+   </children>
+</Pane>
