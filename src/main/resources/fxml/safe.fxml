@@ -16,17 +16,17 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView fitHeight="392.0" fitWidth="796.0" layoutX="-25.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="1137.0" fitWidth="1811.0" layoutX="-468.0" layoutY="-383.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/safeBackground.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="273.0" fitWidth="351.0" layoutX="155.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/boxClosed3.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="target" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="308.0" layoutY="226.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="98.0" />
-            <ImageView fx:id="key" fitHeight="69.0" fitWidth="163.0" layoutX="655.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" rotate="-23.2">
-               <image>
-                  <Image url="@../images/key2.png" />
-               </image>
-            </ImageView>
+            <Rectangle fx:id="target" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="58.0" layoutX="303.0" layoutY="254.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
@@ -59,6 +59,11 @@
                </font>
             </MenuButton>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
+            <ImageView fx:id="key" fitHeight="58.0" fitWidth="135.0" layoutX="648.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key2.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </StackPane>
