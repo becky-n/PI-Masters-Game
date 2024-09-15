@@ -25,6 +25,7 @@ import javafx.scene.media.AudioClip;
 
 public class GuessController {
   public static boolean play=false;
+  public static boolean guess=false;
 
   @FXML
   private ImageView imageView;
@@ -63,8 +64,13 @@ public class GuessController {
   private Boolean isTabletOpen;
   private String suspect = "";
 
+  public static boolean inGuessingState(){
+    return guess;
+  }
+
   @FXML
   public void initialize() {
+    guess=true;
     TimerManager.getInstance().reset(60);
 
     // reset for each new game

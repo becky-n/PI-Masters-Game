@@ -49,6 +49,7 @@ public class SafeController {
   
   @FXML
   private void initialize() throws IOException {
+    context.setState(context.getGuessingState());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     
