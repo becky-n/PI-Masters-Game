@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView blendMode="SRC_ATOP" fitHeight="733.0" fitWidth="1194.0" layoutX="-428.0" layoutY="-103.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/desk-vanity.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="241.0" layoutX="109.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
+         <image>
+            <Image url="@../../../../../../../../../Downloads/envelope.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
