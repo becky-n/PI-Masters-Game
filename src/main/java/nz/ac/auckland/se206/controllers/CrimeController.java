@@ -83,7 +83,9 @@ public class CrimeController {
       return;
     }
     if (clickedRectangle.getId().equals("letter")) {
+      App.setRoot("letter");
       letter = true;
+      return;
     }
 
     App.setRoot("crime");
