@@ -149,6 +149,6 @@ public class BackstoryController {
   private void onStart(ActionEvent event) throws ApiProxyException, IOException {
     backgroundMusic.stop();
     buttonClickSound.play();
-    App.fadeScenes("crime");
+    App.setRoot("crime");
   }
 }

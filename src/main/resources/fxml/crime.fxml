@@ -32,22 +32,25 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fitHeight="65.0" fitWidth="109.0" layoutX="337.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/boxClosed3.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="safeGlow" fitHeight="65.0" fitWidth="109.0" layoutX="337.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="safeGlow" fitHeight="65.0" fitWidth="118.0" layoutX="354.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/boxClosed3.png" />
                </image>
                <effect>
-                  <Glow level="1.0" />
+                  <Glow level="0.5" />
                </effect>
             </ImageView>
-            <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="365.0" layoutY="300.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+            <ImageView fx:id="glassPileGlow" fitHeight="136.0" fitWidth="136.0" layoutX="73.0" layoutY="482.0" preserveRatio="true">
+               <image>
+                  <Image url="@../images/glassPile.png" />
+               </image>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </ImageView>
+            <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="365.0" layoutY="300.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
             <Rectangle fx:id="letter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="207.0" layoutY="425.0" onMouseClicked="#handleClueClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-            <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="507.0" layoutY="485.0" onMouseClicked="#handleClueClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+            <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="520.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
             <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
                <font>
                   <Font name="Georgia Bold" size="14.0" />

@@ -4,14 +4,10 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.ClueMenu;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
@@ -19,10 +15,8 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.locks.Lock;
 
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
@@ -42,6 +36,8 @@ public class CrimeController {
   private Pane clueMenu;
   @FXML
   private ImageView safeGlow;
+  @FXML
+  private ImageView glassPileGlow;
 
   @FXML
   private void initialize() {
@@ -50,12 +46,7 @@ public class CrimeController {
 
     // set hover effects invisible
     safeGlow.setVisible(false);
-
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    glassPileGlow.setVisible(false);
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -79,6 +70,8 @@ public class CrimeController {
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
       safeGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("glass")) {
+      glassPileGlow.setVisible(true);
     }
   }
 
@@ -88,6 +81,8 @@ public class CrimeController {
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
       safeGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("glass")) {
+      glassPileGlow.setVisible(false);
     }
   }
 
