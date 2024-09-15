@@ -38,6 +38,8 @@ public class CrimeController {
   private ImageView safeGlow;
   @FXML
   private ImageView glassPileGlow;
+  @FXML
+  private ImageView invitationGlow;
 
   @FXML
   private void initialize() {
@@ -47,6 +49,13 @@ public class CrimeController {
     // set hover effects invisible
     safeGlow.setVisible(false);
     glassPileGlow.setVisible(false);
+    invitationGlow.setVisible(false);
+
+    try {
+      handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -72,6 +81,8 @@ public class CrimeController {
       safeGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("glass")) {
       glassPileGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("letter")) {
+      invitationGlow.setVisible(true);
     }
   }
 
@@ -83,6 +94,8 @@ public class CrimeController {
       safeGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("glass")) {
       glassPileGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("letter")) {
+      invitationGlow.setVisible(false);
     }
   }
 
