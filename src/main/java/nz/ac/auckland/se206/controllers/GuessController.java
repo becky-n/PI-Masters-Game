@@ -65,6 +65,7 @@ public class GuessController {
 
   @FXML
   public void initialize() {
+    TimerManager.getInstance().reset(60);
 
     // reset for each new game
     isTabletOpen = false;
@@ -165,6 +166,7 @@ public class GuessController {
     CrimeController.resetClues(); // Reset clues
     LockController.resetLock();
     WindowController.resetFabric();
+    TimerManager.getInstance().reset(300);
     App.setRoot("menu");
   }
 

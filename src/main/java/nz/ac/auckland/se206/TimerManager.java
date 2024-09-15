@@ -56,11 +56,17 @@ public class TimerManager {
   }
 
   private void handleTimeOut() {
-    // Handle timeout logic, (transitioning to a game over state)
+    
   }
 
   public boolean isRunning() {
     return running;
+  }
+
+  public void reset(int durationInSeconds) {
+    stop();
+    timeRemaining.set(durationInSeconds);
+    start(durationInSeconds);
   }
 
   
