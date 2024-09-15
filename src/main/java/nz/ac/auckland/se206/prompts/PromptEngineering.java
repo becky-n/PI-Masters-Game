@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
 /**
  * Utility class for prompt engineering. This class provides methods to load and
@@ -23,11 +24,14 @@ public class PromptEngineering {
    * @throws IllegalArgumentException if there is an error loading or filling the
    *                                  template
    */
-  public static String getPrompt(String promptId) {
+  public static String getPrompt(String promptId, String suspect) {
     try {
       // Load the prompt template file from resources
       URL resourceUrl = PromptEngineering.class.getClassLoader().getResource(promptId);
       String template = loadTemplate(resourceUrl.toURI());
+      if (promptId.equals("prompts/tablet.txt")) {
+        template = fillTemplate(template, suspect);
+      }
       return template;
     } catch (IOException | URISyntaxException e) {
       e.printStackTrace();
@@ -44,5 +48,18 @@ public class PromptEngineering {
    */
   private static String loadTemplate(URI filePath) throws IOException {
     return new String(Files.readAllBytes(Paths.get(filePath)));
+  }
+
+  /**
+   * Fills a template string with the provided data. Replaces placeholders in the template with
+   * corresponding values from the data map.
+   *
+   * @param template the template string to fill
+   * @param data the data to fill into the template
+   * @return the filled template string
+   */
+  private static String fillTemplate(String template, String suspect) {
+    template = template.replace("{suspect}", suspect);
+    return template;
   }
 }

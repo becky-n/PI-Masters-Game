@@ -78,7 +78,7 @@ public class TabletController {
    * @return the system prompt string
    */
   private String getSystemPrompt() {
-    return PromptEngineering.getPrompt("prompts/tablet.txt");
+    return PromptEngineering.getPrompt("prompts/tablet.txt", suspect);
   }
 
   /**
