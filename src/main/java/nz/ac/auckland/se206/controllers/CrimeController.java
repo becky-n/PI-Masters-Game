@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.concurrent.locks.Lock;
 
+import org.eclipse.jgit.util.IO;
+
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
 
@@ -42,15 +44,10 @@ public class CrimeController {
   private Pane clueMenu;
 
   @FXML
-  private void initialize() {
+  private void initialize() throws IOException {
+    handleClueMenu(clueMenu);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -74,16 +71,14 @@ public class CrimeController {
     context.handleClueClick(event, clickedRectangle.getId());
 
     if (clickedRectangle.getId().equals("safe")) {
-      if(LockController.isBoxUnlocked()) {
+      if(LockController.isBoxUnlocked()){
         App.setRoot("unlockBox");
-        return;
-      }else if(SafeController.isUnlocked()) {
-        App.setRoot("lock");
         return;
       }
       App.setRoot("safe");
       safe = true;
       return;
+
     }
     if (clickedRectangle.getId().equals("glass")) {
       App.setRoot("window");
@@ -121,8 +116,15 @@ public class CrimeController {
 
   }
 
+  public static void resetClues() {
+    safe = false;
+    glass = false;
+    letter = false;
+  }
+
   public static boolean[] cluesGuessed() {
     boolean[] clues = new boolean[3];
+
     clues[0] = safe; // represents clue1
     clues[1] = glass; // represents clue2
     clues[2] = letter; // represents clue3

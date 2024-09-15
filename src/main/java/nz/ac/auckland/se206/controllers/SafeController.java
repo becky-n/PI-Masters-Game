@@ -46,7 +46,7 @@ public class SafeController {
   private Label infoLabel;
 
   private static GameStateContext context = new GameStateContext();
-
+  
   @FXML
   private void initialize() throws IOException {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -98,6 +98,7 @@ public class SafeController {
   public static boolean isUnlocked(){
     return unlocked;
   }
+
 
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {

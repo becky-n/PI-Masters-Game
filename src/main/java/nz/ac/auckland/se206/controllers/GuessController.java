@@ -162,7 +162,9 @@ public class GuessController {
 
   @FXML
   private void handlePlayAgain() throws IOException {
-    play=true;
+    CrimeController.resetClues(); // Reset clues
+    LockController.resetLock();
+    WindowController.resetFabric();
     App.setRoot("menu");
   }
 
@@ -221,10 +223,6 @@ public class GuessController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
-  }
-
-  public static boolean playAgain(){
-    return play;
   }
 
 }

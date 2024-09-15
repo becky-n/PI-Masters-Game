@@ -199,6 +199,10 @@ public class WindowController {
     timeline.play();
   }
 
+  public static void resetFabric(){
+    fabricFound = false;
+  }
+
   public static boolean fabricFound() {
     if (fabricFound) {
       System.out.println("Fabric found");
