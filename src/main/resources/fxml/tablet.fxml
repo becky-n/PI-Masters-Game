@@ -18,7 +18,7 @@
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b1722" height="386.0" layoutX="16.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d3c4700" height="58.0" layoutX="8.0" layoutY="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="286.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d3c4700" height="77.0" layoutX="8.0" layoutY="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="286.0" />
             <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="-72.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/tablet.png" />
@@ -40,7 +40,7 @@
                   <Insets left="20.0" right="60.0" />
                </padding>
                <effect>
-                  <Glow level="0.72" />
+                  <Glow level="0.5" />
                </effect>
             </TextField>
             <ImageView fx:id="btnSend" accessibleRole="BUTTON" fitHeight="28.0" fitWidth="24.0" layoutX="237.0" layoutY="359.0" onMouseClicked="#onSendMessage" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.5" pickOnBounds="true" preserveRatio="true">
@@ -48,18 +48,10 @@
                   <Image url="@../images/send.png" />
                </image>
                <effect>
-                  <Glow level="0.72" />
+                  <Glow level="0.5" />
                </effect>
             </ImageView>
-            <Label layoutX="47.0" layoutY="45.0" prefHeight="28.0" prefWidth="123.0" text="You chose" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Courier New Bold" size="20.0" />
-               </font>
-               <effect>
-                  <Glow level="0.72" />
-               </effect>
-            </Label>
-            <TextArea fx:id="txtaChat" editable="false" layoutX="32.0" layoutY="101.0" prefHeight="231.0" prefWidth="238.0" stylesheets="@../css/style.css" wrapText="true">
+            <TextArea fx:id="txtaChat" editable="false" layoutX="32.0" layoutY="117.0" prefHeight="215.0" prefWidth="238.0" stylesheets="@../css/style.css" wrapText="true">
                <font>
                   <Font name="Courier New" size="13.0" />
                </font>
@@ -67,12 +59,28 @@
                   <Glow level="0.72" />
                </effect>
             </TextArea>
-            <Label fx:id="nameLabel" layoutX="166.0" layoutY="45.0" prefHeight="28.0" prefWidth="83.0" text="name" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+            <Label layoutX="49.0" layoutY="66.0" prefHeight="28.0" prefWidth="123.0" text="You chose" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Courier New Bold" size="20.0" />
                </font>
                <effect>
-                  <Glow level="0.72" />
+                  <Glow level="0.5" />
+               </effect>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="168.0" layoutY="65.0" prefHeight="28.0" prefWidth="83.0" text="name" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+               <font>
+                  <Font name="Courier New Bold" size="20.0" />
+               </font>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
+            </Label>
+            <Label alignment="CENTER" layoutX="83.0" layoutY="43.0" prefHeight="28.0" prefWidth="148.0" text="Case Overview" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Courier New" size="16.0" />
+               </font>
+               <effect>
+                  <Glow level="0.5" />
                </effect>
             </Label>
             <ImageView fx:id="loading" blendMode="COLOR_DODGE" fitHeight="168.0" fitWidth="160.0" layoutX="71.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
@@ -80,7 +88,7 @@
                   <Image url="@../images/loading.gif" />
                </image>
                <effect>
-                  <Glow level="0.72" />
+                  <Glow level="0.5" />
                </effect>
             </ImageView>
          </children>
