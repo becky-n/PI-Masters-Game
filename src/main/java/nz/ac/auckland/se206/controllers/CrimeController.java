@@ -76,7 +76,6 @@ public class CrimeController {
 
   @FXML
   private void onHover(MouseEvent event) throws IOException {
-    twinkleSound.play();
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());

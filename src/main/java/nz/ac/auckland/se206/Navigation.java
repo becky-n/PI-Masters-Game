@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
+
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.media.AudioClip;
@@ -17,10 +19,10 @@ public class Navigation {
     // Set the menu
     menuButton.getItems().clear();
 
-    MenuItem crimeScene = new MenuItem("Crime Scene");
-    MenuItem gerald = new MenuItem("Gerald | Plus One");
-    MenuItem jesin = new MenuItem("Jesin | Mother In Law ");
-    MenuItem andrea = new MenuItem("Andrea | Bridesmaid");
+    MenuItem crimeScene = new MenuItem("Bridal Suite (Crime Scene)");
+    MenuItem gerald = new MenuItem("The Aisle");
+    MenuItem jesin = new MenuItem("The Lobby");
+    MenuItem andrea = new MenuItem("The Ballroom");
 
     String style = "-fx-text-fill: white; -fx-padding: 0 10px 0 10px;";
     gerald.setStyle(style);
@@ -32,9 +34,6 @@ public class Navigation {
 
     // Add menu items based on the current scene using switch statement
     switch (currentSceneId) {
-      case "crime":
-        menuButton.getItems().addAll(jesin, gerald, andrea);
-        break;
       case "lobby":
         menuButton.getItems().addAll(crimeScene, gerald, andrea);
         break;
@@ -45,7 +44,7 @@ public class Navigation {
         menuButton.getItems().addAll(crimeScene, jesin, gerald);
         break;
       default:
-        menuButton.getItems().addAll(crimeScene, jesin, gerald, andrea);
+        menuButton.getItems().addAll(jesin, gerald, andrea);
     }
 
     // Set the action
@@ -70,7 +69,11 @@ public class Navigation {
   }
 
   private void changeScene(String scene) {
-    App.fadeScenes(scene);
+    try {
+      App.setRoot(scene);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
 }

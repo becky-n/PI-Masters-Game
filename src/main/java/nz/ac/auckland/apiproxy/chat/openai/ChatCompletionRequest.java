@@ -104,9 +104,11 @@ public class ChatCompletionRequest {
                 .add("content", message.getContent()));
       }
 
-      JsonObjectBuilder jsonOverallBuilder =
-          Json.createObjectBuilder() //
-              .add("messages", jsonMessages);
+      Model model = Model.GPT_4o; 
+      System.out.println("Model: " + model.getModelName());
+      JsonObjectBuilder jsonOverallBuilder = Json.createObjectBuilder()
+          .add("model", model.getModelName()) // Add the selected model here
+          .add("messages", jsonMessages);
 
       jsonOverallBuilder.add("access_token", config.getApiKey()).add("email", config.getEmail());
 
@@ -137,14 +139,11 @@ public class ChatCompletionRequest {
       httpPost.setEntity(new StringEntity(value.toString()));
       ObjectMapper mapperApiMapper = new ObjectMapper();
 
-      responseChat =
-          (ResponseChatCompletionViaProxy)
-              client.execute(
-                  httpPost,
-                  httpResponse ->
-                      mapperApiMapper.readValue(
-                          httpResponse.getEntity().getContent(),
-                          ResponseChatCompletionViaProxy.class));
+      responseChat = (ResponseChatCompletionViaProxy) client.execute(
+          httpPost,
+          httpResponse -> mapperApiMapper.readValue(
+              httpResponse.getEntity().getContent(),
+              ResponseChatCompletionViaProxy.class));
 
       if (!responseChat.success && responseChat.code != 0) {
         throw new ApiProxyException("Problem calling API: " + responseChat.message);

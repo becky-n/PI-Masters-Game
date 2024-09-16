@@ -82,7 +82,11 @@ public class TabletController {
    * @return the system prompt string
    */
   private String getSystemPrompt() {
-    return PromptEngineering.getPrompt("prompts/tablet.txt", suspect);
+    String guess = "incorrect";
+    if (suspect.equals("Gerald")) {
+      guess = "correct";
+    }
+    return PromptEngineering.getPrompt("prompts/tablet.txt", suspect, guess);
   }
 
   /**

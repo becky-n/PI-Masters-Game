@@ -24,13 +24,13 @@ public class PromptEngineering {
    * @throws IllegalArgumentException if there is an error loading or filling the
    *                                  template
    */
-  public static String getPrompt(String promptId, String suspect) {
+  public static String getPrompt(String promptId, String suspect, String guess) {
     try {
       // Load the prompt template file from resources
       URL resourceUrl = PromptEngineering.class.getClassLoader().getResource(promptId);
       String template = loadTemplate(resourceUrl.toURI());
       if (promptId.equals("prompts/tablet.txt")) {
-        template = fillTemplate(template, suspect);
+        template = fillTemplate(template, suspect, guess);
       }
       return template;
     } catch (IOException | URISyntaxException e) {
@@ -58,8 +58,9 @@ public class PromptEngineering {
    * @param data the data to fill into the template
    * @return the filled template string
    */
-  private static String fillTemplate(String template, String suspect) {
+  private static String fillTemplate(String template, String suspect, String guess) {
     template = template.replace("{suspect}", suspect);
+    template = template.replace("{guess}", guess);
     return template;
   }
 }

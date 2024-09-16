@@ -19,7 +19,7 @@
                   <Image url="@../images/jesin.png" />
                </image>
             </ImageView>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Jesin | Mother In Law " textFill="WHITE" wrapText="true">
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="The Lobby" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>

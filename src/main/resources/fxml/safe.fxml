@@ -32,7 +32,7 @@
                   <BoxBlur height="0.0" width="78.73" />
                </effect>
             </Rectangle>
-            <Label fx:id="infoLabel" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textFill="WHITE">
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textFill="WHITE">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
@@ -44,7 +44,7 @@
             </Button>
             <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
                <font>
-                  <Font name="Georgia" size="14.0" />
+                  <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
             <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
@@ -53,7 +53,7 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>

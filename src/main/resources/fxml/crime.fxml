@@ -21,7 +21,7 @@
                   <Image url="@../images/bridalSuite.jpg" />
                </image>
             </ImageView>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font></MenuButton>
@@ -32,7 +32,7 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fx:id="safeGlow" fitHeight="58.0" fitWidth="118.0" layoutX="355.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="safeGlow" fitHeight="58.0" fitWidth="118.0" layoutX="373.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/boxClosed3.png" />
                </image>
