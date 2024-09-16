@@ -28,18 +28,15 @@ public class ClueMenuController {
       clue3.setImage(null);
     }
 
-
-    
-
     if (clues[0] && LockController.isBoxUnlocked()) {
-      
-      clue1.setImage(new Image("/images/hairCloseUp.png"));
+
+      clue1.setImage(new Image("/images/ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
-      clue2.setImage(new Image("/images/fabric-outline.png"));
+      clue2.setImage(new Image("/images/cloth_clue.png"));
     }
     if (clues[2]) {
-      clue3.setImage(new Image("/images/circle.png"));
+      clue3.setImage(new Image("/images/letter_clue.png"));
     }
   }
 
