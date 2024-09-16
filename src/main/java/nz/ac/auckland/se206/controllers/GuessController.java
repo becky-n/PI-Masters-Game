@@ -19,13 +19,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import javafx.scene.control.Button;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.media.AudioClip;
 
 public class GuessController {
-  public static boolean play=false;
-  public static boolean guess=false;
+  public static boolean play = false;
+  public static boolean guess = false;
 
   @FXML
   private ImageView imageView;
@@ -57,6 +58,8 @@ public class GuessController {
   private Pane tabletPane;
   @FXML
   private Label infoLabel;
+  @FXML
+  private Button playAgainButton;
 
   private AudioClip markerSound;
   private AudioClip typingSound;
@@ -64,14 +67,15 @@ public class GuessController {
   private Boolean isTabletOpen;
   private String suspect = "";
 
-  public static boolean inGuessingState(){
+  public static boolean inGuessingState() {
     return guess;
   }
 
   @FXML
   public void initialize() {
-    guess=true;
-    
+    guess = true;
+
+    playAgainButton.setVisible(false);
 
     // reset for each new game
     isTabletOpen = false;
@@ -132,7 +136,7 @@ public class GuessController {
 
     screenOnSound.play();
 
-    App.openTablet(suspect, tabletPane);
+    App.openTablet(suspect, tabletPane, this);
     isTabletOpen = true;
   }
 
@@ -169,14 +173,16 @@ public class GuessController {
 
   @FXML
   private void handlePlayAgain() throws IOException {
+    System.out.println("play again");
     CrimeController.resetClues(); // Reset clues
+    ChatController.resetSuspects(); // Reset suspects
     LockController.resetLock();
     WindowController.resetFabric();
     TimerManager.getInstance().reset(300);
-    guess=false;
+    guess = false;
     App.setRoot("menu");
-  }
 
+  }
 
   @FXML
   private void handleExitHover(MouseEvent event) {
@@ -232,6 +238,10 @@ public class GuessController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  public void togglePlayAgainButton(boolean toggle){
+    playAgainButton.setVisible(toggle);
   }
 
 }

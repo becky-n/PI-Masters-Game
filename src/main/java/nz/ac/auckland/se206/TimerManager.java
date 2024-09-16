@@ -24,7 +24,6 @@ public class TimerManager {
         if (timeRemaining.get() <= 0) {
           timer.stop();
           handleTimeOut();
-          
         }
       }
 

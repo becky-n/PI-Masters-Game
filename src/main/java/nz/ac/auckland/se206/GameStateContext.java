@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.states.GameOver;
 import nz.ac.auckland.se206.states.GameStarted;
 import nz.ac.auckland.se206.states.GameState;
@@ -160,6 +161,5 @@ public class GameStateContext {
    */
   public void handleGuessClick() throws IOException {
     TimerManager.getInstance().reset(60);
-    gameState.handleGuessClick();
   }
 }

@@ -23,6 +23,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.TimerManager;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
 /**
@@ -30,6 +31,8 @@ import nz.ac.auckland.se206.prompts.PromptEngineering;
  * communication with the GPT model via the API proxy.
  */
 public class TabletController {
+  public static boolean finished = false;
+  private GuessController guess;
 
   @FXML
   private TextArea txtaChat;
@@ -62,6 +65,7 @@ public class TabletController {
 
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
+        TimerManager.getInstance().stop();
         try {
           onSendMessage(); // Call the method to send the message
         } catch (ApiProxyException | IOException e) {
@@ -88,8 +92,10 @@ public class TabletController {
    * @param suspect the suspect to set
    */
 
-  public void setSuspect(String suspect) {
+  public void setSuspect(String suspect, GuessController guess) {
     this.suspect = suspect;
+    this.guess = guess;
+
     nameLabel.setText(suspect);
 
     this.str = "Why do you think " + suspect + " stole the ring?";
@@ -146,7 +152,6 @@ public class TabletController {
       // Run the GPT model
       @Override
       protected ChatMessage call() throws ApiProxyException {
-
         // Add the user message
         chatCompletionRequest.addMessage(msg);
         ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
@@ -224,12 +229,18 @@ public class TabletController {
             txtaChat.appendText(String.valueOf(str.charAt(i.get()))); // Append one character
             i.set(i.get() + 1);
           } else {
+            guess.togglePlayAgainButton(true);
             timeline.stop(); // Stop the timeline when all characters are appended
+            
           }
         });
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE); // Keep the timeline running
     timeline.play();
+    
   }
 
+  public static boolean isFinished(){
+    return finished;
+  }
 }

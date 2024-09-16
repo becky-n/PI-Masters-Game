@@ -121,8 +121,12 @@ public class WindowController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    App.setRoot("guess");
-    context.handleGuessClick();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      context.handleGuessClick();
+      App.setRoot("guess");
+      
+    }
   }
 
   @FXML

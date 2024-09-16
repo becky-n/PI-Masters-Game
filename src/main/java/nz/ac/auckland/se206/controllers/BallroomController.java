@@ -68,15 +68,20 @@ public class BallroomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    App.setRoot("guess");
-    context.handleGuessClick();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      context.handleGuessClick();
+      App.setRoot("guess");
+      
+    }
+    // App.setRoot("guess");
+    // context.handleGuessClick();
   }
 
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
-
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
 

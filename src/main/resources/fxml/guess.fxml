@@ -77,13 +77,13 @@
                </effect>
             </Label>
             <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" rotate="-2.5" />
+            <Button fx:id="playAgainButton" layoutX="666.0" layoutY="442.0" mnemonicParsing="false" onMouseClicked="#handlePlayAgain" rotate="-1.5" text="Play Again" />
             <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" rotate="-2.0" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="playAgainButton" layoutX="35.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#handlePlayAgain" text="Play Again" />
          
          </children>
       </Pane>
