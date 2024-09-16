@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
+
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.media.AudioClip;
@@ -70,7 +72,11 @@ public class Navigation {
   }
 
   private void changeScene(String scene) {
-    App.fadeScenes(scene);
+    try {
+      App.setRoot(scene);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
 }
