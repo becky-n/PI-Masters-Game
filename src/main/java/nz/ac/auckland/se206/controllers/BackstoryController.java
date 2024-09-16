@@ -41,6 +41,7 @@ public class BackstoryController {
   private AudioClip backgroundMusic;
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+  private AudioClip brideIntro;
 
   /** The string to animate. */
   private final String str = "Thank goodness you're with PI Masters! "
@@ -58,9 +59,16 @@ public class BackstoryController {
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
     TimerManager timerManager = TimerManager.getInstance();
 
+    // Load the audio clips
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+    brideIntro = new AudioClip(getClass().getResource("/sounds/bride-intro.mp3").toString());
+
+    // adjust audio volume
+    backgroundMusic.setVolume(0.5);
+    twinkleSound.setVolume(0.5);
+
     screamPlayer = new MediaPlayer(screamMedia);
 
     // Bind the timerLabel to the timeRemaining property
@@ -107,6 +115,7 @@ public class BackstoryController {
       shakeTimeline.stop();
       buttonClickSound.play();
       backgroundMusic.stop();
+      brideIntro.stop();
       App.fadeScenes("crime");
     });
 
@@ -116,6 +125,7 @@ public class BackstoryController {
       backstoryPane.setVisible(true);
       backgroundMusic.play();
       animateText();
+      brideIntro.play();
     });
   }
 
@@ -148,6 +158,7 @@ public class BackstoryController {
   @FXML
   private void onStart(ActionEvent event) throws ApiProxyException, IOException {
     backgroundMusic.stop();
+    brideIntro.stop();
     buttonClickSound.play();
     App.fadeScenes("crime");
   }
