@@ -83,7 +83,7 @@ public class ChatController {
     } else {
       promptId = "prompts/gerald.txt";
     }
-    return PromptEngineering.getPrompt(promptId);
+    return PromptEngineering.getPrompt(promptId, suspect);
   }
 
   /**
