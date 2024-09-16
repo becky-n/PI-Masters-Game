@@ -25,6 +25,8 @@ import nz.ac.auckland.se206.TimerManager;
 public class LetterCloseUpController {
   private AudioClip buttonClickSound;
 
+  private AudioClip matchSound;
+
   @FXML
   private ImageView envelopeCloseUp;
 
@@ -49,10 +51,12 @@ public class LetterCloseUpController {
   private int envelopeClicked = 0;
   private GraphicsContext gc;
   private boolean isErasing = false;
+  public static boolean LetterFound = false;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     envelopeCloseUp.setImage(image);
     Navigation nav = new Navigation();
@@ -93,14 +97,20 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.jpg").toString());
       letterOpenedReveal.setImage(imageHidden);
+      LetterFound = true;
 
       createcanvas();
 
     }
   }
 
+  public static boolean isLetterFound() {
+    return LetterFound;
+  }
+
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
+    matchSound.play();
     if (envelopeClicked < 2) {
       return;
     } else {
@@ -173,6 +183,7 @@ public class LetterCloseUpController {
 
   @FXML
   private void eraseLetter(MouseEvent event) {
+
     // Set up the canvas for erasing
     // letterOpened.setImage(null);
     // GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
@@ -221,6 +232,7 @@ public class LetterCloseUpController {
 
   @FXML
   public void onBack() throws IOException {
+    matchSound.stop();
     buttonClickSound.play();
     setBackCursor();
 
