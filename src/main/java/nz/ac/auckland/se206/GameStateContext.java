@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.states.GameOver;
 import nz.ac.auckland.se206.states.GameStarted;
 import nz.ac.auckland.se206.states.GameState;
@@ -159,7 +160,12 @@ public class GameStateContext {
    * @throws IOException if there is an I/O error
    */
   public void handleGuessClick() throws IOException {
-    TimerManager.getInstance().reset(60);
-    gameState.handleGuessClick();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      gameState.handleGuessClick();
+      App.setRoot("guess");
+      TimerManager.getInstance().reset(60);
+    }
+    
   }
 }

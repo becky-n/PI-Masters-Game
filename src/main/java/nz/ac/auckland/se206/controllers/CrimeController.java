@@ -140,9 +140,10 @@ public class CrimeController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+
     buttonClickSound.play();
-    App.setRoot("guess");
-    context.handleGuessClick();
+    // App.setRoot("guess");
+    // context.handleGuessClick();
   }
 
   @FXML

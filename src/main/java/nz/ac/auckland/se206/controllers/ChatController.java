@@ -42,9 +42,27 @@ public class ChatController {
   @FXML
   private String suspect;
 
+  private static boolean Andrea= false;
+  private static boolean Jesin=false;
+  private static boolean Gerald=false;
+
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
   private String str = "";
+
+  public static boolean[] suspectsTalkedTo() {
+    boolean[] suspects = new boolean[3];
+    suspects[0]=Andrea;
+    suspects[1]=Jesin;
+    suspects[2]=Gerald;
+    return suspects;
+  }
+
+  public static void resetSuspects() {
+    Andrea = false;
+    Jesin = false;
+    Gerald = false;
+  }
 
   /**
    * Initializes the chat view.
@@ -57,8 +75,18 @@ public class ChatController {
     // Any required initialization code can be placed here
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
+
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
+        if(suspect.equals("Andrea")){
+          Andrea=true;
+        }
+        else if(suspect.equals("Jesin")){
+          Jesin=true;
+        }
+        else if(suspect.equals("Gerald")){
+          Gerald=true;
+        }
         try {
           onSendMessage(); // Call the method to send the message
         } catch (ApiProxyException | IOException e) {

@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.GuessController;
 import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
@@ -129,7 +130,7 @@ public class App extends Application {
     }
   }
 
-  public static void openTablet(String name, Pane chatPane)
+  public static void openTablet(String name, Pane chatPane, GuessController guess)
       throws IOException {
 
     try {
@@ -144,7 +145,7 @@ public class App extends Application {
       chatPane.setVisible(true);
 
       // Set the suspect in the chat controller
-      chat.setSuspect(name);
+      chat.setSuspect(name, guess);
     } catch (Exception e) {
       e.printStackTrace();
     }
