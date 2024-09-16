@@ -102,14 +102,14 @@ public class LetterCloseUpController {
     }
   }
 
-
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
-    matchSound.play();
+
     if (envelopeClicked < 2) {
       return;
     } else {
       buttonClickSound.play();
+      matchSound.play();
       setMatchboxCursor();
     }
 
@@ -119,7 +119,7 @@ public class LetterCloseUpController {
     // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
-    envelopeCloseUp.getScene().setCursor(customCursor); 
+    envelopeCloseUp.getScene().setCursor(customCursor);
 
   }
 
