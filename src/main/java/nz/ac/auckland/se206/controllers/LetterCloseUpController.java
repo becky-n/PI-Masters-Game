@@ -123,10 +123,11 @@ public class LetterCloseUpController {
 
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
-    matchBoxClicked = true;
+    
     if (envelopeClicked < 2) {
       return;
     } else {
+      matchBoxClicked = true;
       buttonClickSound.play();
       matchSound.play();
       setMatchboxCursor();
