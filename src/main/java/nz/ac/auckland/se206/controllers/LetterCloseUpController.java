@@ -51,7 +51,6 @@ public class LetterCloseUpController {
   private int envelopeClicked = 0;
   private GraphicsContext gc;
   private boolean isErasing = false;
-  public static boolean LetterFound = false;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
@@ -97,16 +96,12 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.jpg").toString());
       letterOpenedReveal.setImage(imageHidden);
-      LetterFound = true;
 
       createcanvas();
 
     }
   }
 
-  public static boolean isLetterFound() {
-    return LetterFound;
-  }
 
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
@@ -123,16 +118,9 @@ public class LetterCloseUpController {
   private void setMatchboxCursor() {
     // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
-
-    // Create an ImageCursor with the image
     ImageCursor customCursor = new ImageCursor(cursorImage);
+    envelopeCloseUp.getScene().setCursor(customCursor); 
 
-    // Set the cursor for the whole scene (or a specific node like the root pane or
-    // canvas)
-    // Obtain the scene from any node, for example, the envelopeCloseUp
-    envelopeCloseUp.getScene().setCursor(customCursor); // Apply to the scene
-    // OR if you want to apply it to the canvas only:
-    // eraseCanvas.setCursor(customCursor);
   }
 
   private void createcanvas() {
@@ -160,7 +148,7 @@ public class LetterCloseUpController {
   }
 
   /**
-   * Erases the opaque layer to reveal the hidden invitation.
+   * Erases the layer to reveal the hidden invitation.
    */
   private void erase(MouseEvent event) {
     if (isErasing) {
@@ -180,32 +168,6 @@ public class LetterCloseUpController {
   private void stopErasing(MouseEvent event) {
     isErasing = false;
   }
-
-  @FXML
-  private void eraseLetter(MouseEvent event) {
-
-    // Set up the canvas for erasing
-    // letterOpened.setImage(null);
-    // GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
-    // gc.setFill(javafx.scene.paint.Color.WHITE); // Start with a solid white cover
-    // (or other color)
-    // gc.fillRect(0, 0, eraseCanvas.getWidth(), eraseCanvas.getHeight());
-
-    // // Handle the drag event to "erase" parts of the canvas
-    // eraseCanvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleErase);
-  }
-
-  // private void handleErase(MouseEvent event) {
-  // GraphicsContext gc = eraseCanvas.getGraphicsContext2D();
-
-  // // Get the coordinates of the mouse
-  // double x = event.getX();
-  // double y = event.getY();
-
-  // // Clear a circular area where the mouse is dragged to "reveal" the image
-  // gc.clearRect(x - 15, y - 15, 30, 30); // Erase a 30x30 area around the drag
-  // point
-  // }
 
   /**
    * Handles the guess button click event.
@@ -242,15 +204,8 @@ public class LetterCloseUpController {
   private void setBackCursor() {
     // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/magnifying_glass.png").toString());
-
-    // Create an ImageCursor with the image
     ImageCursor customCursor = new ImageCursor(cursorImage);
+    envelopeCloseUp.getScene().setCursor(customCursor);
 
-    // Set the cursor for the whole scene (or a specific node like the root pane or
-    // canvas)
-    // Obtain the scene from any node, for example, the envelopeCloseUp
-    envelopeCloseUp.getScene().setCursor(customCursor); // Apply to the scene
-    // OR if you want to apply it to the canvas only:
-    // eraseCanvas.setCursor(customCursor);
   }
 }
