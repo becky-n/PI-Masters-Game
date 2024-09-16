@@ -95,8 +95,13 @@ public class UnlockBoxController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
-    App.setRoot("guess");
-    context.handleGuessClick();
+    buttonClickSound.play();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      context.handleGuessClick();
+      App.setRoot("guess");
+      
+    }
   }
 
   @FXML 

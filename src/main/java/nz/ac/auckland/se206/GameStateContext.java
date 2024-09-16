@@ -160,12 +160,6 @@ public class GameStateContext {
    * @throws IOException if there is an I/O error
    */
   public void handleGuessClick() throws IOException {
-    boolean[] suspects= ChatController.suspectsTalkedTo();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      gameState.handleGuessClick();
-      App.setRoot("guess");
-      TimerManager.getInstance().reset(60);
-    }
-    
+    TimerManager.getInstance().reset(60);
   }
 }

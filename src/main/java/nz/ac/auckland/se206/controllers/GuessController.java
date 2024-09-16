@@ -175,6 +175,7 @@ public class GuessController {
   private void handlePlayAgain() throws IOException {
     System.out.println("play again");
     CrimeController.resetClues(); // Reset clues
+    ChatController.resetSuspects(); // Reset suspects
     LockController.resetLock();
     WindowController.resetFabric();
     TimerManager.getInstance().reset(300);
