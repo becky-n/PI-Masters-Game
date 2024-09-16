@@ -34,9 +34,6 @@ public class Navigation {
 
     // Add menu items based on the current scene using switch statement
     switch (currentSceneId) {
-      case "crime":
-        menuButton.getItems().addAll(jesin, gerald, andrea);
-        break;
       case "lobby":
         menuButton.getItems().addAll(crimeScene, gerald, andrea);
         break;
@@ -47,7 +44,7 @@ public class Navigation {
         menuButton.getItems().addAll(crimeScene, jesin, gerald);
         break;
       default:
-        menuButton.getItems().addAll(crimeScene, jesin, gerald, andrea);
+        menuButton.getItems().addAll(jesin, gerald, andrea);
     }
 
     // Set the action
