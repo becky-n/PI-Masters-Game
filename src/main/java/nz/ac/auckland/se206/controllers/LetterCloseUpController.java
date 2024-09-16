@@ -12,6 +12,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.ClueMenu;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
@@ -52,6 +53,12 @@ public class LetterCloseUpController {
     envelopeCloseUp.setImage(image);
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
+
+    try {
+      handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     TimerManager timerManager = TimerManager.getInstance();
 
@@ -125,12 +132,13 @@ public class LetterCloseUpController {
   }
 
   @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
+  public void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
 
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
+
   }
 
   @FXML

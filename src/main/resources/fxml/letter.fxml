@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LetterController">
    <children>
       <ImageView blendMode="SRC_ATOP" fitHeight="774.0" fitWidth="1308.0" layoutX="-370.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
@@ -45,5 +44,6 @@
             <Font name="Georgia Bold" size="14.0" />
          </font>
       </Button>
+      <Pane fx:id="clueMenu" layoutX="803.0" layoutY="112.0" prefHeight="341.0" prefWidth="80.0" />
    </children>
 </Pane>

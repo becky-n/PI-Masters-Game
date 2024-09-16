@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
+import nz.ac.auckland.ClueMenu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +40,12 @@ public class LetterController {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
+
+    try {
+      handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     TimerManager timerManager = TimerManager.getInstance();
 
@@ -78,12 +85,13 @@ public class LetterController {
   }
 
   @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
+  public void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
 
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
+
   }
 
   @FXML
