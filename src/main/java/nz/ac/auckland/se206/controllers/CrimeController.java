@@ -83,6 +83,11 @@ public class CrimeController {
       return;
     }
     if (clickedRectangle.getId().equals("letter")) {
+      boolean isBurnt = LetterCloseUpController.burnt;
+      if (isBurnt == true) {
+        App.setRoot("letterCloseUp");
+        return;
+      }
       App.setRoot("letter");
       letter = true;
       return;

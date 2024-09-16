@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.ClueMenu;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
@@ -48,9 +49,17 @@ public class LetterCloseUpController {
   @FXML
   private Pane clueMenu;
 
+  @FXML
+  private Rectangle matchBox;
+
+  @FXML
+  private Rectangle envelopeCloseUpRec;
+
   private int envelopeClicked = 0;
   private GraphicsContext gc;
   private boolean isErasing = false;
+  public static boolean burnt = false;
+  public boolean matchBoxClicked = false;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
@@ -79,6 +88,12 @@ public class LetterCloseUpController {
                     "%02d:%02d",
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
+    if (burnt == true) {
+      Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
+      letterOpenedReveal.setImage(imageHidden);
+      matchBox.setDisable(true);
+      envelopeCloseUpRec.setDisable(true);
+    }
 
   }
 
@@ -96,6 +111,10 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
+      if (burnt == true) {
+        eraseCanvas.setDisable(false);
+        return;
+      }
 
       createcanvas();
 
@@ -104,7 +123,7 @@ public class LetterCloseUpController {
 
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
-
+    matchBoxClicked = true;
     if (envelopeClicked < 2) {
       return;
     } else {
@@ -135,15 +154,21 @@ public class LetterCloseUpController {
     gc.drawImage(image, 0, 0, eraseCanvas.getWidth(), eraseCanvas.getHeight());
 
     // Set up mouse events to erase the opaque layer
+
     eraseCanvas.setOnMousePressed(this::startErasing);
     eraseCanvas.setOnMouseDragged(this::erase);
+
   }
 
   /**
    * Starts erasing when the mouse is pressed.
    */
   private void startErasing(MouseEvent event) {
+    if (matchBoxClicked == false) {
+      return;
+    }
     isErasing = true;
+
     erase(event); // Erase the point where the mouse is pressed
   }
 
@@ -151,6 +176,10 @@ public class LetterCloseUpController {
    * Erases the layer to reveal the hidden invitation.
    */
   private void erase(MouseEvent event) {
+    if (matchBoxClicked == false) {
+      return;
+    }
+    burnt = true;
     if (isErasing) {
       double x = event.getX();
       double y = event.getY();

@@ -34,9 +34,11 @@ public class LetterController {
 
   @FXML
   private ImageView envelope;
+  public static boolean burnt;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
+    
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
@@ -46,6 +48,7 @@ public class LetterController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
 
     TimerManager timerManager = TimerManager.getInstance();
 
