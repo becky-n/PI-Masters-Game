@@ -5,6 +5,8 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -45,6 +47,8 @@ public class LetterCloseUpController {
   private Pane clueMenu;
 
   private int envelopeClicked = 0;
+  private GraphicsContext gc;
+  private boolean isErasing = false;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
@@ -53,6 +57,7 @@ public class LetterCloseUpController {
     envelopeCloseUp.setImage(image);
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
+    eraseCanvas.setDisable(true);
 
     try {
       handleClueMenu(clueMenu);
@@ -71,13 +76,14 @@ public class LetterCloseUpController {
                     "%02d:%02d",
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
+
   }
 
   @FXML
   public void envelopeClicked(MouseEvent event) {
     buttonClickSound.play();
 
-    if (envelopeClicked % 2 == 0) {
+    if (envelopeClicked == 0) {
       envelopeClicked++;
       letterOpened.setImage(null);
       Image image = new Image(getClass().getResource("/images/open-envelope.png").toString());
@@ -87,10 +93,82 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.jpg").toString());
       letterOpenedReveal.setImage(imageHidden);
-      Image image = new Image(getClass().getResource("/images/invitation.png").toString());
-      letterOpened.setImage(image);
+
+      createcanvas();
 
     }
+  }
+
+  @FXML
+  public void HandleMatchBoxClick(MouseEvent event) {
+    if (envelopeClicked < 2) {
+      return;
+    } else {
+      buttonClickSound.play();
+      setMatchboxCursor();
+    }
+
+  }
+
+  private void setMatchboxCursor() {
+    // Load custom cursor image
+    Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
+
+    // Create an ImageCursor with the image
+    ImageCursor customCursor = new ImageCursor(cursorImage);
+
+    // Set the cursor for the whole scene (or a specific node like the root pane or
+    // canvas)
+    // Obtain the scene from any node, for example, the envelopeCloseUp
+    envelopeCloseUp.getScene().setCursor(customCursor); // Apply to the scene
+    // OR if you want to apply it to the canvas only:
+    // eraseCanvas.setCursor(customCursor);
+  }
+
+  private void createcanvas() {
+    eraseCanvas.setDisable(false);
+    eraseCanvas.setWidth(375);
+    eraseCanvas.setHeight(528);
+
+    gc = eraseCanvas.getGraphicsContext2D();
+
+    // set canvas as image over hidden image
+    Image image = new Image(getClass().getResource("/images/invitation.png").toString());
+    gc.drawImage(image, 0, 0, eraseCanvas.getWidth(), eraseCanvas.getHeight());
+
+    // Set up mouse events to erase the opaque layer
+    eraseCanvas.setOnMousePressed(this::startErasing);
+    eraseCanvas.setOnMouseDragged(this::erase);
+  }
+
+  /**
+   * Starts erasing when the mouse is pressed.
+   */
+  private void startErasing(MouseEvent event) {
+    isErasing = true;
+    erase(event); // Erase the point where the mouse is pressed
+  }
+
+  /**
+   * Erases the opaque layer to reveal the hidden invitation.
+   */
+  private void erase(MouseEvent event) {
+    if (isErasing) {
+      double x = event.getX();
+      double y = event.getY();
+
+      // Set the eraser size and clear the area
+      double eraserSize = 20; // Adjust the eraser size as needed
+      gc.clearRect(x - eraserSize / 2, y - eraserSize / 2, eraserSize, eraserSize);
+    }
+  }
+
+  /**
+   * Stops erasing when the mouse is released.
+   */
+  @FXML
+  private void stopErasing(MouseEvent event) {
+    isErasing = false;
   }
 
   @FXML
@@ -144,6 +222,23 @@ public class LetterCloseUpController {
   @FXML
   public void onBack() throws IOException {
     buttonClickSound.play();
+    setBackCursor();
+
     App.setRoot("crime");
+  }
+
+  private void setBackCursor() {
+    // Load custom cursor image
+    Image cursorImage = new Image(getClass().getResource("/images/magnifying_glass.png").toString());
+
+    // Create an ImageCursor with the image
+    ImageCursor customCursor = new ImageCursor(cursorImage);
+
+    // Set the cursor for the whole scene (or a specific node like the root pane or
+    // canvas)
+    // Obtain the scene from any node, for example, the envelopeCloseUp
+    envelopeCloseUp.getScene().setCursor(customCursor); // Apply to the scene
+    // OR if you want to apply it to the canvas only:
+    // eraseCanvas.setCursor(customCursor);
   }
 }
