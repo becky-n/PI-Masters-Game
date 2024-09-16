@@ -58,7 +58,7 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>

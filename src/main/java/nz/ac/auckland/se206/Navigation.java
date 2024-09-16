@@ -19,10 +19,10 @@ public class Navigation {
     // Set the menu
     menuButton.getItems().clear();
 
-    MenuItem crimeScene = new MenuItem("Crime Scene");
-    MenuItem gerald = new MenuItem("Gerald | Plus One");
-    MenuItem jesin = new MenuItem("Jesin | Mother In Law ");
-    MenuItem andrea = new MenuItem("Andrea | Bridesmaid");
+    MenuItem crimeScene = new MenuItem("Bridal Suite (Crime Scene)");
+    MenuItem gerald = new MenuItem("The Aisle");
+    MenuItem jesin = new MenuItem("The Lobby");
+    MenuItem andrea = new MenuItem("The Ballroom");
 
     String style = "-fx-text-fill: white; -fx-padding: 0 10px 0 10px;";
     gerald.setStyle(style);
