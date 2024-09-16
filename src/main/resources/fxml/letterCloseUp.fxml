@@ -49,11 +49,11 @@
       <Pane fx:id="clueMenu" layoutX="803.0" layoutY="117.0" prefHeight="341.0" prefWidth="80.0" />
       <Rectangle fx:id="envelopeCloseUpRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="196.0" layoutX="328.0" layoutY="183.0" onMouseClicked="#envelopeClicked" stroke="TRANSPARENT" strokeType="INSIDE" width="291.0" />
       <Canvas fx:id="eraseCanvas" height="528.0" layoutX="294.0" layoutY="44.0" onMouseDragEntered="#eraseLetter" onMouseDragged="#eraseLetter" width="375.0" />
-      <ImageView fitHeight="400.0" fitWidth="338.0" layoutX="647.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
+      <ImageView fitHeight="201.0" fitWidth="98.0" layoutX="674.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
          <image>
             <Image url="@../images/matchbox.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="matchBox" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="183.0" layoutX="746.0" layoutY="270.0" onMouseClicked="#HandleMatchBoxClick" rotate="-10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="88.0" />
+      <Rectangle fx:id="matchBox" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="182.0" layoutX="684.0" layoutY="297.0" onMouseClicked="#HandleMatchBoxClick" rotate="-10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="81.0" />
    </children>
 </Pane>
