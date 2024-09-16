@@ -94,7 +94,7 @@ public class LetterCloseUpController {
       return;
     } else {
       envelopeClicked++;
-      Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.jpg").toString());
+      Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
 
       createcanvas();
