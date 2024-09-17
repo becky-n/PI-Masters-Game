@@ -66,6 +66,9 @@ public class LetterCloseUpController {
   private Label infoLabel;
 
   @FXML
+  private Rectangle instructionsBox;
+
+  @FXML
   private Rectangle envelopeCloseUpRec;
 
   private int envelopeClicked = 0;
@@ -84,7 +87,9 @@ public class LetterCloseUpController {
     nav.setMenu(menuButton);
     eraseCanvas.setDisable(true);
 
-    animateText("let's see what's inside the envelope..");
+    if (burnt == false) {
+      animateText("let's see what's inside the envelope..");
+    }
 
     try {
       handleClueMenu(clueMenu);
@@ -107,6 +112,7 @@ public class LetterCloseUpController {
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
       matchBox.setDisable(true);
+      instructionsBox.setVisible(false);
       envelopeCloseUpRec.setDisable(true);
     }
 

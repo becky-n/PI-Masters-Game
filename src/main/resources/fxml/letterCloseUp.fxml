@@ -56,7 +56,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="matchBox" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="182.0" layoutX="684.0" layoutY="297.0" onMouseClicked="#HandleMatchBoxClick" rotate="-10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="81.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="62.0" layoutY="464.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+      <Rectangle fx:id="instructionsBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="62.0" layoutY="464.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
          <effect>
             <BoxBlur height="0.0" width="78.73" />
          </effect>
