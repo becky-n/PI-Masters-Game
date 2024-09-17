@@ -104,13 +104,13 @@ public class GuessController {
 
     // Show the clues if the clues have been guessed
     if (clues[0] && LockController.isBoxUnlocked()) {
-      clue1.setImage(new Image("/images/hairCloseUp.png"));
+      clue1.setImage(new Image("/images/taped_ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
-      clue2.setImage(new Image("/images/fabric-outline.png"));
+      clue2.setImage(new Image("/images/taped_fabric_clue.png"));
     }
     if (clues[2]) {
-      clue3.setImage(new Image("/images/circle.png"));
+      clue3.setImage(new Image("/images/taped_letter_clue.png"));
     }
   }
 
@@ -240,7 +240,7 @@ public class GuessController {
     timeline.play();
   }
 
-  public void togglePlayAgainButton(boolean toggle){
+  public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
   }
 

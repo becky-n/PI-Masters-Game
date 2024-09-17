@@ -73,6 +73,7 @@ public class LetterCloseUpController {
 
   private int envelopeClicked = 0;
   private GraphicsContext gc;
+  private boolean displayed = false;
   private boolean isErasing = false;
   public static boolean burnt = false;
   public boolean matchBoxClicked = false;
@@ -111,8 +112,8 @@ public class LetterCloseUpController {
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
+      animateText("interesting, I wonder who wrote this...");
       matchBox.setDisable(true);
-      instructionsBox.setVisible(false);
       envelopeCloseUpRec.setDisable(true);
     }
 
@@ -191,8 +192,30 @@ public class LetterCloseUpController {
     // Set up mouse events to erase the opaque layer
 
     eraseCanvas.setOnMousePressed(this::startErasing);
-    eraseCanvas.setOnMouseDragged(this::erase);
+    eraseCanvas.setOnMouseReleased(this::stopErasing);
 
+    eraseCanvas.setOnMouseDragged(event -> {
+      double x = event.getX();
+      double y = event.getY();
+
+      erase(event);
+      // Check if the click is within a specific area (e.g., a rectangle or a shape)
+      if (isInsideArea(x, y) && !displayed) {
+        System.out.println("inside area");
+        animateText("interesting, I wonder who wrote this...");
+        displayed = true;
+      }
+    });
+
+  }
+
+  private boolean isInsideArea(double x, double y) {
+    double rectX = 200;
+    double rectY = 50;
+    double rectWidth = 500;
+    double rectHeight = 147;
+
+    return x >= rectX && x <= rectX + rectWidth && y >= rectY && y <= rectY + rectHeight;
   }
 
   /**
@@ -223,6 +246,7 @@ public class LetterCloseUpController {
       double eraserSize = 20; // Adjust the eraser size as needed
       gc.clearRect(x - eraserSize / 2, y - eraserSize / 2, eraserSize, eraserSize);
     }
+
   }
 
   /**
@@ -231,6 +255,7 @@ public class LetterCloseUpController {
   @FXML
   private void stopErasing(MouseEvent event) {
     isErasing = false;
+
   }
 
   /**

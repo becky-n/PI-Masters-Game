@@ -31,9 +31,9 @@
             <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="122.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="262.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView2" fitHeight="122.0" fitWidth="102.0" layoutX="382.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue1" fitHeight="85.0" fitWidth="90.0" layoutX="72.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true" rotate="18.4" />
-            <ImageView fx:id="clue2" fitHeight="85.0" fitWidth="90.0" layoutX="224.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue3" fitHeight="85.0" fitWidth="90.0" layoutX="339.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" rotate="21.3" />
+            <ImageView fx:id="clue1" fitHeight="146.0" fitWidth="147.0" layoutX="68.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" rotate="18.4" />
+            <ImageView fx:id="clue2" fitHeight="122.0" fitWidth="128.0" layoutX="228.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue3" fitHeight="122.0" fitWidth="128.0" layoutX="338.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" rotate="21.3" />
             <ImageView fx:id="circleAndrea" fitHeight="80.0" fitWidth="102.0" layoutX="128.0" layoutY="131.0">
                <image>
                   <Image url="@../images/red-circle.png" />
