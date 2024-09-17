@@ -209,7 +209,6 @@ public class WindowController {
 
   public static boolean fabricFound() {
     if (fabricFound) {
-      System.out.println("Fabric found");
       return true;
     } else {
       return false;

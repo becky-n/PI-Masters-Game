@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
@@ -46,6 +47,8 @@ public class TabletController {
   private String suspect;
   @FXML
   private ImageView loading;
+  @FXML
+  private ImageView background;
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
@@ -60,6 +63,8 @@ public class TabletController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    background.setImage(new Image("/images/blue.png"));
+
     loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
@@ -126,6 +131,11 @@ public class TabletController {
    */
   private void appendChatMessage(ChatMessage msg) {
     this.str = msg.getContent();
+    if (str.contains("Well Done!")) {
+      background.setImage(new Image("/images/green.png"));
+    } else {
+      background.setImage(new Image("/images/red.png"));
+    }
     animateText();
   }
 
