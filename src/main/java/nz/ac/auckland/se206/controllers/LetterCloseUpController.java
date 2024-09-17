@@ -94,7 +94,21 @@ public class LetterCloseUpController {
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
+    
+    // if time runs out
+    timerManager.timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+      if (newTime.intValue() == 0) {
+        handleTimerExpired();
+      }
+    });
+    
 
+
+  }
+
+  private void handleTimerExpired() {
+    setBackCursor();
+    matchSound.stop();
   }
 
   @FXML
@@ -123,7 +137,7 @@ public class LetterCloseUpController {
 
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
-    
+
     if (envelopeClicked < 2) {
       return;
     } else {
@@ -232,7 +246,7 @@ public class LetterCloseUpController {
   }
 
   private void setBackCursor() {
-    // Load custom cursor image
+
     Image cursorImage = new Image(getClass().getResource("/images/magnifying_glass.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
