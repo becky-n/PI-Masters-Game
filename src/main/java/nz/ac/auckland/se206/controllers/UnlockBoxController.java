@@ -87,7 +87,7 @@ public class UnlockBoxController {
     App.setRoot("crime");
   }
 
-  /**
+/**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -97,9 +97,12 @@ public class UnlockBoxController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
     if(suspects[0] && suspects[1] && suspects[2]){
-      context.handleGuessClick();
-      App.setRoot("guess");
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
       
     }
   }

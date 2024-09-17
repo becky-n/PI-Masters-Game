@@ -101,16 +101,17 @@ public class GuessController {
             timerManager.timeRemainingProperty()));
 
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean isBurnt = LetterCloseUpController.burnt;
 
     // Show the clues if the clues have been guessed
     if (clues[0] && LockController.isBoxUnlocked()) {
-      clue1.setImage(new Image("/images/hairCloseUp.png"));
+      clue1.setImage(new Image("/images/ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
-      clue2.setImage(new Image("/images/fabric-outline.png"));
+      clue2.setImage(new Image("/images/cloth_clue.png"));
     }
-    if (clues[2]) {
-      clue3.setImage(new Image("/images/circle.png"));
+    if (clues[2] && isBurnt) {
+      clue3.setImage(new Image("/images/letter_clue.png"));
     }
   }
 
@@ -178,6 +179,7 @@ public class GuessController {
     ChatController.resetSuspects(); // Reset suspects
     LockController.resetLock();
     WindowController.resetFabric();
+    LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
     guess = false;
     App.setRoot("menu");

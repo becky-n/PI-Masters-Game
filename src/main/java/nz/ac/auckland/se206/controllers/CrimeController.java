@@ -125,7 +125,7 @@ public class CrimeController {
     }
     if (clickedRectangle.getId().equals("letter")) {
       boolean isBurnt = LetterCloseUpController.burnt;
-      if (isBurnt == true) {
+      if (isBurnt) {
         App.setRoot("letterCloseUp");
         return;
       }
@@ -138,7 +138,7 @@ public class CrimeController {
 
   }
 
-  /**
+ /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -146,12 +146,14 @@ public class CrimeController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
-
     buttonClickSound.play();
     boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
     if(suspects[0] && suspects[1] && suspects[2]){
-      context.handleGuessClick();
-      App.setRoot("guess");
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
       
     }
   }
