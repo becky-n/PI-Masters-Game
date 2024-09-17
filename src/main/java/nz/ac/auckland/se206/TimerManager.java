@@ -23,7 +23,11 @@ public class TimerManager {
       if(GuessController.inGuessingState()){
         if (timeRemaining.get() <= 0) {
           timer.stop();
-          handleTimeOut();
+          try {
+            handleTimeOut();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
 
@@ -72,8 +76,8 @@ public class TimerManager {
     return timeRemaining;
   }
 
-  private void handleTimeOut() {
-    
+  private void handleTimeOut() throws IOException {
+    App.setRoot("timesUp");
   }
 
   public boolean isRunning() {

@@ -179,7 +179,7 @@ public class GuessController {
     LockController.resetLock();
     WindowController.resetFabric();
     TimerManager.getInstance().reset(300);
-    guess = false;
+    guess = false; 
     App.setRoot("menu");
 
   }
