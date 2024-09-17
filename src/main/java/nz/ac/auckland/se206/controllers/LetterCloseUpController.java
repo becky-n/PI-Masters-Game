@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.util.Duration;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,12 +20,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.ClueMenu;
 import javafx.scene.layout.Pane;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.Animation;
 
 public class LetterCloseUpController {
   private AudioClip buttonClickSound;
@@ -53,6 +63,9 @@ public class LetterCloseUpController {
   private Rectangle matchBox;
 
   @FXML
+  private Label infoLabel;
+
+  @FXML
   private Rectangle envelopeCloseUpRec;
 
   private int envelopeClicked = 0;
@@ -70,6 +83,8 @@ public class LetterCloseUpController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
     eraseCanvas.setDisable(true);
+
+    animateText("let's see what's inside the envelope..");
 
     try {
       handleClueMenu(clueMenu);
@@ -94,15 +109,13 @@ public class LetterCloseUpController {
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
-    
+
     // if time runs out
     timerManager.timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
       if (newTime.intValue() == 0) {
         handleTimerExpired();
       }
     });
-    
-
 
   }
 
@@ -125,6 +138,7 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
+      animateText("I wonder what will happen if you burn the paper...");
       if (burnt == true) {
         eraseCanvas.setDisable(false);
         return;
@@ -251,5 +265,23 @@ public class LetterCloseUpController {
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
 
+  }
+
+  private void animateText(String str) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.015), // Adjusted for smoother animation
+        event -> {
+          if (i.get() > str.length()) {
+            timeline.stop();
+          } else {
+            infoLabel.setText(str.substring(0, i.get()));
+            i.set(i.get() + 1);
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 }

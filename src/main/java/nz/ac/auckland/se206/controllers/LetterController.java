@@ -19,6 +19,12 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import javafx.animation.Animation;
 
 public class LetterController {
   private AudioClip buttonClickSound;
@@ -33,12 +39,15 @@ public class LetterController {
   private Pane clueMenu;
 
   @FXML
+  private Label infoLabel;
+
+  @FXML
   private ImageView envelope;
   public static boolean burnt;
   private static GameStateContext context = new GameStateContext();
 
   public void initialize() {
-    
+
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
@@ -48,7 +57,6 @@ public class LetterController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
 
     TimerManager timerManager = TimerManager.getInstance();
 
@@ -61,6 +69,7 @@ public class LetterController {
                     "%02d:%02d",
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
+    animateText("Interesting, I wonder what this envelope contains...");
   }
 
   @FXML
@@ -101,6 +110,24 @@ public class LetterController {
   public void onBack() throws IOException {
     buttonClickSound.play();
     App.setRoot("crime");
+  }
+
+  private void animateText(String str) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.015), // Adjusted for smoother animation
+        event -> {
+          if (i.get() > str.length()) {
+            timeline.stop();
+          } else {
+            infoLabel.setText(str.substring(0, i.get()));
+            i.set(i.get() + 1);
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 
 }
