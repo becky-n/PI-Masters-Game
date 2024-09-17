@@ -64,6 +64,12 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
+            <ImageView fitHeight="24.0" fitWidth="82.0" layoutX="436.0" layoutY="66.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pattern.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="closeUp" fitHeight="222.0" fitWidth="281.0" layoutX="522.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

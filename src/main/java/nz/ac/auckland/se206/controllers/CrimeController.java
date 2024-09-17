@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
@@ -42,6 +43,8 @@ public class CrimeController {
   private ImageView glassPileGlow;
   @FXML
   private ImageView invitationGlow;
+  @FXML
+  private ImageView closeUp;
 
   @FXML
   private void initialize() throws IOException {
@@ -156,6 +159,18 @@ public class CrimeController {
       }
       
     }
+  }
+
+  @FXML 
+  private void handleCloseUp(){
+    closeUp.setImage(new Image("/images/magnifyPattern.png"));
+
+  }
+
+  @FXML
+  private void handleCloseOut(){
+    closeUp.setImage(null);
+
   }
 
   @FXML

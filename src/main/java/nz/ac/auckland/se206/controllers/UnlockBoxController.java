@@ -109,7 +109,7 @@ public class UnlockBoxController {
 
   @FXML 
   private void handleCloseUp(){
-    closeUp.setImage(new Image("/images/hairCloseUp.png"));
+    closeUp.setImage(new Image("/images/magnifyHair.png"));
 
   }
 

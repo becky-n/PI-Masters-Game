@@ -64,8 +64,7 @@
                   <Image url="@../images/ringBox2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeUp" fitHeight="166.0" fitWidth="168.0" layoutX="482.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="280.0" fitWidth="415.0" layoutX="472.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="closeUp" fitHeight="261.0" fitWidth="327.0" layoutX="454.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

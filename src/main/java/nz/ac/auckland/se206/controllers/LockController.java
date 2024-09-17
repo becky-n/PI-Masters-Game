@@ -28,7 +28,7 @@ import java.io.IOException;
 
 public class LockController {
   private double angle = 0; 
-  private List<String> expectedSequence = List.of("right", "left", "right", "right"); 
+  private List<String> expectedSequence = List.of("left", "right", "left", "right"); 
   private List<String> userSequence = new ArrayList<>();
   public static boolean safeUnlocked = false;
   private AudioClip buttonClickSound;
