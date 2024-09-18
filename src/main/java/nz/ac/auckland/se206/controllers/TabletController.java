@@ -10,6 +10,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,6 +26,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
@@ -99,11 +102,18 @@ public class TabletController {
    * ChatCompletionRequest.
    *
    * @param suspect the suspect to set
+   * @throws IOException
    */
 
-  public void setSuspect(String suspect, GuessController guess) {
+  public void setSuspect(String suspect, GuessController guess) throws IOException {
     this.suspect = suspect;
     this.guess = guess;
+
+    // if the suspect isn't gerald, load timesup scene and set infolabel
+    if (!suspect.equals("Gerald")) {
+      App.openTimesUp(suspect + " was not the thief!");
+      return;
+    }
 
     nameLabel.setText(suspect);
 
@@ -245,16 +255,16 @@ public class TabletController {
           } else {
             guess.togglePlayAgainButton(true);
             timeline.stop(); // Stop the timeline when all characters are appended
-            
+
           }
         });
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE); // Keep the timeline running
     timeline.play();
-    
+
   }
 
-  public static boolean isFinished(){
+  public static boolean isFinished() {
     return finished;
   }
 }

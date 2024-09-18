@@ -17,12 +17,12 @@
             <Image url="@../images/sadBride.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="150.0" layoutX="38.0" layoutY="253.0" opacity="0.78" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="541.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="150.0" layoutX="40.0" layoutY="361.0" opacity="0.78" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="714.0">
          <effect>
             <BoxBlur height="100.0" width="100.0" />
          </effect>
       </Rectangle>
-      <Label layoutX="54.0" layoutY="246.0" prefHeight="125.0" prefWidth="541.0" text="You're out of time!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label fx:id="infoLabel" layoutX="56.0" layoutY="354.0" prefHeight="125.0" prefWidth="832.0" text="You're out of time!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Georgia" size="64.0" />
          </font>
@@ -30,12 +30,12 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Label layoutX="59.0" layoutY="331.0" prefHeight="52.0" prefWidth="521.0" text="The wedding ended in disappointment as the thief was not found in time." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <Label layoutX="61.0" layoutY="439.0" prefHeight="52.0" prefWidth="521.0" text="The wedding ended in disappointment as the thief was not found in time." textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Georgia" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="playAgainButton" layoutX="241.0" layoutY="383.0" mnemonicParsing="false" onMouseClicked="#handlePlayAgain" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="168.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Play Again">
+      <Button fx:id="playAgainButton" layoutX="61.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#handlePlayAgain" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="168.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Play Again">
          <font>
             <Font name="Georgia Bold" size="24.0" />
          </font>

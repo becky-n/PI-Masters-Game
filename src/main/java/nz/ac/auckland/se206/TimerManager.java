@@ -77,7 +77,7 @@ public class TimerManager {
   }
 
   private void handleTimeOut() throws IOException {
-    App.setRoot("timesUp");
+    App.fadeScenes("timesUp");
   }
 
   public boolean isRunning() {
