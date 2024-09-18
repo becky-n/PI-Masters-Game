@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
@@ -42,6 +43,10 @@ public class CrimeController {
   private ImageView glassPileGlow;
   @FXML
   private ImageView invitationGlow;
+  @FXML
+  private ImageView closeUp;
+  @FXML
+  private ImageView buttonsGlow;
 
   @FXML
   private void initialize() throws IOException {
@@ -53,6 +58,8 @@ public class CrimeController {
     safeGlow.setVisible(false);
     glassPileGlow.setVisible(false);
     invitationGlow.setVisible(false);
+    buttonsGlow.setVisible(false);
+
 
     try {
       handleClueMenu(clueMenu);
@@ -85,6 +92,9 @@ public class CrimeController {
       glassPileGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("buttons")) {
+      buttonsGlow.setVisible(true);
+      handleCloseUp();
     }
   }
 
@@ -98,12 +108,16 @@ public class CrimeController {
       glassPileGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("buttons")) {
+      buttonsGlow.setVisible(false);
+      handleCloseOut();
     }
   }
 
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
+    twinkleSound.play();
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
@@ -125,7 +139,7 @@ public class CrimeController {
     }
     if (clickedRectangle.getId().equals("letter")) {
       boolean isBurnt = LetterCloseUpController.burnt;
-      if (isBurnt == true) {
+      if (isBurnt) {
         App.setRoot("letterCloseUp");
         return;
       }
@@ -146,14 +160,28 @@ public class CrimeController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
-
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      context.handleGuessClick();
-      App.setRoot("guess");
-      
+    boolean[] suspects = ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
+
     }
+  }
+
+  @FXML
+  private void handleCloseUp() {
+    closeUp.setImage(new Image("/images/magnifyPattern.png"));
+
+  }
+
+  @FXML
+  private void handleCloseOut() {
+    closeUp.setImage(null);
+
   }
 
   @FXML

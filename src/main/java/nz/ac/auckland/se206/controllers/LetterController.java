@@ -74,7 +74,7 @@ public class LetterController {
 
   }
 
-  /**
+ /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -83,8 +83,15 @@ public class LetterController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    App.setRoot("guess");
-    context.handleGuessClick();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
+      
+    }
   }
 
   @FXML

@@ -46,7 +46,7 @@
             <Font name="Georgia Bold" size="14.0" />
          </font>
       </Button>
-      <Pane fx:id="clueMenu" layoutX="803.0" layoutY="117.0" prefHeight="341.0" prefWidth="80.0" />
+      <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
       <Rectangle fx:id="envelopeCloseUpRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="196.0" layoutX="328.0" layoutY="183.0" onMouseClicked="#envelopeClicked" stroke="TRANSPARENT" strokeType="INSIDE" width="291.0" />
       <Canvas fx:id="eraseCanvas" height="528.0" layoutX="294.0" layoutY="44.0" width="375.0" />
       <ImageView fitHeight="201.0" fitWidth="98.0" layoutX="674.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">

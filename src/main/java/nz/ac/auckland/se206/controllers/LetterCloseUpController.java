@@ -62,6 +62,10 @@ public class LetterCloseUpController {
   public boolean matchBoxClicked = false;
   private static GameStateContext context = new GameStateContext();
 
+  public static void resetLetter(){
+    burnt = false;
+  }
+
   public void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
@@ -199,7 +203,7 @@ public class LetterCloseUpController {
     isErasing = false;
   }
 
-  /**
+ /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -208,8 +212,15 @@ public class LetterCloseUpController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    App.setRoot("guess");
-    context.handleGuessClick();
+    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
+    if(suspects[0] && suspects[1] && suspects[2]){
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
+      
+    }
   }
 
   @FXML
