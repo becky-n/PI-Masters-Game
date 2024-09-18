@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
@@ -15,6 +16,9 @@ public class TimesUpController {
   private AudioClip backgroundMusic;
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+
+  @FXML
+  private Label infoLabel;
 
   /** Initialises the menu scene. */
   @FXML
@@ -44,6 +48,10 @@ public class TimesUpController {
     TimerManager.getInstance().reset(300);
     GuessController.guess = false;
     App.setRoot("menu");
+  }
 
+  public void setInfoLabel(String text) {
+    infoLabel.setText(text);
+    System.out.println(text);
   }
 }

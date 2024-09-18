@@ -15,6 +15,7 @@ import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GuessController;
 import nz.ac.auckland.se206.controllers.TabletController;
+import nz.ac.auckland.se206.controllers.TimesUpController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
@@ -150,6 +151,49 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
+
+  public static void openTimesUp(String infoLabelText) throws IOException {
+    // Load the TimesUp view and get its controller
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/timesUp.fxml"));
+    Parent timesUpContent = fxmlLoader.load();
+    TimesUpController timesUpController = fxmlLoader.getController();
+
+    // Set the text for the info label in the TimesUpController
+    if (timesUpController != null) {
+        timesUpController.setInfoLabel(infoLabelText);
+    } else {
+        System.err.println("TimesUpController is not properly loaded.");
+        return;
+    }
+
+    // Create a fade-out transition for the current scene
+    FadeTransition fadeOut = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
+    fadeOut.setFromValue(1.0);
+    fadeOut.setToValue(0.0);
+
+    // Set the action to perform after fade-out completes
+    fadeOut.setOnFinished(e -> {
+        try {
+            // Set the new root (new scene)
+            getScene().setRoot(timesUpContent);
+
+            // Create a fade-in transition for the new scene
+            FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+
+            // Start the fade-in transition
+            fadeIn.play();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            // Optionally display an error dialog here
+        }
+    });
+
+    // Start the fade-out transition
+    fadeOut.play();
+}
+
 
   /**
    * This method is invoked when the application starts. It loads and shows the
