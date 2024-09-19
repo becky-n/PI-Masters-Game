@@ -123,22 +123,28 @@ public class GuessController {
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
-    // Determine which rectangle was clicked
+    if (clickedRectangle.getId().equals("guessRect3")) {
+      this.suspect = "Gerald";
+      circleGerald.setVisible(true);
+
+      screenOnSound.play();
+
+      App.openTablet(suspect, tabletPane, this);
+      isTabletOpen = true;
+
+      return;
+    }
+
     if (clickedRectangle.getId().equals("guessRect1")) {
       this.suspect = "Andrea";
       circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
       this.suspect = "Jesin";
       circleJesin.setVisible(true);
-    } else if (clickedRectangle.getId().equals("guessRect3")) {
-      this.suspect = "Gerald";
-      circleGerald.setVisible(true);
     }
 
-    screenOnSound.play();
+    App.openTimesUp(suspect + " was not the thief!");
 
-    App.openTablet(suspect, tabletPane, this);
-    isTabletOpen = true;
   }
 
   @FXML
@@ -181,7 +187,7 @@ public class GuessController {
     WindowController.resetFabric();
     LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
-    guess = false; 
+    guess = false;
     App.setRoot("menu");
 
   }
@@ -242,7 +248,7 @@ public class GuessController {
     timeline.play();
   }
 
-  public void togglePlayAgainButton(boolean toggle){
+  public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
   }
 

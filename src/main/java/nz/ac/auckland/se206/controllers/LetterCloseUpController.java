@@ -212,6 +212,7 @@ public class LetterCloseUpController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    setBackCursor();
     boolean[] suspects= ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     if(suspects[0] && suspects[1] && suspects[2]){
@@ -244,9 +245,10 @@ public class LetterCloseUpController {
 
   private void setBackCursor() {
     // Load custom cursor image
-    Image cursorImage = new Image(getClass().getResource("/images/magnifying_glass.png").toString());
+    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
+    matchSound.stop();
 
   }
 }

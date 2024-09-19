@@ -109,12 +109,6 @@ public class TabletController {
     this.suspect = suspect;
     this.guess = guess;
 
-    // if the suspect isn't gerald, load timesup scene and set infolabel
-    if (!suspect.equals("Gerald")) {
-      App.openTimesUp(suspect + " was not the thief!");
-      return;
-    }
-
     nameLabel.setText(suspect);
 
     this.str = "Why do you think " + suspect + " stole the ring?";
