@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -57,6 +58,8 @@ public class GuessController {
   private Label infoLabel;
   @FXML
   private Button playAgainButton;
+  @FXML
+  private Button close;
 
   private AudioClip markerSound;
   private AudioClip typingSound;
@@ -83,6 +86,8 @@ public class GuessController {
     guess = true;
 
     playAgainButton.setVisible(false);
+    close.setVisible(false);
+
 
     // reset for each new game
     isTabletOpen = false;
@@ -255,6 +260,11 @@ public class GuessController {
     animateText("Choose a suspect first");
   }
 
+  @FXML
+  private void handleClose(){
+    Platform.exit();
+  }
+
   /**
    * Animates the text in the info label with an underscore following each
    * character.
@@ -288,6 +298,7 @@ public class GuessController {
    */
   public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
+    close.setVisible(toggle);
   }
 
 }

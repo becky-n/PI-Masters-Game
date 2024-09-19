@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,6 +36,11 @@ public class MenuController {
   @FXML
   private void buttonHover() {
     twinkleSound.play();
+  }
+
+  @FXML
+  private void handleClose(){
+    Platform.exit();
   }
 
   /** Handles the start button pressed event and switches to the next scene. */
