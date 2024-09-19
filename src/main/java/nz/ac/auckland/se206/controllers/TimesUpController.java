@@ -35,11 +35,12 @@ public class TimesUpController {
     twinkleSound.play();
   }
 
+  /** Handles the start button pressed event and switches to the next scene. */
   @FXML
   private void handlePlayAgain() throws IOException {
     backgroundMusic.stop();
     buttonClickSound.play();
-
+    // Reset game state
     System.out.println("play again");
     CrimeController.resetClues(); // Reset clues
     ChatController.resetSuspects(); // Reset suspects
@@ -50,6 +51,11 @@ public class TimesUpController {
     App.setRoot("menu");
   }
 
+  /**
+   * Sets the text of the info label.
+   * 
+   * @param text the text to set
+   */
   public void setInfoLabel(String text) {
     infoLabel.setText(text);
     System.out.println(text);

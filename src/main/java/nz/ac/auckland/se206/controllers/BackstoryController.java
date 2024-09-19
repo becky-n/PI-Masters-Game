@@ -22,6 +22,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller class for the Backstory scene.
+ * Manages the backstory presentation, including animations, audio playback,
+ * and scene transitions.
+ */
 public class BackstoryController {
 
   @FXML
@@ -88,7 +93,10 @@ public class BackstoryController {
     applyShakeEffect();
   }
 
-  /** Adds a shake effect to the screamImg during the scream sound */
+  /**
+   * Adds a shake effect to the screaming while the scream sound is playing.
+   * Also handles the stop and transition effects when the skip button is clicked.
+   */
   private void applyShakeEffect() {
     // Create a Timeline to shake the ImageView
     Timeline shakeTimeline = new Timeline();
@@ -129,7 +137,9 @@ public class BackstoryController {
     });
   }
 
-  /** Animates the text in the motive label. */
+  /**
+   * Animates the text in the backstory label character by character.
+   */
   private void animateText() {
     final IntegerProperty i = new SimpleIntegerProperty(0);
     Timeline timeline = new Timeline();
@@ -148,13 +158,21 @@ public class BackstoryController {
     timeline.play();
   }
 
-  /** Handles the button hover event and plays a sound effect. */
+  /**
+   * Handles the button hover event and plays a sound effect.
+   */
   @FXML
   private void buttonHover() {
     twinkleSound.play();
   }
 
-  /** Handles the start button pressed event and switches to the next scene. */
+  /**
+   * Handles the start button press event and switches to the next scene.
+   * 
+   * @param event the action event triggered by clicking the start button
+   * @throws ApiProxyException if there is an API proxy error
+   * @throws IOException       if there is an I/O error during scene transition
+   */
   @FXML
   private void onStart(ActionEvent event) throws ApiProxyException, IOException {
     backgroundMusic.stop();

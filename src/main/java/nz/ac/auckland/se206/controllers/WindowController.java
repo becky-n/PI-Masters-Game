@@ -51,6 +51,12 @@ public class WindowController {
 
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Initializes the WindowController. Sets up the timer, menu navigation, chat,
+   * and loads the clue menu and hints box.
+   *
+   * @throws IOException if there is an I/O error during initialization
+   */
   @FXML
   private void initialize() throws IOException {
 
@@ -112,7 +118,7 @@ public class WindowController {
                 timerManager.timeRemainingProperty()));
   }
 
- /**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -121,17 +127,23 @@ public class WindowController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-      
+
     }
   }
 
+  /**
+   * Loads the clue menu into the specified pane.
+   *
+   * @param pane the pane to which the clue menu should be added
+   * @throws IOException if there is an I/O error during loading the clue menu
+   */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -141,6 +153,9 @@ public class WindowController {
     pane.getChildren().add(menuPane);
   }
 
+  /**
+   * Handles the glass image click event.
+   */
   @FXML
   public void onFabricClick() {
     buttonClickSound.play();
@@ -159,6 +174,9 @@ public class WindowController {
     onHoverFabric();
   }
 
+  /**
+   * Handles the hover event for the fabric image.
+   */
   @FXML
   public void onHoverFabric() {
     if (fabric.getImage().getUrl().contains("fabric1")) {
@@ -170,6 +188,9 @@ public class WindowController {
     }
   }
 
+  /**
+   * Handles the off hover event for the fabric image.
+   */
   @FXML
   public void offHoverFabric() {
     if (fabric.getImage().getUrl().contains("fabric1")) {
@@ -181,6 +202,11 @@ public class WindowController {
     }
   }
 
+  /**
+   * Handles the back button click event.
+   *
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void onBack() throws IOException {
     buttonClickSound.play();
@@ -206,10 +232,18 @@ public class WindowController {
     timeline.play();
   }
 
-  public static void resetFabric(){
+  /**
+   * Resets the fabricFound variable to false.
+   */
+  public static void resetFabric() {
     fabricFound = false;
   }
 
+  /**
+   * Returns whether the fabric has been found.
+   *
+   * @return true if the fabric has been found, false otherwise
+   */
   public static boolean fabricFound() {
     if (fabricFound) {
       return true;

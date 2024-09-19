@@ -6,13 +6,22 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.media.AudioClip;
 
+/*
+ * Navigation class to handle the navigation between scenes
+ */
 public class Navigation {
   private AudioClip buttonClickSound;
   private AudioClip doorSound;
 
+  /*
+   * Constructor for the Navigation class
+   */
   public Navigation() {
   }
 
+  /*
+   * Set the menu for the navigation
+   */
   public void setMenu(MenuButton menuButton) {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     doorSound = new AudioClip(getClass().getResource("/sounds/door.mp3").toString());
@@ -68,6 +77,9 @@ public class Navigation {
     menuButton.setOnShowing(e -> buttonClickSound.play());
   }
 
+  /*
+   * Change the scene
+   */
   private void changeScene(String scene) {
     try {
       App.setRoot(scene);

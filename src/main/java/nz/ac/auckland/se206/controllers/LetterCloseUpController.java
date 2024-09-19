@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.util.Duration;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -10,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -18,7 +16,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.ClueMenu;
 import javafx.scene.layout.Pane;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.media.AudioClip;
@@ -27,10 +24,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.animation.Animation;
 
 public class LetterCloseUpController {
@@ -79,10 +73,18 @@ public class LetterCloseUpController {
   public boolean matchBoxClicked = false;
   private static GameStateContext context = new GameStateContext();
 
-  public static void resetLetter(){
+  /**
+   * Resets the letter to its original state.
+   */
+  public static void resetLetter() {
     burnt = false;
   }
 
+  /**
+   * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
+   * chat,
+   * and loads the clue menu and hints box.
+   */
   public void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
@@ -130,11 +132,23 @@ public class LetterCloseUpController {
 
   }
 
+  /**
+   * Handles the clue menu.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
   private void handleTimerExpired() {
     setBackCursor();
     matchSound.stop();
   }
 
+  /**
+   * Handles the clue menu.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void envelopeClicked(MouseEvent event) {
     buttonClickSound.play();
@@ -160,6 +174,11 @@ public class LetterCloseUpController {
     }
   }
 
+  /**
+   * Handles the matchbox click event.
+   *
+   * @param event the mouse event triggered by clicking the matchbox
+   */
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
 
@@ -174,14 +193,19 @@ public class LetterCloseUpController {
 
   }
 
+  /**
+   * Sets the cursor to the matchbox image.
+   */
   private void setMatchboxCursor() {
     // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
-
   }
 
+  /**
+   * Creates the canvas for erasing the opaque layer.
+   */
   private void createcanvas() {
     eraseCanvas.setDisable(false);
     eraseCanvas.setWidth(375);
@@ -213,12 +237,19 @@ public class LetterCloseUpController {
 
   }
 
+  /**
+   * Checks if the given coordinates are inside a specific area.
+   *
+   * @param x the x-coordinate
+   * @param y the y-coordinate
+   * @return true if the coordinates are inside the area, false otherwise
+   */
   private boolean isInsideArea(double x, double y) {
     double rectX = 200;
     double rectY = 50;
     double rectWidth = 500;
     double rectHeight = 147;
-
+    // adjusting the area to match the text
     return x >= rectX && x <= rectX + rectWidth && y >= rectY && y <= rectY + rectHeight;
   }
 
@@ -262,7 +293,7 @@ public class LetterCloseUpController {
 
   }
 
- /**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -272,17 +303,20 @@ public class LetterCloseUpController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     setBackCursor();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-      
+
     }
   }
 
+  /**
+   * Sets the cursor back to the default cursor.
+   */
   @FXML
   public void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -293,6 +327,9 @@ public class LetterCloseUpController {
 
   }
 
+  /**
+   * Sets the cursor back to the default cursor.
+   */
   @FXML
   public void onBack() throws IOException {
     matchSound.stop();
@@ -302,14 +339,22 @@ public class LetterCloseUpController {
     App.setRoot("crime");
   }
 
+  /**
+   * Sets the cursor back to the default cursor.
+   */
   private void setBackCursor() {
     Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
+    // Set the cursor back to the default cursor
     envelopeCloseUp.getScene().setCursor(customCursor);
     matchSound.stop();
-
   }
 
+  /**
+   * Animates the text to display one character at a time.
+   *
+   * @param str the text to animate
+   */
   private void animateText(String str) {
     final IntegerProperty i = new SimpleIntegerProperty(0);
     Timeline timeline = new Timeline();

@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,13 +23,11 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
-
 import java.io.IOException;
 
 public class SafeController {
-  public static boolean unlocked=false;
+  public static boolean unlocked = false;
   private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
 
   @FXML
   private ImageView key;
@@ -47,16 +44,19 @@ public class SafeController {
   @FXML
   private Label infoLabel;
 
-  
-
   private static GameStateContext context = new GameStateContext();
-  
+
+  /**
+   * Initializes the SafeController. Sets up the timer, menu navigation, chat,
+   * and loads the clue menu and hints box.
+   *
+   * @throws IOException if there is an I/O error during initialization
+   */
   @FXML
   private void initialize() throws IOException {
     context.setState(context.getGuessingState());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-    
+
     animateText("There appears to be a key! Would this unlock the jewellery box?");
     // load the clue menu
     try {
@@ -86,7 +86,7 @@ public class SafeController {
 
     key.setOnMouseReleased(event -> {
       if (isKeyOverTarget(key, target)) {
-        unlocked=true;
+        unlocked = true;
         try {
           App.setRoot("lock");
         } catch (IOException e) {
@@ -96,15 +96,33 @@ public class SafeController {
     });
 
   }
+
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
   private boolean isKeyOverTarget(ImageView key, Rectangle target) {
     return key.getBoundsInParent().intersects(target.getBoundsInParent());
   }
 
-  public static boolean isUnlocked(){
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
+  public static boolean isUnlocked() {
     return unlocked;
   }
 
-
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -114,12 +132,17 @@ public class SafeController {
     pane.getChildren().add(menuPane);
   }
 
+  /**
+   * Handles the back button click event.
+   *
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void onBack() throws IOException {
     App.setRoot("crime");
   }
 
-/**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -128,17 +151,16 @@ public class SafeController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-      
+
     }
   }
-
 
   /** Animates the text in the info label. */
   private void animateText(String str) {
@@ -159,6 +181,12 @@ public class SafeController {
     timeline.play();
   }
 
+  /**
+   * Handles the hover event.
+   *
+   * @param event the mouse event triggered by hovering over a clue
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void onHover(MouseEvent event) throws IOException {
 
@@ -166,6 +194,12 @@ public class SafeController {
     context.handleClueClick(event, clickedRectangle.getId());
   }
 
+  /**
+   * Handles the hover event.
+   *
+   * @param event the mouse event triggered by hovering over a clue
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void offHover(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();

@@ -39,6 +39,13 @@ public class GameOver implements GameState {
     TextToSpeech.speak("Game Over, you have already guessed! This is the " + clickedProfession);
   }
 
+  /**
+   * Handles the event when a clue is clicked. Does nothing in this state.
+   *
+   * @param event the mouse event triggered by clicking a clue
+   * @param rectangleId the ID of the clicked clue
+   * @throws IOException if there is an I/O error
+   */
   @Override
   public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
 
