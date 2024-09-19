@@ -1,6 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.util.Duration;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,12 +20,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.ClueMenu;
 import javafx.scene.layout.Pane;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.Animation;
 
 public class LetterCloseUpController {
   private AudioClip buttonClickSound;
@@ -53,10 +63,17 @@ public class LetterCloseUpController {
   private Rectangle matchBox;
 
   @FXML
+  private Label infoLabel;
+
+  @FXML
+  private Rectangle instructionsBox;
+
+  @FXML
   private Rectangle envelopeCloseUpRec;
 
   private int envelopeClicked = 0;
   private GraphicsContext gc;
+  private boolean displayed = false;
   private boolean isErasing = false;
   public static boolean burnt = false;
   public boolean matchBoxClicked = false;
@@ -74,6 +91,10 @@ public class LetterCloseUpController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
     eraseCanvas.setDisable(true);
+
+    if (burnt == false) {
+      animateText("let's see what's inside the envelope..");
+    }
 
     try {
       handleClueMenu(clueMenu);
@@ -95,10 +116,23 @@ public class LetterCloseUpController {
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
+      animateText("interesting, I wonder who wrote this...");
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
 
+    // if time runs out
+    timerManager.timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+      if (newTime.intValue() == 0) {
+        handleTimerExpired();
+      }
+    });
+
+  }
+
+  private void handleTimerExpired() {
+    setBackCursor();
+    matchSound.stop();
   }
 
   @FXML
@@ -115,6 +149,7 @@ public class LetterCloseUpController {
       envelopeClicked++;
       Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
+      animateText("I wonder what will happen if you burn the paper...");
       if (burnt == true) {
         eraseCanvas.setDisable(false);
         return;
@@ -127,7 +162,7 @@ public class LetterCloseUpController {
 
   @FXML
   public void HandleMatchBoxClick(MouseEvent event) {
-    
+
     if (envelopeClicked < 2) {
       return;
     } else {
@@ -161,8 +196,30 @@ public class LetterCloseUpController {
     // Set up mouse events to erase the opaque layer
 
     eraseCanvas.setOnMousePressed(this::startErasing);
-    eraseCanvas.setOnMouseDragged(this::erase);
+    eraseCanvas.setOnMouseReleased(this::stopErasing);
 
+    eraseCanvas.setOnMouseDragged(event -> {
+      double x = event.getX();
+      double y = event.getY();
+
+      erase(event);
+      // Check if the click is within a specific area (e.g., a rectangle or a shape)
+      if (isInsideArea(x, y) && !displayed) {
+        System.out.println("inside area");
+        animateText("interesting, I wonder who wrote this...");
+        displayed = true;
+      }
+    });
+
+  }
+
+  private boolean isInsideArea(double x, double y) {
+    double rectX = 200;
+    double rectY = 50;
+    double rectWidth = 500;
+    double rectHeight = 147;
+
+    return x >= rectX && x <= rectX + rectWidth && y >= rectY && y <= rectY + rectHeight;
   }
 
   /**
@@ -193,6 +250,7 @@ public class LetterCloseUpController {
       double eraserSize = 20; // Adjust the eraser size as needed
       gc.clearRect(x - eraserSize / 2, y - eraserSize / 2, eraserSize, eraserSize);
     }
+
   }
 
   /**
@@ -201,6 +259,7 @@ public class LetterCloseUpController {
   @FXML
   private void stopErasing(MouseEvent event) {
     isErasing = false;
+
   }
 
  /**
@@ -244,11 +303,28 @@ public class LetterCloseUpController {
   }
 
   private void setBackCursor() {
-    // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
     matchSound.stop();
 
+  }
+
+  private void animateText(String str) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.015), // Adjusted for smoother animation
+        event -> {
+          if (i.get() > str.length()) {
+            timeline.stop();
+          } else {
+            infoLabel.setText(str.substring(0, i.get()));
+            i.set(i.get() + 1);
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 }

@@ -105,13 +105,13 @@ public class GuessController {
 
     // Show the clues if the clues have been guessed
     if (clues[0] && LockController.isBoxUnlocked()) {
-      clue1.setImage(new Image("/images/ring_clue.png"));
+      clue1.setImage(new Image("/images/taped_ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
-      clue2.setImage(new Image("/images/cloth_clue.png"));
+      clue2.setImage(new Image("/images/taped_fabric_clue.png"));
     }
     if (clues[2] && isBurnt) {
-      clue3.setImage(new Image("/images/letter_clue.png"));
+      clue3.setImage(new Image("/images/taped_letter_clue.png"));
     }
   }
 
