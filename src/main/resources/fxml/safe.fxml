@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -50,7 +52,7 @@
             <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="809.0" layoutY="22.0" prefHeight="65.0" prefWidth="68.0" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
             <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
@@ -63,6 +65,29 @@
                <image>
                   <Image url="@../images/key2.png" />
                </image>
+            </ImageView>
+            <Rectangle fx:id="buttons" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="436.0" layoutY="72.0" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
+            <ImageView fx:id="closeUp" fitHeight="237.0" fitWidth="334.0" layoutX="471.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="buttonsGlow" fitHeight="46.0" fitWidth="103.0" layoutX="551.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pattern.png" />
+               </image>
+               <effect>
+                  <Glow level="0.6" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="103.0" layoutX="551.0" layoutY="285.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pattern.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
             </ImageView>
          </children></Pane>
    </children>

@@ -45,9 +45,7 @@ public class UnlockBoxController {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
-    
     animateText("A white hair on the empty ring box, who does it belong to?");
-  
 
     try {
       handleClueMenu(clueMenu);
@@ -87,7 +85,7 @@ public class UnlockBoxController {
     App.setRoot("crime");
   }
 
-/**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -96,25 +94,25 @@ public class UnlockBoxController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-      
+
     }
   }
 
-  @FXML 
-  private void handleCloseUp(){
-    closeUp.setImage(new Image("/images/magnifyHair.png"));
+  @FXML
+  private void handleCloseUp() {
+    closeUp.setImage(new Image("/images/HairClose.png"));
 
   }
 
   @FXML
-  private void handleCloseOut(){
+  private void handleCloseOut() {
     closeUp.setImage(null);
 
   }
