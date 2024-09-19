@@ -5,7 +5,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -66,19 +65,9 @@
                   <Image url="@../images/key2.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="buttons" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="436.0" layoutY="72.0" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
-            <ImageView fx:id="closeUp" fitHeight="237.0" fitWidth="334.0" layoutX="471.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="buttonsGlow" fitHeight="46.0" fitWidth="103.0" layoutX="551.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="112.0" fitWidth="104.0" layoutX="105.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" rotate="-4.4">
                <image>
-                  <Image url="@../images/pattern.png" />
-               </image>
-               <effect>
-                  <Glow level="0.6" />
-               </effect>
-            </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="103.0" layoutX="551.0" layoutY="285.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/pattern.png" />
+                  <Image url="@../images/password.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">

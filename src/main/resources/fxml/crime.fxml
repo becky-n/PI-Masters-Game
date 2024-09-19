@@ -54,7 +54,7 @@
                   <Image url="@../images/invitationPile.png" />
                </image>
                <effect>
-                  <Glow level="0.5" />
+                  <Glow />
                </effect>
             </ImageView>
             <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="365.0" layoutY="300.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
