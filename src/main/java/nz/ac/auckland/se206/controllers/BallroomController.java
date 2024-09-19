@@ -84,10 +84,6 @@ public class BallroomController {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
-      } else {
-        // update instructions in hint box
-        InstructionsManager.getInstance().updateInstructions("You need to talk to 3 suspects first!");
-        InstructionsManager.getInstance().showInstructions();
       }
     }
   }
