@@ -6,12 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
@@ -20,8 +18,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
-import org.eclipse.jgit.util.IO;
-
+/**
+ * Controller class for the Crime scene.
+ * Manages the initialization of the scene, handling button clicks, and updating
+ * UI elements.
+ */
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
 
@@ -47,6 +48,12 @@ public class CrimeController {
   @FXML
   private Pane instructionsPane;
 
+  /**
+   * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
+   * and loads the clue menu and hints box.
+   * 
+   * @throws IOException if there is an I/O error during initialization
+   */
   @FXML
   private void initialize() throws IOException {
     handleClueMenu(clueMenu);
@@ -57,7 +64,6 @@ public class CrimeController {
     safeGlow.setVisible(false);
     glassPileGlow.setVisible(false);
     invitationGlow.setVisible(false);
-
 
     try {
       handleClueMenu(clueMenu);
@@ -85,6 +91,12 @@ public class CrimeController {
             timerManager.timeRemainingProperty()));
   }
 
+  /**
+   * Handles the hover event for the clues.
+   *
+   * @param event the mouse event triggered by hovering over a clue
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void onHover(MouseEvent event) throws IOException {
 
@@ -96,9 +108,15 @@ public class CrimeController {
       glassPileGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(true);
-    } 
+    }
   }
 
+  /**
+   * Handles the off hover event for the clues.
+   *
+   * @param event the mouse event triggered by moving the mouse off a clue
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void offHover(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
@@ -109,9 +127,15 @@ public class CrimeController {
       glassPileGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(false);
-    } 
+    }
   }
 
+  /**
+   * Handles the click event for the clues.
+   *
+   * @param event the mouse event triggered by clicking a clue
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
@@ -181,7 +205,12 @@ public class CrimeController {
     }
   }
 
-
+  /**
+   * Loads the clue menu into the specified pane.
+   * 
+   * @param pane the pane to which the clue menu should be added
+   * @throws IOException if there is an I/O error during loading the clue menu
+   */
   @FXML
   public void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -207,10 +236,15 @@ public class CrimeController {
     return clues;
   }
 
+  /**
+   * Loads the hints box into the specified pane.
+   * 
+   * @param pane the pane to which the hints box should be added
+   * @throws IOException if there is an I/O error during loading the hints box
+   */
   private void loadHintsBox(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
-    // Assuming you want to add it to the root pane or a specific pane in the scene
     pane.getChildren().clear();
     pane.getChildren().add(hintsPane);
   }

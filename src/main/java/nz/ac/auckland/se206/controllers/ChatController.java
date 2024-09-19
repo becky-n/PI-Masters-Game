@@ -42,22 +42,30 @@ public class ChatController {
   @FXML
   private String suspect;
 
-  private static boolean Andrea= false;
-  private static boolean Jesin=false;
-  private static boolean Gerald=false;
+  private static boolean Andrea = false;
+  private static boolean Jesin = false;
+  private static boolean Gerald = false;
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
   private String str = "";
 
+  /**
+   * Returns the suspects that have been talked to.
+   *
+   * @return an array of booleans indicating which suspects have been talked to
+   */
   public static boolean[] suspectsTalkedTo() {
     boolean[] suspects = new boolean[3];
-    suspects[0]=Andrea;
-    suspects[1]=Jesin;
-    suspects[2]=Gerald;
+    suspects[0] = Andrea;
+    suspects[1] = Jesin;
+    suspects[2] = Gerald;
     return suspects;
   }
 
+  /**
+   * Resets the suspects that have been talked to.
+   */
   public static void resetSuspects() {
     Andrea = false;
     Jesin = false;
@@ -75,17 +83,14 @@ public class ChatController {
     // Any required initialization code can be placed here
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
-
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
-        if(suspect.equals("Andrea")){
-          Andrea=true;
-        }
-        else if(suspect.equals("Jesin")){
-          Jesin=true;
-        }
-        else if(suspect.equals("Gerald")){
-          Gerald=true;
+        if (suspect.equals("Andrea")) {
+          Andrea = true;
+        } else if (suspect.equals("Jesin")) {
+          Jesin = true;
+        } else if (suspect.equals("Gerald")) {
+          Gerald = true;
         }
         try {
           onSendMessage(); // Call the method to send the message
@@ -234,17 +239,25 @@ public class ChatController {
     runGpt(msg);
   }
 
+  /**
+   * Handles the hover event for the send button.
+   */
   @FXML
   private void onHover() {
     btnSend.setOpacity(1);
   }
 
+  /**
+   * Handles the hover event for the send button.
+   */
   @FXML
   private void offHover() {
     btnSend.setOpacity(0.5);
   }
 
-  /** Animates the text in the motive label. */
+  /**
+   * Animates the text in the chat text area character by character.
+   */
   private void animateText() {
     final IntegerProperty i = new SimpleIntegerProperty(0);
     txtaChat.clear(); // Clear the TextArea before starting the animation

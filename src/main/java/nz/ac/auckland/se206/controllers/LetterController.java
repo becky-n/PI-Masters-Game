@@ -14,11 +14,8 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
-import nz.ac.auckland.ClueMenu;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.AudioClip;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.animation.KeyFrame;
@@ -46,6 +43,12 @@ public class LetterController {
   public static boolean burnt;
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Initializes the LetterController. Sets up the timer, menu navigation, chat,
+   * and loads the clue menu and hints box.
+   * 
+   * @throws IOException if there is an I/O error during initialization
+   */
   public void initialize() {
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -72,6 +75,12 @@ public class LetterController {
     animateText("Interesting, I wonder what this envelope contains...");
   }
 
+  /**
+   * Handles the envelope click event.
+   *
+   * @param event the mouse event triggered by clicking the envelope
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void handleEnvelopeClick(MouseEvent event) {
     buttonClickSound.play();
@@ -83,7 +92,7 @@ public class LetterController {
 
   }
 
- /**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -92,33 +101,51 @@ public class LetterController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    // If all suspects have been talked to and at least one clue has been guessed
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-      
+
     }
   }
 
+  /**
+   * Loads the clue menu into the specified pane.
+   * 
+   * @param pane the pane to which the clue menu should be added
+   * @throws IOException if there is an I/O error during loading the clue menu
+   */
   @FXML
   public void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
-
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
 
   }
 
+  /**
+   * Handles the back button click event.
+   * 
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void onBack() throws IOException {
+    // Play button click sound
     buttonClickSound.play();
     App.setRoot("crime");
   }
 
+  /**
+   * Animates the text in the info label.
+   * 
+   * @param str the text to animate
+   */
   private void animateText(String str) {
     final IntegerProperty i = new SimpleIntegerProperty(0);
     Timeline timeline = new Timeline();
@@ -136,5 +163,4 @@ public class LetterController {
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
   }
-
 }

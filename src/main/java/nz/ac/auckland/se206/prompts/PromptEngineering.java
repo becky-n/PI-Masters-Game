@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 
 /**
  * Utility class for prompt engineering. This class provides methods to load and
@@ -51,11 +50,12 @@ public class PromptEngineering {
   }
 
   /**
-   * Fills a template string with the provided data. Replaces placeholders in the template with
+   * Fills a template string with the provided data. Replaces placeholders in the
+   * template with
    * corresponding values from the data map.
    *
    * @param template the template string to fill
-   * @param data the data to fill into the template
+   * @param data     the data to fill into the template
    * @return the filled template string
    */
   private static String fillTemplate(String template, String suspect, String guess) {

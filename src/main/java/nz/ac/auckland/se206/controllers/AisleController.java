@@ -9,7 +9,6 @@ import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
@@ -17,8 +16,13 @@ import java.io.IOException;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
-import java.io.IOException;
 
+/**
+ * Controller class for the Aisle scene.
+ * Manages interactions and updates for the Aisle view, including handling the
+ * timer,
+ * navigating menus, and updating hints.
+ */
 public class AisleController {
   private AudioClip buttonClickSound;
 
@@ -37,6 +41,12 @@ public class AisleController {
 
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Initializes the AisleController. Sets up the timer, menu navigation, chat,
+   * and loads the clue menu and hints box.
+   * 
+   * @throws IOException if there is an I/O error during initialization
+   */
   @FXML
   private void initialize() throws IOException {
     try {
@@ -82,7 +92,6 @@ public class AisleController {
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
@@ -100,6 +109,12 @@ public class AisleController {
     }
   }
 
+  /**
+   * Loads the clue menu into the provided pane.
+   * 
+   * @param pane the pane where the clue menu will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -110,18 +125,27 @@ public class AisleController {
 
   }
 
+  /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
   private void loadHintsBox(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
-    // Assuming you want to add it to the root pane or a specific pane in the scene
     pane.getChildren().clear();
     pane.getChildren().add(hintsPane);
   }
 
+  /**
+   * Updates the hint text displayed in the hints box.
+   * 
+   * @param newHint the new hint text to be displayed
+   */
   public void updateHint(String newHint) {
     InstructionsManager.getInstance().updateInstructions(newHint);
 
-    // You can update the hint dynamically by accessing the controller
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hintsBox.fxml"));
     try {
       InstructionsManager hintsController = loader.getController();

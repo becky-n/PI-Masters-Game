@@ -15,8 +15,8 @@ public class FreeTextToSpeech {
     }
   }
 
+  /** The synthesizer used to generate speech. */
   private static final Synthesizer synthesizer;
-
   static {
     try {
       System.setProperty(
@@ -42,20 +42,21 @@ public class FreeTextToSpeech {
     }
 
     new Thread(
-            () -> {
-              try {
-                synthesizer.resume();
-                synthesizer.speakPlainText(text, null);
-                synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-              } catch (final AudioException | InterruptedException e) {
-                throw new TextToSpeechException(e.getMessage());
-              }
-            })
+        () -> {
+          try {
+            synthesizer.resume();
+            synthesizer.speakPlainText(text, null);
+            synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+          } catch (final AudioException | InterruptedException e) {
+            throw new TextToSpeechException(e.getMessage());
+          }
+        })
         .start();
   }
 
   /**
-   * It deallocates the speech synthesizer. If you are experiencing an IllegalThreadStateException,
+   * It deallocates the speech synthesizer. If you are experiencing an
+   * IllegalThreadStateException,
    * avoid using this method and run the speak method without terminating.
    */
   public static void deallocateSynthesizer() {

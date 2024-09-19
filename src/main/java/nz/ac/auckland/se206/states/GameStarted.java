@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.states;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * The GameStarted state of the game. Handles the initial interactions when the game starts,
@@ -33,9 +32,15 @@ public class GameStarted implements GameState {
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     
-    
   }
 
+  /**
+   * Handles the event when a clue is clicked. Does nothing in this state.
+   *
+   * @param event the mouse event triggered by clicking a clue
+   * @param rectangleId the ID of the clicked clue
+   * @throws IOException if there is an I/O error
+   */
   @Override
   public void handleClueClick(MouseEvent event, String rectangleId) throws IOException {
     

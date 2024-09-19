@@ -131,6 +131,14 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Opens the tablet view and sets the suspect in the tablet controller.
+   *
+   * @param name     the suspect to set in the tablet controller
+   * @param chatPane the pane to which the tablet view should be added
+   * @param guess    the guess controller
+   * @throws IOException if the FXML file is not found
+   */
   public static void openTablet(String name, Pane chatPane, GuessController guess)
       throws IOException {
 
@@ -152,6 +160,12 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Opens the times up view with the specified information text.
+   *
+   * @param infoLabelText the text to display in the info label
+   * @throws IOException if the FXML file is not found
+   */
   public static void openTimesUp(String infoLabelText) throws IOException {
     // Load the TimesUp view and get its controller
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/timesUp.fxml"));
@@ -160,10 +174,10 @@ public class App extends Application {
 
     // Set the text for the info label in the TimesUpController
     if (timesUpController != null) {
-        timesUpController.setInfoLabel(infoLabelText);
+      timesUpController.setInfoLabel(infoLabelText);
     } else {
-        System.err.println("TimesUpController is not properly loaded.");
-        return;
+      System.err.println("TimesUpController is not properly loaded.");
+      return;
     }
 
     // Create a fade-out transition for the current scene
@@ -173,27 +187,26 @@ public class App extends Application {
 
     // Set the action to perform after fade-out completes
     fadeOut.setOnFinished(e -> {
-        try {
-            // Set the new root (new scene)
-            getScene().setRoot(timesUpContent);
+      try {
+        // Set the new root (new scene)
+        getScene().setRoot(timesUpContent);
 
-            // Create a fade-in transition for the new scene
-            FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
-            fadeIn.setFromValue(0.0);
-            fadeIn.setToValue(1.0);
+        // Create a fade-in transition for the new scene
+        FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
 
-            // Start the fade-in transition
-            fadeIn.play();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            // Optionally display an error dialog here
-        }
+        // Start the fade-in transition
+        fadeIn.play();
+      } catch (Exception ex) {
+        ex.printStackTrace();
+        // Optionally display an error dialog here
+      }
     });
 
     // Start the fade-out transition
     fadeOut.play();
-}
-
+  }
 
   /**
    * This method is invoked when the application starts. It loads and shows the
