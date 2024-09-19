@@ -200,7 +200,9 @@ public class LetterCloseUpController {
     // Load custom cursor image
     Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
-    envelopeCloseUp.getScene().setCursor(customCursor);
+    if (envelopeCloseUp.getScene() != null) {
+      envelopeCloseUp.getScene().setCursor(customCursor);
+    }
   }
 
   /**
@@ -346,7 +348,9 @@ public class LetterCloseUpController {
     Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     // Set the cursor back to the default cursor
-    envelopeCloseUp.getScene().setCursor(customCursor);
+    if (envelopeCloseUp.getScene() != null) {
+      envelopeCloseUp.getScene().setCursor(customCursor);
+    }
     matchSound.stop();
   }
 
