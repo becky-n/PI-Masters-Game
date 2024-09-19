@@ -94,6 +94,11 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

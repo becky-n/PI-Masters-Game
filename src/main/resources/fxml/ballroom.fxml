@@ -36,16 +36,6 @@
             </Button>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="329.0" prefWidth="80.0" />
             <Pane fx:id="chatPane" layoutY="350.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="897.0" />
-            <ImageView fitHeight="73.0" fitWidth="66.0" layoutX="171.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/florals.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="73.0" fitWidth="34.0" layoutX="21.0" layoutY="15.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/florals.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/clockFrame.png" />

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -24,16 +23,6 @@
                   <Font name="Georgia" size="12.0" />
                </font>
             </Label>
-            <ImageView fitHeight="74.0" fitWidth="69.0" layoutX="39.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/florals.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="68.0" fitWidth="75.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/leaves.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
    </children>

@@ -65,6 +65,11 @@
                </image>
             </ImageView>
             <ImageView fx:id="closeUp" fitHeight="261.0" fitWidth="327.0" layoutX="454.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

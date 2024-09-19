@@ -55,5 +55,10 @@
          </image>
       </ImageView>
       <Rectangle fx:id="matchBox" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="182.0" layoutX="684.0" layoutY="297.0" onMouseClicked="#HandleMatchBoxClick" rotate="-10.0" stroke="TRANSPARENT" strokeType="INSIDE" width="81.0" />
+      <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clockFrame.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

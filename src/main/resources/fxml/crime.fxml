@@ -79,6 +79,11 @@
             </ImageView>
             <ImageView fx:id="closeUp" fitHeight="222.0" fitWidth="281.0" layoutX="522.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
             <Rectangle fx:id="buttons" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="426.0" layoutY="62.0" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="103.0" />
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

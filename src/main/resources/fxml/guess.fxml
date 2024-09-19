@@ -84,6 +84,11 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          
          </children>
       </Pane>

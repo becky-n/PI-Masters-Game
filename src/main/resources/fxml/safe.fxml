@@ -64,6 +64,11 @@
                   <Image url="@../images/key2.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="87.0" fitWidth="95.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          </children></Pane>
    </children>
 </StackPane>

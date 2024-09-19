@@ -74,6 +74,11 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
+            <ImageView fitHeight="126.0" fitWidth="86.0" layoutX="801.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
