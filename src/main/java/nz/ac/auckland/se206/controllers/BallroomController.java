@@ -37,6 +37,11 @@ public class BallroomController {
 
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Controller class for the Ballroom scene.
+   * Manages the initialization of the scene, handling button clicks, and updating
+   * UI elements.
+   */
   @FXML
   private void initialize() throws IOException {
     try {
@@ -69,7 +74,7 @@ public class BallroomController {
             timerManager.timeRemainingProperty()));
   }
 
- /**
+  /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -78,16 +83,22 @@ public class BallroomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if(suspects[0] && suspects[1] && suspects[2]){
-      if(clues[0] || clues[1] || clues[2]){
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
     }
   }
 
+  /**
+   * Loads the clue menu into the specified pane.
+   * 
+   * @param pane the pane to which the clue menu should be added
+   * @throws IOException if there is an I/O error during loading the clue menu
+   */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
@@ -97,6 +108,12 @@ public class BallroomController {
 
   }
 
+  /**
+   * Loads the hints box into the specified pane.
+   * 
+   * @param pane the pane to which the hints box should be added
+   * @throws IOException if there is an I/O error during loading the hints box
+   */
   private void loadHintsBox(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
@@ -105,6 +122,11 @@ public class BallroomController {
     pane.getChildren().add(hintsPane);
   }
 
+  /**
+   * Updates the instructions in the hints box.
+   * 
+   * @param newHint the new hint to display in the hints box
+   */
   public void updateHint(String newHint) {
     InstructionsManager.getInstance().updateInstructions(newHint);
 
