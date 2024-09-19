@@ -38,6 +38,9 @@ public class LockController {
   private List<String> userSequence = new ArrayList<>();
   public static boolean safeUnlocked = false;
   private AudioClip buttonClickSound;
+  private AudioClip unlockSound;
+  private AudioClip keySound;
+
   @FXML
   private ImageView key;
 
@@ -62,6 +65,8 @@ public class LockController {
   public void initialize() {
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    unlockSound = new AudioClip(getClass().getResource("/sounds/unlock.mp3").toString());
+    keySound = new AudioClip(getClass().getResource("/sounds/key.mp3").toString());
 
     animateText("Try rotating the key, is there a pattern needed to unlock the box?");
 
@@ -97,7 +102,7 @@ public class LockController {
    */
   @FXML
   private void handleLeftRotate() {
-    buttonClickSound.play();
+    keySound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
     trackAction("left");
@@ -111,7 +116,7 @@ public class LockController {
    */
   @FXML
   private void handleRightRotate() {
-    buttonClickSound.play();
+    keySound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
     trackAction("right");
@@ -141,6 +146,7 @@ public class LockController {
 
     // Check if the user sequence matches the expected sequence
     if (userSequence.equals(expectedSequence)) {
+      unlockSound.play();
       safeUnlocked = true;
       try {
         App.setRoot("unlockBox");
@@ -196,6 +202,7 @@ public class LockController {
   @FXML
   public void onBack() throws IOException {
     // set root to safe
+    buttonClickSound.play();
     App.setRoot("safe");
   }
 

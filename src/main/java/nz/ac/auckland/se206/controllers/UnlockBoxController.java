@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 
 public class UnlockBoxController {
   private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
   @FXML
   private MenuButton menuButton;
@@ -49,6 +50,7 @@ public class UnlockBoxController {
   @FXML
   private void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     animateText("A white hair on the empty ring box, who does it belong to?");
 
@@ -98,6 +100,7 @@ public class UnlockBoxController {
    */
   @FXML
   public void onBack() throws IOException {
+    buttonClickSound.play();
     App.setRoot("crime");
   }
 
@@ -130,6 +133,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void handleCloseUp() {
+    twinkleSound.play();
     closeUp.setImage(new Image("/images/HairClose.png"));
 
   }
@@ -141,6 +145,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void handleCloseOut() {
+  twinkleSound.stop();
     closeUp.setImage(null);
 
   }
