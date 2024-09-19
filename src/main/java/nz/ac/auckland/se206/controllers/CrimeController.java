@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
@@ -43,7 +44,8 @@ public class CrimeController {
   private ImageView glassPileGlow;
   @FXML
   private ImageView invitationGlow;
- 
+  @FXML
+  private Pane instructionsPane;
 
   @FXML
   private void initialize() throws IOException {
@@ -59,6 +61,12 @@ public class CrimeController {
 
     try {
       handleClueMenu(clueMenu);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    try {
+      loadHintsBox(instructionsPane);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -158,7 +166,6 @@ public class CrimeController {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-
     }
   }
 
@@ -187,4 +194,13 @@ public class CrimeController {
     clues[2] = letter; // represents clue3
     return clues;
   }
+
+  private void loadHintsBox(Pane pane) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
+    Pane hintsPane = loader.load();
+    // Assuming you want to add it to the root pane or a specific pane in the scene
+    pane.getChildren().clear();
+    pane.getChildren().add(hintsPane);
+  }
+
 }

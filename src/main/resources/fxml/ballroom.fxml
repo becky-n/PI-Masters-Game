@@ -20,6 +20,7 @@
                   <Image url="@../images/andrea.png" />
                </image>
             </ImageView>
+            <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
             <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="The Ballroom" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
