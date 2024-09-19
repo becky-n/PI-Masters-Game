@@ -5,16 +5,13 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -67,10 +64,20 @@ public class GuessController {
   private Boolean isTabletOpen;
   private String suspect = "";
 
+  /**
+   * Returns whether the game is in the guessing state.
+   *
+   * @return true if the game is in the guessing state, false otherwise
+   */
   public static boolean inGuessingState() {
     return guess;
   }
 
+  /**
+   * Sets the game to the guessing state.
+   *
+   * @param guess true if the game is in the guessing state, false otherwise
+   */
   @FXML
   public void initialize() {
     guess = true;
@@ -115,6 +122,12 @@ public class GuessController {
     }
   }
 
+  /**
+   * Handles the guess button click event.
+   *
+   * @param event the action event triggered by clicking the guess button
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void handleGuessClick(MouseEvent event) throws IOException {
     if (isTabletOpen) {
@@ -147,6 +160,11 @@ public class GuessController {
 
   }
 
+  /**
+   * Handles the key press event.
+   *
+   * @param event the key event triggered by pressing a key
+   */
   @FXML
   private void handleHover(MouseEvent event) {
     if (isTabletOpen) {
@@ -178,6 +196,11 @@ public class GuessController {
 
   }
 
+  /**
+   * Handles the key press event.
+   *
+   * @param event the key event triggered by pressing a key
+   */
   @FXML
   private void handlePlayAgain() throws IOException {
     System.out.println("play again");
@@ -192,6 +215,11 @@ public class GuessController {
 
   }
 
+  /**
+   * Handles the key press event.
+   *
+   * @param event the key event triggered by pressing a key
+   */
   @FXML
   private void handleExitHover(MouseEvent event) {
     markerSound.stop();
@@ -213,6 +241,11 @@ public class GuessController {
     }
   }
 
+  /**
+   * Handles the key press event.
+   *
+   * @param event the key event triggered by pressing a key
+   */
   @FXML
   private void handleIpadClick(MouseEvent event) throws IOException {
     if (isTabletOpen) {
@@ -248,6 +281,11 @@ public class GuessController {
     timeline.play();
   }
 
+  /**
+   * Toggles the visibility of the play again button.
+   *
+   * @param toggle true if the button should be visible, false otherwise
+   */
   public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
   }

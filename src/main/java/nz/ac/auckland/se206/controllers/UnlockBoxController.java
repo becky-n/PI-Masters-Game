@@ -25,7 +25,6 @@ import javafx.scene.image.ImageView;
 
 public class UnlockBoxController {
   private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
 
   @FXML
   private MenuButton menuButton;
@@ -40,10 +39,16 @@ public class UnlockBoxController {
 
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Initializes the UnlockBoxController. Sets up the timer, menu navigation,
+   * chat,
+   * and loads the clue menu and hints box.
+   *
+   * @throws IOException if there is an I/O error during initialization
+   */
   @FXML
   private void initialize() {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     animateText("A white hair on the empty ring box, who does it belong to?");
 
@@ -71,15 +76,26 @@ public class UnlockBoxController {
 
   }
 
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
-
+    // Set the menu pane to the specified pane
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
   }
 
+  /**
+   * Handles the back button click event.
+   *
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   public void onBack() throws IOException {
     App.setRoot("crime");
@@ -94,6 +110,7 @@ public class UnlockBoxController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    // Check if the player has talked to all suspects and guessed all clues
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     if (suspects[0] && suspects[1] && suspects[2]) {
@@ -105,12 +122,23 @@ public class UnlockBoxController {
     }
   }
 
+  /**
+   * Loads the hints box into the specified pane.
+   * 
+   * @param pane the pane to which the hints box should be added
+   * @throws IOException if there is an I/O error during loading the hints box
+   */
   @FXML
   private void handleCloseUp() {
     closeUp.setImage(new Image("/images/HairClose.png"));
 
   }
 
+  /**
+   * Handles the close button click event.
+   * 
+   * @throws IOException if there is an I/O error
+   */
   @FXML
   private void handleCloseOut() {
     closeUp.setImage(null);
