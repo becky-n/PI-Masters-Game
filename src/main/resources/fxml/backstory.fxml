@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -53,14 +54,17 @@
          </children>
       </Pane>
       <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
-      <ImageView fitHeight="87.0" fitWidth="95.0" layoutX="800.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/clockFrame.png" />
          </image>
+         <effect>
+            <ColorAdjust brightness="1.0" />
+         </effect>
       </ImageView>
       <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="19.0" prefHeight="69.0" prefWidth="75.0" textFill="WHITE">
          <font>
-            <Font name="Century Gothic Bold" size="18.0" />
+            <Font name="Georgia Bold" size="18.0" />
          </font>
       </Label>
    </children>
