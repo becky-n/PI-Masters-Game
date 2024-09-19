@@ -101,16 +101,17 @@ public class GuessController {
             timerManager.timeRemainingProperty()));
 
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean isBurnt = LetterCloseUpController.burnt;
 
     // Show the clues if the clues have been guessed
     if (clues[0] && LockController.isBoxUnlocked()) {
-      clue1.setImage(new Image("/images/hairCloseUp.png"));
+      clue1.setImage(new Image("/images/taped_ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
-      clue2.setImage(new Image("/images/fabric-outline.png"));
+      clue2.setImage(new Image("/images/taped_fabric_clue.png"));
     }
-    if (clues[2]) {
-      clue3.setImage(new Image("/images/circle.png"));
+    if (clues[2] && isBurnt) {
+      clue3.setImage(new Image("/images/taped_letter_clue.png"));
     }
   }
 
@@ -122,22 +123,28 @@ public class GuessController {
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
-    // Determine which rectangle was clicked
+    if (clickedRectangle.getId().equals("guessRect3")) {
+      this.suspect = "Gerald";
+      circleGerald.setVisible(true);
+
+      screenOnSound.play();
+
+      App.openTablet(suspect, tabletPane, this);
+      isTabletOpen = true;
+
+      return;
+    }
+
     if (clickedRectangle.getId().equals("guessRect1")) {
       this.suspect = "Andrea";
       circleAndrea.setVisible(true);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
       this.suspect = "Jesin";
       circleJesin.setVisible(true);
-    } else if (clickedRectangle.getId().equals("guessRect3")) {
-      this.suspect = "Gerald";
-      circleGerald.setVisible(true);
     }
 
-    screenOnSound.play();
+    App.openTimesUp(suspect + " was not the thief!");
 
-    App.openTablet(suspect, tabletPane, this);
-    isTabletOpen = true;
   }
 
   @FXML
@@ -178,6 +185,7 @@ public class GuessController {
     ChatController.resetSuspects(); // Reset suspects
     LockController.resetLock();
     WindowController.resetFabric();
+    LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
     guess = false;
     App.setRoot("menu");
@@ -240,7 +248,7 @@ public class GuessController {
     timeline.play();
   }
 
-  public void togglePlayAgainButton(boolean toggle){
+  public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
   }
 

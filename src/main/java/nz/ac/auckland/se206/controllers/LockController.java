@@ -28,7 +28,7 @@ import java.io.IOException;
 
 public class LockController {
   private double angle = 0; 
-  private List<String> expectedSequence = List.of("right", "left", "right", "right"); 
+  private List<String> expectedSequence = List.of("left", "left", "right", "left"); 
   private List<String> userSequence = new ArrayList<>();
   public static boolean safeUnlocked = false;
   private AudioClip buttonClickSound;
@@ -146,10 +146,10 @@ public static void resetLock(){
 
   @FXML
   public void onBack() throws IOException {
-    App.setRoot("crime");
+    App.setRoot("safe");
   }
 
-  /**
+ /**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -159,9 +159,12 @@ public static void resetLock(){
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
     if(suspects[0] && suspects[1] && suspects[2]){
-      context.handleGuessClick();
-      App.setRoot("guess");
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
       
     }
   }

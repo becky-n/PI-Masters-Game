@@ -17,6 +17,7 @@ public class ClueMenuController {
 
   public void initialize() {
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean isBurnt = LetterCloseUpController.burnt;
 
     if (!clues[0]) {
       clue1.setImage(null); // Or a default image if you prefer
@@ -29,13 +30,12 @@ public class ClueMenuController {
     }
 
     if (clues[0] && LockController.isBoxUnlocked()) {
-
       clue1.setImage(new Image("/images/ring_clue.png"));
     }
     if (clues[1] && WindowController.fabricFound()) {
       clue2.setImage(new Image("/images/cloth_clue.png"));
     }
-    if (clues[2]) {
+    if (clues[2] && isBurnt) {
       clue3.setImage(new Image("/images/letter_clue.png"));
     }
   }

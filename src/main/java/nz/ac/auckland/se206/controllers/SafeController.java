@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
@@ -44,6 +46,8 @@ public class SafeController {
   private Pane clueMenu;
   @FXML
   private Label infoLabel;
+
+  
 
   private static GameStateContext context = new GameStateContext();
   
@@ -115,7 +119,7 @@ public class SafeController {
     App.setRoot("crime");
   }
 
-  /**
+/**
    * Handles the guess button click event.
    *
    * @param event the action event triggered by clicking the guess button
@@ -125,9 +129,12 @@ public class SafeController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     boolean[] suspects= ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
     if(suspects[0] && suspects[1] && suspects[2]){
-      context.handleGuessClick();
-      App.setRoot("guess");
+      if(clues[0] || clues[1] || clues[2]){
+        context.handleGuessClick();
+        App.setRoot("guess");
+      }
       
     }
   }
@@ -150,5 +157,18 @@ public class SafeController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  @FXML
+  private void onHover(MouseEvent event) throws IOException {
+
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+  }
+
+  @FXML
+  private void offHover(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
   }
 }

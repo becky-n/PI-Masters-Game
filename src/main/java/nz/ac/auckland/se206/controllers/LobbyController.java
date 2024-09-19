@@ -78,13 +78,15 @@ public class LobbyController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects = ChatController.suspectsTalkedTo();
+
+    boolean[] suspects= ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
+    if(suspects[0] && suspects[1] && suspects[2]){
+      if(clues[0] || clues[1] || clues[2]){
         context.handleGuessClick();
         App.setRoot("guess");
       }
+      
     }
   }
 

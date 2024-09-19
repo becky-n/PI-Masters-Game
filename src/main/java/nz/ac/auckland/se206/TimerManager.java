@@ -4,7 +4,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.ImageCursor;
+import javafx.scene.image.Image;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
 import java.io.IOException;
 
@@ -20,16 +24,33 @@ public class TimerManager {
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       timeRemaining.set(timeRemaining.get() - 1);
 
-      if(GuessController.inGuessingState()){
+      if (GuessController.inGuessingState()) {
         if (timeRemaining.get() <= 0) {
           timer.stop();
-          handleTimeOut();
+          try {
+            handleTimeOut();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
 
       if (timeRemaining.get() <= 0 && !GuessController.inGuessingState()) {
         timer.stop();
+        boolean[] suspects = ChatController.suspectsTalkedTo();
+        boolean[] clues = CrimeController.cluesGuessed();
+        boolean allCluesNotFound = true;
+
+        for (boolean clue : clues) {
+          if (clue) {
+            allCluesNotFound = false;
+            break;
+          }
+        }
         try {
+          if (!suspects[0] || !suspects[1] || !suspects[2] || allCluesNotFound) {
+            handleTimeOut();
+          }
           App.setRoot("guess");
           TimerManager.getInstance().reset(60);
           context.setState(context.getGuessingState());
@@ -72,8 +93,8 @@ public class TimerManager {
     return timeRemaining;
   }
 
-  private void handleTimeOut() {
-    
+  private void handleTimeOut() throws IOException {
+    App.fadeScenes("timesUp");
   }
 
   public boolean isRunning() {
@@ -86,5 +107,4 @@ public class TimerManager {
     start(durationInSeconds);
   }
 
-  
 }

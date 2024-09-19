@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -55,17 +56,24 @@
             </Label>
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="809.0" layoutY="22.0" prefHeight="65.0" prefWidth="68.0" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fx:id="ringBox" fitHeight="112.0" fitWidth="95.0" layoutX="312.0" layoutY="237.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ringBox" fitHeight="88.0" fitWidth="80.0" layoutX="329.0" layoutY="264.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true" rotate="6.3">
                <image>
-                  <Image url="@../images/ringBox2.png" />
+                  <Image url="@../images/ringBox8.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeUp" fitHeight="166.0" fitWidth="168.0" layoutX="482.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="280.0" fitWidth="415.0" layoutX="472.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="closeUp" fitHeight="261.0" fitWidth="327.0" layoutX="454.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </ImageView>
          </children>
       </Pane>
    </children>

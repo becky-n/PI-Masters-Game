@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -50,7 +51,7 @@
             <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="809.0" layoutY="22.0" prefHeight="65.0" prefWidth="68.0" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="18.0" />
+                  <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
             <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
@@ -63,6 +64,19 @@
                <image>
                   <Image url="@../images/key2.png" />
                </image>
+            </ImageView>
+            <ImageView fitHeight="112.0" fitWidth="104.0" layoutX="105.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" rotate="-4.4">
+               <image>
+                  <Image url="@../images/password.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clockFrame.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
             </ImageView>
          </children></Pane>
    </children>
