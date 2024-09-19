@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
@@ -199,12 +200,24 @@ public class CrimeController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    // if (suspects[0] && suspects[1] && suspects[2]) {
-    //   if (clues[0] || clues[1] || clues[2]) {
+    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
+    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
-    //   }
-    // }
+      }
+    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else{
+      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    }
   }
 
   /**
