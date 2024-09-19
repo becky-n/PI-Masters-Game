@@ -25,12 +25,16 @@ public class InstructionsController {
     textArea.setVisible(false);
     instructionsLabel.setVisible(false);
     // Bind the hintsTextArea text property to the hints managed in HintsManager
-    instructionsLabel.setText(InstructionsManager.getInstance().getHintText());
+    InstructionsManager.getInstance().setInstructionsController(this);
+    instructionsLabel.setText(InstructionsManager.getInstance().getCurrentInstructions());
+
   }
 
-  public void updateInstructions() {
+  public void updateInstructions(String instructions) {
     // Update the text whenever it changes in the HintsManager
-    instructionsLabel.setText(InstructionsManager.getInstance().getHintText());
+    instructionsLabel.setText(instructions);
+    System.out.println("text setted");
+
   }
 
   @FXML

@@ -1,11 +1,14 @@
 package nz.ac.auckland.se206;
 
+import nz.ac.auckland.se206.controllers.InstructionsController;
+
 public class InstructionsManager {
   private static InstructionsManager instance;
-  private String hintText;
+  private String currentInstructions = "Chat to guests and find clues!";
+  private InstructionsController instructionsController;
 
+  // Singleton pattern to ensure only one instance
   private InstructionsManager() {
-    hintText = "find clues and chat to guests!"; // Default hint
   }
 
   public static InstructionsManager getInstance() {
@@ -15,11 +18,28 @@ public class InstructionsManager {
     return instance;
   }
 
-  public String getHintText() {
-    return hintText;
+  // Sets the InstructionsController instance
+  public void setInstructionsController(InstructionsController controller) {
+    this.instructionsController = controller;
+    // Whenever the controller is set, update it with the current instructions
+    updateControllerInstructions();
   }
 
-  public void updateInstructions(String hintText) {
-    this.hintText = hintText;
+  // Updates the instructions text and notifies the controller
+  public void updateInstructions(String newInstructions) {
+    currentInstructions = newInstructions;
+    updateControllerInstructions();
+  }
+
+  // Sets the instructions text in the controller
+  private void updateControllerInstructions() {
+    if (instructionsController != null) {
+      instructionsController.updateInstructions(currentInstructions);
+    }
+  }
+
+  // Gets the current instructions text
+  public String getCurrentInstructions() {
+    return currentInstructions;
   }
 }

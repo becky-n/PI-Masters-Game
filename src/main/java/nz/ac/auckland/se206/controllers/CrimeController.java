@@ -157,11 +157,16 @@ public class CrimeController {
   private void handleGuessClick(ActionEvent event) throws IOException {
 
     buttonClickSound.play();
-    boolean[] suspects= ChatController.suspectsTalkedTo();
-    if(suspects[0] && suspects[1] && suspects[2]){
+    boolean[] suspects = ChatController.suspectsTalkedTo();
+    if (suspects[0] && suspects[1] && suspects[2]) {
       context.handleGuessClick();
       App.setRoot("guess");
-      
+
+    } else {
+      // update instructions in hint box
+      InstructionsManager.getInstance().updateInstructions("You need to talk to 3 suspects first!");
+      System.out.println("huhhhh");
+
     }
   }
 
