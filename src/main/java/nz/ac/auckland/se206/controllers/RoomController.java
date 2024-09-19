@@ -18,6 +18,9 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  */
 public class RoomController {
 
+  private static boolean isFirstTimeInit = true;
+  private static GameStateContext context = new GameStateContext();
+
   @FXML
   private Rectangle rectCashier;
   @FXML
@@ -32,9 +35,6 @@ public class RoomController {
   private Label lblProfession;
   @FXML
   private Button btnGuess;
-
-  private static boolean isFirstTimeInit = true;
-  private static GameStateContext context = new GameStateContext();
 
   /**
    * Initializes the room view. If it's the first time initialization, it will
