@@ -292,7 +292,7 @@ public class LetterCloseUpController {
 
   private void setBackCursor() {
 
-    Image cursorImage = new Image(getClass().getResource("/images/magnifying_glass.png").toString());
+    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
     ImageCursor customCursor = new ImageCursor(cursorImage);
     envelopeCloseUp.getScene().setCursor(customCursor);
 
