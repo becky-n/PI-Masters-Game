@@ -105,7 +105,6 @@ public class ChatCompletionRequest {
       }
 
       Model model = Model.GPT_4o; 
-      System.out.println("Model: " + model.getModelName());
       JsonObjectBuilder jsonOverallBuilder = Json.createObjectBuilder()
           .add("model", model.getModelName()) // Add the selected model here
           .add("messages", jsonMessages);

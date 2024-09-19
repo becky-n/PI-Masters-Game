@@ -10,23 +10,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TabletController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0b1722" height="386.0" layoutX="16.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d3c4700" height="77.0" layoutX="8.0" layoutY="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="286.0" />
+            <ImageView fx:id="background" fitHeight="392.0" fitWidth="284.0" layoutX="12.0" layoutY="26.0" preserveRatio="true">
+               <image>
+                  <Image url="@../images/blue.png" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="445.0" fitWidth="445.0" layoutX="-72.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/tablet.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="pi" fitHeight="240.0" fitWidth="253.0" layoutX="32.0" layoutY="101.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/pi-masters.png" />
                </image>
             </ImageView>
             <TextField fx:id="txtInput" layoutX="34.0" layoutY="352.0" prefHeight="37.0" prefWidth="238.0" promptText="Enter your response" stylesheets="@../css/style.css">

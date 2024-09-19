@@ -10,9 +10,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
@@ -23,6 +26,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
@@ -46,6 +50,8 @@ public class TabletController {
   private String suspect;
   @FXML
   private ImageView loading;
+  @FXML
+  private ImageView background;
 
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
@@ -60,6 +66,8 @@ public class TabletController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
+    background.setImage(new Image("/images/blue.png"));
+
     loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
@@ -94,9 +102,10 @@ public class TabletController {
    * ChatCompletionRequest.
    *
    * @param suspect the suspect to set
+   * @throws IOException
    */
 
-  public void setSuspect(String suspect, GuessController guess) {
+  public void setSuspect(String suspect, GuessController guess) throws IOException {
     this.suspect = suspect;
     this.guess = guess;
 
@@ -126,6 +135,11 @@ public class TabletController {
    */
   private void appendChatMessage(ChatMessage msg) {
     this.str = msg.getContent();
+    if (str.contains("Well Done!")) {
+      background.setImage(new Image("/images/green.png"));
+    } else {
+      background.setImage(new Image("/images/red.png"));
+    }
     animateText();
   }
 
@@ -235,16 +249,16 @@ public class TabletController {
           } else {
             guess.togglePlayAgainButton(true);
             timeline.stop(); // Stop the timeline when all characters are appended
-            
+
           }
         });
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE); // Keep the timeline running
     timeline.play();
-    
+
   }
 
-  public static boolean isFinished(){
+  public static boolean isFinished() {
     return finished;
   }
 }
