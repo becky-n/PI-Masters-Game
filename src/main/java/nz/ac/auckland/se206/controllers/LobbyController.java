@@ -86,7 +86,7 @@ public class LobbyController {
     } else {
       // update instructions in hint box
       InstructionsManager.getInstance().updateInstructions("You need to talk to 3 suspects first!");
-
+      InstructionsManager.getInstance().showInstructions();
     }
   }
 

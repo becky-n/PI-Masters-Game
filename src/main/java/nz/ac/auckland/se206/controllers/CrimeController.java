@@ -165,7 +165,7 @@ public class CrimeController {
     } else {
       // update instructions in hint box
       InstructionsManager.getInstance().updateInstructions("You need to talk to 3 suspects first!");
-      System.out.println("huhhhh");
+      InstructionsManager.getInstance().showInstructions();
 
     }
   }
@@ -203,16 +203,4 @@ public class CrimeController {
     pane.getChildren().add(hintsPane);
   }
 
-  public void updateHint(String newHint) {
-    InstructionsManager.getInstance().updateInstructions(newHint);
-
-    // You can update the hint dynamically by accessing the controller
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hintsBox.fxml"));
-    try {
-      InstructionsManager hintsController = loader.getController();
-      hintsController.updateInstructions("hello");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 }

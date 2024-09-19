@@ -42,4 +42,16 @@ public class InstructionsManager {
   public String getCurrentInstructions() {
     return currentInstructions;
   }
+
+  public void showInstructions() {
+    if (instructionsController != null) {
+      instructionsController.showHintBox();
+    }
+  }
+
+  public void hideInstructions() {
+    if (instructionsController != null) {
+      instructionsController.hintClicked();
+    }
+  }
 }

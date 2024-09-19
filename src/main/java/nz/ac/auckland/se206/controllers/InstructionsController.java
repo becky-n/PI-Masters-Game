@@ -41,7 +41,7 @@ public class InstructionsController {
   public void hintClicked() {
     buttonClickSound.play();
     // Show the hints text area when the hints button is clicked
-    if (buttonClicked) {
+    if (textArea.isVisible()) {
       textArea.setVisible(false);
       instructionsLabel.setVisible(false);
       buttonClicked = false;
@@ -50,6 +50,18 @@ public class InstructionsController {
       instructionsLabel.setVisible(true);
       buttonClicked = true;
     }
+  }
+
+  public void showHintBox(){
+    textArea.setVisible(true);
+    instructionsLabel.setVisible(true);
+    buttonClicked = true;
+  }
+
+  public void hideHintBox(){
+    textArea.setVisible(false);
+    instructionsLabel.setVisible(false);
+    buttonClicked = false;
   }
 
 }
