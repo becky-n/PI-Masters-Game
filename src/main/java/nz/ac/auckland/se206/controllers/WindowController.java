@@ -73,7 +73,8 @@ public class WindowController {
       glass5.setVisible(false);
     } else {
       animateText(
-          "It seems there's something hidden beneath the broken glass… try moving the shards aside to"
+          "It seems there's something hidden beneath the broken glass… "
+              + "try moving the shards aside to"
               + " uncover it.");
 
       // show the glass images (in the case of they are replaying the game)
@@ -168,7 +169,8 @@ public class WindowController {
       fabric.setImage(new Image("/images/fabric4.png"));
       twinkleSound.play();
       fabricFound = true;
-      animateText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
+      animateText("A torn piece of black fabric… " +
+          "it seems familiar, but where have I seen it before?");
     }
 
     onHoverFabric();

@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,7 +22,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-
 import java.io.IOException;
 
 /**

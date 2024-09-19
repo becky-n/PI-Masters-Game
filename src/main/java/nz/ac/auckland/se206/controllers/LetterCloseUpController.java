@@ -116,7 +116,8 @@ public class LetterCloseUpController {
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
     if (burnt == true) {
-      Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
+      Image imageHidden = new Image(getClass().getResource(
+        "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
       animateText("interesting, I wonder who wrote this...");
       matchBox.setDisable(true);
@@ -156,12 +157,14 @@ public class LetterCloseUpController {
     if (envelopeClicked == 0) {
       envelopeClicked++;
       letterOpened.setImage(null);
-      Image image = new Image(getClass().getResource("/images/open-envelope.png").toString());
+      Image image = new Image(getClass().getResource(
+          "/images/open-envelope.png").toString());
       envelopeCloseUp.setImage(image);
       return;
     } else {
       envelopeClicked++;
-      Image imageHidden = new Image(getClass().getResource("/images/invitationHidden.png").toString());
+      Image imageHidden = new Image(getClass().getResource(
+          "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
       animateText("I wonder what will happen if you burn the paper...");
       if (burnt == true) {

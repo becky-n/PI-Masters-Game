@@ -22,7 +22,6 @@ import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-
 import java.io.IOException;
 
 public class SafeController {

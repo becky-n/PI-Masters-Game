@@ -69,7 +69,8 @@ public class GameStateContext {
     rectanglesToProfession.put("rectPerson3", randomProfessionsArray[2]);
 
     int randomNumber = random.nextInt(3);
-    rectIdToGuess = randomNumber == 0 ? "rectPerson1" : ((randomNumber == 1) ? "rectPerson2" : "rectPerson3");
+    rectIdToGuess = randomNumber == 0 ? "rectPerson1" : (
+      (randomNumber == 1) ? "rectPerson2" : "rectPerson3");
     professionToGuess = rectanglesToProfession.get(rectIdToGuess);
   }
 
