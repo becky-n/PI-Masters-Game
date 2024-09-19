@@ -21,8 +21,10 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
@@ -49,6 +51,10 @@ public class LockController {
   private Pane clueMenu;
   @FXML
   private Label infoLabel;
+  @FXML
+  private ImageView leftGlow;
+  @FXML
+  private ImageView rightGlow;
 
   private static GameStateContext context = new GameStateContext();
 
@@ -62,6 +68,9 @@ public class LockController {
   public void initialize() {
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+
+    leftGlow.setVisible(false);
+    rightGlow.setVisible(false);
 
     animateText("Try rotating the key, is there a pattern needed to unlock the box?");
 
@@ -115,6 +124,41 @@ public class LockController {
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
     trackAction("right");
+  }
+
+  /**
+   * Handles the hover event for the clues.
+   *
+   * @param event the mouse event triggered by hovering over a clue
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void onHover(MouseEvent event) throws IOException {
+
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("leftButton")) {
+      leftGlow.setVisible(true);
+    } else if (clickedRectangle.getId().equals("rightButton")) {
+      rightGlow.setVisible(true);
+    }
+  }
+
+  /**
+   * Handles the off hover event for the clues.
+   *
+   * @param event the mouse event triggered by moving the mouse off a clue
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void offHover(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("leftButton")) {
+      leftGlow.setVisible(false);
+    } else if (clickedRectangle.getId().equals("rightButton")) {
+      rightGlow.setVisible(false);
+    }
   }
 
   /**
