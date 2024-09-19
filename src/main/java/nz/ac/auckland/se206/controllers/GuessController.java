@@ -64,6 +64,9 @@ public class GuessController {
   private AudioClip markerSound;
   private AudioClip typingSound;
   private AudioClip screenOnSound;
+  private AudioClip sadMusic;
+  private AudioClip happyMusic;
+
   private Boolean isTabletOpen;
   private String suspect = "";
 
@@ -83,6 +86,9 @@ public class GuessController {
    */
   @FXML
   public void initialize() {
+    sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
+    happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
+
     guess = true;
 
     playAgainButton.setVisible(false);
@@ -208,6 +214,9 @@ public class GuessController {
    */
   @FXML
   private void handlePlayAgain() throws IOException {
+    happyMusic.stop();
+    sadMusic.stop();
+    play = true;
     System.out.println("play again");
     CrimeController.resetClues(); // Reset clues
     ChatController.resetSuspects(); // Reset suspects
@@ -299,6 +308,9 @@ public class GuessController {
   public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
     close.setVisible(toggle);
+
+ 
   }
+
 
 }

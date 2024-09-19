@@ -32,6 +32,10 @@ public class CrimeController {
 
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+  private AudioClip paperSound;
+  private AudioClip glassSound;
+  private AudioClip boxSound;
+  
 
   @FXML
   private MenuButton menuButton;
@@ -59,6 +63,10 @@ public class CrimeController {
     handleClueMenu(clueMenu);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+    paperSound = new AudioClip(getClass().getResource("/sounds/paper.mp3").toString());
+    glassSound = new AudioClip(getClass().getResource("/sounds/glass.mp3").toString());
+    boxSound = new AudioClip(getClass().getResource("/sounds/box.mp3").toString());
+    
 
     // set hover effects invisible
     safeGlow.setVisible(false);
@@ -103,10 +111,13 @@ public class CrimeController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
+      boxSound.play();
       safeGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("glass")) {
+      glassSound.play();
       glassPileGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
+      paperSound.play();
       invitationGlow.setVisible(true);
     }
   }
@@ -122,10 +133,13 @@ public class CrimeController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
+      boxSound.stop();
       safeGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("glass")) {
+      glassSound.stop();
       glassPileGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
+      paperSound.stop();
       invitationGlow.setVisible(false);
     }
   }
@@ -185,12 +199,12 @@ public class CrimeController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
+    // if (suspects[0] && suspects[1] && suspects[2]) {
+    //   if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
-      }
-    }
+    //   }
+    // }
   }
 
   /**
