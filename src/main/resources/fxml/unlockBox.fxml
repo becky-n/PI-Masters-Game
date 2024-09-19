@@ -59,9 +59,9 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fx:id="ringBox" fitHeight="112.0" fitWidth="95.0" layoutX="312.0" layoutY="237.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ringBox" fitHeight="88.0" fitWidth="80.0" layoutX="329.0" layoutY="264.0" onMouseEntered="#handleCloseUp" onMouseExited="#handleCloseOut" pickOnBounds="true" preserveRatio="true" rotate="6.3">
                <image>
-                  <Image url="@../images/ringBox2.png" />
+                  <Image url="@../images/ringBox8.png" />
                </image>
             </ImageView>
             <ImageView fx:id="closeUp" fitHeight="261.0" fitWidth="327.0" layoutX="454.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
