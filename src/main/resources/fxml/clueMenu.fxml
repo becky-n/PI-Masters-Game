@@ -15,9 +15,9 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="42.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="122.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="60.0" layoutX="12.0" layoutY="200.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
-            <ImageView fx:id="clue1" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue2" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="clue3" fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue1" fitHeight="75.0" fitWidth="75.0" layoutX="4.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue2" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="clue3" fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" />
             <Label id="cluesFound" layoutX="7.0" layoutY="6.0" stylesheets="@../css/style.css" text="Clues Found " textFill="WHITE">
                <font>
                   <Font name="Georgia" size="12.0" />
