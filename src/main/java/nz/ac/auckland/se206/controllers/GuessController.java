@@ -43,11 +43,11 @@ public class GuessController {
   @FXML
   private ImageView circleGerald;
   @FXML
-  private ImageView AndreaMad;
+  private ImageView andreaMad;
   @FXML
-  private ImageView JesinMad;
+  private ImageView jesinMad;
   @FXML
-  private ImageView GeraldMad;
+  private ImageView geraldMad;
   @FXML
   private Label timerLabel;
   @FXML
@@ -180,17 +180,17 @@ public class GuessController {
       // Set the image to the ImageView
       Image madAndrea = new Image(App.class.getResource("/images/madAndrea.png").toExternalForm());
       imageView.setImage(image);
-      AndreaMad.setImage(madAndrea);
+      andreaMad.setImage(madAndrea);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
       // Set the image to the ImageView
       Image madJesin = new Image(App.class.getResource("/images/madJesin.png").toExternalForm());
       imageView1.setImage(image);
-      JesinMad.setImage(madJesin);
+      jesinMad.setImage(madJesin);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
       // Set the image to the ImageView
       Image madGerald = new Image(App.class.getResource("/images/madGerald.png").toExternalForm());
       imageView2.setImage(image);
-      GeraldMad.setImage(madGerald);
+      geraldMad.setImage(madGerald);
     }
 
   }
@@ -228,15 +228,15 @@ public class GuessController {
     if (clickedRectangle.getId().equals("guessRect1")) {
 
       imageView.setImage(null);
-      AndreaMad.setImage(null);
+      andreaMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
 
       imageView1.setImage(null);
-      JesinMad.setImage(null);
+      jesinMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
 
       imageView2.setImage(null);
-      GeraldMad.setImage(null);
+      geraldMad.setImage(null);
     }
   }
 

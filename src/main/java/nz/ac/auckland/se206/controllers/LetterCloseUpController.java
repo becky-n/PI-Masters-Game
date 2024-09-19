@@ -42,7 +42,7 @@ public class LetterCloseUpController {
   private ImageView letterOpenedReveal;
 
   @FXML
-  Canvas eraseCanvas;
+  private Canvas eraseCanvas;
 
   @FXML
   private MenuButton menuButton;
@@ -70,7 +70,7 @@ public class LetterCloseUpController {
   private boolean displayed = false;
   private boolean isErasing = false;
   public static boolean burnt = false;
-  public boolean matchBoxClicked = false;
+  private boolean matchBoxClicked = false;
   private static GameStateContext context = new GameStateContext();
 
   /**
@@ -183,7 +183,7 @@ public class LetterCloseUpController {
    * @param event the mouse event triggered by clicking the matchbox
    */
   @FXML
-  public void HandleMatchBoxClick(MouseEvent event) {
+  public void handleMatchBoxClick(MouseEvent event) {
 
     if (envelopeClicked < 2) {
       return;

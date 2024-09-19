@@ -26,9 +26,9 @@
                   <Image url="@../images/files.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="JesinMad" fitHeight="109.0" fitWidth="94.0" layoutX="272.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
-            <ImageView fx:id="AndreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="132.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
-            <ImageView fx:id="GeraldMad" fitHeight="97.0" fitWidth="114.0" layoutX="369.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" rotate="1.0" />
+            <ImageView fx:id="jesinMad" fitHeight="109.0" fitWidth="94.0" layoutX="272.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" rotate="12.0" />
+            <ImageView fx:id="andreaMad" fitHeight="114.0" fitWidth="115.0" layoutX="132.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" rotate="20.0" />
+            <ImageView fx:id="geraldMad" fitHeight="97.0" fitWidth="114.0" layoutX="369.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" rotate="1.0" />
             <ImageView fx:id="imageView" fitHeight="118.0" fitWidth="102.0" layoutX="122.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView1" fitHeight="128.0" fitWidth="102.0" layoutX="262.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imageView2" fitHeight="122.0" fitWidth="102.0" layoutX="382.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
