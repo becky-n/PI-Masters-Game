@@ -46,7 +46,7 @@
             <Font name="Georgia Bold" size="14.0" />
          </font>
       </Button>
-      <Pane fx:id="clueMenu" layoutX="803.0" layoutY="112.0" prefHeight="341.0" prefWidth="80.0" />
+      <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
       <Rectangle fx:id="instructionsBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="52.0" layoutY="454.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
          <effect>
             <BoxBlur height="0.0" width="78.73" />
@@ -57,5 +57,13 @@
             <Font name="Georgia" size="18.0" />
          </font>
       </Label>
+      <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clockFrame.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" />
+         </effect>
+      </ImageView>
    </children>
 </Pane>

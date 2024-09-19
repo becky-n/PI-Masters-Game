@@ -40,5 +40,10 @@
             <Font name="Georgia" size="16.0" />
          </font>
       </Label>
+      <Button id="play" fx:id="close" layoutX="19.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#handleClose" prefHeight="23.0" prefWidth="68.0" style="-fx-border-color: red;" stylesheets="@../css/style.css" text="Close" textFill="WHITE">
+         <font>
+            <Font name="Georgia" size="14.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
@@ -35,6 +37,11 @@ public class TimesUpController {
     twinkleSound.play();
   }
 
+   @FXML
+  private void handleClose(){
+    Platform.exit();
+  }
+
   /** Handles the start button pressed event and switches to the next scene. */
   @FXML
   private void handlePlayAgain() throws IOException {
@@ -46,6 +53,7 @@ public class TimesUpController {
     ChatController.resetSuspects(); // Reset suspects
     LockController.resetLock();
     WindowController.resetFabric();
+    LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
     GuessController.guess = false;
     App.setRoot("menu");

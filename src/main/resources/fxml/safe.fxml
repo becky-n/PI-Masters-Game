@@ -60,11 +60,6 @@
                </font>
             </MenuButton>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fx:id="key" fitHeight="58.0" fitWidth="135.0" layoutX="648.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/key2.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="112.0" fitWidth="104.0" layoutX="105.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" rotate="-4.4">
                <image>
                   <Image url="@../images/password.png" />
@@ -77,6 +72,11 @@
                <effect>
                   <ColorAdjust brightness="1.0" />
                </effect>
+            </ImageView>
+            <ImageView fx:id="key" fitHeight="58.0" fitWidth="135.0" layoutX="648.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key2.png" />
+               </image>
             </ImageView>
          </children></Pane>
    </children>

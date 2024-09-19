@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -57,10 +58,15 @@ public class GuessController {
   private Label infoLabel;
   @FXML
   private Button playAgainButton;
+  @FXML
+  private Button close;
 
   private AudioClip markerSound;
   private AudioClip typingSound;
   private AudioClip screenOnSound;
+  private AudioClip sadMusic;
+  private AudioClip happyMusic;
+
   private Boolean isTabletOpen;
   private String suspect = "";
 
@@ -80,9 +86,14 @@ public class GuessController {
    */
   @FXML
   public void initialize() {
+    sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
+    happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
+
     guess = true;
 
     playAgainButton.setVisible(false);
+    close.setVisible(false);
+
 
     // reset for each new game
     isTabletOpen = false;
@@ -203,6 +214,9 @@ public class GuessController {
    */
   @FXML
   private void handlePlayAgain() throws IOException {
+    happyMusic.stop();
+    sadMusic.stop();
+    play = true;
     System.out.println("play again");
     CrimeController.resetClues(); // Reset clues
     ChatController.resetSuspects(); // Reset suspects
@@ -255,6 +269,11 @@ public class GuessController {
     animateText("Choose a suspect first");
   }
 
+  @FXML
+  private void handleClose(){
+    Platform.exit();
+  }
+
   /**
    * Animates the text in the info label with an underscore following each
    * character.
@@ -288,6 +307,10 @@ public class GuessController {
    */
   public void togglePlayAgainButton(boolean toggle) {
     playAgainButton.setVisible(toggle);
+    close.setVisible(toggle);
+
+ 
   }
+
 
 }

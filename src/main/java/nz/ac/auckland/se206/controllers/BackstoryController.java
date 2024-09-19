@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -164,6 +165,11 @@ public class BackstoryController {
   @FXML
   private void buttonHover() {
     twinkleSound.play();
+  }
+
+  @FXML
+  private void handleClose(){
+    Platform.exit();
   }
 
   /**

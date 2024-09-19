@@ -36,7 +36,7 @@
                </font>
             </Button>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="42.0" layoutX="61.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="163.0" />
-            <Label fx:id="name" layoutX="77.0" layoutY="379.0" prefHeight="42.0" prefWidth="128.0" text="Bride" textAlignment="CENTER" textFill="#d6ad1a" wrapText="true">
+            <Label fx:id="name" layoutX="77.0" layoutY="379.0" prefHeight="42.0" prefWidth="128.0" text="Valeria" textAlignment="CENTER" textFill="#d6ad1a" wrapText="true">
                <font>
                   <Font name="Georgia Bold" size="20.0" />
                </font>
