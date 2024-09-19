@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
@@ -44,11 +46,18 @@ public class SafeController {
   private Pane clueMenu;
   @FXML
   private Label infoLabel;
+  @FXML
+  private ImageView closeUp;
+  @FXML
+  private ImageView buttonsGlow;
+
+  
 
   private static GameStateContext context = new GameStateContext();
   
   @FXML
   private void initialize() throws IOException {
+    buttonsGlow.setVisible(false);
     context.setState(context.getGuessingState());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
@@ -153,5 +162,38 @@ public class SafeController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+   @FXML
+  private void handleCloseUp() {
+    closeUp.setImage(new Image("/images/magnifyPattern.png"));
+
+  }
+
+  @FXML
+  private void handleCloseOut() {
+    closeUp.setImage(null);
+
+  }
+
+  @FXML
+  private void onHover(MouseEvent event) throws IOException {
+
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+  if (clickedRectangle.getId().equals("buttons")) {
+      buttonsGlow.setVisible(true);
+      handleCloseUp();
+    }
+  }
+
+  @FXML
+  private void offHover(MouseEvent event) throws IOException {
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+    context.handleClueClick(event, clickedRectangle.getId());
+    if (clickedRectangle.getId().equals("buttons")) {
+      buttonsGlow.setVisible(false);
+      handleCloseOut();
+    }
   }
 }

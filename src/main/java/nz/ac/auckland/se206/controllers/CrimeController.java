@@ -43,10 +43,7 @@ public class CrimeController {
   private ImageView glassPileGlow;
   @FXML
   private ImageView invitationGlow;
-  @FXML
-  private ImageView closeUp;
-  @FXML
-  private ImageView buttonsGlow;
+ 
 
   @FXML
   private void initialize() throws IOException {
@@ -58,7 +55,6 @@ public class CrimeController {
     safeGlow.setVisible(false);
     glassPileGlow.setVisible(false);
     invitationGlow.setVisible(false);
-    buttonsGlow.setVisible(false);
 
 
     try {
@@ -92,10 +88,7 @@ public class CrimeController {
       glassPileGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(true);
-    } else if (clickedRectangle.getId().equals("buttons")) {
-      buttonsGlow.setVisible(true);
-      handleCloseUp();
-    }
+    } 
   }
 
   @FXML
@@ -108,10 +101,7 @@ public class CrimeController {
       glassPileGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
       invitationGlow.setVisible(false);
-    } else if (clickedRectangle.getId().equals("buttons")) {
-      buttonsGlow.setVisible(false);
-      handleCloseOut();
-    }
+    } 
   }
 
   @FXML
@@ -172,17 +162,6 @@ public class CrimeController {
     }
   }
 
-  @FXML
-  private void handleCloseUp() {
-    closeUp.setImage(new Image("/images/magnifyPattern.png"));
-
-  }
-
-  @FXML
-  private void handleCloseOut() {
-    closeUp.setImage(null);
-
-  }
 
   @FXML
   public void handleClueMenu(Pane pane) throws IOException {
