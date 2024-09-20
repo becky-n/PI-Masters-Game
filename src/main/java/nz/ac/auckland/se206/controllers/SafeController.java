@@ -39,6 +39,32 @@ public class SafeController {
   public static boolean unlocked = false;
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+  }
+
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
+  public static boolean isUnlocked() {
+    return unlocked;
+  }
+
   @FXML
   private ImageView key;
   @FXML
@@ -141,38 +167,12 @@ public class SafeController {
   }
 
   /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  public static boolean isUnlocked() {
-    return unlocked;
-  }
-
-  /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
-  /**
    * Handles the back button click event.
    *
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void onBack() throws IOException {
+  private void onBack() throws IOException {
     buttonClickSound.play();
     App.setRoot("crime");
   }
@@ -186,6 +186,8 @@ public class SafeController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    // Check if all suspects have been talked to and all clues have been
+    // guessed
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];

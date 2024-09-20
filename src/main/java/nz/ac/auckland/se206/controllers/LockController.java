@@ -274,7 +274,7 @@ public class LockController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void onBack() throws IOException {
+  private void onBack() throws IOException {
     // set root to safe
     buttonClickSound.play();
     App.setRoot("safe");

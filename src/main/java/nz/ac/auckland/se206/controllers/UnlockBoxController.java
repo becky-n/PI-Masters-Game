@@ -138,7 +138,7 @@ public class UnlockBoxController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void onBack() throws IOException {
+  private void onBack() throws IOException {
     buttonClickSound.play();
     App.setRoot("crime");
   }

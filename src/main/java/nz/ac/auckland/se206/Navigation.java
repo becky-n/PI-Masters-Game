@@ -19,12 +19,6 @@ public class Navigation {
   private AudioClip doorSound;
 
   /*
-   * Constructor for the Navigation class
-   */
-  public Navigation() {
-  }
-
-  /*
    * Set the menu for the navigation
    */
   public void setMenu(MenuButton menuButton) {

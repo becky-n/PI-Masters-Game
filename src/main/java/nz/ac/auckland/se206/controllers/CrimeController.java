@@ -27,8 +27,11 @@ import nz.ac.auckland.se206.TimerManager;
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
   // set clues to false by default
+  @FXML
   private static boolean safe = false;
+  @FXML
   private static boolean glass = false;
+  @FXML
   private static boolean letter = false;
 
   /**
@@ -254,18 +257,21 @@ public class CrimeController {
         App.setRoot("guess");
       }
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must find at least one clue before making a guess.");
+  } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must find at least one clue before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    } else {
-      InstructionsManager.getInstance()
-          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+  } else {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects and find at least one clue before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    }
+  }  
   }
 
   /**
