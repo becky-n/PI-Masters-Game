@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -92,7 +90,7 @@ public class Navigation {
     imageView.setFitWidth(50);
     imageView.setFitHeight(50);
     imageView.setPreserveRatio(true);
-    
+
     // Create a Circle to clip the ImageView
     Circle clip = new Circle(25, 25, 25); // Center at (25, 25) for a 50x50 image
     imageView.setClip(clip);
@@ -109,8 +107,7 @@ public class Navigation {
     menuItem.setGraphic(hbox);
 
     return menuItem;
-}
-
+  }
 
   /*
    * Change the scene

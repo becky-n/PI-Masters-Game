@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +38,7 @@ public class MenuController {
   }
 
   @FXML
-  private void handleClose(){
+  private void handleClose() {
     Platform.exit();
   }
 

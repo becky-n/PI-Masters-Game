@@ -96,14 +96,17 @@ public class LobbyController {
         App.setRoot("guess");
       }
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().updateInstructions("You" +
+          " must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().updateInstructions("You" +
+          " must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else {
       InstructionsManager.getInstance()
-          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+          .updateInstructions("You must talk to all suspects" +
+              " and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
   }
