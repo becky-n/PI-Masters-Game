@@ -43,21 +43,6 @@ public class WindowController {
     }
   }
 
-  /**
-   * Loads the clue menu into the specified pane.
-   *
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -128,11 +113,7 @@ public class WindowController {
     dm.makeDraggable(glass5);
 
     // load the clue menu
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);

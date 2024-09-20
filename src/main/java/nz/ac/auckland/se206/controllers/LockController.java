@@ -35,21 +35,6 @@ public class LockController {
   private static GameStateContext context = new GameStateContext();
 
   /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
-  /**
    * Checks if the box is unlocked.
    *
    * @return true if the box is unlocked, false otherwise
@@ -101,7 +86,7 @@ public class LockController {
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
     // Load the sound files
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     unlockSound = new AudioClip(getClass().getResource("/sounds/unlock.mp3").toString());
@@ -113,11 +98,7 @@ public class LockController {
 
     animateText("Try rotating the key, is there a pattern needed to unlock the box?");
 
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);

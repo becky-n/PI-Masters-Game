@@ -21,21 +21,6 @@ import nz.ac.auckland.se206.Navigation;
 
 public class UnlockBoxController {
 
-  /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-    // Set the menu pane to the specified pane
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -60,7 +45,7 @@ public class UnlockBoxController {
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML
-  private void initialize() {
+  private void initialize() throws IOException {
     // Load the sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
@@ -68,11 +53,7 @@ public class UnlockBoxController {
     animateText("A white hair on the empty ring box, who does it belong to?");
 
     // Load the clue menu
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);

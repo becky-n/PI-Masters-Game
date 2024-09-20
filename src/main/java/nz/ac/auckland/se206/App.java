@@ -198,6 +198,21 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Loads the clue menu into the provided pane.
+   * 
+   * @param pane the pane where the clue menu will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+  }
+
   public static void timer(Label timerLabel){
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene

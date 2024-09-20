@@ -85,7 +85,7 @@ public class LetterCloseUpController {
    * chat,
    * and loads the clue menu and hints box.
    */
-  public void initialize() {
+  public void initialize() throws IOException {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
@@ -98,11 +98,7 @@ public class LetterCloseUpController {
       animateText("let's see what's inside the envelope..");
     }
 
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);
@@ -318,19 +314,6 @@ public class LetterCloseUpController {
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     App.guessClick();
-  }
-
-  /**
-   * Sets the cursor back to the default cursor.
-   */
-  @FXML
-  public void handleClueMenu(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-
   }
 
   /**

@@ -94,7 +94,7 @@ public class CrimeController {
   @FXML
   private void initialize() throws IOException {
     // call clue menu
-    handleClueMenu(clueMenu);
+  
 
     // load sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -109,11 +109,7 @@ public class CrimeController {
     invitationGlow.setVisible(false);
 
     // load interface elements
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);
@@ -235,22 +231,6 @@ public class CrimeController {
     App.guessClick();
   }
 
-  /**
-   * Loads the clue menu into the specified pane.
-   * 
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
-   */
-  @FXML
-  public void handleClueMenu(Pane pane) throws IOException {
-    // load clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-
-  }
 
   /**
    * Loads the hints box into the specified pane.

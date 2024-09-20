@@ -20,23 +20,6 @@ import nz.ac.auckland.se206.Navigation;
  */
 public class AisleController {
 
-  /**
-   * Loads the clue menu into the provided pane.
-   * 
-   * @param pane the pane where the clue menu will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-
-  }
-
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -61,11 +44,7 @@ public class AisleController {
   @FXML
   private void initialize() throws IOException {
     // Load the clue menu
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     // Load the hints box
     try {

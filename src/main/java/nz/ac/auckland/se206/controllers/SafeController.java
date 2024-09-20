@@ -42,22 +42,6 @@ public class SafeController {
    * @param pane the pane to display the clue menu
    * @throws IOException if there is an I/O error
    */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
-  /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
   public static boolean isUnlocked() {
     return unlocked;
   }
@@ -93,11 +77,7 @@ public class SafeController {
 
     animateText("There appears to be a key! Would this unlock the jewellery box?");
     // load the clue menu
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
     try {
       loadHintsBox(instructionsPane);
