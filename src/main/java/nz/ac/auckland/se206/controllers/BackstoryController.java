@@ -106,11 +106,11 @@ public class BackstoryController {
     KeyFrame keyFrame = new KeyFrame(
         Duration.millis(50), // Change position every 50 milliseconds
         event -> {
-          double OffsetX = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
-          double OffsetY = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
-          
-          screamImg.setTranslateX(OffsetX);
-          screamImg.setTranslateY(OffsetY);
+          double offsetX = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double offsetY = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+
+          screamImg.setTranslateX(offsetX);
+          screamImg.setTranslateY(offsetY);
         });
 
     // Add the keyframe to the timeline
