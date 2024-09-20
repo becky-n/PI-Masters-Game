@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
@@ -31,6 +32,10 @@ public class CrimeController {
 
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
+  private AudioClip paperSound;
+  private AudioClip glassSound;
+  private AudioClip boxSound;
+  
 
   @FXML
   private MenuButton menuButton;
@@ -58,6 +63,10 @@ public class CrimeController {
     handleClueMenu(clueMenu);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+    paperSound = new AudioClip(getClass().getResource("/sounds/paper.mp3").toString());
+    glassSound = new AudioClip(getClass().getResource("/sounds/glass.mp3").toString());
+    boxSound = new AudioClip(getClass().getResource("/sounds/box.mp3").toString());
+    
 
     // set hover effects invisible
     safeGlow.setVisible(false);
@@ -102,10 +111,13 @@ public class CrimeController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
+      boxSound.play();
       safeGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("glass")) {
+      glassSound.play();
       glassPileGlow.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
+      paperSound.play();
       invitationGlow.setVisible(true);
     }
   }
@@ -121,10 +133,13 @@ public class CrimeController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
+      boxSound.stop();
       safeGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("glass")) {
+      glassSound.stop();
       glassPileGlow.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
+      paperSound.stop();
       invitationGlow.setVisible(false);
     }
   }
@@ -184,11 +199,23 @@ public class CrimeController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
+    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
+    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else{
+      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
     }
   }
 

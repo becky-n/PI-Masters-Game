@@ -54,10 +54,12 @@ public class TimerManager {
         try {
           if (!suspects[0] || !suspects[1] || !suspects[2] || allCluesNotFound) {
             handleTimeOut();
+          } else {
+            App.setRoot("guess");
+            TimerManager.getInstance().reset(60);
+            context.setState(context.getGuessingState());
           }
-          App.setRoot("guess");
-          TimerManager.getInstance().reset(60);
-          context.setState(context.getGuessingState());
+
         } catch (IOException e) {
           e.printStackTrace();
         }

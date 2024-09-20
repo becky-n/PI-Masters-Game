@@ -6,6 +6,7 @@
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -41,8 +42,24 @@
                   <Image url="@../images/rotate.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="leftButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="231.0" layoutY="239.0" onMouseClicked="#handleLeftRotate" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-            <Rectangle fx:id="rightbutton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="583.0" layoutY="237.0" onMouseClicked="#handleRightRotate" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+            <ImageView fx:id="leftGlow" fitHeight="91.0" fitWidth="80.0" layoutX="230.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/rotate.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="rightGlow" fitHeight="91.0" fitWidth="80.0" layoutX="583.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../images/rotate.png" />
+               </image>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <Rectangle fx:id="leftButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="231.0" layoutY="239.0" onMouseClicked="#handleLeftRotate" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+            <Rectangle fx:id="rightButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="583.0" layoutY="237.0" onMouseClicked="#handleRightRotate" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />

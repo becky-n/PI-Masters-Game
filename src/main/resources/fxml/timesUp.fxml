@@ -40,5 +40,10 @@
             <Font name="Georgia Bold" size="24.0" />
          </font>
       </Button>
+      <Button id="play" fx:id="close" layoutX="249.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#handleClose" prefHeight="49.0" prefWidth="120.0" style="-fx-border-color: red; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Close" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

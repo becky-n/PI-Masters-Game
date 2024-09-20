@@ -138,6 +138,7 @@ public class SafeController {
    */
   @FXML
   public void onBack() throws IOException {
+    buttonClickSound.play();
     App.setRoot("crime");
   }
 
