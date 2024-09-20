@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
@@ -11,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.event.ActionEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -19,10 +19,28 @@ import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
 public class LetterCloseUpController {
-  private AudioClip buttonClickSound;
 
+  // Static Fields
+  public static boolean burnt = false;
+
+  // Static Methods
+  /**
+   * Resets the letter to its original state.
+   */
+  public static void resetLetter() {
+    burnt = false;
+  }
+
+  // Instance Fields
+  private int envelopeClicked = 0;
+  private GraphicsContext gc;
+  private boolean displayed = false;
+  private boolean isErasing = false;
+  private boolean matchBoxClicked = false;
+  private AudioClip buttonClickSound;
   private AudioClip matchSound;
 
+  // FXML-Annotated Fields
   @FXML
   private ImageView envelopeCloseUp;
 
@@ -59,44 +77,33 @@ public class LetterCloseUpController {
   @FXML
   private Rectangle envelopeCloseUpRec;
 
-  private int envelopeClicked = 0;
-  private GraphicsContext gc;
-  private boolean displayed = false;
-  private boolean isErasing = false;
-  public static boolean burnt = false;
-  private boolean matchBoxClicked = false;
-
-  /**
-   * Resets the letter to its original state.
-   */
-  public static void resetLetter() {
-    burnt = false;
-  }
-
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
    * chat,
    * and loads the clue menu and hints box.
    */
   public void initialize() throws IOException {
+    // Load the sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
+    // Set the envelope image
     envelopeCloseUp.setImage(image);
     Navigation nav = new Navigation();
+    // Set the menu button
     nav.setMenu(menuButton);
     eraseCanvas.setDisable(true);
-
+    // If the letter not been burnt, set instructions box
     if (burnt == false) {
       App.animateText("let's see what's inside the envelope..", infoLabel);
     }
-
+    // Load the clue menu
     App.handleClueMenu(clueMenu);
-
+    // Load the hints box
     App.loadHintsBox(instructionsPane);
-
+    // Load the timer
     App.timer(timerLabel);
-
+    // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
           "/images/invitationHidden.png").toString());
@@ -134,8 +141,9 @@ public class LetterCloseUpController {
    */
   @FXML
   public void envelopeClicked(MouseEvent event) {
+    // play the button click sound
     buttonClickSound.play();
-
+    // If the envelope is clicked once, open the envelope
     if (envelopeClicked == 0) {
       envelopeClicked++;
       letterOpened.setImage(null);
@@ -143,6 +151,7 @@ public class LetterCloseUpController {
           "/images/open-envelope.png").toString());
       envelopeCloseUp.setImage(image);
       return;
+      // If the envelope is opened reveal invitation
     } else {
       instructionsPane.setVisible(false);
       envelopeClicked++;
@@ -150,11 +159,12 @@ public class LetterCloseUpController {
           "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
       App.animateText("I wonder what will happen if you burn the paper...", infoLabel);
+      // if the envelope has already been burnt
       if (burnt == true) {
         eraseCanvas.setDisable(false);
         return;
       }
-
+      // create canvas for erasing the layer with fire cursor
       createcanvas();
 
     }
@@ -167,10 +177,11 @@ public class LetterCloseUpController {
    */
   @FXML
   public void handleMatchBoxClick(MouseEvent event) {
-
+    // check if envelope is open
     if (envelopeClicked < 2) {
       return;
     } else {
+      // Set the matchbox cursor
       matchBoxClicked = true;
       buttonClickSound.play();
       matchSound.play();

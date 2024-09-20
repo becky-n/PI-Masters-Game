@@ -1,20 +1,26 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
-import javafx.event.ActionEvent;
 
 public class LetterController {
+
+  // Static Fields
+  public static boolean burnt;
+
+  // Instance Fields
   private AudioClip buttonClickSound;
 
+  // FXML-Annotated Fields
   @FXML
   private MenuButton menuButton;
 
@@ -32,8 +38,6 @@ public class LetterController {
 
   @FXML
   private ImageView envelope;
-  public static boolean burnt;
-
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -41,20 +45,19 @@ public class LetterController {
    * 
    * @throws IOException if there is an I/O error during initialization
    */
-  public void initialize() throws IOException{
-
+  public void initialize() throws IOException {
+    // Load the sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
-
+    // Load the clue menu
     App.handleClueMenu(clueMenu);
-
+    // Load the hints box
     App.loadHintsBox(instructionsPane);
-
+    // Load the chat
     App.timer(timerLabel);
     App.animateText("Interesting, I wonder what this envelope contains...", infoLabel);
   }
-
 
   /**
    * Handles the envelope click event.
@@ -73,7 +76,6 @@ public class LetterController {
 
   }
 
-  
   /**
    * Handles the back button click event.
    * 
