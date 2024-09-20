@@ -14,15 +14,17 @@ import java.io.IOException;
  * Manages the game timer.
  */
 public class TimerManager {
+
+  // Static Fields
   private static TimerManager instance;
+
+  // Instance Fields
   private GameStateContext context = new GameStateContext();
   private Timeline timer;
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
   private boolean running;
 
-  /**
-   * Constructs a new TimerManager.
-   */
+  // Constructor
   private TimerManager() {
     // Initialize the timer with a 1-second interval
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {

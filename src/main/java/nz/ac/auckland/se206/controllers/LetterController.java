@@ -1,50 +1,50 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-import javafx.animation.Animation;
 
 public class LetterController {
-  private AudioClip buttonClickSound;
 
-  @FXML
-  private MenuButton menuButton;
-
-  @FXML
-  private Label timerLabel;
-
-  @FXML
-  private Pane clueMenu;
-
-  @FXML
-  private Label infoLabel;
-
-  @FXML
-  private Pane instructionsPane;
-
-  @FXML
-  private ImageView envelope;
+  // Static variables
   public static boolean burnt;
   private static GameStateContext context = new GameStateContext();
+
+  // Instance variables
+  private AudioClip buttonClickSound;
+
+  // FXML annotated variables
+  @FXML
+  private MenuButton menuButton;
+  @FXML
+  private Label timerLabel;
+  @FXML
+  private Pane clueMenu;
+  @FXML
+  private Label infoLabel;
+  @FXML
+  private Pane instructionsPane;
+  @FXML
+  private ImageView envelope;
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
