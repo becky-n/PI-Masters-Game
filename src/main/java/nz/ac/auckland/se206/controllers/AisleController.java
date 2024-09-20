@@ -3,13 +3,11 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 
 /**
@@ -47,11 +45,7 @@ public class AisleController {
     App.handleClueMenu(clueMenu);
 
     // Load the hints box
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.loadHintsBox(instructionsPane);
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
@@ -75,38 +69,6 @@ public class AisleController {
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     App.guessClick();
-  }
-
-  /**
-   * Loads the hints box into the provided pane.
-   * 
-   * @param pane the pane where the hints box will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    // Load the hints box
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
-  }
-
-  /**
-   * Updates the hint text displayed in the hints box.
-   * 
-   * @param newHint the new hint text to be displayed
-   */
-  public void updateHint(String newHint) {
-    InstructionsManager.getInstance().updateInstructions(newHint);
-
-    // Update the instructions
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hintsBox.fxml"));
-    try {
-      InstructionsManager hintsController = loader.getController();
-      hintsController.updateInstructions("hello");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
 }

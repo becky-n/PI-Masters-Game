@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -94,7 +93,6 @@ public class CrimeController {
   @FXML
   private void initialize() throws IOException {
     // call clue menu
-  
 
     // load sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -111,11 +109,8 @@ public class CrimeController {
     // load interface elements
     App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    // load hints box
+    App.loadHintsBox(instructionsPane);
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -229,21 +224,6 @@ public class CrimeController {
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     App.guessClick();
-  }
-
-
-  /**
-   * Loads the hints box into the specified pane.
-   * 
-   * @param pane the pane to which the hints box should be added
-   * @throws IOException if there is an I/O error during loading the hints box
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    // load hints box
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
   }
 
 }

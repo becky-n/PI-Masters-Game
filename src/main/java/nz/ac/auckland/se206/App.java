@@ -20,10 +20,11 @@ import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
+
 /**
- * This is the entry point of the JavaFX application. This class initializes and
- * runs the JavaFX
- * application.
+ * The App class serves as the main entry point for the JavaFX application.
+ * It extends the Application class and provides various methods to manage
+ * scenes, transitions, and interactions within the application.
  */
 public class App extends Application {
 
@@ -135,6 +136,38 @@ public class App extends Application {
   }
 
   /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void loadHintsBox(Pane pane) throws IOException {
+    // Load the hints box
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/instructions.fxml"));
+    Pane hintsPane = loader.load();
+    pane.getChildren().clear();
+    pane.getChildren().add(hintsPane);
+  }
+
+  /**
+   * Updates the instructions in the hints box.
+   * 
+   * @param newHint the new hint to display in the hints box
+   */
+  public static void updateHint(String newHint) {
+    InstructionsManager.getInstance().updateInstructions(newHint);
+
+    // You can update the hint dynamically by accessing the controller
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/hintsBox.fxml"));
+    try {
+      InstructionsManager hintsController = loader.getController();
+      hintsController.updateInstructions("hello");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
    * Opens the tablet view and sets the suspect in the tablet controller.
    *
    * @param name     the suspect to set in the tablet controller
@@ -213,7 +246,7 @@ public class App extends Application {
     pane.getChildren().add(menuPane);
   }
 
-  public static void timer(Label timerLabel){
+  public static void timer(Label timerLabel) {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
     if (!timerManager.isRunning()) {

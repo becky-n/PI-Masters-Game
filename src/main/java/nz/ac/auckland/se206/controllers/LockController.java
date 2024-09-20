@@ -10,7 +10,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -100,11 +99,7 @@ public class LockController {
 
     App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.loadHintsBox(instructionsPane);
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -112,21 +107,6 @@ public class LockController {
 
     App.timer(timerLabel);
 
-  }
-
-  /**
-   * Loads the hints box into the provided pane.
-   * 
-   * @param pane the pane where the hints box will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    System.out.println("Pane visibility: " + instructionsPane.isVisible());
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
   }
 
   /**

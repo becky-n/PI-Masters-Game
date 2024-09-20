@@ -6,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -100,11 +99,7 @@ public class LetterCloseUpController {
 
     App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.loadHintsBox(instructionsPane);
 
     App.timer(timerLabel);
     if (burnt == true) {
@@ -125,18 +120,6 @@ public class LetterCloseUpController {
 
   }
 
-  /**
-   * Loads the hints box into the provided pane.
-   * 
-   * @param pane the pane where the hints box will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
-  }
 
   /**
    * Handles the clue menu.
