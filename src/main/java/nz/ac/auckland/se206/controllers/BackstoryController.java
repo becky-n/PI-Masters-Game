@@ -1,13 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
-import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.TimerManager;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,6 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Backstory scene.
@@ -104,10 +105,10 @@ public class BackstoryController {
     KeyFrame keyFrame = new KeyFrame(
         Duration.millis(50), // Change position every 50 milliseconds
         event -> {
-          double xOffSet = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
-          double yOffSet = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
-          screamImg.setTranslateX(xOffSet);
-          screamImg.setTranslateY(yOffSet);
+          double xOffset = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double yOffset = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+          screamImg.setTranslateX(xOffset);
+          screamImg.setTranslateY(yOffset);
         });
 
     // Add the keyframe to the timeline
