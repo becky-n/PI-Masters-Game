@@ -230,6 +230,13 @@ public class ChatController {
   private void onSendMessage() throws ApiProxyException, IOException {
     buttonClickSound.play();
     String message = txtInput.getText().trim();
+    if (suspect.equals("Andrea")) {
+      Andrea = true;
+    } else if (suspect.equals("Jesin")) {
+      Jesin = true;
+    } else if (suspect.equals("Gerald")) {
+      Gerald = true;
+    }
     if (message.isEmpty()) {
       // case where user tries to send an empty message
       return;
