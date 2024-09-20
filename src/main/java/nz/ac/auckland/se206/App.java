@@ -3,7 +3,9 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -194,6 +196,20 @@ public class App extends Application {
           "You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
+  }
+
+  public static void timer(Label timerLabel){
+    TimerManager timerManager = TimerManager.getInstance();
+    // Start the timer if it's the first scene
+    if (!timerManager.isRunning()) {
+      timerManager.start(300);
+    }
+
+    timerLabel.textProperty().bind(
+        Bindings.createStringBinding(() -> String.format("%02d:%02d",
+            timerManager.getTimeRemaining() / 60,
+            timerManager.getTimeRemaining() % 60),
+            timerManager.timeRemainingProperty()));
   }
 
   /**

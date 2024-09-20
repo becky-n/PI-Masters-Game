@@ -6,7 +6,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
@@ -21,7 +20,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Backstory scene.
@@ -63,7 +61,6 @@ public class BackstoryController {
 
     // Initialize media resources
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
-    TimerManager timerManager = TimerManager.getInstance();
 
     // Load the audio clips
     backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
@@ -77,17 +74,7 @@ public class BackstoryController {
 
     screamPlayer = new MediaPlayer(screamMedia);
 
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
-
-    // Start the timer if it's the first scene
-    if (!timerManager.isRunning()) {
-      timerManager.start(300);
-    }
+    App.timer(timerLabel);
 
     // Start the scream sound and apply the shake effect
     screamPlayer.play();
@@ -108,7 +95,7 @@ public class BackstoryController {
         event -> {
           double OffsetX = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
           double OffsetY = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
-          
+
           screamImg.setTranslateX(OffsetX);
           screamImg.setTranslateY(OffsetY);
         });

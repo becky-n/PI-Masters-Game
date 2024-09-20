@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Crime scene.
@@ -127,14 +125,8 @@ public class CrimeController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    TimerManager timerManager = TimerManager.getInstance();
+    App.timer(timerLabel);
 
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
   }
 
   /**

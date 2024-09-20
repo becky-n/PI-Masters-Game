@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
@@ -24,7 +23,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Lock scene.
@@ -131,17 +129,7 @@ public class LockController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    TimerManager timerManager = TimerManager.getInstance();
-
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel
-        .textProperty()
-        .bind(
-            Bindings.createStringBinding(
-                () -> String.format(
-                    "%02d:%02d",
-                    timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
-                timerManager.timeRemainingProperty()));
+    App.timer(timerLabel);
 
   }
 

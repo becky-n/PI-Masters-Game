@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,17 +110,7 @@ public class LetterCloseUpController {
       e.printStackTrace();
     }
 
-    TimerManager timerManager = TimerManager.getInstance();
-
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel
-        .textProperty()
-        .bind(
-            Bindings.createStringBinding(
-                () -> String.format(
-                    "%02d:%02d",
-                    timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
-                timerManager.timeRemainingProperty()));
+    App.timer(timerLabel);
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
           "/images/invitationHidden.png").toString());
@@ -132,7 +121,7 @@ public class LetterCloseUpController {
     }
 
     // if time runs out
-    timerManager.timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+    TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
       if (newTime.intValue() == 0) {
         handleTimerExpired();
       }

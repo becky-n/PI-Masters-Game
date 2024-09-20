@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -66,18 +64,7 @@ public class LetterController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-    TimerManager timerManager = TimerManager.getInstance();
-
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel
-        .textProperty()
-        .bind(
-            Bindings.createStringBinding(
-                () -> String.format(
-                    "%02d:%02d",
-                    timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
-                timerManager.timeRemainingProperty()));
+    App.timer(timerLabel);
     animateText("Interesting, I wonder what this envelope contains...");
   }
 

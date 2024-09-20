@@ -6,7 +6,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -109,15 +108,10 @@ public class GuessController {
     circleJesin.setVisible(false);
     circleGerald.setVisible(false);
 
-    TimerManager timerManager = TimerManager.getInstance();
+    
     animateText("Click on who stole the ring");
 
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
+    App.timer(timerLabel);
 
     boolean[] clues = CrimeController.cluesGuessed();
     boolean isBurnt = LetterCloseUpController.burnt;

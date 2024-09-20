@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Lobby scene.
@@ -84,13 +82,7 @@ public class LobbyController {
     // load the chat
     App.openChat("Jesin", chatPane);
 
-    TimerManager timerManager = TimerManager.getInstance();
-
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
+    App.timer(timerLabel);
   }
 
   /**
