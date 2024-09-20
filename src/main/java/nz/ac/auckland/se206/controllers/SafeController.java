@@ -1,11 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
@@ -74,7 +68,7 @@ public class SafeController {
     context.setState(context.getGuessingState());
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
-    animateText("There appears to be a key! Would this unlock the jewellery box?");
+    App.animateText("There appears to be a key! Would this unlock the jewellery box?", infoLabel);
     // load the clue menu
     App.handleClueMenu(clueMenu);
 
@@ -103,7 +97,6 @@ public class SafeController {
     });
 
   }
-
 
   /**
    * Handles the clue menu button click event.
@@ -137,25 +130,6 @@ public class SafeController {
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
     App.guessClick();
-  }
-
-  /** Animates the text in the info label. */
-  private void animateText(String str) {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            infoLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
   }
 
   /**

@@ -3,11 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.Navigation;
@@ -95,7 +89,7 @@ public class LockController {
     leftGlow.setVisible(false);
     rightGlow.setVisible(false);
 
-    animateText("Try rotating the key, is there a pattern needed to unlock the box?");
+    App.animateText("Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
 
     App.handleClueMenu(clueMenu);
 
@@ -234,29 +228,5 @@ public class LockController {
     buttonClickSound.play();
     App.guessClick();
 
-  }
-
-  /**
-   * Loads the clue menu into the specified pane.
-   *
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
-   */
-  private void animateText(String str) {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            infoLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
   }
 }

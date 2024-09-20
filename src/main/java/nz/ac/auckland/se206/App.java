@@ -1,9 +1,15 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.ImageCursor;
@@ -13,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
@@ -103,6 +110,31 @@ public class App extends Application {
 
     // Start the fade-out transition
     fadeOut.play();
+  }
+
+
+  /**
+   * Loads the clue menu into the specified pane.
+   *
+   * @param pane the pane to which the clue menu should be added
+   * @throws IOException if there is an I/O error during loading the clue menu
+   */
+  public static void animateText(String str, Label infoLabel) {
+    final IntegerProperty i = new SimpleIntegerProperty(0);
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame = new KeyFrame(
+        Duration.seconds(0.015), // Adjusted for smoother animation
+        event -> {
+          if (i.get() > str.length()) {
+            timeline.stop();
+          } else {
+            infoLabel.setText(str.substring(0, i.get()));
+            i.set(i.get() + 1);
+          }
+        });
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(Animation.INDEFINITE);
+    timeline.play();
   }
 
   /**

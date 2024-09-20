@@ -1,9 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
@@ -14,15 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.beans.property.IntegerProperty;
-import javafx.animation.Animation;
 
 public class LetterCloseUpController {
   private AudioClip buttonClickSound;
@@ -84,7 +78,7 @@ public class LetterCloseUpController {
    * chat,
    * and loads the clue menu and hints box.
    */
-  public void initialize() throws IOException{
+  public void initialize() throws IOException {
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
@@ -94,7 +88,7 @@ public class LetterCloseUpController {
     eraseCanvas.setDisable(true);
 
     if (burnt == false) {
-      animateText("let's see what's inside the envelope..");
+      App.animateText("let's see what's inside the envelope..", infoLabel);
     }
 
     App.handleClueMenu(clueMenu);
@@ -102,12 +96,12 @@ public class LetterCloseUpController {
     App.loadHintsBox(instructionsPane);
 
     App.timer(timerLabel);
-    
+
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
           "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
-      animateText("interesting, I wonder who wrote this...");
+      App.animateText("interesting, I wonder who wrote this...", infoLabel);
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
@@ -155,7 +149,7 @@ public class LetterCloseUpController {
       Image imageHidden = new Image(getClass().getResource(
           "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
-      animateText("I wonder what will happen if you burn the paper...");
+      App.animateText("I wonder what will happen if you burn the paper...", infoLabel);
       if (burnt == true) {
         eraseCanvas.setDisable(false);
         return;
@@ -224,7 +218,7 @@ public class LetterCloseUpController {
       // Check if the click is within a specific area (e.g., a rectangle or a shape)
       if (isInsideArea(x, y) && !displayed) {
         System.out.println("inside area");
-        animateText("interesting, I wonder who wrote this...");
+        App.animateText("interesting, I wonder who wrote this...", infoLabel);
         displayed = true;
       }
     });
@@ -287,8 +281,6 @@ public class LetterCloseUpController {
 
   }
 
-
-
   /**
    * Sets the cursor back to the default cursor.
    */
@@ -314,29 +306,6 @@ public class LetterCloseUpController {
     matchSound.stop();
   }
 
-  /**
-   * Animates the text to display one character at a time.
-   *
-   * @param str the text to animate
-   */
-  private void animateText(String str) {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            infoLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
-  }
-  
   /**
    * Handles the guess button click event.
    *
