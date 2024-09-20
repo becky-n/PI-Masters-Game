@@ -285,7 +285,7 @@ public class LetterCloseUpController {
    * Sets the cursor back to the default cursor.
    */
   @FXML
-  public void onBack() throws IOException {
+  private void onBack() throws IOException {
     matchSound.stop();
     buttonClickSound.play();
     setBackCursor();

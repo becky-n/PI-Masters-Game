@@ -22,12 +22,9 @@ import nz.ac.auckland.se206.Navigation;
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
   // set clues to false by default
-  @FXML
-  private static boolean safe = false;
-  @FXML
-  private static boolean glass = false;
-  @FXML
-  private static boolean letter = false;
+  private static boolean safe1 = false;
+  private static boolean glass1 = false;
+  private static boolean letter1 = false;
 
   /**
    * Resets the clues by setting the safe, glass, and letter variables to false.
@@ -36,9 +33,9 @@ public class CrimeController {
    */
   public static void resetClues() {
     // reset all of the clues to false (not found)
-    safe = false;
-    glass = false;
-    letter = false;
+    safe1 = false;
+    glass1 = false;
+    letter1 = false;
   }
 
   /**
@@ -56,9 +53,9 @@ public class CrimeController {
   public static boolean[] cluesGuessed() {
     boolean[] clues = new boolean[3];
 
-    clues[0] = safe; // represents clue1
-    clues[1] = glass; // represents clue2
-    clues[2] = letter; // represents clue3
+    clues[0] = safe1; // represents clue1
+    clues[1] = glass1; // represents clue2
+    clues[2] = letter1; // represents clue3
     return clues;
   }
 
@@ -189,13 +186,13 @@ public class CrimeController {
         return;
       }
       App.setRoot("safe");
-      safe = true;
+      safe1 = true;
       return;
 
     }
     if (clickedRectangle.getId().equals("glass")) {
       App.setRoot("window");
-      glass = true;
+      glass1 = true;
       return;
     }
     if (clickedRectangle.getId().equals("letter")) {
@@ -206,7 +203,7 @@ public class CrimeController {
         return;
       }
       App.setRoot("letter");
-      letter = true;
+      letter1 = true;
       return;
     }
 
