@@ -12,13 +12,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
-import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -26,6 +19,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
+import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.TimerManager;
+
 
 /**
  * Controller class for the Lock scene.
@@ -284,39 +285,8 @@ public class LockController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     // play the button click sound
     buttonClickSound.play();
-
-    // Check if all suspects have been talked to and at least one clue has been
-    // found
-    boolean[] suspects = ChatController.suspectsTalkedTo();
-    boolean[] clues = CrimeController.cluesGuessed();
-
-    // Check if the player has talked to all suspects and guessed all clues
-    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        App.setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      // Display a hint if the player has talked to all suspects but not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      // Display a hint if the player has found at least one clue but not talked to
-      // all suspects
-      InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else {
-      // Display a hint if the player has not talked to all suspects and not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    }
+    App.guessClick();
+    
   }
 
   /**
