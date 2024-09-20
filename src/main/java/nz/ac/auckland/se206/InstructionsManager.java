@@ -16,14 +16,6 @@ public class InstructionsManager {
   // Static Fields
   private static InstructionsManager instance;
 
-  // Instance Fields
-  private InstructionsController instructionsController;
-  private String currentInstructions = "Chat to guests and find clues!";
-
-  // Constructor (private for singleton pattern)
-  private InstructionsManager() {
-  }
-
   /**
    * Retrieves the singleton instance of {@code InstructionsManager}.
    * If the instance does not exist, it will be created.
@@ -35,6 +27,14 @@ public class InstructionsManager {
       instance = new InstructionsManager();
     }
     return instance;
+  }
+
+  // Instance Fields
+  private InstructionsController instructionsController;
+  private String currentInstructions = "Chat to guests and find clues!";
+
+  // Constructor (private for singleton pattern)
+  private InstructionsManager() {
   }
 
   /**

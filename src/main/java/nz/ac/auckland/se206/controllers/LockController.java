@@ -12,13 +12,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
-import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -26,6 +19,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
+import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.TimerManager;
+
 
 /**
  * Controller class for the Lock scene.
