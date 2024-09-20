@@ -18,7 +18,6 @@ import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
-
 /**
  * Controller class for the Crime scene.
  * Manages the initialization of the scene, handling button clicks, and updating
@@ -258,20 +257,17 @@ public class CrimeController {
       }
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess."
-      );
+          "You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-  } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
       InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess."
-      );
+          "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-  } else {
+    } else {
       InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess."
-      );
+          "You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-  }  
+    }
   }
 
   /**
