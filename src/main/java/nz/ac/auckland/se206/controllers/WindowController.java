@@ -1,11 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.Navigation;
@@ -80,8 +74,8 @@ public class WindowController {
     // if they have already found the fabric
     if (fabricFound) {
       fabric.setImage(new Image("/images/fabric4.png"));
-      animateText("A torn piece of black fabric… it seems familiar, "
-          + "but where have I seen it before?");
+      App.animateText("A torn piece of black fabric… it seems familiar, "
+          + "but where have I seen it before?", infoLabel);
 
       // hide the glass images
       glass1.setVisible(false);
@@ -90,10 +84,10 @@ public class WindowController {
       glass4.setVisible(false);
       glass5.setVisible(false);
     } else {
-      animateText(
+      App.animateText(
           "It seems there's something hidden beneath the broken glass… "
               + "try moving the shards aside to"
-              + " uncover it.");
+              + " uncover it.", infoLabel);
 
       // show the glass images (in the case of they are replaying the game)
       glass1.setVisible(true);
@@ -154,8 +148,8 @@ public class WindowController {
       fabric.setImage(new Image("/images/fabric4.png"));
       twinkleSound.play();
       fabricFound = true;
-      animateText("A torn piece of black fabric… "
-          + "it seems familiar, but where have I seen it before?");
+      App.animateText("A torn piece of black fabric… "
+          + "it seems familiar, but where have I seen it before?", infoLabel);
     }
 
     onHoverFabric();
@@ -206,22 +200,4 @@ public class WindowController {
     App.setRoot("crime");
   }
 
-  /** Animates the text in the info label. */
-  private void animateText(String str) {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            infoLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
-  }
 }
