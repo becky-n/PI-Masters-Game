@@ -33,6 +33,7 @@ public class Navigation {
     // Set the menu
     menuButton.getItems().clear();
 
+    // Create custom MenuItems
     MenuItem crimeScene = createCustomMenuItem("Bridal Suite", "/images/bridalSuite.png");
     MenuItem gerald = createCustomMenuItem("The Aisle", "/images/madGerald.png");
     MenuItem jesin = createCustomMenuItem("The Lobby", "/images/madJesin.png");
@@ -87,6 +88,8 @@ public class Navigation {
    */
   private MenuItem createCustomMenuItem(String text, String imagePath) {
     ImageView imageView = new ImageView(new Image(getClass().getResource(imagePath).toString()));
+
+    // Set the size of the image
     imageView.setFitWidth(50);
     imageView.setFitHeight(50);
     imageView.setPreserveRatio(true);
@@ -95,6 +98,7 @@ public class Navigation {
     Circle clip = new Circle(25, 25, 25); // Center at (25, 25) for a 50x50 image
     imageView.setClip(clip);
 
+    // Create a Label and set the style
     Label label = new Label(text);
     label.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
 
@@ -103,6 +107,7 @@ public class Navigation {
     hbox.setStyle("-fx-padding: 5;");
     hbox.setAlignment(Pos.CENTER_LEFT); // Center vertically within the HBox
 
+    // Create a MenuItem and set the graphic
     MenuItem menuItem = new MenuItem();
     menuItem.setGraphic(hbox);
 

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.Animation;
@@ -25,7 +26,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
-import java.io.IOException;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Lock scene.
@@ -34,17 +40,46 @@ import java.io.IOException;
  * navigating menus, and updating hints.
  */
 public class LockController {
-  private double angle = 0;
-  private List<String> expectedSequence = List.of("left", "left", "right", "left");
-  private List<String> userSequence = new ArrayList<>();
   public static boolean safeUnlocked = false;
-  private AudioClip buttonClickSound;
-  private AudioClip unlockSound;
-  private AudioClip keySound;
+  private static GameStateContext context = new GameStateContext();
+
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+  }
+
+  /**
+   * Checks if the box is unlocked.
+   *
+   * @return true if the box is unlocked, false otherwise
+   */
+  public static boolean isBoxUnlocked() {
+    if (safeUnlocked) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Resets the lock.
+   */
+  public static void resetLock() {
+    safeUnlocked = false;
+  }
 
   @FXML
   private ImageView key;
-
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -60,7 +95,13 @@ public class LockController {
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  // set the expected sequence to unlock the box
+  private List<String> expectedSequence = List.of("left", "left", "right", "left");
+  private List<String> userSequence = new ArrayList<>();
+  private AudioClip buttonClickSound;
+  private AudioClip unlockSound;
+  private AudioClip keySound;
+  private double angle = 0;
 
   /**
    * Initializes the LockController. Sets up the timer, menu navigation, chat,
@@ -70,11 +111,12 @@ public class LockController {
    */
   @FXML
   public void initialize() {
-
+    // Load the sound files
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     unlockSound = new AudioClip(getClass().getResource("/sounds/unlock.mp3").toString());
     keySound = new AudioClip(getClass().getResource("/sounds/key.mp3").toString());
 
+    // Hide the glow effect
     leftGlow.setVisible(false);
     rightGlow.setVisible(false);
 
@@ -161,7 +203,7 @@ public class LockController {
    */
   @FXML
   private void onHover(MouseEvent event) throws IOException {
-
+    // set image on hover
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("leftButton")) {
@@ -179,6 +221,7 @@ public class LockController {
    */
   @FXML
   private void offHover(MouseEvent event) throws IOException {
+    // set image when mouse not hovering
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("leftButton")) {
@@ -223,41 +266,6 @@ public class LockController {
       userSequence.clear();
     }
 
-  }
-
-  /**
-   * Checks if the box is unlocked.
-   *
-   * @return true if the box is unlocked, false otherwise
-   */
-  public static boolean isBoxUnlocked() {
-    if (safeUnlocked) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   * Resets the lock.
-   */
-  public static void resetLock() {
-    safeUnlocked = false;
-  }
-
-  /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
   }
 
   /**

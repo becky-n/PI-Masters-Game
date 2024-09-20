@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
@@ -20,12 +22,24 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class UnlockBoxController {
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
+  private static GameStateContext context = new GameStateContext();
+
+  /**
+   * Handles the clue menu button click event.
+   *
+   * @param pane the pane to display the clue menu
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  public static void handleClueMenu(Pane pane) throws IOException {
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+    // Set the menu pane to the specified pane
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+  }
 
   @FXML
   private MenuButton menuButton;
@@ -40,7 +54,8 @@ public class UnlockBoxController {
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
   /**
    * Initializes the UnlockBoxController. Sets up the timer, menu navigation,
@@ -51,11 +66,13 @@ public class UnlockBoxController {
    */
   @FXML
   private void initialize() {
+    // Load the sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
 
     animateText("A white hair on the empty ring box, who does it belong to?");
 
+    // Load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
@@ -137,6 +154,7 @@ public class UnlockBoxController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+    
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
     if (suspects[0] && suspects[1] && suspects[2]) {

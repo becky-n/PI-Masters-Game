@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,15 +24,23 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import java.io.IOException;
 
+/**
+ * The SafeController class is responsible for managing the interactions and
+ * events within the safe scene of the application. It handles the
+ * initialization
+ * of the scene, including setting up the timer, menu navigation, chat, and
+ * loading
+ * the clue menu and hints box. It also manages the draggable key and its
+ * interaction
+ * with the target, as well as handling various button click events.
+ */
 public class SafeController {
   public static boolean unlocked = false;
-  private AudioClip buttonClickSound;
+  private static GameStateContext context = new GameStateContext();
 
   @FXML
   private ImageView key;
-
   @FXML
   private Rectangle target;
 
@@ -46,7 +55,7 @@ public class SafeController {
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
 
   /**
    * Initializes the SafeController. Sets up the timer, menu navigation, chat,
@@ -89,10 +98,12 @@ public class SafeController {
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
 
+    // Make the key draggable
     DraggableMaker dm = new DraggableMaker();
     dm.makeDraggable(key);
 
     key.setOnMouseReleased(event -> {
+      // Check if the key is over the target, set scene
       if (isKeyOverTarget(key, target)) {
         unlocked = true;
         try {
@@ -125,6 +136,7 @@ public class SafeController {
    * @throws IOException if there is an I/O error
    */
   private boolean isKeyOverTarget(ImageView key, Rectangle target) {
+    // Check if the key is over the target
     return key.getBoundsInParent().intersects(target.getBoundsInParent());
   }
 
@@ -146,6 +158,7 @@ public class SafeController {
    */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
 

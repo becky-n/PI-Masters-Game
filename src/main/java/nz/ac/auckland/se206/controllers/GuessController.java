@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -9,21 +10,32 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import javafx.scene.control.Button;
+
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.scene.media.AudioClip;
 
 public class GuessController {
   public static boolean play = false;
+  // this field is used to determine if the game is in the guessing state
   public static boolean guess = false;
+
+  /**
+   * Returns whether the game is in the guessing state.
+   *
+   * @return true if the game is in the guessing state, false otherwise
+   */
+  public static boolean inGuessingState() {
+    return guess;
+  }
 
   @FXML
   private ImageView imageView;
@@ -68,15 +80,6 @@ public class GuessController {
 
   private Boolean isTabletOpen;
   private String suspect = "";
-
-  /**
-   * Returns whether the game is in the guessing state.
-   *
-   * @return true if the game is in the guessing state, false otherwise
-   */
-  public static boolean inGuessingState() {
-    return guess;
-  }
 
   /**
    * Sets the game to the guessing state.
@@ -139,12 +142,14 @@ public class GuessController {
    */
   @FXML
   private void handleGuessClick(MouseEvent event) throws IOException {
+    // check if tablet is open
     if (isTabletOpen) {
       return;
     }
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
+    // check what player selected
     if (clickedRectangle.getId().equals("guessRect3")) {
       this.suspect = "Gerald";
       circleGerald.setVisible(true);
@@ -157,6 +162,7 @@ public class GuessController {
       return;
     }
 
+    // if player didn't select gerald
     if (clickedRectangle.getId().equals("guessRect1")) {
       this.suspect = "Andrea";
       circleAndrea.setVisible(true);
@@ -234,20 +240,22 @@ public class GuessController {
    */
   @FXML
   private void handleExitHover(MouseEvent event) {
+    // stop the marker sound
     markerSound.stop();
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     clickedRectangle.getId();
 
+    // remove the image
     if (clickedRectangle.getId().equals("guessRect1")) {
-
+      // Set the image to the original andrea
       imageView.setImage(null);
       andreaMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
-
+      // Set the image to the original jesin
       imageView1.setImage(null);
       jesinMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
-
+      // Set the image to the original gerald
       imageView2.setImage(null);
       geraldMad.setImage(null);
     }
