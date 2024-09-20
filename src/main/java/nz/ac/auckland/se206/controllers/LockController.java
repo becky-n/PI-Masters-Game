@@ -23,10 +23,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-
 
 /**
  * Controller class for the Lock scene.
@@ -282,11 +280,11 @@ public class LockController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
     // play the button click sound
     buttonClickSound.play();
     App.guessClick();
-    
+
   }
 
   /**

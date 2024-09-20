@@ -10,7 +10,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
@@ -22,7 +21,6 @@ import nz.ac.auckland.se206.TimerManager;
  * navigating menus, and updating hints.
  */
 public class LobbyController {
-  private static GameStateContext context = new GameStateContext();
 
   /**
    * Loads the clue menu into the specified pane.
@@ -102,33 +100,9 @@ public class LobbyController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    boolean[] suspects = ChatController.suspectsTalkedTo();
-    boolean[] clues = CrimeController.cluesGuessed();
-
-    // Check if the player has talked to all suspects and found at least one clue
-    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    // Check if the player has talked to all suspects and guessed all clues
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        App.setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    }
+    App.guessClick();
   }
 
   /**
