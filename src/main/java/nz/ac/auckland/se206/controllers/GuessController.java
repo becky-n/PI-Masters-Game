@@ -25,6 +25,15 @@ public class GuessController {
   public static boolean play = false;
   public static boolean guess = false;
 
+  /**
+   * Returns whether the game is in the guessing state.
+   *
+   * @return true if the game is in the guessing state, false otherwise
+   */
+  public static boolean inGuessingState() {
+    return guess;
+  }
+
   @FXML
   private ImageView imageView;
   @FXML
@@ -68,15 +77,6 @@ public class GuessController {
 
   private Boolean isTabletOpen;
   private String suspect = "";
-
-  /**
-   * Returns whether the game is in the guessing state.
-   *
-   * @return true if the game is in the guessing state, false otherwise
-   */
-  public static boolean inGuessingState() {
-    return guess;
-  }
 
   /**
    * Sets the game to the guessing state.
@@ -139,12 +139,14 @@ public class GuessController {
    */
   @FXML
   private void handleGuessClick(MouseEvent event) throws IOException {
+    // check if tablet is open
     if (isTabletOpen) {
       return;
     }
 
     Rectangle clickedRectangle = (Rectangle) event.getSource();
 
+    // check what player selected
     if (clickedRectangle.getId().equals("guessRect3")) {
       this.suspect = "Gerald";
       circleGerald.setVisible(true);
@@ -157,6 +159,7 @@ public class GuessController {
       return;
     }
 
+    // if player didn't select gerald
     if (clickedRectangle.getId().equals("guessRect1")) {
       this.suspect = "Andrea";
       circleAndrea.setVisible(true);
@@ -234,20 +237,22 @@ public class GuessController {
    */
   @FXML
   private void handleExitHover(MouseEvent event) {
+    // stop the marker sound
     markerSound.stop();
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     clickedRectangle.getId();
 
+    // remove the image
     if (clickedRectangle.getId().equals("guessRect1")) {
-
+      // Set the image to the original andrea
       imageView.setImage(null);
       andreaMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect2")) {
-
+      // Set the image to the original jesin
       imageView1.setImage(null);
       jesinMad.setImage(null);
     } else if (clickedRectangle.getId().equals("guessRect3")) {
-
+      // Set the image to the original gerald
       imageView2.setImage(null);
       geraldMad.setImage(null);
     }
