@@ -79,7 +79,6 @@ public class UnlockBoxController {
       e.printStackTrace();
     }
 
-    
     try {
       loadHintsBox(instructionsPane);
     } catch (IOException e) {
@@ -118,21 +117,6 @@ public class UnlockBoxController {
   }
 
   /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-    // Set the menu pane to the specified pane
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
-
-  /**
    * Handles the back button click event.
    *
    * @throws IOException if there is an I/O error
@@ -154,7 +138,7 @@ public class UnlockBoxController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
-    
+
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
     if (suspects[0] && suspects[1] && suspects[2]) {
