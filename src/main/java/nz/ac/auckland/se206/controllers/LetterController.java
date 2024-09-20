@@ -1,18 +1,17 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,29 +19,27 @@ import javafx.util.Duration;
 import javafx.animation.Animation;
 
 public class LetterController {
-
-  // Static variables
-  public static boolean burnt;
-  private static GameStateContext context = new GameStateContext();
-
-  // Instance variables
   private AudioClip buttonClickSound;
 
-  // FXML annotated variables
   @FXML
   private MenuButton menuButton;
+
   @FXML
   private Label timerLabel;
+
   @FXML
   private Pane clueMenu;
+
   @FXML
   private Label infoLabel;
+
   @FXML
   private Pane instructionsPane;
+
   @FXML
   private ImageView envelope;
-
   public static boolean burnt;
+
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -50,7 +47,7 @@ public class LetterController {
    * 
    * @throws IOException if there is an I/O error during initialization
    */
-  public void initialize() throws IOException {
+  public void initialize() throws IOException{
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
@@ -63,6 +60,7 @@ public class LetterController {
     App.timer(timerLabel);
     animateText("Interesting, I wonder what this envelope contains...");
   }
+
 
   /**
    * Handles the envelope click event.
@@ -81,19 +79,7 @@ public class LetterController {
 
   }
 
-  /**
-   * Handles the guess button click event.
-   *
-   * @param event the action event triggered by clicking the guess button
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.play();
-    App.guessClick();
-  }
-
-
+  
   /**
    * Handles the back button click event.
    * 
@@ -127,5 +113,17 @@ public class LetterController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  /**
+   * Handles the guess button click event.
+   *
+   * @param event the action event triggered by clicking the guess button
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.play();
+    App.guessClick();
   }
 }
