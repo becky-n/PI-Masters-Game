@@ -11,7 +11,6 @@ import nz.ac.auckland.se206.GameStateContext;
  */
 public class Guessing implements GameState {
 
-  private final GameStateContext context;
 
   /**
    * Constructs a new Guessing state with the given game state context.
@@ -19,7 +18,6 @@ public class Guessing implements GameState {
    * @param context the context of the game state
    */
   public Guessing(GameStateContext context) {
-    this.context = context;
   }
 
   /**
@@ -33,19 +31,6 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
-    // if (rectangleId.equals("rectCashier") || rectangleId.equals("rectWaitress"))
-    // {
-    // TextToSpeech.speak("You should click on the customers");
-    // return;
-    // }
-
-    // String clickedProfession = context.getProfession(rectangleId);
-    // if (rectangleId.equals(context.getRectIdToGuess())) {
-    // TextToSpeech.speak("Correct! You won! This is the " + clickedProfession);
-    // } else {
-    // TextToSpeech.speak("You lost! This is the " + clickedProfession);
-    // }
-    // context.setState(context.getGameOverState());
   }
 
   @Override
