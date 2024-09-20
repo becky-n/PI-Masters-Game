@@ -202,9 +202,10 @@ public class LetterCloseUpController {
    */
   @FXML
   public void handleMatchBoxClick(MouseEvent event) {
-
+    // Check if the envelope has been clicked twice
     if (envelopeClicked < 2) {
       return;
+      // Check if the matchbox has been clicked
     } else {
       matchBoxClicked = true;
       buttonClickSound.play();
@@ -327,7 +328,9 @@ public class LetterCloseUpController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    // Play the button click sound
     buttonClickSound.play();
+    // Check if all suspects have been talked to and at least one clue has been
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
@@ -337,14 +340,17 @@ public class LetterCloseUpController {
         context.handleGuessClick();
         App.setRoot("guess");
       }
+      // if no suspects talked to and no clues found
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
+      // if no clues found and all suspects talked to
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
       InstructionsManager.getInstance().updateInstructions(
           "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
+      // if no suspects talked to and no clues found
     } else {
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects and find at least one clue before making a guess.");
