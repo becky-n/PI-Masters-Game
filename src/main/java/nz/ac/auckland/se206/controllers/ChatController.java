@@ -30,24 +30,9 @@ import nz.ac.auckland.se206.prompts.PromptEngineering;
  */
 public class ChatController {
 
-  @FXML
-  private TextArea txtaChat;
-  @FXML
-  private TextField txtInput;
-  @FXML
-  private ImageView btnSend;
-  @FXML
-  private Label nameLabel;
-  @FXML
-  private String suspect;
-
   private static boolean Andrea = false;
   private static boolean Jesin = false;
   private static boolean Gerald = false;
-
-  private ChatCompletionRequest chatCompletionRequest;
-  private AudioClip buttonClickSound;
-  private String str = "";
 
   /**
    * Returns the suspects that have been talked to.
@@ -70,6 +55,21 @@ public class ChatController {
     Jesin = false;
     Gerald = false;
   }
+
+  @FXML
+  private TextArea txtaChat;
+  @FXML
+  private TextField txtInput;
+  @FXML
+  private ImageView btnSend;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private String suspect;
+
+  private ChatCompletionRequest chatCompletionRequest;
+  private AudioClip buttonClickSound;
+  private String str = "";
 
   /**
    * Initializes the chat view.
