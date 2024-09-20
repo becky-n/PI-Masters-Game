@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 import javafx.scene.control.Label;
@@ -19,25 +20,28 @@ import javafx.util.Duration;
 import javafx.animation.Animation;
 
 public class LetterController {
+
+  // Static variables
+  public static boolean burnt;
+  private static GameStateContext context = new GameStateContext();
+
+  // Instance variables
   private AudioClip buttonClickSound;
 
+  // FXML annotated variables
   @FXML
   private MenuButton menuButton;
-
   @FXML
   private Label timerLabel;
-
   @FXML
   private Pane clueMenu;
-
   @FXML
   private Label infoLabel;
-
   @FXML
   private Pane instructionsPane;
-
   @FXML
   private ImageView envelope;
+
   public static boolean burnt;
 
   /**
@@ -59,7 +63,6 @@ public class LetterController {
     App.timer(timerLabel);
     animateText("Interesting, I wonder what this envelope contains...");
   }
-
 
   /**
    * Handles the envelope click event.

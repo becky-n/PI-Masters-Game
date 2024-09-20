@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
@@ -8,12 +9,13 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
-import java.io.IOException;
 
 /**
  * Manages the game timer.
  */
 public class TimerManager {
+
+  // Static Fields
   private static TimerManager instance;
 
   /**
@@ -33,9 +35,7 @@ public class TimerManager {
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
   private boolean running;
 
-  /**
-   * Constructs a new TimerManager.
-   */
+  // Constructor
   private TimerManager() {
     // Initialize the timer with a 1-second interval
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {

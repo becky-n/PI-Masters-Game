@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,6 +19,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
+
 
 /**
  * Controller class for the Backstory scene.
@@ -93,11 +93,11 @@ public class BackstoryController {
     KeyFrame keyFrame = new KeyFrame(
         Duration.millis(50), // Change position every 50 milliseconds
         event -> {
-          double OffsetX = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
-          double OffsetY = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+          double offsetX = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double offsetY = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
 
-          screamImg.setTranslateX(OffsetX);
-          screamImg.setTranslateY(OffsetY);
+          screamImg.setTranslateX(offsetX);
+          screamImg.setTranslateY(offsetY);
         });
 
     // Add the keyframe to the timeline

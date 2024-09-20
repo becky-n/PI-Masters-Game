@@ -4,23 +4,17 @@ import nz.ac.auckland.se206.controllers.InstructionsController;
 
 /**
  * The {@code InstructionsManager} class is responsible for managing and
- * updating
- * instructions displayed to the user. It follows the Singleton pattern to
- * ensure
- * there is only one instance of this class throughout the application. The
- * class
- * interacts with an {@link InstructionsController} to update and display
- * instruction
- * messages in the UI.
+ * updating instructions displayed to the user. It follows the Singleton pattern
+ * to
+ * ensure there is only one instance of this class throughout the application.
+ * The
+ * class interacts with an {@link InstructionsController} to update and display
+ * instruction messages in the UI.
  */
 public class InstructionsManager {
-  private static InstructionsManager instance;
-  private String currentInstructions = "Chat to guests and find clues!";
-  private InstructionsController instructionsController;
 
-  // Singleton pattern to ensure only one instance
-  private InstructionsManager() {
-  }
+  // Static Fields
+  private static InstructionsManager instance;
 
   /**
    * Retrieves the singleton instance of {@code InstructionsManager}.
@@ -33,6 +27,14 @@ public class InstructionsManager {
       instance = new InstructionsManager();
     }
     return instance;
+  }
+
+  // Instance Fields
+  private InstructionsController instructionsController;
+  private String currentInstructions = "Chat to guests and find clues!";
+
+  // Constructor (private for singleton pattern)
+  private InstructionsManager() {
   }
 
   /**
