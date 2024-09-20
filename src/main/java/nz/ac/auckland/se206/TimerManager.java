@@ -18,7 +18,18 @@ public class TimerManager {
   // Static Fields
   private static TimerManager instance;
 
-  // Instance Fields
+  /**
+   * Returns the TimerManager instance.
+   *
+   * @return the TimerManager instance
+   */
+  public static synchronized TimerManager getInstance() {
+    if (instance == null) {
+      instance = new TimerManager();
+    }
+    return instance;
+  }
+  
   private GameStateContext context = new GameStateContext();
   private Timeline timer;
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
@@ -69,18 +80,6 @@ public class TimerManager {
       }
     }));
     timer.setCycleCount(Timeline.INDEFINITE);
-  }
-
-  /**
-   * Returns the TimerManager instance.
-   *
-   * @return the TimerManager instance
-   */
-  public static synchronized TimerManager getInstance() {
-    if (instance == null) {
-      instance = new TimerManager();
-    }
-    return instance;
   }
 
   /**

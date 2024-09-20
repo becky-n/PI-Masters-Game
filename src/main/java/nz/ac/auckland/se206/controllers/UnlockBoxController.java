@@ -135,10 +135,15 @@ public class UnlockBoxController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    // play the button click sound
     buttonClickSound.play();
+
+    // Check if all suspects have been talked to and at least one clue has been
+    // found
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
 
+    // Check if the player has talked to all suspects and guessed all clues
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
     if (suspects[0] && suspects[1] && suspects[2]) {
@@ -147,14 +152,20 @@ public class UnlockBoxController {
         App.setRoot("guess");
       }
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      // Display a hint if the player has talked to all suspects but not found any
+      // clues
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      // Display a hint if the player has found at least one clue but not talked to
+      // all suspects
       InstructionsManager.getInstance().updateInstructions(
           "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else {
+      // Display a hint if the player has not talked to all suspects and not found any
+      // clues
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
