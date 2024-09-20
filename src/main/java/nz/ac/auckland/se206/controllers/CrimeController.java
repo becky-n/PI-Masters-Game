@@ -35,7 +35,6 @@ public class CrimeController {
   private AudioClip paperSound;
   private AudioClip glassSound;
   private AudioClip boxSound;
-  
 
   @FXML
   private MenuButton menuButton;
@@ -66,7 +65,6 @@ public class CrimeController {
     paperSound = new AudioClip(getClass().getResource("/sounds/paper.mp3").toString());
     glassSound = new AudioClip(getClass().getResource("/sounds/glass.mp3").toString());
     boxSound = new AudioClip(getClass().getResource("/sounds/box.mp3").toString());
-    
 
     // set hover effects invisible
     safeGlow.setVisible(false);
@@ -201,20 +199,23 @@ public class CrimeController {
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    
+
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().updateInstructions("You" +
+          " must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().updateInstructions("You" +
+          " must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-    } else{
-      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+    } else {
+      InstructionsManager.getInstance().updateInstructions("You" +
+          " must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
   }

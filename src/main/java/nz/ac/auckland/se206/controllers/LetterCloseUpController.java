@@ -117,7 +117,7 @@ public class LetterCloseUpController {
                 timerManager.timeRemainingProperty()));
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
-        "/images/invitationHidden.png").toString());
+          "/images/invitationHidden.png").toString());
       letterOpenedReveal.setImage(imageHidden);
       animateText("interesting, I wonder who wrote this...");
       matchBox.setDisable(true);

@@ -144,7 +144,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void handleCloseOut() {
-  twinkleSound.stop();
+    twinkleSound.stop();
     closeUp.setImage(null);
 
   }
