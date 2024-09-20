@@ -53,17 +53,17 @@ public class LetterController {
    * @throws IOException if there is an I/O error during initialization
    */
   public void initialize() {
-
+    // Play button click sound
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
-
+    // Load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    // Load the hints box
     try {
       loadHintsBox(instructionsPane);
     } catch (IOException e) {
@@ -122,24 +122,29 @@ public class LetterController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    // Play the button click sound
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    // Check if the player has talked to all suspects and found at least one clue
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
+      // if player hasnt talked to all suspects but found one clue
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
+      // if player has talked to all suspects but hasnt found a clue
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
       InstructionsManager.getInstance().updateInstructions(
           "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
+      // if player hasnt talked to all suspects and hasnt found a clue
     } else {
       InstructionsManager.getInstance().updateInstructions(
           "You must talk to all suspects and find at least one clue before making a guess.");

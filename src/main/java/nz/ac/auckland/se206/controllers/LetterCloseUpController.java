@@ -34,14 +34,21 @@ public class LetterCloseUpController {
   private static GameStateContext context = new GameStateContext();
   public static boolean burnt = false;
 
+  /**
+   * Resets the letter to its original state.
+   */
+  public static void resetLetter() {
+    burnt = false;
+  }
+
   // Instance variables
   private AudioClip buttonClickSound;
   private AudioClip matchSound;
-  private GraphicsContext gc;
-  private int envelopeClicked = 0;
   private boolean displayed = false;
   private boolean isErasing = false;
   private boolean matchBoxClicked = false;
+  private GraphicsContext gc;
+  private int envelopeClicked = 0;
 
   // FXML annotated variables
   @FXML
@@ -68,13 +75,6 @@ public class LetterCloseUpController {
   private Pane instructionsPane;
   @FXML
   private Rectangle envelopeCloseUpRec;
-
-  /**
-   * Resets the letter to its original state.
-   */
-  public static void resetLetter() {
-    burnt = false;
-  }
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
