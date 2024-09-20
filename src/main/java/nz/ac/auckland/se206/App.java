@@ -27,7 +27,6 @@ import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
-
 /**
  * The App class serves as the main entry point for the JavaFX application.
  * It extends the Application class and provides various methods to manage
@@ -82,7 +81,7 @@ public class App extends Application {
     Parent oldRoot = getScene().getRoot();
 
     // Create a fade-out transition for the old scene
-    FadeTransition fadeOut = new FadeTransition(javafx.util.Duration.millis(500), oldRoot);
+    FadeTransition fadeOut = new FadeTransition(Duration.millis(500), oldRoot);
     fadeOut.setFromValue(1.0);
     fadeOut.setToValue(0.0);
 
@@ -96,7 +95,7 @@ public class App extends Application {
         Parent newRoot = getScene().getRoot();
 
         // Create a fade-in transition for the new scene
-        FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), newRoot);
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(500), newRoot);
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
 
@@ -111,7 +110,6 @@ public class App extends Application {
     // Start the fade-out transition
     fadeOut.play();
   }
-
 
   /**
    * Loads the clue menu into the specified pane.
@@ -314,7 +312,7 @@ public class App extends Application {
 
     // Create a fade-out transition for the current scene
     FadeTransition fadeOut = new FadeTransition(
-        javafx.util.Duration.millis(500), getScene().getRoot());
+        Duration.millis(500), getScene().getRoot());
     fadeOut.setFromValue(1.0);
     fadeOut.setToValue(0.0);
 
@@ -326,7 +324,7 @@ public class App extends Application {
 
         // Create a fade-in transition for the new scene
         FadeTransition fadeIn = new FadeTransition(
-            javafx.util.Duration.millis(500),
+            Duration.millis(500),
             getScene().getRoot());
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
