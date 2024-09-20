@@ -102,13 +102,15 @@ public class BackstoryController {
     // Create a Timeline to shake the ImageView
     Timeline shakeTimeline = new Timeline();
 
+    // Create a KeyFrame to change the position of the ImageView
     KeyFrame keyFrame = new KeyFrame(
         Duration.millis(50), // Change position every 50 milliseconds
         event -> {
-          double xOffset = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
-          double yOffset = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
-          screamImg.setTranslateX(xOffset);
-          screamImg.setTranslateY(yOffset);
+          double randomXOffset = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double randomYOffset = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+          
+          screamImg.setTranslateX(randomXOffset);
+          screamImg.setTranslateY(randomYOffset);
         });
 
     // Add the keyframe to the timeline
