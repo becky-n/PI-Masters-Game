@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -26,6 +27,7 @@
       </ImageView>
       <ImageView fx:id="letterOpenedReveal" fitHeight="528.0" fitWidth="375.0" layoutX="294.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="letterOpened" fitHeight="528.0" fitWidth="375.0" layoutX="294.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
       <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="18.0" />

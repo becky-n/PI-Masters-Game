@@ -28,21 +28,11 @@
                   <Image url="@../images/box14.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="14.0" />
-               </font>
-            </Button>
             <Button fx:id="backButton" layoutX="49.0" layoutY="406.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </MenuButton>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
@@ -74,6 +64,17 @@
                   <ColorAdjust brightness="1.0" />
                </effect>
             </ImageView>
+            <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
+            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </MenuButton>
+            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

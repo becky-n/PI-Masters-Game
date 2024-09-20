@@ -101,12 +101,12 @@ public class AisleController {
       // Display a hint if the player has talked to all suspects but not found any
       // clues
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().updateInstructions(
+          "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else {
       InstructionsManager.getInstance()
