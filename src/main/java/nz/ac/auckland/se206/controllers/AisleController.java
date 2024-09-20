@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,9 +14,6 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import java.io.IOException;
-import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 
 /**
  * Controller class for the Aisle scene.
@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
  * navigating menus, and updating hints.
  */
 public class AisleController {
-  private AudioClip buttonClickSound;
+  private static GameStateContext context = new GameStateContext();
 
   @FXML
   private MenuButton menuButton;
@@ -37,7 +37,7 @@ public class AisleController {
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
 
   /**
    * Initializes the AisleController. Sets up the timer, menu navigation, chat,
@@ -47,12 +47,14 @@ public class AisleController {
    */
   @FXML
   private void initialize() throws IOException {
+    // Load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
+    // Load the hints box
     try {
       loadHintsBox(instructionsPane);
     } catch (IOException e) {
@@ -86,6 +88,7 @@ public class AisleController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    // Check if the player has talked to all suspects and found at least one clue
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
@@ -95,14 +98,17 @@ public class AisleController {
         context.handleGuessClick();
         App.setRoot("guess");
       }
+      // Display a hint if the player has talked to all suspects but not found any
+      // clues
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
       InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-    } else{
-      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+    } else {
+      InstructionsManager.getInstance()
+          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
   }
@@ -115,6 +121,7 @@ public class AisleController {
    */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
 
@@ -130,6 +137,7 @@ public class AisleController {
    * @throws IOException if there is an I/O error during loading
    */
   private void loadHintsBox(Pane pane) throws IOException {
+    // Load the hints box
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
     pane.getChildren().clear();
@@ -144,6 +152,7 @@ public class AisleController {
   public void updateHint(String newHint) {
     InstructionsManager.getInstance().updateInstructions(newHint);
 
+    // Update the instructions
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hintsBox.fxml"));
     try {
       InstructionsManager hintsController = loader.getController();

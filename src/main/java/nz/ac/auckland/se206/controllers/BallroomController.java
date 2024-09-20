@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,12 +14,9 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import java.io.IOException;
-import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 
 public class BallroomController {
-  private AudioClip buttonClickSound;
+  private static GameStateContext context = new GameStateContext();
 
   @FXML
   private MenuButton menuButton;
@@ -31,7 +31,7 @@ public class BallroomController {
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
 
   /**
    * Controller class for the Ballroom scene.
@@ -40,12 +40,14 @@ public class BallroomController {
    */
   @FXML
   private void initialize() throws IOException {
+    // Load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
+    // Load the hints box
     try {
       loadHintsBox(instructionsPane);
     } catch (IOException e) {
@@ -79,8 +81,12 @@ public class BallroomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    // Check if all suspects have been talked to and at least one clue has been
+    // found
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+
+    // Check if the player has talked to all suspects and guessed all clues
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
     if (suspects[0] && suspects[1] && suspects[2]) {
@@ -88,14 +94,17 @@ public class BallroomController {
         context.handleGuessClick();
         App.setRoot("guess");
       }
+      // Display a hint if the player has talked to all suspects but not found any
+      // clues
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions("You must talk to all suspects before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
       InstructionsManager.getInstance().updateInstructions("You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-    } else{
-      InstructionsManager.getInstance().updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+    } else {
+      InstructionsManager.getInstance()
+          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
   }
@@ -108,6 +117,7 @@ public class BallroomController {
    */
   @FXML
   public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
     pane.getChildren().clear();
@@ -122,6 +132,7 @@ public class BallroomController {
    * @throws IOException if there is an I/O error during loading the hints box
    */
   private void loadHintsBox(Pane pane) throws IOException {
+    // Load the hints box
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
     // Assuming you want to add it to the root pane or a specific pane in the scene
