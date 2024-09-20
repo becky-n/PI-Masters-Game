@@ -4,12 +4,10 @@ import java.io.IOException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
@@ -19,14 +17,10 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
-import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 
 public class WindowController {
   public static boolean fabricFound = false;
-  private static GameStateContext context = new GameStateContext();
 
   /**
    * Resets the fabricFound variable to false.
@@ -46,21 +40,6 @@ public class WindowController {
     } else {
       return false;
     }
-  }
-
-  /**
-   * Loads the clue menu into the specified pane.
-   *
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
   }
 
   @FXML
@@ -133,17 +112,9 @@ public class WindowController {
     dm.makeDraggable(glass5);
 
     // load the clue menu
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.loadHintsBox(instructionsPane);
 
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
@@ -152,30 +123,7 @@ public class WindowController {
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    TimerManager timerManager = TimerManager.getInstance();
-
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel
-        .textProperty()
-        .bind(
-            Bindings.createStringBinding(
-                () -> String.format(
-                    "%02d:%02d",
-                    timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
-                timerManager.timeRemainingProperty()));
-  }
-
-  /**
-   * Loads the hints box into the provided pane.
-   * 
-   * @param pane the pane where the hints box will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
+    App.timer(timerLabel);
   }
 
   /**
@@ -185,34 +133,10 @@ public class WindowController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
     // play the button click sound
     buttonClickSound.play();
-
-    // check if the player has talked to all suspects and guessed all clues
-    boolean[] suspects = ChatController.suspectsTalkedTo();
-    boolean[] clues = CrimeController.cluesGuessed();
-
-    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        App.setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    }
+    App.guessClick();
   }
 
   /**

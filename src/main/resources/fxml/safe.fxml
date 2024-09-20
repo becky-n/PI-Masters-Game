@@ -44,7 +44,7 @@
                </font>
             </Button>
             <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
-            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
+            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#onHandleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>

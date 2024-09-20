@@ -61,7 +61,7 @@
             <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="365.0" layoutY="300.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
             <Rectangle fx:id="letter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="510.0" layoutY="311.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
             <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="520.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
-            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
+            <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#onHandleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>

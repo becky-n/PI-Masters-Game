@@ -1,10 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -14,9 +12,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
 
 /**
  * Controller class for the Crime scene.
@@ -97,7 +93,6 @@ public class CrimeController {
   @FXML
   private void initialize() throws IOException {
     // call clue menu
-    handleClueMenu(clueMenu);
 
     // load sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -112,30 +107,17 @@ public class CrimeController {
     invitationGlow.setVisible(false);
 
     // load interface elements
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    // load hints box
+    App.loadHintsBox(instructionsPane);
 
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    TimerManager timerManager = TimerManager.getInstance();
+    App.timer(timerLabel);
 
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel.textProperty().bind(
-        Bindings.createStringBinding(() -> String.format("%02d:%02d",
-            timerManager.getTimeRemaining() / 60,
-            timerManager.getTimeRemaining() % 60),
-            timerManager.timeRemainingProperty()));
   }
 
   /**
@@ -239,66 +221,9 @@ public class CrimeController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    // initialize suspects and clues to be stored in arrays
-    boolean[] suspects = ChatController.suspectsTalkedTo();
-    boolean[] clues = CrimeController.cluesGuessed();
-
-    // check if all suspects have been talked to and at least one clue has been
-    // found
-    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        App.setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else {
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    }
-  }
-
-  /**
-   * Loads the clue menu into the specified pane.
-   * 
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
-   */
-  @FXML
-  public void handleClueMenu(Pane pane) throws IOException {
-    // load clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-
-  }
-
-  /**
-   * Loads the hints box into the specified pane.
-   * 
-   * @param pane the pane to which the hints box should be added
-   * @throws IOException if there is an I/O error during loading the hints box
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    // load hints box
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
+    App.guessClick();
   }
 
 }

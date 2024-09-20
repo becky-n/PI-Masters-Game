@@ -6,12 +6,10 @@ import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -23,10 +21,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
-import nz.ac.auckland.se206.TimerManager;
-
 
 /**
  * Controller class for the Lock scene.
@@ -37,21 +32,6 @@ import nz.ac.auckland.se206.TimerManager;
 public class LockController {
   public static boolean safeUnlocked = false;
   private static GameStateContext context = new GameStateContext();
-
-  /**
-   * Handles the clue menu button click event.
-   *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-  }
 
   /**
    * Checks if the box is unlocked.
@@ -105,7 +85,7 @@ public class LockController {
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
     // Load the sound files
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     unlockSound = new AudioClip(getClass().getResource("/sounds/unlock.mp3").toString());
@@ -117,49 +97,16 @@ public class LockController {
 
     animateText("Try rotating the key, is there a pattern needed to unlock the box?");
 
-    try {
-      handleClueMenu(clueMenu);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.handleClueMenu(clueMenu);
 
-    try {
-      loadHintsBox(instructionsPane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    App.loadHintsBox(instructionsPane);
 
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
 
-    TimerManager timerManager = TimerManager.getInstance();
+    App.timer(timerLabel);
 
-    // Bind the timerLabel to the timeRemaining property
-    timerLabel
-        .textProperty()
-        .bind(
-            Bindings.createStringBinding(
-                () -> String.format(
-                    "%02d:%02d",
-                    timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
-                timerManager.timeRemainingProperty()));
-
-  }
-
-  /**
-   * Loads the hints box into the provided pane.
-   * 
-   * @param pane the pane where the hints box will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  private void loadHintsBox(Pane pane) throws IOException {
-    System.out.println("Pane visibility: " + instructionsPane.isVisible());
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
-    Pane hintsPane = loader.load();
-    pane.getChildren().clear();
-    pane.getChildren().add(hintsPane);
   }
 
   /**
@@ -282,42 +229,11 @@ public class LockController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  private void onHandleGuessClick(ActionEvent event) throws IOException {
     // play the button click sound
     buttonClickSound.play();
+    App.guessClick();
 
-    // Check if all suspects have been talked to and at least one clue has been
-    // found
-    boolean[] suspects = ChatController.suspectsTalkedTo();
-    boolean[] clues = CrimeController.cluesGuessed();
-
-    // Check if the player has talked to all suspects and guessed all clues
-    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        App.setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      // Display a hint if the player has talked to all suspects but not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      // Display a hint if the player has found at least one clue but not talked to
-      // all suspects
-      InstructionsManager.getInstance().updateInstructions(
-          "You must find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else {
-      // Display a hint if the player has not talked to all suspects and not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    }
   }
 
   /**

@@ -3,7 +3,9 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,20 +14,23 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
 import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
+
 /**
- * This is the entry point of the JavaFX application. This class initializes and
- * runs the JavaFX
- * application.
+ * The App class serves as the main entry point for the JavaFX application.
+ * It extends the Application class and provides various methods to manage
+ * scenes, transitions, and interactions within the application.
  */
 public class App extends Application {
 
   private static Scene scene;
   private static String currentSceneId;
+  private static GameStateContext context = new GameStateContext();
 
   /**
    * The main method that launches the JavaFX application.
@@ -131,6 +136,38 @@ public class App extends Application {
   }
 
   /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void loadHintsBox(Pane pane) throws IOException {
+    // Load the hints box
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/instructions.fxml"));
+    Pane hintsPane = loader.load();
+    pane.getChildren().clear();
+    pane.getChildren().add(hintsPane);
+  }
+
+  /**
+   * Updates the instructions in the hints box.
+   * 
+   * @param newHint the new hint to display in the hints box
+   */
+  public static void updateHint(String newHint) {
+    InstructionsManager.getInstance().updateInstructions(newHint);
+
+    // You can update the hint dynamically by accessing the controller
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/hintsBox.fxml"));
+    try {
+      InstructionsManager hintsController = loader.getController();
+      hintsController.updateInstructions("hello");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
    * Opens the tablet view and sets the suspect in the tablet controller.
    *
    * @param name     the suspect to set in the tablet controller
@@ -157,6 +194,70 @@ public class App extends Application {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public static void guessClick() throws IOException {
+    // Check if all suspects have been talked to and at least one clue has been
+    // found
+    boolean[] suspects = ChatController.suspectsTalkedTo();
+    boolean[] clues = CrimeController.cluesGuessed();
+
+    // Check if the player has talked to all suspects and guessed all clues
+    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
+    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    if (suspects[0] && suspects[1] && suspects[2]) {
+      if (clues[0] || clues[1] || clues[2]) {
+        context.handleGuessClick();
+        setRoot("guess");
+      }
+    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      // Display a hint if the player has talked to all suspects but not found any
+      // clues
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      // Display a hint if the player has found at least one clue but not talked to
+      // all suspects
+      InstructionsManager.getInstance().updateInstructions(
+          "You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else {
+      // Display a hint if the player has not talked to all suspects and not found any
+      // clues
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects and find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    }
+  }
+
+  /**
+   * Loads the clue menu into the provided pane.
+   * 
+   * @param pane the pane where the clue menu will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+  }
+
+  public static void timer(Label timerLabel) {
+    TimerManager timerManager = TimerManager.getInstance();
+    // Start the timer if it's the first scene
+    if (!timerManager.isRunning()) {
+      timerManager.start(300);
+    }
+
+    timerLabel.textProperty().bind(
+        Bindings.createStringBinding(() -> String.format("%02d:%02d",
+            timerManager.getTimeRemaining() / 60,
+            timerManager.getTimeRemaining() % 60),
+            timerManager.timeRemainingProperty()));
   }
 
   /**
