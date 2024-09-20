@@ -11,9 +11,7 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-
 import java.io.IOException;
-
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 

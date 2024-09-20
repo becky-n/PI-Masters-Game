@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -105,10 +104,10 @@ public class BackstoryController {
     KeyFrame keyFrame = new KeyFrame(
         Duration.millis(50), // Change position every 50 milliseconds
         event -> {
-          double xOffset = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
-          double yOffset = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
-          screamImg.setTranslateX(xOffset);
-          screamImg.setTranslateY(yOffset);
+          double xOffSet = (Math.random() - 0.5) * 20; // Random X offset (-10 to 10)
+          double yOffSet = (Math.random() - 0.5) * 20; // Random Y offset (-10 to 10)
+          screamImg.setTranslateX(xOffSet);
+          screamImg.setTranslateY(yOffSet);
         });
 
     // Add the keyframe to the timeline

@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -181,7 +180,8 @@ public class App extends Application {
     }
 
     // Create a fade-out transition for the current scene
-    FadeTransition fadeOut = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
+    FadeTransition fadeOut = new FadeTransition(
+        javafx.util.Duration.millis(500), getScene().getRoot());
     fadeOut.setFromValue(1.0);
     fadeOut.setToValue(0.0);
 
@@ -192,7 +192,9 @@ public class App extends Application {
         getScene().setRoot(timesUpContent);
 
         // Create a fade-in transition for the new scene
-        FadeTransition fadeIn = new FadeTransition(javafx.util.Duration.millis(500), getScene().getRoot());
+        FadeTransition fadeIn = new FadeTransition(
+            javafx.util.Duration.millis(500),
+            getScene().getRoot());
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
 

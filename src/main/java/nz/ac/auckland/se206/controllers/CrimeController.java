@@ -16,7 +16,6 @@ import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 
 /**
