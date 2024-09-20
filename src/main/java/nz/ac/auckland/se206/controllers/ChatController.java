@@ -126,11 +126,14 @@ public class ChatController {
    */
 
   public void setSuspect(String suspect) {
+    // Set the suspect
     this.suspect = suspect;
     nameLabel.setText(suspect);
 
+    // loading text
     txtaChat.setText("✨ " + suspect + " is thinking...✨");
 
+    // Initialize the ChatCompletionRequest
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
       chatCompletionRequest = new ChatCompletionRequest(config)
