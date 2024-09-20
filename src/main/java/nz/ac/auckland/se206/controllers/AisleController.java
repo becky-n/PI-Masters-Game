@@ -24,6 +24,23 @@ import nz.ac.auckland.se206.TimerManager;
 public class AisleController {
   private static GameStateContext context = new GameStateContext();
 
+  /**
+   * Loads the clue menu into the provided pane.
+   * 
+   * @param pane the pane where the clue menu will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  @FXML
+  public static void handleClueMenu(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
+    Pane menuPane = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(menuPane);
+
+  }
+
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -101,35 +118,21 @@ public class AisleController {
       // Display a hint if the player has talked to all suspects but not found any
       // clues
     } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must find at least one clue before making a guess.");
+  } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must find at least one clue before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    } else {
-      InstructionsManager.getInstance()
-          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
+  } else {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects and find at least one clue before making a guess."
+      );
       InstructionsManager.getInstance().showInstructions();
-    }
-  }
-
-  /**
-   * Loads the clue menu into the provided pane.
-   * 
-   * @param pane the pane where the clue menu will be loaded
-   * @throws IOException if there is an I/O error during loading
-   */
-  @FXML
-  public static void handleClueMenu(Pane pane) throws IOException {
-    // Load the clue menu
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
-    Pane menuPane = loader.load();
-
-    pane.getChildren().clear();
-    pane.getChildren().add(menuPane);
-
+  }  
   }
 
   /**
