@@ -25,6 +25,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="envelopeRec" arcHeight="5.0" arcWidth="5.0" fill="#a14f4f00" height="68.0" layoutX="230.0" layoutY="274.0" onMouseClicked="#handleEnvelopeClick" opacity="0.0" rotate="-20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="151.0" />
+      <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
       <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Crime Scene" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="18.0" />

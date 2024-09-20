@@ -17,6 +17,7 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 import javafx.scene.image.Image;
@@ -36,6 +37,8 @@ public class UnlockBoxController {
   private Label infoLabel;
   @FXML
   private ImageView closeUp;
+  @FXML
+  private Pane instructionsPane;
 
   private static GameStateContext context = new GameStateContext();
 
@@ -59,6 +62,13 @@ public class UnlockBoxController {
       e.printStackTrace();
     }
 
+    
+    try {
+      loadHintsBox(instructionsPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     // Initialize the controller
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
@@ -75,6 +85,19 @@ public class UnlockBoxController {
                     timerManager.getTimeRemaining() / 60, timerManager.getTimeRemaining() % 60),
                 timerManager.timeRemainingProperty()));
 
+  }
+
+  /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  private void loadHintsBox(Pane pane) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
+    Pane hintsPane = loader.load();
+    pane.getChildren().clear();
+    pane.getChildren().add(hintsPane);
   }
 
   /**
@@ -112,15 +135,27 @@ public class UnlockBoxController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    // Check if the player has talked to all suspects and guessed all clues
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
+    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
         App.setRoot("guess");
       }
-
+    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+    } else {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects and find at least one clue before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
     }
   }
 
