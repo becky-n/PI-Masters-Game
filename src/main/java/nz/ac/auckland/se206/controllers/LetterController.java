@@ -82,7 +82,7 @@ public class LetterController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  public void onBack() throws IOException {
+  private void onBack() throws IOException {
     // Play button click sound
     buttonClickSound.play();
     App.setRoot("crime");

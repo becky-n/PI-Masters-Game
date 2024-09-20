@@ -23,7 +23,7 @@ import nz.ac.auckland.se206.TimerManager;
 public class GuessController {
   public static boolean play = false;
   // this field is used to determine if the game is in the guessing state
-  public static boolean guess = false;
+  public static boolean guess1 = false;
 
   /**
    * Returns whether the game is in the guessing state.
@@ -31,7 +31,7 @@ public class GuessController {
    * @return true if the game is in the guessing state, false otherwise
    */
   public static boolean inGuessingState() {
-    return guess;
+    return guess1;
   }
 
   @FXML
@@ -88,7 +88,7 @@ public class GuessController {
     sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
     happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
 
-    guess = true;
+    guess1 = true;
 
     playAgainButton.setVisible(false);
     close.setVisible(false);
@@ -220,7 +220,7 @@ public class GuessController {
     WindowController.resetFabric();
     LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
-    guess = false;
+    guess1 = false;
     App.setRoot("menu");
 
   }

@@ -54,7 +54,7 @@ public class TimesUpController {
     WindowController.resetFabric();
     LetterCloseUpController.resetLetter();
     TimerManager.getInstance().reset(300);
-    GuessController.guess = false;
+    GuessController.guess1 = false;
     App.setRoot("menu");
   }
 
