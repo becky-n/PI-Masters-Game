@@ -93,7 +93,6 @@ public class GuessController {
     playAgainButton.setVisible(false);
     close.setVisible(false);
 
-
     // reset for each new game
     isTabletOpen = false;
 
@@ -269,7 +268,7 @@ public class GuessController {
   }
 
   @FXML
-  private void handleClose(){
+  private void handleClose() {
     Platform.exit();
   }
 
@@ -308,8 +307,6 @@ public class GuessController {
     playAgainButton.setVisible(toggle);
     close.setVisible(toggle);
 
- 
   }
-
 
 }

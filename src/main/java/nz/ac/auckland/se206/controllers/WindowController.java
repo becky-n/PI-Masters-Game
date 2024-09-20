@@ -63,7 +63,8 @@ public class WindowController {
     // if they have already found the fabric
     if (fabricFound) {
       fabric.setImage(new Image("/images/fabric4.png"));
-      animateText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
+      animateText("A torn piece of black fabric… it" +
+          " seems familiar, but where have I seen it before?");
 
       // hide the glass images
       glass1.setVisible(false);

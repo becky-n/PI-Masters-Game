@@ -167,7 +167,7 @@ public class BackstoryController {
   }
 
   @FXML
-  private void handleClose(){
+  private void handleClose() {
     Platform.exit();
   }
 
