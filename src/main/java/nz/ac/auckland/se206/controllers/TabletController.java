@@ -214,6 +214,7 @@ public class TabletController {
   private void onSendMessage() throws ApiProxyException, IOException {
     buttonClickSound.play();
     String message = txtInput.getText().trim();
+    TimerManager.getInstance().stop();
     if (message.isEmpty()) {
       // case where user tries to send an empty message
       return;
