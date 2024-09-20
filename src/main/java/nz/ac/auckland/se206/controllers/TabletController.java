@@ -32,7 +32,10 @@ import nz.ac.auckland.se206.prompts.PromptEngineering;
  */
 public class TabletController {
   public static boolean finished = false;
-  private GuessController guess;
+
+  public static boolean isFinished() {
+    return finished;
+  }
 
   @FXML
   private TextArea txtaChat;
@@ -52,6 +55,7 @@ public class TabletController {
   private ChatCompletionRequest chatCompletionRequest;
   private AudioClip buttonClickSound;
   private String str = "";
+  private GuessController guess;
 
   /**
    * Initializes the chat view.
@@ -66,7 +70,6 @@ public class TabletController {
 
     loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    
 
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
@@ -101,16 +104,18 @@ public class TabletController {
    * @param suspect the suspect to set
    * @throws IOException
    */
-
   public void setSuspect(String suspect, GuessController guess) throws IOException {
+    // Set the suspect
     this.suspect = suspect;
     this.guess = guess;
 
     nameLabel.setText(suspect);
 
+    // Set the system prompt
     this.str = "Why do you think " + suspect + " stole the ring?";
     txtaChat.appendText(str);
 
+    // Initialize the ChatCompletionRequest
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
       chatCompletionRequest = new ChatCompletionRequest(config)
@@ -122,7 +127,6 @@ public class TabletController {
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
-
   }
 
   /**
@@ -253,9 +257,5 @@ public class TabletController {
     timeline.setCycleCount(Animation.INDEFINITE); // Keep the timeline running
     timeline.play();
 
-  }
-
-  public static boolean isFinished() {
-    return finished;
   }
 }

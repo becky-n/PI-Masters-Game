@@ -24,9 +24,28 @@ import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
 
 public class WindowController {
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
   public static boolean fabricFound = false;
+  private static GameStateContext context = new GameStateContext();
+
+  /**
+   * Resets the fabricFound variable to false.
+   */
+  public static void resetFabric() {
+    fabricFound = false;
+  }
+
+  /**
+   * Returns whether the fabric has been found.
+   *
+   * @return true if the fabric has been found, false otherwise
+   */
+  public static boolean fabricFound() {
+    if (fabricFound) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @FXML
   private MenuButton menuButton;
@@ -49,7 +68,8 @@ public class WindowController {
   @FXML
   private ImageView fabric;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
 
   /**
    * Initializes the WindowController. Sets up the timer, menu navigation, chat,
@@ -63,7 +83,8 @@ public class WindowController {
     // if they have already found the fabric
     if (fabricFound) {
       fabric.setImage(new Image("/images/fabric4.png"));
-      animateText("A torn piece of black fabric… it seems familiar, but where have I seen it before?");
+      animateText("A torn piece of black fabric… it seems familiar, "
+          + "but where have I seen it before?");
 
       // hide the glass images
       glass1.setVisible(false);
@@ -127,9 +148,15 @@ public class WindowController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    // play the button click sound
     buttonClickSound.play();
+
+    // check if the player has talked to all suspects and guessed all clues
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+
+    // if they have talked to all suspects and guessed all clues, go to the guess
+    // screen
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
@@ -169,8 +196,8 @@ public class WindowController {
       fabric.setImage(new Image("/images/fabric4.png"));
       twinkleSound.play();
       fabricFound = true;
-      animateText("A torn piece of black fabric… " +
-          "it seems familiar, but where have I seen it before?");
+      animateText("A torn piece of black fabric… "
+          + "it seems familiar, but where have I seen it before?");
     }
 
     onHoverFabric();
@@ -182,10 +209,13 @@ public class WindowController {
   @FXML
   public void onHoverFabric() {
     if (fabric.getImage().getUrl().contains("fabric1")) {
+      // change to fabric1hover
       fabric.setImage(new Image("/images/fabric1hover.png"));
     } else if (fabric.getImage().getUrl().contains("fabric2")) {
+      // change to fabric2hover
       fabric.setImage(new Image("/images/fabric2hover.png"));
     } else if (fabric.getImage().getUrl().contains("fabric3")) {
+      // change to fabric3hover
       fabric.setImage(new Image("/images/fabric3hover.png"));
     }
   }
@@ -196,10 +226,13 @@ public class WindowController {
   @FXML
   public void offHoverFabric() {
     if (fabric.getImage().getUrl().contains("fabric1")) {
+      // change to fabric1
       fabric.setImage(new Image("/images/fabric1.png"));
     } else if (fabric.getImage().getUrl().contains("fabric2")) {
+      // change to fabric2
       fabric.setImage(new Image("/images/fabric2.png"));
     } else if (fabric.getImage().getUrl().contains("fabric3")) {
+      // change to fabric3
       fabric.setImage(new Image("/images/fabric3.png"));
     }
   }
@@ -232,25 +265,5 @@ public class WindowController {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
-  }
-
-  /**
-   * Resets the fabricFound variable to false.
-   */
-  public static void resetFabric() {
-    fabricFound = false;
-  }
-
-  /**
-   * Returns whether the fabric has been found.
-   *
-   * @return true if the fabric has been found, false otherwise
-   */
-  public static boolean fabricFound() {
-    if (fabricFound) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
