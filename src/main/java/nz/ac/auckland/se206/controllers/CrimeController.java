@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,15 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.shape.Rectangle;
-import java.io.IOException;
+
 
 /**
  * Controller class for the Crime scene.
@@ -25,16 +26,43 @@ import java.io.IOException;
  */
 public class CrimeController {
   private static GameStateContext context = new GameStateContext();
-
+  // set clues to false by default
   private static boolean safe = false;
   private static boolean glass = false;
   private static boolean letter = false;
 
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
-  private AudioClip paperSound;
-  private AudioClip glassSound;
-  private AudioClip boxSound;
+  /**
+   * Resets the clues by setting the safe, glass, and letter variables to false.
+   * This method is typically used to clear any previously set clues and start
+   * fresh.
+   */
+  public static void resetClues() {
+    // reset all of the clues to false (not found)
+    safe = false;
+    glass = false;
+    letter = false;
+  }
+
+  /**
+   * This method returns an array of boolean values representing whether
+   * specific clues have been guessed. The array contains three elements:
+   * <ul>
+   * <li>clues[0] - represents whether clue1 (safe) has been guessed</li>
+   * <li>clues[1] - represents whether clue2 (glass) has been guessed</li>
+   * <li>clues[2] - represents whether clue3 (letter) has been guessed</li>
+   * </ul>
+   *
+   * @return a boolean array where each element indicates if a corresponding clue
+   *         has been guessed
+   */
+  public static boolean[] cluesGuessed() {
+    boolean[] clues = new boolean[3];
+
+    clues[0] = safe; // represents clue1
+    clues[1] = glass; // represents clue2
+    clues[2] = letter; // represents clue3
+    return clues;
+  }
 
   @FXML
   private MenuButton menuButton;
@@ -51,6 +79,13 @@ public class CrimeController {
   @FXML
   private Pane instructionsPane;
 
+  // Sound effects
+  private AudioClip buttonClickSound;
+  private AudioClip twinkleSound;
+  private AudioClip paperSound;
+  private AudioClip glassSound;
+  private AudioClip boxSound;
+
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
    * and loads the clue menu and hints box.
@@ -59,7 +94,10 @@ public class CrimeController {
    */
   @FXML
   private void initialize() throws IOException {
+    // call clue menu
     handleClueMenu(clueMenu);
+
+    // load sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
     paperSound = new AudioClip(getClass().getResource("/sounds/paper.mp3").toString());
@@ -71,6 +109,7 @@ public class CrimeController {
     glassPileGlow.setVisible(false);
     invitationGlow.setVisible(false);
 
+    // load interface elements
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
@@ -105,7 +144,7 @@ public class CrimeController {
    */
   @FXML
   private void onHover(MouseEvent event) throws IOException {
-
+    // handle hover for clues
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
@@ -128,6 +167,7 @@ public class CrimeController {
    */
   @FXML
   private void offHover(MouseEvent event) throws IOException {
+    // handle mouse off hover for clues
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("safe")) {
@@ -153,10 +193,13 @@ public class CrimeController {
     buttonClickSound.play();
     twinkleSound.play();
 
+    // get clicked rectangle and handle click
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
 
+    // set clue scene based on clicked rectangle
     if (clickedRectangle.getId().equals("safe")) {
+      // if clue is found set to different scene
       if (LockController.isBoxUnlocked()) {
         App.setRoot("unlockBox");
         return;
@@ -173,6 +216,7 @@ public class CrimeController {
     }
     if (clickedRectangle.getId().equals("letter")) {
       boolean isBurnt = LetterCloseUpController.burnt;
+      // if clue is found set to different scene
       if (isBurnt) {
         App.setRoot("letterCloseUp");
         return;
@@ -195,8 +239,12 @@ public class CrimeController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
+    // initialize suspects and clues to be stored in arrays
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+
+    // check if all suspects have been talked to and at least one clue has been
+    // found
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
 
@@ -214,8 +262,8 @@ public class CrimeController {
           " must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     } else {
-      InstructionsManager.getInstance().updateInstructions("You" +
-          " must talk to all suspects and find at least one clue before making a guess.");
+      InstructionsManager.getInstance()
+          .updateInstructions("You must talk to all suspects and find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
     }
   }
@@ -228,27 +276,13 @@ public class CrimeController {
    */
   @FXML
   public void handleClueMenu(Pane pane) throws IOException {
+    // load clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/clueMenu.fxml"));
     Pane menuPane = loader.load();
 
     pane.getChildren().clear();
     pane.getChildren().add(menuPane);
 
-  }
-
-  public static void resetClues() {
-    safe = false;
-    glass = false;
-    letter = false;
-  }
-
-  public static boolean[] cluesGuessed() {
-    boolean[] clues = new boolean[3];
-
-    clues[0] = safe; // represents clue1
-    clues[1] = glass; // represents clue2
-    clues[2] = letter; // represents clue3
-    return clues;
   }
 
   /**
@@ -258,6 +292,7 @@ public class CrimeController {
    * @throws IOException if there is an I/O error during loading the hints box
    */
   private void loadHintsBox(Pane pane) throws IOException {
+    // load hints box
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
     Pane hintsPane = loader.load();
     pane.getChildren().clear();

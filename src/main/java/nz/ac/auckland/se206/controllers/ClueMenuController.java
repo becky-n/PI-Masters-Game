@@ -1,17 +1,21 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+/**
+ * The ClueMenuController class is responsible for managing the clue menu in the
+ * application.
+ * It initializes the clues based on the game state and updates the clue images
+ * accordingly.
+ */
 public class ClueMenuController {
 
   @FXML
   private ImageView clue1;
-
   @FXML
   private ImageView clue2;
-
   @FXML
   private ImageView clue3;
 
@@ -22,8 +26,9 @@ public class ClueMenuController {
     boolean[] clues = CrimeController.cluesGuessed();
     boolean isBurnt = LetterCloseUpController.burnt;
 
+    // if clues not found don't show an image
     if (!clues[0]) {
-      clue1.setImage(null); // Or a default image if you prefer
+      clue1.setImage(null);
     }
     if (!clues[1]) {
       clue2.setImage(null);
@@ -32,6 +37,7 @@ public class ClueMenuController {
       clue3.setImage(null);
     }
 
+    // show clue image if clue is found
     if (clues[0] && LockController.isBoxUnlocked()) {
       clue1.setImage(new Image("/images/ring_clue.png"));
     }

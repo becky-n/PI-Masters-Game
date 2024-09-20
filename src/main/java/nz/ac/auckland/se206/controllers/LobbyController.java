@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
+import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,9 +14,6 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.InstructionsManager;
 import nz.ac.auckland.se206.Navigation;
 import nz.ac.auckland.se206.TimerManager;
-import java.io.IOException;
-import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 
 /**
  * Controller class for the Lobby scene.
@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
  * navigating menus, and updating hints.
  */
 public class LobbyController {
-  private AudioClip buttonClickSound;
+  private static GameStateContext context = new GameStateContext();
 
   @FXML
   private MenuButton menuButton;
@@ -30,14 +30,13 @@ public class LobbyController {
   private Label timerLabel;
   @FXML
   private Pane chatPane;
-
   @FXML
   private Pane clueMenu;
 
   @FXML
   private Pane instructionsPane;
 
-  private static GameStateContext context = new GameStateContext();
+  private AudioClip buttonClickSound;
 
   /**
    * Initializes the LobbyController. Sets up the timer, menu navigation, chat,
@@ -47,12 +46,14 @@ public class LobbyController {
    */
   @FXML
   private void initialize() throws IOException {
+    // Load the clue menu
     try {
       handleClueMenu(clueMenu);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
+    // Load the hints box
     try {
       loadHintsBox(instructionsPane);
     } catch (IOException e) {
@@ -88,8 +89,11 @@ public class LobbyController {
     buttonClickSound.play();
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+
+    // Check if the player has talked to all suspects and found at least one clue
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    // Check if the player has talked to all suspects and guessed all clues
     if (suspects[0] && suspects[1] && suspects[2]) {
       if (clues[0] || clues[1] || clues[2]) {
         context.handleGuessClick();
