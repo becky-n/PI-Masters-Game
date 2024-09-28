@@ -226,7 +226,7 @@ public class App extends Application {
     }
   }
 
-  public static void guessClick() throws IOException {
+  public static boolean guessClick() throws IOException {
     // Check if all suspects have been talked to and at least one clue has been
     // found
     boolean[] suspects = ChatController.suspectsTalkedTo();
@@ -235,30 +235,35 @@ public class App extends Application {
     // Check if the player has talked to all suspects and guessed all clues
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
     boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
-    if (suspects[0] && suspects[1] && suspects[2]) {
-      if (clues[0] || clues[1] || clues[2]) {
-        context.handleGuessClick();
-        setRoot("guess");
-      }
-    } else if (!allSuspectsTalkedTo && atLeastOneClueFound) {
-      // Display a hint if the player has talked to all suspects but not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
-    } else if (!atLeastOneClueFound && allSuspectsTalkedTo) {
-      // Display a hint if the player has found at least one clue but not talked to
-      // all suspects
+
+    // Case 1: All suspects talked to and at least one clue found
+    if (allSuspectsTalkedTo && atLeastOneClueFound) {
+      context.handleGuessClick();
+      setRoot("guess");
+      return true;
+    }
+
+    // Case 2: All suspects talked to, but no clue found
+    if (allSuspectsTalkedTo && !atLeastOneClueFound) {
       InstructionsManager.getInstance().updateInstructions(
           "You must find at least one clue before making a guess.");
       InstructionsManager.getInstance().showInstructions();
-    } else {
-      // Display a hint if the player has not talked to all suspects and not found any
-      // clues
-      InstructionsManager.getInstance().updateInstructions(
-          "You must talk to all suspects and find at least one clue before making a guess.");
-      InstructionsManager.getInstance().showInstructions();
+      return false;
     }
+
+    // Case 3: Not all suspects talked to, but at least one clue found
+    if (!allSuspectsTalkedTo && atLeastOneClueFound) {
+      InstructionsManager.getInstance().updateInstructions(
+          "You must talk to all suspects before making a guess.");
+      InstructionsManager.getInstance().showInstructions();
+      return false;
+    }
+
+    // Case 4: Neither all suspects talked to nor clues found
+    InstructionsManager.getInstance().updateInstructions(
+        "You must talk to all suspects and find at least one clue before making a guess.");
+    InstructionsManager.getInstance().showInstructions();
+    return false;
   }
 
   /**
