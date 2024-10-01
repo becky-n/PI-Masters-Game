@@ -6,9 +6,11 @@ import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
+import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
+import nz.ac.auckland.se206.controllers.TabletController;
 
 /**
  * Manages the game timer.
@@ -34,6 +36,7 @@ public class TimerManager {
   private Timeline timer;
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
   private boolean running;
+  private TabletController tablet;
 
   // Constructor
   private TimerManager() {
@@ -45,8 +48,8 @@ public class TimerManager {
         if (timeRemaining.get() <= 0) {
           timer.stop();
           try {
-            handleTimeOut();
-          } catch (IOException e) {
+            handleTimeOutGuess();
+          } catch (ApiProxyException | IOException e) {
             e.printStackTrace();
           }
         }
@@ -80,6 +83,10 @@ public class TimerManager {
       }
     }));
     timer.setCycleCount(Timeline.INDEFINITE);
+  }
+
+  public static void setTabletController(TabletController tabletController) {
+    instance.tablet = tabletController;
   }
 
   /**
@@ -130,6 +137,10 @@ public class TimerManager {
    */
   private void handleTimeOut() throws IOException {
     App.fadeScenes("timesUp");
+  }
+
+  private void handleTimeOutGuess() throws ApiProxyException, IOException {
+    tablet.onSendMessage();
   }
 
   /**
