@@ -23,6 +23,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
@@ -71,6 +72,9 @@ public class TabletController {
     loading.setVisible(false);
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
 
+    // set the tablet controller
+    TimerManager.setTabletController(this);
+
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter
         TimerManager.getInstance().stop();
@@ -81,7 +85,6 @@ public class TabletController {
         }
       }
     });
-
   }
 
   /**
@@ -211,12 +214,15 @@ public class TabletController {
    * @throws IOException       if there is an I/O error
    */
   @FXML
-  private void onSendMessage() throws ApiProxyException, IOException {
+  public void onSendMessage() throws ApiProxyException, IOException {
     buttonClickSound.play();
     String message = txtInput.getText().trim();
     TimerManager.getInstance().stop();
     if (message.isEmpty()) {
       // case where user tries to send an empty message
+      if (TimerManager.getInstance().getTimeRemaining() == 0) {
+        App.fadeScenes("timesUp");
+      }
       return;
     }
 
