@@ -37,6 +37,7 @@ public class App extends Application {
   private static Scene scene;
   private static String currentSceneId;
   private static GameStateContext context = new GameStateContext();
+  private static double volume;
 
   /**
    * The main method that launches the JavaFX application.
@@ -371,5 +372,13 @@ public class App extends Application {
 
   public static Scene getScene() {
     return scene;
+  }
+
+  public static void setVolume(double volume) {
+    App.volume = volume;
+  }
+
+  public static double getVolume() {
+    return volume;
   }
 }

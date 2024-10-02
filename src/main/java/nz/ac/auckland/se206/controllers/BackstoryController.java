@@ -11,15 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
-
 
 /**
  * Controller class for the Backstory scene.
@@ -40,12 +39,14 @@ public class BackstoryController {
   private Label timerLabel;
   @FXML
   private Button skipButton;
+  @FXML
+  private Slider volumeSlider;
 
-  private MediaPlayer screamPlayer;
-  private AudioClip backgroundMusic;
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
-  private AudioClip brideIntro;
+  private MediaPlayer screamSound;
+  private MediaPlayer backgroundMusic;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer twinkleSound;
+  private MediaPlayer brideIntro;
 
   /** The string to animate. */
   private final String str = "Thank goodness you're with PI Masters! "
@@ -59,25 +60,44 @@ public class BackstoryController {
     // Backstory pane is initially invisible
     backstoryPane.setVisible(false);
 
-    // Initialize media resources
+    // Initialize media resources using MediaPlayer
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
+    Media backgroundMedia = new Media(getClass().getResource("/sounds/mystery_music.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media brideIntroMedia = new Media(getClass().getResource("/sounds/bride-intro.mp3").toString());
 
-    // Load the audio clips
-    backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-    brideIntro = new AudioClip(getClass().getResource("/sounds/bride-intro.mp3").toString());
+    // Initialize all MediaPlayer instances
+    screamSound = new MediaPlayer(screamMedia);
+    backgroundMusic = new MediaPlayer(backgroundMedia);
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    twinkleSound = new MediaPlayer(twinkleMedia);
+    brideIntro = new MediaPlayer(brideIntroMedia);
 
-    // adjust audio volume
-    backgroundMusic.setVolume(0.5);
-    twinkleSound.setVolume(0.5);
+    // Set initial volume for all media players
+    backgroundMusic.setVolume(App.getVolume());
+    twinkleSound.setVolume(App.getVolume());
+    brideIntro.setVolume(App.getVolume());
+    buttonClickSound.setVolume(App.getVolume());
+    screamSound.setVolume(App.getVolume());
 
-    screamPlayer = new MediaPlayer(screamMedia);
+    // Initialize the volume slider with the current volume level
+    volumeSlider.setValue(App.getVolume() * 100); // Set the slider range from 0 to 100
+
+    // Sync volume slider with the volume of all media players
+    volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+      double volume = newValue.doubleValue() / 100;
+      backgroundMusic.setVolume(volume);
+      twinkleSound.setVolume(volume);
+      brideIntro.setVolume(volume);
+      buttonClickSound.setVolume(volume);
+      screamSound.setVolume(volume);
+    });
 
     App.timer(timerLabel);
 
     // Start the scream sound and apply the shake effect
-    screamPlayer.play();
+    screamSound.play();
     applyShakeEffect();
   }
 
@@ -109,7 +129,7 @@ public class BackstoryController {
 
     // if player clicks skip, stop the scream and shake effect
     skipButton.setOnAction(event -> {
-      screamPlayer.stop();
+      screamSound.stop();
       shakeTimeline.stop();
       buttonClickSound.play();
       backgroundMusic.stop();
@@ -118,7 +138,7 @@ public class BackstoryController {
     });
 
     // Stop the shake effect and initiate backstory and background music
-    screamPlayer.setOnEndOfMedia(() -> {
+    screamSound.setOnEndOfMedia(() -> {
       shakeTimeline.stop();
       backstoryPane.setVisible(true);
       backgroundMusic.play();
