@@ -326,6 +326,10 @@ public class LetterCloseUpController {
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     buttonClickSound.play();
-    App.guessClick();
+    boolean successfulGuess = App.guessClick();
+    if (successfulGuess) {
+      matchSound.stop();
+      System.out.println("successful guess");
+    }
   }
 }

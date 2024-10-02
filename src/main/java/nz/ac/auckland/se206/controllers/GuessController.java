@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -89,7 +90,9 @@ public class GuessController {
     happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
 
     guess1 = true;
-
+    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
+    ImageCursor customCursor = new ImageCursor(cursorImage);
+    App.getScene().setCursor(customCursor);
     playAgainButton.setVisible(false);
     close.setVisible(false);
 
@@ -106,7 +109,6 @@ public class GuessController {
     circleJesin.setVisible(false);
     circleGerald.setVisible(false);
 
-    
     animateText("Click on who stole the ring");
 
     App.timer(timerLabel);
