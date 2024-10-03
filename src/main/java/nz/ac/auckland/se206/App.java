@@ -351,7 +351,7 @@ public class App extends Application {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
     if (!timerManager.isRunning()) {
-      timerManager.start(600);
+      timerManager.start(300);
     }
 
     timerLabel.textProperty().bind(
