@@ -53,7 +53,7 @@ public class TimesUpController {
     LockController.resetLock();
     WindowController.resetFabric();
     LetterCloseUpController.resetLetter();
-    TimerManager.getInstance().reset(300);
+    TimerManager.getInstance().reset(600);
     GuessController.guess1 = false;
     App.setRoot("menu");
   }

@@ -177,14 +177,22 @@ public class App extends Application {
         // Start the shaking when the scream starts
         shakeTimeline.play();
 
-        if (newTime.intValue() <= 28) {
+        if (newTime.intValue() == 28) {
           shakeTimeline.stop();
-          redCircle.setFill(Color.BLACK);
         }
 
       }
 
-      if (newTime.intValue() <= 28) {
+      if (newTime.intValue() <= 28.1) {
+        redCircle.setOpacity(0.5);
+          redCircle.setTranslateX(0);
+          redCircle.setTranslateY(0);
+          redCircle.setLayoutX(843);
+          redCircle.setLayoutY(54);
+          clock.setLayoutX(801);
+          clock.setLayoutY(11);
+          clock.setTranslateX(0);
+          clock.setTranslateY(0);
         redCircle.setFill(Color.BLACK);
       }
 
@@ -343,7 +351,7 @@ public class App extends Application {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
     if (!timerManager.isRunning()) {
-      timerManager.start(60);
+      timerManager.start(600);
     }
 
     timerLabel.textProperty().bind(
