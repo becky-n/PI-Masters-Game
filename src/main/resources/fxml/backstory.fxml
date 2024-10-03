@@ -18,7 +18,7 @@
             <Image url="@../images/scream.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="skipButton" layoutX="707.0" layoutY="496.0" mnemonicParsing="false" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="164.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Skip">
+      <Button fx:id="skipButton" layoutX="708.0" layoutY="482.0" mnemonicParsing="false" onMouseEntered="#buttonHover" prefHeight="49.0" prefWidth="164.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Skip">
          <font>
             <Font name="Georgia Bold" size="20.0" />
          </font>
@@ -41,7 +41,7 @@
                   <Font name="Georgia Bold" size="20.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="131.0" layoutX="71.0" layoutY="429.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="756.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000cc" height="133.0" layoutX="71.0" layoutY="429.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="756.0">
                <effect>
                   <BoxBlur height="0.0" width="132.51" />
                </effect>

@@ -57,6 +57,7 @@ public class InstructionsController {
    */
   @FXML
   public void hintClicked() {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     // Show the hints text area when the hints button is clicked
     if (textArea.isVisible()) {

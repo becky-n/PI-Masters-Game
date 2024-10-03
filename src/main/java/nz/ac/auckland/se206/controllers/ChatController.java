@@ -235,6 +235,7 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage() throws ApiProxyException, IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     String message = txtInput.getText().trim();
     if (suspect.equals("Andrea")) {

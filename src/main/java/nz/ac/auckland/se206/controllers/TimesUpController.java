@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -44,6 +43,8 @@ public class TimesUpController {
     twinkleSound = new MediaPlayer(twinkleMedia);
 
     backgroundMusic.play();
+    // Loop the background music
+    backgroundMusic.setOnEndOfMedia(() -> backgroundMusic.seek(javafx.util.Duration.ZERO));
 
     // create array of sounds and store
     App.handleMute(mutePane);

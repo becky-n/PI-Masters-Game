@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -79,6 +78,7 @@ public class LobbyController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     App.guessClick();
   }

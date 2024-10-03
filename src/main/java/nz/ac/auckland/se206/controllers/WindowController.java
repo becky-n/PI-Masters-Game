@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -146,6 +145,8 @@ public class WindowController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+
     // play the button click sound
     buttonClickSound.play();
     App.guessClick();
@@ -156,6 +157,7 @@ public class WindowController {
    */
   @FXML
   public void onFabricClick() {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     // if image is fabric1, change to fabric2
     if (fabric.getImage().getUrl().contains("fabric1")) {
@@ -214,6 +216,8 @@ public class WindowController {
    */
   @FXML
   private void onBack() throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+
     buttonClickSound.play();
     App.setRoot("crime");
   }

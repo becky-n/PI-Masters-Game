@@ -223,6 +223,7 @@ public class TabletController {
    */
   @FXML
   public void onSendMessage() throws ApiProxyException, IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     String message = txtInput.getText().trim();
     TimerManager.getInstance().stop();

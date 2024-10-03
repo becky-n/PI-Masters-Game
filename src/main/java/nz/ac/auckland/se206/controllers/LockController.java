@@ -129,6 +129,7 @@ public class LockController {
    */
   @FXML
   private void handleLeftRotate() {
+    keySound.seek(javafx.util.Duration.ZERO); 
     keySound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -143,6 +144,7 @@ public class LockController {
    */
   @FXML
   private void handleRightRotate() {
+    keySound.seek(javafx.util.Duration.ZERO); 
     keySound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);

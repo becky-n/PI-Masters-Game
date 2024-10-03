@@ -29,6 +29,7 @@ public class DraggableMaker {
 
     // When the node is pressed, record the position of the mouse click
     node.setOnMousePressed(mouseEvent -> {
+      glassSound.seek(javafx.util.Duration.ZERO);
       glassSound.play();
       mouseAnchorX = mouseEvent.getX();
       mouseAnchorY = mouseEvent.getY();

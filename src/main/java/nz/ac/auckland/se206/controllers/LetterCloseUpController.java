@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
@@ -304,6 +303,8 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onBack() throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+
     matchSound.stop();
     buttonClickSound.play();
     setBackCursor();
@@ -332,6 +333,7 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     App.guessClick();
   }

@@ -64,26 +64,32 @@ public class Navigation {
       default:
         menuButton.getItems().addAll(jesin, gerald, andrea);
     }
-
+    
     // Set the action
     gerald.setOnAction(e -> {
       changeScene("aisle");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     jesin.setOnAction(e -> {
       changeScene("lobby");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     crimeScene.setOnAction(e -> {
       changeScene("crime");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     andrea.setOnAction(e -> {
       changeScene("ballroom");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
-
-    menuButton.setOnShowing(e -> buttonClickSound.play());
+    menuButton.setOnShowing(e -> {
+      buttonClickSound.seek(javafx.util.Duration.ZERO); // Reset the sound to the start
+      buttonClickSound.play(); // Play the click sound when the menu is shown
+  });
   }
 
   /*

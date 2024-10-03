@@ -64,17 +64,17 @@
                   <Image url="@../images/glass3.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b3" height="112.0" layoutX="42.0" layoutY="444.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b3" height="112.0" layoutX="42.0" layoutY="434.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
                </effect>
             </Rectangle>
-            <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="457.0" prefHeight="65.0" prefWidth="748.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="49.0" layoutY="405.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
+            <Button fx:id="backButton" layoutX="49.0" layoutY="395.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
