@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -51,8 +53,11 @@ public class BackstoryController {
       + "I'm suspicious of Gerald, Jesin, and Andrea... "
       + "Can you talk with them and gather clues before it's too late?"; // string to animate
 
-  /** Initialises the backstory scene. 
-   * @throws IOException */
+  /**
+   * Initialises the backstory scene.
+   * 
+   * @throws IOException
+   */
   @FXML
   public void initialize() throws IOException {
 
@@ -75,7 +80,13 @@ public class BackstoryController {
 
     // create array of sounds and store
     App.handleMute(mutePane);
-    MediaPlayer[] sounds = { screamSound, backgroundMusic, buttonClickSound, twinkleSound, brideIntro };
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(twinkleSound);
+    sounds.add(brideIntro);
+    sounds.add(screamSound);
+    sounds.add(backgroundMusic);
+
     App.setSounds(sounds);
     App.muteSound();
 

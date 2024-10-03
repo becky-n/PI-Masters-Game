@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +10,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.Navigation;
@@ -58,9 +61,11 @@ public class WindowController {
   private ImageView fabric;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Pane mutePane;
 
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer twinkleSound;
 
   /**
    * Initializes the WindowController. Sets up the timer, menu navigation, chat,
@@ -87,7 +92,8 @@ public class WindowController {
       App.animateText(
           "It seems there's something hidden beneath the broken glass… "
               + "try moving the shards aside to"
-              + " uncover it.", infoLabel);
+              + " uncover it.",
+          infoLabel);
 
       // show the glass images (in the case of they are replaying the game)
       glass1.setVisible(true);
@@ -110,8 +116,20 @@ public class WindowController {
 
     App.loadHintsBox(instructionsPane);
 
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    twinkleSound = new MediaPlayer(twinkleMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(twinkleSound);
+
+    App.setSounds(sounds);
+    App.muteSound();
 
     // Initialize the controller
     Navigation nav = new Navigation();

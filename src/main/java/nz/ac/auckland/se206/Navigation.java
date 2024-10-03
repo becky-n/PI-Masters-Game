@@ -8,22 +8,31 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 
 /*
  * Navigation class to handle the navigation between scenes
  */
 public class Navigation {
-  private AudioClip buttonClickSound;
-  private AudioClip doorSound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer doorSound;
 
   /*
    * Set the menu for the navigation
    */
   public void setMenu(MenuButton menuButton) {
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    doorSound = new AudioClip(getClass().getResource("/sounds/door.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media doorMedia = new Media(getClass().getResource("/sounds/door.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    doorSound = new MediaPlayer(doorMedia);
+
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.addSound(doorSound);
+    App.muteSound();
+
     // Set the menu
     menuButton.getItems().clear();
 

@@ -14,7 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
@@ -22,6 +23,7 @@ import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
 /**
@@ -68,7 +70,7 @@ public class ChatController {
   private String suspect;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
   private String str = "";
 
   /**
@@ -80,7 +82,12 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     // Any required initialization code can be placed here
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.muteSound();
 
     txtInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER) { // Check if the key pressed is Enter

@@ -2,8 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
 
 public class InstructionsController {
@@ -14,14 +16,22 @@ public class InstructionsController {
   @FXML
   private Label instructionsLabel;
 
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
 
   /**
    * Initializes the controller.
    */
   public void initialize() {
+
+    // Any required initialization code can be placed here
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.muteSound();
+
     // hide the text area
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     textArea.setVisible(false);
     instructionsLabel.setVisible(false);
     // Bind the hintsTextArea text property to the hints managed in HintsManager

@@ -1,7 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
@@ -39,7 +40,7 @@ public class App extends Application {
   private static String currentSceneId;
   private static GameStateContext context = new GameStateContext();
   private static double volume = 1;
-  private static MediaPlayer[] sounds;
+  private static List<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
 
   /**
    * The main method that launches the JavaFX application.
@@ -375,8 +376,12 @@ public class App extends Application {
     }
   }
 
-  public static void setSounds(MediaPlayer[] sounds) {
+  public static void setSounds(List<MediaPlayer> sounds) {
     App.sounds = sounds;
+  }
+
+  public static void addSound(MediaPlayer sound) {
+    sounds.add(sound);
   }
 
   /**

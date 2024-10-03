@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,7 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -68,12 +71,12 @@ public class GuessController {
   private Button playAgainButton;
   @FXML
   private Button close;
+  @FXML
+  private Pane mutePane;
 
-  private AudioClip markerSound;
-  private AudioClip typingSound;
-  private AudioClip screenOnSound;
-  private AudioClip sadMusic;
-  private AudioClip happyMusic;
+  private MediaPlayer markerSound;
+  private MediaPlayer typingSound;
+  private MediaPlayer screenOnSound;
 
   private Boolean isTabletOpen;
   private String suspect = "";
@@ -82,11 +85,10 @@ public class GuessController {
    * Sets the game to the guessing state.
    *
    * @param guess true if the game is in the guessing state, false otherwise
+   * @throws IOException
    */
   @FXML
-  public void initialize() {
-    sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
-    happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
+  public void initialize() throws IOException {
 
     guess1 = true;
 
@@ -97,16 +99,29 @@ public class GuessController {
     isTabletOpen = false;
 
     // Initialize the sounds
-    markerSound = new AudioClip(getClass().getResource("/sounds/marker.mp3").toString());
-    typingSound = new AudioClip(getClass().getResource("/sounds/typing.mp3").toString());
-    screenOnSound = new AudioClip(getClass().getResource("/sounds/screen-on.mp3").toString());
+    Media markerMedia = new Media(getClass().getResource("/sounds/marker.mp3").toString());
+    Media typingMedia = new Media(getClass().getResource("/sounds/typing.mp3").toString());
+    Media screenOnMedia = new Media(getClass().getResource("/sounds/screen-on.mp3").toString());
+
+    markerSound = new MediaPlayer(markerMedia);
+    typingSound = new MediaPlayer(typingMedia);
+    screenOnSound = new MediaPlayer(screenOnMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(markerSound);
+    sounds.add(typingSound);
+    sounds.add(screenOnSound);
+
+    App.setSounds(sounds);
+    App.muteSound();
 
     // make all circles invisible
     circleAndrea.setVisible(false);
     circleJesin.setVisible(false);
     circleGerald.setVisible(false);
 
-    
     animateText("Click on who stole the ring");
 
     App.timer(timerLabel);
@@ -210,8 +225,6 @@ public class GuessController {
    */
   @FXML
   private void handlePlayAgain() throws IOException {
-    happyMusic.stop();
-    sadMusic.stop();
     play = true;
     System.out.println("play again");
     CrimeController.resetClues(); // Reset clues

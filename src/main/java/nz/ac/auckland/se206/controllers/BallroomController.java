@@ -1,12 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -17,14 +20,14 @@ public class BallroomController {
   private Label timerLabel;
   @FXML
   private Pane chatPane;
-
   @FXML
   private Pane clueMenu;
-
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Pane mutePane;
 
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
 
   /**
    * Controller class for the Ballroom scene.
@@ -39,7 +42,16 @@ public class BallroomController {
     // Load the hints box
     App.loadHintsBox(instructionsPane);
 
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
 
     // Initialize the controller
     Navigation nav = new Navigation();

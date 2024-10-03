@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +48,11 @@ public class MenuController {
 
     // create array of sounds and store
     App.handleMute(mutePane);
-    MediaPlayer[] sounds = { backgroundMusic, buttonClickSound, twinkleSound };
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(twinkleSound);
+    sounds.add(backgroundMusic);
+
     App.setSounds(sounds);
     App.muteSound();
 

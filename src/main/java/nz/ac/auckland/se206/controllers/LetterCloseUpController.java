@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
@@ -12,7 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
@@ -37,45 +40,36 @@ public class LetterCloseUpController {
   private boolean displayed = false;
   private boolean isErasing = false;
   private boolean matchBoxClicked = false;
-  private AudioClip buttonClickSound;
-  private AudioClip matchSound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer matchSound;
 
   // FXML-Annotated Fields
   @FXML
   private ImageView envelopeCloseUp;
-
   @FXML
   private ImageView letterOpened;
-
   @FXML
   private ImageView letterOpenedReveal;
-
   @FXML
   private Canvas eraseCanvas;
-
   @FXML
   private MenuButton menuButton;
-
   @FXML
   private Label timerLabel;
-
   @FXML
   private Pane clueMenu;
-
   @FXML
   private Rectangle matchBox;
-
   @FXML
   private Label infoLabel;
-
   @FXML
   private Rectangle instructionsBox;
-
   @FXML
   private Pane instructionsPane;
-
   @FXML
   private Rectangle envelopeCloseUpRec;
+  @FXML
+  private Pane mutePane;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -84,8 +78,21 @@ public class LetterCloseUpController {
    */
   public void initialize() throws IOException {
     // Load the sound effects
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    matchSound = new AudioClip(getClass().getResource("/sounds/fire-crackling.wav").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media matchMedia = new Media(getClass().getResource("/sounds/fire-crackling.wav").toString());
+
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    matchSound = new MediaPlayer(matchMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(matchSound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
+
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     // Set the envelope image
     envelopeCloseUp.setImage(image);
