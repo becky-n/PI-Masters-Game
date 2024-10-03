@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
@@ -78,13 +80,17 @@ public class CrimeController {
   private Circle redCircle;
   @FXML
   private ImageView clock;
+  @FXML
+  private Pane mutePane;
+  @FXML
+  private ImageView glassPile;
 
   // Sound effects
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
-  private AudioClip paperSound;
-  private AudioClip glassSound;
-  private AudioClip boxSound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer twinkleSound;
+  private MediaPlayer paperSound;
+  private MediaPlayer glassSound;
+  private MediaPlayer boxSound;
 
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
@@ -97,12 +103,31 @@ public class CrimeController {
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
 
-    // load sound effects
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-    paperSound = new AudioClip(getClass().getResource("/sounds/paper.mp3").toString());
-    glassSound = new AudioClip(getClass().getResource("/sounds/glass.mp3").toString());
-    boxSound = new AudioClip(getClass().getResource("/sounds/box.mp3").toString());
+    // Initialize media resources using MediaPlayer
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media paperMedia = new Media(getClass().getResource("/sounds/paper.mp3").toString());
+    Media glassMedia = new Media(getClass().getResource("/sounds/glass.mp3").toString());
+    Media boxMedia = new Media(getClass().getResource("/sounds/box.mp3").toString());
+
+    // Initialize all MediaPlayer instances
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    twinkleSound = new MediaPlayer(twinkleMedia);
+    paperSound = new MediaPlayer(paperMedia);
+    glassSound = new MediaPlayer(glassMedia);
+    boxSound = new MediaPlayer(boxMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(twinkleSound);
+    sounds.add(paperSound);
+    sounds.add(glassSound);
+    sounds.add(boxSound);
+
+    App.setSounds(sounds);
+    App.muteSound();
 
     // set hover effects invisible
     safeGlow.setVisible(false);
@@ -144,6 +169,7 @@ public class CrimeController {
     } else if (clickedRectangle.getId().equals("glass")) {
       glassSound.play();
       glassPileGlow.setVisible(true);
+      glassPile.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
       paperSound.play();
       invitationGlow.setVisible(true);
@@ -167,6 +193,7 @@ public class CrimeController {
     } else if (clickedRectangle.getId().equals("glass")) {
       glassSound.stop();
       glassPileGlow.setVisible(false);
+      glassPile.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
       paperSound.stop();
       invitationGlow.setVisible(false);
@@ -229,6 +256,7 @@ public class CrimeController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
   }

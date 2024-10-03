@@ -8,27 +8,36 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 
 /*
  * Navigation class to handle the navigation between scenes
  */
 public class Navigation {
-  private AudioClip buttonClickSound;
-  private AudioClip doorSound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer doorSound;
 
   /*
    * Set the menu for the navigation
    */
   public void setMenu(MenuButton menuButton) {
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    doorSound = new AudioClip(getClass().getResource("/sounds/door.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media doorMedia = new Media(getClass().getResource("/sounds/door.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    doorSound = new MediaPlayer(doorMedia);
+
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.addSound(doorSound);
+    App.muteSound();
+
     // Set the menu
     menuButton.getItems().clear();
 
     // Create custom MenuItems
-    MenuItem crimeScene = createCustomMenuItem("Bridal Suite", "/images/bridalSuite.png");
+    MenuItem crimeScene = createCustomMenuItem("Bridal Suite", "/images/bridalSuite.jpg");
     MenuItem gerald = createCustomMenuItem("The Aisle", "/images/madGerald.png");
     MenuItem jesin = createCustomMenuItem("The Lobby", "/images/madJesin.png");
     MenuItem andrea = createCustomMenuItem("The Ballroom", "/images/madAndrea.png");
@@ -55,26 +64,32 @@ public class Navigation {
       default:
         menuButton.getItems().addAll(jesin, gerald, andrea);
     }
-
+    
     // Set the action
     gerald.setOnAction(e -> {
       changeScene("aisle");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     jesin.setOnAction(e -> {
       changeScene("lobby");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     crimeScene.setOnAction(e -> {
       changeScene("crime");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
     andrea.setOnAction(e -> {
       changeScene("ballroom");
+      doorSound.seek(javafx.util.Duration.ZERO);
       doorSound.play();
     });
-
-    menuButton.setOnShowing(e -> buttonClickSound.play());
+    menuButton.setOnShowing(e -> {
+      buttonClickSound.seek(javafx.util.Duration.ZERO); // Reset the sound to the start
+      buttonClickSound.play(); // Play the click sound when the menu is shown
+  });
   }
 
   /*

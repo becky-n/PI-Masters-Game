@@ -76,5 +76,6 @@
             <ColorAdjust brightness="1.0" />
          </effect>
       </ImageView>
+      <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
    </children>
 </Pane>

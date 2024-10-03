@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Circle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
@@ -59,8 +62,10 @@ public class SafeController {
   private Circle redCircle;
   @FXML
   private ImageView clock;
+  @FXML
+  private Pane mutePane;
 
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
 
   /**
    * Initializes the SafeController. Sets up the timer, menu navigation, chat,
@@ -71,7 +76,17 @@ public class SafeController {
   @FXML
   private void initialize() throws IOException {
     context.setState(context.getGuessingState());
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
 
     App.animateText("There appears to be a key! Would this unlock the jewellery box?", infoLabel);
     // load the clue menu
@@ -124,6 +139,8 @@ public class SafeController {
    */
   @FXML
   private void onBack() throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+
     buttonClickSound.play();
     App.setRoot("crime");
   }
@@ -136,6 +153,7 @@ public class SafeController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     App.guessClick();
   }

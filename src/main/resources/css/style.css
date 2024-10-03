@@ -129,3 +129,44 @@
   -fx-background-color: rgba(0, 0, 0, 0.9);
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.slider {
+  -fx-opacity: 0.5; /* Initial opacity of the entire slider */
+  opacity: 0.5; /* Standard property for compatibility */
+}
+
+.slider:hover {
+  -fx-opacity: 0.7; /* Slightly more opaque on hover */
+  opacity: 0.7; /* Standard property for compatibility */
+}
+
+.slider .track {
+  -fx-background-color: rgba(255, 255, 255, 0.5); /* Track opacity */
+  background-color: rgba(255, 255, 255, 0.5); /* Track opacity */
+}
+
+.slider:hover .track {
+  -fx-background-color: rgba(255, 255, 255, 0.7); /* More opaque on hover */
+  background-color: rgba(255, 255, 255, 0.7); /* More opaque on hover */
+}
+
+.slider .thumb {
+  -fx-background-color: rgba(255, 255, 255, 0.8); /* Thumb initial opacity */
+  background-color: rgba(255, 255, 255, 0.8); /* Thumb initial opacity */
+  -fx-background-radius: 5; /* Rounded thumb */
+}
+
+.slider:hover .thumb {
+  -fx-background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+  background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+}
+
+.slider .fill {
+  -fx-background-color: rgba(255, 255, 255, 0.8); /* Initial fill opacity */
+  background-color: rgba(255, 255, 255, 0.8); /* Initial fill opacity */
+}
+
+.slider:hover .fill {
+  -fx-background-color: rgba(255, 255, 255, 1); /* More opaque fill on hover */
+  background-color: rgba(255, 255, 255, 1); /* More opaque fill on hover */
+}

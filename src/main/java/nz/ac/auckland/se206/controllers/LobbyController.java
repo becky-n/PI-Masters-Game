@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Circle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -32,11 +35,12 @@ public class LobbyController {
   private Circle redCircle;
   @FXML
   private ImageView clock;
-
+  @FXML
+  private Pane mutePane;
   @FXML
   private Pane instructionsPane;
 
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
 
   /**
    * Initializes the LobbyController. Sets up the timer, menu navigation, chat,
@@ -55,7 +59,16 @@ public class LobbyController {
     // Load the hints box
     App.loadHintsBox(instructionsPane);
 
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
 
     // Initialize the controller
     Navigation nav = new Navigation();
@@ -75,6 +88,7 @@ public class LobbyController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     App.guessClick();
   }

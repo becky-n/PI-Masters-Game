@@ -1,26 +1,23 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
-
 
 /**
  * Controller class for the Backstory scene.
@@ -34,6 +31,8 @@ public class BackstoryController {
   @FXML
   private Pane backstoryPane;
   @FXML
+  private Pane mutePane;
+  @FXML
   private ImageView screamImg;
   @FXML
   private Label backstoryLabel;
@@ -46,11 +45,11 @@ public class BackstoryController {
   @FXML
   private ImageView clock;
 
-  private MediaPlayer screamPlayer;
-  private AudioClip backgroundMusic;
-  private AudioClip buttonClickSound;
-  private AudioClip twinkleSound;
-  private AudioClip brideIntro;
+  private MediaPlayer screamSound;
+  private MediaPlayer backgroundMusic;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer twinkleSound;
+  private MediaPlayer brideIntro;
 
   /** The string to animate. */
   private final String str = "Thank goodness you're with PI Masters! "
@@ -58,34 +57,50 @@ public class BackstoryController {
       + "I'm suspicious of Gerald, Jesin, and Andrea... "
       + "Can you talk with them and gather clues before it's too late?"; // string to animate
 
-  /** Initialises the backstory scene. */
+  /**
+   * Initialises the backstory scene.
+   * 
+   * @throws IOException
+   */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
+
     // Backstory pane is initially invisible
     backstoryPane.setVisible(false);
 
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
 
-    // Initialize media resources
+    // Initialize media resources using MediaPlayer
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
+    Media backgroundMedia = new Media(getClass().getResource("/sounds/mystery_music.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media brideIntroMedia = new Media(getClass().getResource("/sounds/bride-intro.mp3").toString());
 
-    // Load the audio clips
-    backgroundMusic = new AudioClip(getClass().getResource("/sounds/mystery_music.mp3").toString());
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    twinkleSound = new AudioClip(getClass().getResource("/sounds/twinkle.mp3").toString());
-    brideIntro = new AudioClip(getClass().getResource("/sounds/bride-intro.mp3").toString());
+    // Initialize all MediaPlayer instances
+    screamSound = new MediaPlayer(screamMedia);
+    backgroundMusic = new MediaPlayer(backgroundMedia);
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    twinkleSound = new MediaPlayer(twinkleMedia);
+    brideIntro = new MediaPlayer(brideIntroMedia);
 
-    // adjust audio volume
-    backgroundMusic.setVolume(0.5);
-    twinkleSound.setVolume(0.5);
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(twinkleSound);
+    sounds.add(brideIntro);
+    sounds.add(screamSound);
+    sounds.add(backgroundMusic);
 
-    screamPlayer = new MediaPlayer(screamMedia);
+    App.setSounds(sounds);
+    App.muteSound();
 
     App.timer(timerLabel);
 
     // Start the scream sound and apply the shake effect
-    screamPlayer.play();
+    screamSound.play();
     applyShakeEffect();
   }
 
@@ -117,7 +132,7 @@ public class BackstoryController {
 
     // if player clicks skip, stop the scream and shake effect
     skipButton.setOnAction(event -> {
-      screamPlayer.stop();
+      screamSound.stop();
       shakeTimeline.stop();
       buttonClickSound.play();
       backgroundMusic.stop();
@@ -126,34 +141,13 @@ public class BackstoryController {
     });
 
     // Stop the shake effect and initiate backstory and background music
-    screamPlayer.setOnEndOfMedia(() -> {
+    screamSound.setOnEndOfMedia(() -> {
       shakeTimeline.stop();
       backstoryPane.setVisible(true);
       backgroundMusic.play();
-      animateText();
+      App.animateText(str, backstoryLabel);
       brideIntro.play();
     });
-  }
-
-  /**
-   * Animates the text in the backstory label character by character.
-   */
-  private void animateText() {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            backstoryLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
   }
 
   /**
