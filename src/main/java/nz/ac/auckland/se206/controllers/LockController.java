@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
@@ -63,6 +64,10 @@ public class LockController {
   private ImageView rightGlow;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
@@ -90,6 +95,9 @@ public class LockController {
     rightGlow.setVisible(false);
 
     App.animateText("Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     App.handleClueMenu(clueMenu);
 

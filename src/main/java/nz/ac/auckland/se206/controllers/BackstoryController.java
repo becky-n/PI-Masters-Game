@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
@@ -40,6 +41,10 @@ public class BackstoryController {
   private Label timerLabel;
   @FXML
   private Button skipButton;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   private MediaPlayer screamPlayer;
   private AudioClip backgroundMusic;
@@ -58,6 +63,9 @@ public class BackstoryController {
   public void initialize() {
     // Backstory pane is initially invisible
     backstoryPane.setVisible(false);
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     // Initialize media resources
     Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());

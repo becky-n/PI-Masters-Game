@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.Navigation;
@@ -58,6 +59,10 @@ public class WindowController {
   private ImageView fabric;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
@@ -70,6 +75,9 @@ public class WindowController {
    */
   @FXML
   private void initialize() throws IOException {
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     // if they have already found the fabric
     if (fabricFound) {
@@ -87,7 +95,8 @@ public class WindowController {
       App.animateText(
           "It seems there's something hidden beneath the broken glass… "
               + "try moving the shards aside to"
-              + " uncover it.", infoLabel);
+              + " uncover it.",
+          infoLabel);
 
       // show the glass images (in the case of they are replaying the game)
       glass1.setVisible(true);

@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -17,12 +19,14 @@ public class BallroomController {
   private Label timerLabel;
   @FXML
   private Pane chatPane;
-
   @FXML
   private Pane clueMenu;
-
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   private AudioClip buttonClickSound;
 
@@ -35,6 +39,9 @@ public class BallroomController {
   private void initialize() throws IOException {
     // Load the clue menu
     App.handleClueMenu(clueMenu);
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     // Load the hints box
     App.loadHintsBox(instructionsPane);

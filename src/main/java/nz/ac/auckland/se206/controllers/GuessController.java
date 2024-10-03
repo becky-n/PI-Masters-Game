@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -69,6 +70,10 @@ public class GuessController {
   private Button playAgainButton;
   @FXML
   private Button close;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   private AudioClip markerSound;
   private AudioClip typingSound;
@@ -86,6 +91,9 @@ public class GuessController {
    */
   @FXML
   public void initialize() {
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
+    
     sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
     happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
 

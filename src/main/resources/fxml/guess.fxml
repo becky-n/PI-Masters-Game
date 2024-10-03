@@ -78,13 +78,13 @@
                </effect>
             </Label>
             <Pane fx:id="tabletPane" layoutX="544.0" layoutY="116.0" onMouseClicked="#handleIpadClick" prefHeight="436.0" prefWidth="300.0" rotate="-2.5" />
-            <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
+            <Circle fx:id="redCircle" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="806.0" layoutY="20.0" prefHeight="69.0" prefWidth="75.0" rotate="-2.0" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="clock" fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/clockFrame.png" />
                </image>

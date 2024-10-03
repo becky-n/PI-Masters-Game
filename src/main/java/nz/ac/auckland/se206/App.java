@@ -16,7 +16,10 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
@@ -136,6 +139,56 @@ public class App extends Application {
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
+  }
+
+  /**
+   * Sets the red circle and initiates a shaking animation on the clock ImageView
+   * when the time remaining reaches 30 seconds.
+   * The red circle will turn red and the clock will shake for a short duration.
+   * If the time remaining drops to 28 seconds or below, the shaking will stop and
+   * the red circle will turn black.
+   *
+   * @param redCircle the Circle object to be set to red and shaken
+   * @param clock     the ImageView object to be shaken
+   */
+  public static void setRedCircle(Circle redCircle, ImageView clock) {
+    TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+      if (newTime.intValue() == 30) {
+        redCircle.setFill(Color.RED);
+        Timeline shakeTimeline = new Timeline();
+
+        // Create a KeyFrame to change the position of the ImageView
+        KeyFrame keyFrame = new KeyFrame(
+            Duration.millis(100), // Change position every 100 milliseconds
+            event -> {
+              double offsetX = (Math.random() - 0.5) * 5; // Random X offset (-5 to 5)
+              double offsetY = (Math.random() - 0.5) * 5; // Random Y offset (-5 to 5)
+
+              redCircle.setTranslateX(offsetX);
+              redCircle.setTranslateY(offsetY);
+              clock.setTranslateX(offsetX);
+              clock.setTranslateY(offsetY);
+            });
+
+        // Add the keyframe to the timeline
+        shakeTimeline.getKeyFrames().add(keyFrame);
+        shakeTimeline.setCycleCount(20);
+
+        // Start the shaking when the scream starts
+        shakeTimeline.play();
+
+        if (newTime.intValue() <= 28) {
+          shakeTimeline.stop();
+          redCircle.setFill(Color.BLACK);
+        }
+
+      }
+
+      if (newTime.intValue() <= 28) {
+        redCircle.setFill(Color.BLACK);
+      }
+
+    });
   }
 
   /**
@@ -290,7 +343,7 @@ public class App extends Application {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
     if (!timerManager.isRunning()) {
-      timerManager.start(300);
+      timerManager.start(60);
     }
 
     timerLabel.textProperty().bind(

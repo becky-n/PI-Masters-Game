@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -26,6 +27,10 @@ public class LetterController {
 
   @FXML
   private Label timerLabel;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   @FXML
   private Pane clueMenu;
@@ -46,6 +51,9 @@ public class LetterController {
    * @throws IOException if there is an I/O error during initialization
    */
   public void initialize() throws IOException {
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
+    
     // Load the sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
     Navigation nav = new Navigation();

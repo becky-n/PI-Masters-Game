@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.shape.Circle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -26,6 +27,10 @@ public class UnlockBoxController {
   private ImageView closeUp;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   private AudioClip buttonClickSound;
   private AudioClip twinkleSound;
@@ -47,6 +52,9 @@ public class UnlockBoxController {
 
     // Load the clue menu
     App.handleClueMenu(clueMenu);
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     App.loadHintsBox(instructionsPane);
 

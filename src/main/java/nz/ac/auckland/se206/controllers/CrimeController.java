@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
@@ -73,6 +74,10 @@ public class CrimeController {
   private ImageView invitationGlow;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
 
   // Sound effects
   private AudioClip buttonClickSound;
@@ -89,7 +94,8 @@ public class CrimeController {
    */
   @FXML
   private void initialize() throws IOException {
-    // call clue menu
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     // load sound effects
     buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
@@ -114,6 +120,10 @@ public class CrimeController {
     nav.setMenu(menuButton);
 
     App.timer(timerLabel);
+
+    // if(TimerManager.timedUp()){
+    //   redCircle.setVisible(true);
+    // }
 
   }
 

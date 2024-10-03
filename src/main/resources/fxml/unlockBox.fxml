@@ -38,7 +38,7 @@
                   <BoxBlur height="0.0" width="78.73" />
                </effect>
             </Rectangle>
-            <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+            <Circle fx:id="redCircle" fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
             <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textFill="WHITE">
                <font>
                   <Font name="Georgia" size="18.0" />
@@ -56,7 +56,7 @@
                </image>
             </ImageView>
             <ImageView fx:id="closeUp" fitHeight="261.0" fitWidth="327.0" layoutX="454.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="clock" fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/clockFrame.png" />
                </image>

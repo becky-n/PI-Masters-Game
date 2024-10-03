@@ -65,7 +65,7 @@
                   <BoxBlur height="0.0" width="78.73" />
                </effect>
             </Rectangle>
-            <Circle fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
+            <Circle fx:id="redCircle" fill="#00000080" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
             <Button fx:id="backButton" layoutX="49.0" layoutY="406.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
@@ -93,7 +93,7 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="clock" fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/clockFrame.png" />
                </image>
