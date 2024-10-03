@@ -5,13 +5,10 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -32,6 +29,8 @@ public class BackstoryController {
   @FXML
   private Pane backstoryPane;
   @FXML
+  private Pane mutePane;
+  @FXML
   private ImageView screamImg;
   @FXML
   private Label backstoryLabel;
@@ -39,8 +38,6 @@ public class BackstoryController {
   private Label timerLabel;
   @FXML
   private Button skipButton;
-  @FXML
-  private Slider volumeSlider;
 
   private MediaPlayer screamSound;
   private MediaPlayer backgroundMusic;
@@ -54,9 +51,11 @@ public class BackstoryController {
       + "I'm suspicious of Gerald, Jesin, and Andrea... "
       + "Can you talk with them and gather clues before it's too late?"; // string to animate
 
-  /** Initialises the backstory scene. */
+  /** Initialises the backstory scene. 
+   * @throws IOException */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
+
     // Backstory pane is initially invisible
     backstoryPane.setVisible(false);
 
@@ -74,25 +73,11 @@ public class BackstoryController {
     twinkleSound = new MediaPlayer(twinkleMedia);
     brideIntro = new MediaPlayer(brideIntroMedia);
 
-    // Set initial volume for all media players
-    backgroundMusic.setVolume(App.getVolume());
-    twinkleSound.setVolume(App.getVolume());
-    brideIntro.setVolume(App.getVolume());
-    buttonClickSound.setVolume(App.getVolume());
-    screamSound.setVolume(App.getVolume());
-
-    // Initialize the volume slider with the current volume level
-    volumeSlider.setValue(App.getVolume() * 100); // Set the slider range from 0 to 100
-
-    // Sync volume slider with the volume of all media players
-    volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-      double volume = newValue.doubleValue() / 100;
-      backgroundMusic.setVolume(volume);
-      twinkleSound.setVolume(volume);
-      brideIntro.setVolume(volume);
-      buttonClickSound.setVolume(volume);
-      screamSound.setVolume(volume);
-    });
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    MediaPlayer[] sounds = { screamSound, backgroundMusic, buttonClickSound, twinkleSound, brideIntro };
+    App.setSounds(sounds);
+    App.muteSound();
 
     App.timer(timerLabel);
 
@@ -142,30 +127,9 @@ public class BackstoryController {
       shakeTimeline.stop();
       backstoryPane.setVisible(true);
       backgroundMusic.play();
-      animateText();
+      App.animateText(str, backstoryLabel);
       brideIntro.play();
     });
-  }
-
-  /**
-   * Animates the text in the backstory label character by character.
-   */
-  private void animateText() {
-    final IntegerProperty i = new SimpleIntegerProperty(0);
-    Timeline timeline = new Timeline();
-    KeyFrame keyFrame = new KeyFrame(
-        Duration.seconds(0.015), // Adjusted for smoother animation
-        event -> {
-          if (i.get() > str.length()) {
-            timeline.stop();
-          } else {
-            backstoryLabel.setText(str.substring(0, i.get()));
-            i.set(i.get() + 1);
-          }
-        });
-    timeline.getKeyFrames().add(keyFrame);
-    timeline.setCycleCount(Animation.INDEFINITE);
-    timeline.play();
   }
 
   /**

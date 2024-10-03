@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
@@ -37,7 +38,8 @@ public class App extends Application {
   private static Scene scene;
   private static String currentSceneId;
   private static GameStateContext context = new GameStateContext();
-  private static double volume;
+  private static double volume = 1;
+  private static MediaPlayer[] sounds;
 
   /**
    * The main method that launches the JavaFX application.
@@ -277,6 +279,15 @@ public class App extends Application {
     pane.getChildren().add(menuPane);
   }
 
+  public static void handleMute(Pane pane) throws IOException {
+    // Load the clue menu
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/mute.fxml"));
+    Pane mute = loader.load();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(mute);
+  }
+
   public static void timer(Label timerLabel) {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
@@ -342,6 +353,32 @@ public class App extends Application {
     fadeOut.play();
   }
 
+  public static String getCurrentSceneId() {
+    return currentSceneId;
+  }
+
+  public static Scene getScene() {
+    return scene;
+  }
+
+  public static void setVolume(double volume) {
+    App.volume = volume;
+  }
+
+  public static double getVolume() {
+    return volume;
+  }
+
+  public static void muteSound() {
+    for (MediaPlayer sound : sounds) {
+      sound.setVolume(volume);
+    }
+  }
+
+  public static void setSounds(MediaPlayer[] sounds) {
+    App.sounds = sounds;
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the
    * "menu" scene.
@@ -364,21 +401,5 @@ public class App extends Application {
 
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
-  }
-
-  public static String getCurrentSceneId() {
-    return currentSceneId;
-  }
-
-  public static Scene getScene() {
-    return scene;
-  }
-
-  public static void setVolume(double volume) {
-    App.volume = volume;
-  }
-
-  public static double getVolume() {
-    return volume;
   }
 }

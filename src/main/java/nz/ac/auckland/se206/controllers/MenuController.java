@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -25,11 +25,16 @@ public class MenuController {
   @FXML
   private Button startButton;
   @FXML
-  private Slider volumeSlider;
+  private Pane mutePane;
 
-  /** Initialises the menu scene. */
+  /**
+   * Initialises the menu scene.
+   * 
+   * @throws IOException
+   */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
+
     Media backgroundMusicMedia = new Media(getClass().getResource("/sounds/wedding_march.mp3").toString());
     backgroundMusic = new MediaPlayer(backgroundMusicMedia);
 
@@ -39,27 +44,15 @@ public class MenuController {
     Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
     twinkleSound = new MediaPlayer(twinkleMedia);
 
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    MediaPlayer[] sounds = { backgroundMusic, buttonClickSound, twinkleSound };
+    App.setSounds(sounds);
+    App.muteSound();
+
     // Loop the background music
     backgroundMusic.setOnEndOfMedia(() -> backgroundMusic.seek(Duration.ZERO));
     backgroundMusic.play();
-
-    // Setup slider to control the volume of all media
-    double initialVolume = 1; // Example initial volume
-    backgroundMusic.setVolume(initialVolume);
-    buttonClickSound.setVolume(initialVolume);
-    twinkleSound.setVolume(initialVolume);
-
-    // Sync volume slider with the volume of all media players
-    volumeSlider.setValue(initialVolume * 100);
-    volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-      double volume = newValue.doubleValue() / 100;
-      backgroundMusic.setVolume(volume);
-      buttonClickSound.setVolume(volume);
-      twinkleSound.setVolume(volume);
-
-      // Save the volume for future scenes
-      App.setVolume(volume);
-    });
   }
 
   /** Handles the button hover event and plays a sound effect. */
