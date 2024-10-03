@@ -17,7 +17,10 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -25,8 +28,11 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
+import nz.ac.auckland.se206.controllers.LetterCloseUpController;
+import nz.ac.auckland.se206.controllers.LockController;
 import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
+import nz.ac.auckland.se206.controllers.WindowController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
@@ -140,6 +146,64 @@ public class App extends Application {
   }
 
   /**
+   * Sets the red circle and initiates a shaking animation on the clock ImageView
+   * when the time remaining reaches 30 seconds.
+   * The red circle will turn red and the clock will shake for a short duration.
+   * If the time remaining drops to 28 seconds or below, the shaking will stop and
+   * the red circle will turn black.
+   *
+   * @param redCircle the Circle object to be set to red and shaken
+   * @param clock     the ImageView object to be shaken
+   */
+  public static void setRedCircle(Circle redCircle, ImageView clock) {
+    TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+      if (newTime.intValue() == 30) {
+        redCircle.setFill(Color.RED);
+        Timeline shakeTimeline = new Timeline();
+
+        // Create a KeyFrame to change the position of the ImageView
+        KeyFrame keyFrame = new KeyFrame(
+            Duration.millis(100), // Change position every 100 milliseconds
+            event -> {
+              double offsetX = (Math.random() - 0.5) * 5; // Random X offset (-5 to 5)
+              double offsetY = (Math.random() - 0.5) * 5; // Random Y offset (-5 to 5)
+
+              redCircle.setTranslateX(offsetX);
+              redCircle.setTranslateY(offsetY);
+              clock.setTranslateX(offsetX);
+              clock.setTranslateY(offsetY);
+            });
+
+        // Add the keyframe to the timeline
+        shakeTimeline.getKeyFrames().add(keyFrame);
+        shakeTimeline.setCycleCount(20);
+
+        // Start the shaking when the scream starts
+        shakeTimeline.play();
+
+        if (newTime.intValue() == 28) {
+          shakeTimeline.stop();
+        }
+
+      }
+
+      if (newTime.intValue() <= 28.1) {
+        redCircle.setOpacity(0.5);
+          redCircle.setTranslateX(0);
+          redCircle.setTranslateY(0);
+          redCircle.setLayoutX(843);
+          redCircle.setLayoutY(54);
+          clock.setLayoutX(801);
+          clock.setLayoutY(11);
+          clock.setTranslateX(0);
+          clock.setTranslateY(0);
+        redCircle.setFill(Color.BLACK);
+      }
+
+    });
+  }
+
+  /**
    * Opens the chat view and sets the student in the chat controller.
    *
    * @param event the mouse event that triggered the method
@@ -235,10 +299,12 @@ public class App extends Application {
     // found
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean isBurnt = LetterCloseUpController.burnt;
 
     // Check if the player has talked to all suspects and guessed all clues
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    boolean atLeastOneClueFound = clues[0] && LockController.isBoxUnlocked()
+        || clues[1] && WindowController.fabricFound() || clues[2] && isBurnt;
 
     // Case 1: All suspects talked to and at least one clue found
     if (allSuspectsTalkedTo && atLeastOneClueFound) {

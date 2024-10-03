@@ -9,6 +9,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
@@ -57,6 +58,10 @@ public class SafeController {
   @FXML
   private Pane instructionsPane;
   @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
+  @FXML
   private Pane mutePane;
 
   private MediaPlayer buttonClickSound;
@@ -85,6 +90,9 @@ public class SafeController {
     App.animateText("There appears to be a key! Would this unlock the jewellery box?", infoLabel);
     // load the clue menu
     App.handleClueMenu(clueMenu);
+
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     App.loadHintsBox(instructionsPane);
 

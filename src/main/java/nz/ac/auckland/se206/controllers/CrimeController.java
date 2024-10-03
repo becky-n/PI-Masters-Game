@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -76,6 +77,10 @@ public class CrimeController {
   @FXML
   private Pane instructionsPane;
   @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
+  @FXML
   private Pane mutePane;
   @FXML
   private ImageView glassPile;
@@ -95,6 +100,8 @@ public class CrimeController {
    */
   @FXML
   private void initialize() throws IOException {
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     // Initialize media resources using MediaPlayer
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
@@ -138,6 +145,10 @@ public class CrimeController {
     nav.setMenu(menuButton);
 
     App.timer(timerLabel);
+
+    // if(TimerManager.timedUp()){
+    //   redCircle.setVisible(true);
+    // }
 
   }
 

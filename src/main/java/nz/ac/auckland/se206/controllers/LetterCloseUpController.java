@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
@@ -60,6 +61,10 @@ public class LetterCloseUpController {
   @FXML
   private Rectangle matchBox;
   @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
+  @FXML
   private Label infoLabel;
   @FXML
   private Rectangle instructionsBox;
@@ -76,6 +81,9 @@ public class LetterCloseUpController {
    * and loads the clue menu and hints box.
    */
   public void initialize() throws IOException {
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
+
     // Load the sound effects
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
     Media matchMedia = new Media(getClass().getResource("/sounds/fire-crackling.wav").toString());

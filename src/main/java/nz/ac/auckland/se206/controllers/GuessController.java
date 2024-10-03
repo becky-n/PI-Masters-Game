@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
@@ -72,6 +73,10 @@ public class GuessController {
   @FXML
   private Button close;
   @FXML
+  private Circle redCircle;
+  @FXML
+  private ImageView clock;
+  @FXML
   private Pane mutePane;
 
   private MediaPlayer markerSound;
@@ -89,6 +94,8 @@ public class GuessController {
    */
   @FXML
   public void initialize() throws IOException {
+    // set circle colour for time almost out
+    App.setRedCircle(redCircle, clock);
 
     guess1 = true;
     Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());

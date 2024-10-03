@@ -53,8 +53,8 @@
             </Label>
          </children>
       </Pane>
-      <Circle layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
-      <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <Circle fx:id="redCircle" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
+      <ImageView fx:id="clock" fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/clockFrame.png" />
          </image>
