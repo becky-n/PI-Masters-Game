@@ -6,7 +6,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MuteController">
    <children>
-      <ImageView fx:id="mute" fitHeight="31.0" fitWidth="31.0" layoutX="10.0" layoutY="-1.0" onMouseClicked="#onMute" onMouseEntered="#onMuteHover" onMouseExited="#offMuteHover" opacity="0.8" preserveRatio="true">
+      <ImageView fx:id="mute" fitHeight="31.0" fitWidth="31.0" layoutX="10.0" layoutY="-1.0" onMouseClicked="#onMute" onMouseEntered="#onMuteHover" onMouseExited="#offMuteHover" opacity="0.5" preserveRatio="true">
          <image>
             <Image url="@../images/unmute.png" />
          </image>

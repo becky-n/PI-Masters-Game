@@ -27,7 +27,7 @@ public class MuteController {
    */
   @FXML
   private void onMuteHover() {
-    mute.setOpacity(1);
+    mute.setOpacity(0.8);
   }
 
   /**
@@ -35,7 +35,7 @@ public class MuteController {
    */
   @FXML
   private void offMuteHover() {
-    mute.setOpacity(0.8);
+    mute.setOpacity(0.5);
   }
 
   /**
