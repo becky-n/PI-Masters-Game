@@ -189,14 +189,14 @@ public class App extends Application {
 
       if (newTime.intValue() <= 28.1) {
         redCircle.setOpacity(0.5);
-          redCircle.setTranslateX(0);
-          redCircle.setTranslateY(0);
-          redCircle.setLayoutX(843);
-          redCircle.setLayoutY(54);
-          clock.setLayoutX(801);
-          clock.setLayoutY(11);
-          clock.setTranslateX(0);
-          clock.setTranslateY(0);
+        redCircle.setTranslateX(0);
+        redCircle.setTranslateY(0);
+        redCircle.setLayoutX(843);
+        redCircle.setLayoutY(54);
+        clock.setLayoutX(801);
+        clock.setLayoutY(11);
+        clock.setTranslateX(0);
+        clock.setTranslateY(0);
         redCircle.setFill(Color.BLACK);
       }
 
@@ -471,8 +471,6 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
-    Image image = new Image(getClass().getResourceAsStream("/images/magnifying.png"));
-    scene.setCursor(new ImageCursor(image));
   }
 
   private void handleWindowClose(WindowEvent event) {
