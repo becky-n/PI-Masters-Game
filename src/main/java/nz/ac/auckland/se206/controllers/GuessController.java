@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -94,12 +93,9 @@ public class GuessController {
    * @throws IOException
    */
   @FXML
-  public void initialize() {
+  public void initialize() throws IOException {
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
-    
-    sadMusic = new AudioClip(getClass().getResource("/sounds/sad-music.mp3").toString());
-    happyMusic = new AudioClip(getClass().getResource("/sounds/happy.mp3").toString());
 
     guess1 = true;
     Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
