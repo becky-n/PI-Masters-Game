@@ -15,7 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionRequest;
 import nz.ac.auckland.apiproxy.chat.openai.ChatCompletionResult;
@@ -54,7 +55,7 @@ public class TabletController {
   private ImageView background;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
   private String str = "";
   private GuessController guess;
 
@@ -70,7 +71,14 @@ public class TabletController {
     background.setImage(new Image("/images/blue.png"));
 
     loading.setVisible(false);
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+
+    // Any required initialization code can be placed here
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.muteSound();
 
     // set the tablet controller
     TimerManager.setTabletController(this);
@@ -215,6 +223,7 @@ public class TabletController {
    */
   @FXML
   public void onSendMessage() throws ApiProxyException, IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     String message = txtInput.getText().trim();
     TimerManager.getInstance().stop();

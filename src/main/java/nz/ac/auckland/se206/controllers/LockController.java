@@ -10,7 +10,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
@@ -63,13 +64,15 @@ public class LockController {
   private ImageView rightGlow;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Pane mutePane;
 
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
   private List<String> userSequence = new ArrayList<>();
-  private AudioClip buttonClickSound;
-  private AudioClip unlockSound;
-  private AudioClip keySound;
+  private MediaPlayer buttonClickSound;
+  private MediaPlayer unlockSound;
+  private MediaPlayer keySound;
   private double angle = 0;
 
   /**
@@ -81,9 +84,24 @@ public class LockController {
   @FXML
   public void initialize() throws IOException {
     // Load the sound files
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
-    unlockSound = new AudioClip(getClass().getResource("/sounds/unlock.mp3").toString());
-    keySound = new AudioClip(getClass().getResource("/sounds/key.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media unlockMedia = new Media(getClass().getResource("/sounds/unlock.mp3").toString());
+    Media keyMedia = new Media(getClass().getResource("/sounds/key.mp3").toString());
+
+    // Initialize the media players
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+    unlockSound = new MediaPlayer(unlockMedia);
+    keySound = new MediaPlayer(keyMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    sounds.add(unlockSound);
+    sounds.add(keySound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
 
     // Hide the glow effect
     leftGlow.setVisible(false);
@@ -111,6 +129,7 @@ public class LockController {
    */
   @FXML
   private void handleLeftRotate() {
+    keySound.seek(javafx.util.Duration.ZERO); 
     keySound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -125,6 +144,7 @@ public class LockController {
    */
   @FXML
   private void handleRightRotate() {
+    keySound.seek(javafx.util.Duration.ZERO); 
     keySound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);

@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +9,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Navigation;
 
@@ -18,26 +20,23 @@ public class LetterController {
   public static boolean burnt;
 
   // Instance Fields
-  private AudioClip buttonClickSound;
+  private MediaPlayer buttonClickSound;
 
   // FXML-Annotated Fields
   @FXML
   private MenuButton menuButton;
-
   @FXML
   private Label timerLabel;
-
   @FXML
   private Pane clueMenu;
-
   @FXML
   private Label infoLabel;
-
   @FXML
   private Pane instructionsPane;
-
   @FXML
   private ImageView envelope;
+  @FXML
+  private Pane mutePane;
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -47,7 +46,17 @@ public class LetterController {
    */
   public void initialize() throws IOException {
     // Load the sound effects
-    buttonClickSound = new AudioClip(getClass().getResource("/sounds/click.mp3").toString());
+    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    buttonClickSound = new MediaPlayer(buttonClickMedia);
+
+    // create array of sounds and store
+    App.handleMute(mutePane);
+    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
+    sounds.add(buttonClickSound);
+    
+    App.setSounds(sounds);
+    App.muteSound();
+
     Navigation nav = new Navigation();
     nav.setMenu(menuButton);
     // Load the clue menu
@@ -83,6 +92,8 @@ public class LetterController {
    */
   @FXML
   private void onBack() throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+
     // Play button click sound
     buttonClickSound.play();
     App.setRoot("crime");
@@ -96,6 +107,7 @@ public class LetterController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
     buttonClickSound.play();
     App.guessClick();
   }
