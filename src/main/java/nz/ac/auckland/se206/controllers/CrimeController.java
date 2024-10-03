@@ -77,6 +77,8 @@ public class CrimeController {
   private Pane instructionsPane;
   @FXML
   private Pane mutePane;
+  @FXML
+  private ImageView glassPile;
 
   // Sound effects
   private MediaPlayer buttonClickSound;
@@ -116,7 +118,7 @@ public class CrimeController {
     sounds.add(paperSound);
     sounds.add(glassSound);
     sounds.add(boxSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -156,6 +158,7 @@ public class CrimeController {
     } else if (clickedRectangle.getId().equals("glass")) {
       glassSound.play();
       glassPileGlow.setVisible(true);
+      glassPile.setVisible(false);
     } else if (clickedRectangle.getId().equals("letter")) {
       paperSound.play();
       invitationGlow.setVisible(true);
@@ -179,6 +182,7 @@ public class CrimeController {
     } else if (clickedRectangle.getId().equals("glass")) {
       glassSound.stop();
       glassPileGlow.setVisible(false);
+      glassPile.setVisible(true);
     } else if (clickedRectangle.getId().equals("letter")) {
       paperSound.stop();
       invitationGlow.setVisible(false);

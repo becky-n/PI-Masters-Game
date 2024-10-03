@@ -37,7 +37,7 @@ public class Navigation {
     menuButton.getItems().clear();
 
     // Create custom MenuItems
-    MenuItem crimeScene = createCustomMenuItem("Bridal Suite", "/images/bridalSuite.png");
+    MenuItem crimeScene = createCustomMenuItem("Bridal Suite", "/images/bridalSuite.jpg");
     MenuItem gerald = createCustomMenuItem("The Aisle", "/images/madGerald.png");
     MenuItem jesin = createCustomMenuItem("The Lobby", "/images/madJesin.png");
     MenuItem andrea = createCustomMenuItem("The Ballroom", "/images/madAndrea.png");

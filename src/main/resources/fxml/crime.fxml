@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -19,7 +18,7 @@
          <children>
             <ImageView blendMode="SRC_ATOP" fitHeight="614.0" fitWidth="1062.0" layoutX="-56.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/bridalSuite.png" />
+                  <Image url="@../images/bridalSuite.jpg" />
                </image>
             </ImageView>
             <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
@@ -34,33 +33,29 @@
                </font>
             </Label>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fx:id="safeGlow" fitHeight="58.0" fitWidth="118.0" layoutX="373.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/boxClosed3.png" />
-               </image>
-               <effect>
-                  <Glow level="0.5" />
-               </effect>
-            </ImageView>
-            <ImageView fx:id="glassPileGlow" fitHeight="136.0" fitWidth="136.0" layoutX="73.0" layoutY="482.0" preserveRatio="true">
+            <ImageView fx:id="glassPile" fitHeight="144.0" fitWidth="136.0" layoutX="71.0" layoutY="484.0" preserveRatio="true">
                <image>
                   <Image url="@../images/glassPile.png" />
                </image>
-               <effect>
-                  <Glow level="0.5" />
-               </effect>
             </ImageView>
-            <ImageView fx:id="invitationGlow" fitHeight="65.0" fitWidth="68.0" layoutX="510.0" layoutY="294.0" preserveRatio="true">
+            <ImageView fx:id="safeGlow" fitHeight="66.0" fitWidth="88.0" layoutX="368.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/boxClosed3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="glassPileGlow" fitHeight="164.0" fitWidth="167.0" layoutX="61.0" layoutY="464.0" preserveRatio="true">
+               <image>
+                  <Image url="@../images/glassPile.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="invitationGlow" fitHeight="80.0" fitWidth="86.0" layoutX="505.0" layoutY="283.0" preserveRatio="true">
                <image>
                   <Image url="@../images/invitationPile.png" />
                </image>
-               <effect>
-                  <Glow />
-               </effect>
             </ImageView>
-            <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="365.0" layoutY="300.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
-            <Rectangle fx:id="letter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="510.0" layoutY="311.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-            <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="72.0" layoutY="520.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
+            <Rectangle fx:id="safe" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="365.0" layoutY="297.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+            <Rectangle fx:id="letter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="507.0" layoutY="308.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+            <Rectangle fx:id="glass" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="71.0" layoutY="517.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="136.0" />
             <Button fx:id="btnGuess" layoutX="674.0" layoutY="29.0" mnemonicParsing="false" onAction="#onHandleGuessClick" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Make a guess">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
