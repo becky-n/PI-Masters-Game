@@ -23,8 +23,11 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
+import nz.ac.auckland.se206.controllers.LetterCloseUpController;
+import nz.ac.auckland.se206.controllers.LockController;
 import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
+import nz.ac.auckland.se206.controllers.WindowController;
 import nz.ac.auckland.se206.speech.FreeTextToSpeech;
 
 /**
@@ -231,10 +234,12 @@ public class App extends Application {
     // found
     boolean[] suspects = ChatController.suspectsTalkedTo();
     boolean[] clues = CrimeController.cluesGuessed();
+    boolean isBurnt = LetterCloseUpController.burnt;
 
     // Check if the player has talked to all suspects and guessed all clues
     boolean allSuspectsTalkedTo = suspects[0] && suspects[1] && suspects[2];
-    boolean atLeastOneClueFound = clues[0] || clues[1] || clues[2];
+    boolean atLeastOneClueFound = clues[0] && LockController.isBoxUnlocked()
+        || clues[1] && WindowController.fabricFound() || clues[2] && isBurnt;
 
     // Case 1: All suspects talked to and at least one clue found
     if (allSuspectsTalkedTo && atLeastOneClueFound) {
