@@ -96,7 +96,7 @@ public class LetterCloseUpController {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(matchSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -143,7 +143,6 @@ public class LetterCloseUpController {
    * @throws IOException if there is an I/O error
    */
   private void handleTimerExpired() {
-    setBackCursor();
     matchSound.stop();
   }
 
@@ -178,7 +177,7 @@ public class LetterCloseUpController {
         eraseCanvas.setDisable(false);
         return;
       }
-      // create canvas for erasing the layer with fire cursor
+      // create canvas for erasing the layer
       createcanvas();
 
     }
@@ -195,25 +194,12 @@ public class LetterCloseUpController {
     if (envelopeClicked < 2) {
       return;
     } else {
-      // Set the matchbox cursor
+      // Set the matchbox
       matchBoxClicked = true;
       buttonClickSound.play();
       matchSound.play();
-      setMatchboxCursor();
     }
 
-  }
-
-  /**
-   * Sets the cursor to the matchbox image.
-   */
-  private void setMatchboxCursor() {
-    // Load custom cursor image
-    Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    if (envelopeCloseUp.getScene() != null) {
-      envelopeCloseUp.getScene().setCursor(customCursor);
-    }
   }
 
   /**
@@ -307,30 +293,16 @@ public class LetterCloseUpController {
   }
 
   /**
-   * Sets the cursor back to the default cursor.
+   * Sets the scene back to the crime scene.
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     matchSound.stop();
     buttonClickSound.play();
-    setBackCursor();
 
     App.setRoot("crime");
-  }
-
-  /**
-   * Sets the cursor back to the default cursor.
-   */
-  private void setBackCursor() {
-    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    // Set the cursor back to the default cursor
-    if (envelopeCloseUp.getScene() != null) {
-      envelopeCloseUp.getScene().setCursor(customCursor);
-    }
-    matchSound.stop();
   }
 
   /**
@@ -341,7 +313,7 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     boolean successfulGuess = App.guessClick();
     if (successfulGuess) {
