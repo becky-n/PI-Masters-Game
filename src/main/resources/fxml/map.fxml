@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -8,24 +10,55 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="505.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MapController">
+<StackPane prefHeight="558.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MapController">
    <children>
-      <Pane fx:id="map" prefHeight="600.0" prefWidth="561.0">
+      <Pane fx:id="map" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
          <children>
-            <ImageView fitHeight="445.0" fitWidth="520.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="668.0" layoutX="-53.0" layoutY="-32.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="992.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="391.0" layoutY="76.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="137.0">
+               <effect>
+                  <BoxBlur height="0.0" width="52.81" />
+               </effect>
+            </Rectangle>
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="69.0" prefHeight="42.0" prefWidth="115.0" text="Map" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="359.0" fitWidth="372.0" layoutX="273.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/map.png" />
                </image>
             </ImageView>
-            <Button fx:id="backButton" layoutY="462.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
+            <Button fx:id="backButton" layoutX="273.0" layoutY="476.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle fx:id="ballroom" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="36.0" layoutY="102.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="lobby" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="330.0" layoutY="102.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="aisle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="122.0" layoutX="184.0" layoutY="95.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="359.0" layoutY="330.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+            <ImageView fitHeight="76.0" fitWidth="75.0" layoutX="550.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" rotate="5.0">
+               <image>
+                  <Image url="@../images/note.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="551.0" layoutY="386.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" rotate="5.0" stroke="BLACK" strokeType="INSIDE" width="69.0" />
+            <ImageView fitHeight="80.0" fitWidth="77.0" layoutX="305.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" rotate="2.0">
+               <image>
+                  <Image url="@../images/andreaPhoto.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="60.0" layoutX="413.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" rotate="6.7">
+               <image>
+                  <Image url="@../images/geraldPhoto.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="57.0" layoutX="545.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
+               <image>
+                  <Image url="@../images/jesinPhoto.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="lobby" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="518.0" layoutY="193.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+            <Rectangle fx:id="aisle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="97.0" layoutX="411.0" layoutY="192.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
+            <Rectangle fx:id="ballroom" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="132.0" layoutX="282.0" layoutY="156.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="122.0" />
          </children>
       </Pane>
    </children>
