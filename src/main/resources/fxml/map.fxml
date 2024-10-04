@@ -1,50 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MapController">
+<StackPane prefHeight="505.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MapController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="897.0">
+      <Pane fx:id="map" prefHeight="600.0" prefWidth="561.0">
          <children>
-            <ImageView blendMode="SRC_ATOP" fitHeight="640.0" fitWidth="1057.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="445.0" fitWidth="520.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/placeholderMap.png" />
+                  <Image url="@../images/map.png" />
                </image>
             </ImageView>
-            <Circle fx:id="redCircle" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: 0.5;" />
-            <Label fx:id="timerLabel" alignment="CENTER" layoutX="807.0" layoutY="15.0" prefHeight="79.0" prefWidth="72.0" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="clock" fitHeight="87.0" fitWidth="109.0" layoutX="801.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/clockFrame.png" />
-               </image>
-               <effect>
-                  <ColorAdjust brightness="1.0" />
-               </effect>
-            </ImageView>
-            <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
-            <Button fx:id="backButton" layoutX="37.0" layoutY="517.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
+            <Button fx:id="backButton" layoutY="462.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
                <font>
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle fx:id="ballroom" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="260.0" layoutY="180.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="lobby" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="532.0" layoutY="180.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="aisle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="122.0" layoutX="396.0" layoutY="165.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
-            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="557.0" layoutY="392.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
+            <Rectangle fx:id="ballroom" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="36.0" layoutY="102.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
+            <Rectangle fx:id="lobby" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="330.0" layoutY="102.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
+            <Rectangle fx:id="aisle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="122.0" layoutX="184.0" layoutY="95.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
+            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="108.0" layoutX="359.0" layoutY="330.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="113.0" />
          </children>
       </Pane>
    </children>

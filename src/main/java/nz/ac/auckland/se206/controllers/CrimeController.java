@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -63,8 +65,6 @@ public class CrimeController {
   }
 
   @FXML
-  private MenuButton menuButton;
-  @FXML
   private Label timerLabel;
   @FXML
   private Pane clueMenu;
@@ -77,6 +77,8 @@ public class CrimeController {
   @FXML
   private Pane instructionsPane;
   @FXML
+  private Pane mapPane;
+  @FXML
   private Circle redCircle;
   @FXML
   private ImageView clock;
@@ -84,6 +86,12 @@ public class CrimeController {
   private Pane mutePane;
   @FXML
   private ImageView glassPile;
+  @FXML
+  private Rectangle safe;
+  @FXML
+  private Rectangle glass;
+  @FXML
+  private Rectangle letter;
 
   // Sound effects
   private MediaPlayer buttonClickSound;
@@ -140,15 +148,28 @@ public class CrimeController {
     // load hints box
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
 
     // if(TimerManager.timedUp()){
-    //   redCircle.setVisible(true);
+    // redCircle.setVisible(true);
     // }
+
+  }
+
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    App.loadMap(mapPane);
+    
+    // Disable interactions with clue rectangles
+    safe.setDisable(true);
+    glass.setDisable(true);
+    letter.setDisable(true);
+
+    // Optionally hide the glow effects or set them invisible
+    safeGlow.setVisible(false);
+    glassPileGlow.setVisible(false);
+    invitationGlow.setVisible(false);
 
   }
 

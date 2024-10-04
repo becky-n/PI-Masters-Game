@@ -24,16 +24,6 @@ public class MapController {
   private static GameStateContext context = new GameStateContext();
 
   @FXML
-  private Label timerLabel;
-  @FXML
-  private Pane instructionsPane;
-  @FXML
-  private Circle redCircle;
-  @FXML
-  private ImageView clock;
-  @FXML
-  private Pane mutePane;
-  @FXML
   private Rectangle aisle;
   @FXML
   private Rectangle crime;
@@ -59,7 +49,7 @@ public class MapController {
   @FXML
   private void initialize() throws IOException {
     // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
+    
 
     // Initialize media resources using MediaPlayer
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
@@ -75,8 +65,7 @@ public class MapController {
     glassSound = new MediaPlayer(glassMedia);
     boxSound = new MediaPlayer(boxMedia);
 
-    // create array of sounds and store
-    App.handleMute(mutePane);
+    
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
@@ -85,10 +74,6 @@ public class MapController {
     sounds.add(boxSound);
 
     App.setSounds(sounds);
-    App.muteSound();
-
-
-    App.timer(timerLabel);
 
   }
 
@@ -164,4 +149,17 @@ public class MapController {
     }
 
 }
+
+/**
+   * Handles the back button click event.
+   *
+   * @throws IOException if there is an I/O error
+   */
+  @FXML
+  private void onBack() throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+
+    buttonClickSound.play();
+    App.setRoot("crime");
+  }
 }

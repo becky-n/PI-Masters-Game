@@ -248,6 +248,22 @@ public class App extends Application {
   }
 
   /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void loadMap(Pane pane) throws IOException {
+    // Load the hints box
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/map.fxml"));
+    Pane mapPane = loader.load();
+    pane.getChildren().clear();
+    pane.getChildren().add(mapPane);
+  }
+
+
+
+  /**
    * Updates the instructions in the hints box.
    * 
    * @param newHint the new hint to display in the hints box
