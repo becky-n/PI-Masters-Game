@@ -41,6 +41,8 @@ public class AisleController extends MapRooms {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -75,6 +77,8 @@ public class AisleController extends MapRooms {
     App.openChat("Gerald", chatPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**

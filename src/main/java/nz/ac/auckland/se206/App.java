@@ -458,6 +458,23 @@ public class App extends Application {
     fadeOut.play();
   }
 
+  /**
+   * Sets up hover effects for the given ImageView. When the mouse enters the ImageView,
+   * the image is changed to "mapHover.png". When the mouse exits the ImageView, the image
+   * is changed back to "mapIcon.png".
+   *
+   * @param mapHover the ImageView to which the hover effects will be applied
+   */
+  public static void mapHoverImage(ImageView mapClose){
+    mapClose.setOnMouseEntered(event -> {
+      mapClose.setImage(new Image("/images/mapHover.png"));
+    });
+
+    mapClose.setOnMouseExited(event -> {
+      mapClose.setImage(new Image("/images/mapIcon.png"));
+    });
+  }
+
   public static String getCurrentSceneId() {
     return currentSceneId;
   }

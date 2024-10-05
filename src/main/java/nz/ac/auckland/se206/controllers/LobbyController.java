@@ -41,6 +41,8 @@ public class LobbyController extends MapRooms {
   private Pane instructionsPane;
   @FXML
   private Pane mapPane;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -76,6 +78,8 @@ public class LobbyController extends MapRooms {
     App.openChat("Jesin", chatPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**

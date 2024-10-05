@@ -74,6 +74,8 @@ public class SafeController extends MapRooms {
   private Button backButton;
   @FXML
   private Rectangle infoBox;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -108,6 +110,8 @@ public class SafeController extends MapRooms {
     App.loadHintsBox(instructionsPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
     // Make the key draggable
     DraggableMaker dm = new DraggableMaker();

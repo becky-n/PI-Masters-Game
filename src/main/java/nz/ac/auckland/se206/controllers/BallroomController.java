@@ -34,6 +34,8 @@ public class BallroomController extends MapRooms {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -68,6 +70,8 @@ public class BallroomController extends MapRooms {
     App.openChat("Andrea", chatPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**

@@ -86,6 +86,8 @@ public class LockController extends MapRooms {
   private ImageView left;
   @FXML
   private ImageView right;
+  @FXML
+  private ImageView mapClose;
 
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
@@ -137,6 +139,8 @@ public class LockController extends MapRooms {
     App.loadHintsBox(instructionsPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
   }
 
