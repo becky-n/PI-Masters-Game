@@ -3,12 +3,14 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.MapRooms;
 
 public class MapController {
   private static GameStateContext context = new GameStateContext();
@@ -24,6 +26,10 @@ public class MapController {
 
   // Sound effects
   private MediaPlayer buttonClickSound;
+
+  private MapRooms room;
+
+  private Pane pane;
 
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
@@ -135,39 +141,14 @@ public class MapController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
-    String currentSceneId = App.getCurrentSceneId();
+    App.unloadMap(pane, room);
+  }
 
-    switch(currentSceneId){
-      case "ballroom":
-        App.setRoot("ballroom");
-        break;
-      case "aisle":
-        App.setRoot("aisle");
-        break;
-      case "lobby":
-        App.setRoot("lobby");
-        break;
-      case "crime":
-        App.setRoot("crime");
-        break;
-      case "letter":
-        App.setRoot("letter");
-        break;
-        case "letterCloseUp":
-        App.setRoot("letterCloseUp");
-        break;
-      case "lock":
-        App.setRoot("lock");
-        break;
-      case "safe":
-        App.setRoot("safe");
-        break;
-      case "unlockBox":
-        App.setRoot("unlockBox");
-        break;
-      case "window":
-        App.setRoot("window");
-        break;
-    }
+  public void setRoom(MapRooms room) {
+    this.room = room;
+  }
+
+  public void setPane(Pane pane) {
+    this.pane = pane;
   }
 }

@@ -75,12 +75,12 @@
                </image>
             </ImageView>
             <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="35.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="164.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="35.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="283.0">
                <effect>
                   <BoxBlur height="0.0" width="52.81" />
                </effect>
             </Rectangle>
-            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="16.0" prefHeight="42.0" prefWidth="152.0" text="Crime Scene" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="16.0" prefHeight="42.0" prefWidth="299.0" text="The Bridal Suite (Crime Scene)" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
                <font>
                   <Font name="Georgia Bold" size="18.0" />
                </font>

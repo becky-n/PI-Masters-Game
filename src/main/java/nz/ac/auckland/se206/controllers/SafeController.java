@@ -17,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * The SafeController class is responsible for managing the interactions and
@@ -29,7 +29,7 @@ import nz.ac.auckland.se206.Navigation;
  * interaction
  * with the target, as well as handling various button click events.
  */
-public class SafeController {
+public class SafeController extends MapRooms {
   public static boolean unlocked = false;
   private static GameStateContext context = new GameStateContext();
 
@@ -75,7 +75,6 @@ public class SafeController {
   @FXML
   private Rectangle infoBox;
 
-
   private MediaPlayer buttonClickSound;
 
   /**
@@ -95,7 +94,7 @@ public class SafeController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -146,7 +145,7 @@ public class SafeController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
     App.setRoot("crime");
@@ -160,7 +159,7 @@ public class SafeController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
   }
@@ -206,9 +205,22 @@ public class SafeController {
     key.toBack();
     pattern.toBack();
     box.toBack();
-    
-    
-    App.loadMap(mapPane);
 
+    App.loadMap(mapPane, this);
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    box.toFront();
+    pattern.toFront();
+    target.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    mutePane.toFront();
+    key.toFront();
   }
 }

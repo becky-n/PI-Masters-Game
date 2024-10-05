@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Lock scene.
@@ -26,7 +26,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class LockController {
+public class LockController extends MapRooms {
   public static boolean safeUnlocked = false;
   private static GameStateContext context = new GameStateContext();
 
@@ -87,7 +87,6 @@ public class LockController {
   @FXML
   private ImageView right;
 
-  
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
   private List<String> userSequence = new ArrayList<>();
@@ -120,7 +119,7 @@ public class LockController {
     sounds.add(buttonClickSound);
     sounds.add(unlockSound);
     sounds.add(keySound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -137,7 +136,6 @@ public class LockController {
 
     App.loadHintsBox(instructionsPane);
 
-
     App.timer(timerLabel);
 
   }
@@ -150,7 +148,7 @@ public class LockController {
    */
   @FXML
   private void handleLeftRotate() {
-    keySound.seek(javafx.util.Duration.ZERO); 
+    keySound.seek(javafx.util.Duration.ZERO);
     keySound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -165,7 +163,7 @@ public class LockController {
    */
   @FXML
   private void handleRightRotate() {
-    keySound.seek(javafx.util.Duration.ZERO); 
+    keySound.seek(javafx.util.Duration.ZERO);
     keySound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -290,8 +288,26 @@ public class LockController {
     right.toBack();
     leftGlow.toBack();
     rightGlow.toBack();
-    
-    App.loadMap(mapPane);
 
+    App.loadMap(mapPane, this);
   }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    rightGlow.toFront();
+    right.toFront();
+    leftGlow.toFront();
+    left.toFront();
+    rightButton.toFront();
+    leftButton.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    key.toFront();
+    mutePane.toFront();
+  }
+
 }

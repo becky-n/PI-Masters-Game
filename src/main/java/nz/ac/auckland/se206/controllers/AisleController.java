@@ -13,7 +13,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Aisle scene.
@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class AisleController {
+public class AisleController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -100,8 +100,16 @@ public class AisleController {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
     chatPane.toBack();
-    App.loadMap(mapPane);
+    App.loadMap(mapPane, this);
+  }
 
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    chatPane.toFront();
+    mutePane.toFront();
   }
 
 }

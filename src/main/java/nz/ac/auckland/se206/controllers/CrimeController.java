@@ -14,13 +14,14 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Crime scene.
  * Manages the initialization of the scene, handling button clicks, and updating
  * UI elements.
  */
-public class CrimeController {
+public class CrimeController extends MapRooms {
   private static GameStateContext context = new GameStateContext();
   // set clues to false by default
   private static boolean safe1 = false;
@@ -155,8 +156,8 @@ public class CrimeController {
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
-    App.loadMap(mapPane);
-    
+    App.loadMap(mapPane, this);
+
     // Disable interactions with clue rectangles
     safe.setDisable(true);
     glass.setDisable(true);
@@ -276,6 +277,17 @@ public class CrimeController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    // enable interactions with clue rectangles
+    safe.setDisable(false);
+    glass.setDisable(false);
+    letter.setDisable(false);
   }
 
 }

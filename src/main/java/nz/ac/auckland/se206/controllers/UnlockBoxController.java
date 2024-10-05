@@ -16,9 +16,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class UnlockBoxController {
+public class UnlockBoxController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -49,7 +49,6 @@ public class UnlockBoxController {
   @FXML
   private ImageView ringBox;
 
-
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
 
@@ -74,7 +73,7 @@ public class UnlockBoxController {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -99,7 +98,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
     App.setRoot("crime");
@@ -113,7 +112,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     // play the button click sound
     buttonClickSound.play();
     App.guessClick();
@@ -157,11 +156,21 @@ public class UnlockBoxController {
     backButton.toBack();
     infoBox.toBack();
     infoLabel.toBack();
-    box.toBack();
     ringBox.toBack();
-    
-    App.loadMap(mapPane);
 
+    App.loadMap(mapPane, this);
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    ringBox.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    mutePane.toFront();
   }
 
 }

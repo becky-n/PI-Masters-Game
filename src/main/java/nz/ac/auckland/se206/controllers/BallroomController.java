@@ -13,9 +13,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class BallroomController {
+public class BallroomController extends MapRooms {
   @FXML
   private MenuButton menuButton;
   @FXML
@@ -93,8 +93,17 @@ public class BallroomController {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
     chatPane.toBack();
-    App.loadMap(mapPane);
+    App.loadMap(mapPane, this);
 
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    chatPane.toFront();
+    mutePane.toFront();
   }
 
 }

@@ -15,9 +15,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class LetterController {
+public class LetterController extends MapRooms {
 
   // Static Fields
   public static boolean burnt;
@@ -62,7 +62,7 @@ public class LetterController {
   public void initialize() throws IOException {
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
-    
+
     // Load the sound effects
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
     buttonClickSound = new MediaPlayer(buttonClickMedia);
@@ -71,7 +71,7 @@ public class LetterController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -115,7 +115,7 @@ public class LetterController {
     backButton.toBack();
     envelopeRec.toBack();
     envelope.toBack();
-    App.loadMap(mapPane);
+    App.loadMap(mapPane, this);
 
   }
 
@@ -126,7 +126,7 @@ public class LetterController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     // Play button click sound
     buttonClickSound.play();
@@ -141,8 +141,21 @@ public class LetterController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    envelope.toFront();
+    envelopeRec.toFront();
+    backButton.toFront();
+    instructionsBox.toFront();
+    infoLabel.toFront();
+    mutePane.toFront();
   }
 }

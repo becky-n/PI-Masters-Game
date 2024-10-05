@@ -19,10 +19,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 import nz.ac.auckland.se206.TimerManager;
 
-public class LetterCloseUpController {
+public class LetterCloseUpController extends MapRooms {
 
   // Static Fields
   public static boolean burnt = false;
@@ -103,15 +103,14 @@ public class LetterCloseUpController {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(matchSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     // Set the envelope image
     envelopeCloseUp.setImage(image);
-    
-    
+
     eraseCanvas.setDisable(true);
     // If the letter not been burnt, set instructions box
     if (burnt == false) {
@@ -229,9 +228,7 @@ public class LetterCloseUpController {
     instructionsBox.toBack();
     infoLabel.toBack();
     backButton.toBack();
-    App.loadMap(mapPane);
-    
-
+    App.loadMap(mapPane, this);
   }
 
   /**
@@ -341,7 +338,7 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     matchSound.stop();
     buttonClickSound.play();
@@ -371,12 +368,30 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     boolean successfulGuess = App.guessClick();
     if (successfulGuess) {
       matchSound.stop();
       System.out.println("successful guess");
     }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    backButton.toFront();
+    envelopeCloseUp.toFront();
+    letterOpenedReveal.toFront();
+    letterOpened.toFront();
+    envelopeCloseUpRec.toFront();
+    eraseCanvas.toFront();
+    match.toFront();
+    matchBox.toFront();
+    instructionsBox.toFront();
+    infoLabel.toFront();
+    mutePane.toFront();
   }
 }

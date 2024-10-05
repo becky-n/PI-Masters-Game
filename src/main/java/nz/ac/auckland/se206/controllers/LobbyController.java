@@ -13,7 +13,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Lobby scene.
@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class LobbyController {
+public class LobbyController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -68,10 +68,9 @@ public class LobbyController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
-
 
     // load the chat
     App.openChat("Jesin", chatPane);
@@ -87,7 +86,7 @@ public class LobbyController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
   }
@@ -102,8 +101,16 @@ public class LobbyController {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
     chatPane.toBack();
-    App.loadMap(mapPane);
+    App.loadMap(mapPane, this);
+  }
 
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    chatPane.toFront();
+    mutePane.toFront();
   }
 
 }

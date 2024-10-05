@@ -17,9 +17,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class WindowController {
+public class WindowController extends MapRooms {
   public static boolean fabricFound = false;
 
   /**
@@ -261,10 +261,26 @@ public class WindowController {
     fabric.toBack();
     glass7.toBack();
     glass6.toBack();
-    filter.toBack();
 
-    App.loadMap(mapPane);
+    App.loadMap(mapPane, this);
+  }
 
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    fabric.toFront();
+    glass1.toFront();
+    glass2.toFront();
+    glass3.toFront();
+    glass4.toFront();
+    glass5.toFront();
+    glass7.toFront();
+    glass6.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
   }
 
 }
