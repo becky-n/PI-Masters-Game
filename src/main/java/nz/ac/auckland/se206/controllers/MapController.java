@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -25,7 +24,6 @@ public class MapController {
 
   // Sound effects
   private MediaPlayer buttonClickSound;
-  private MediaPlayer twinkleSound;
 
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
@@ -41,21 +39,13 @@ public class MapController {
     lobbyHover.setVisible(false);
     ballroomHover.setVisible(false);
 
-    // Initialize media resources using MediaPlayer
+    // Any required initialization code can be placed here
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
-    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
-
-    // Initialize all MediaPlayer instances
     buttonClickSound = new MediaPlayer(buttonClickMedia);
-    twinkleSound = new MediaPlayer(twinkleMedia);
 
-    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
-    sounds.add(buttonClickSound);
-    sounds.add(twinkleSound);
-
-    App.setSounds(sounds);
+    // add sound to array
+    App.addSound(buttonClickSound);
     App.muteSound();
-
   }
 
   /**
@@ -71,7 +61,7 @@ public class MapController {
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("ballroom")) {
       ballroomHover.setVisible(true);
-      
+
     } else if (clickedRectangle.getId().equals("aisle")) {
       aisleHover.setVisible(true);
 
@@ -96,7 +86,7 @@ public class MapController {
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("ballroom")) {
       ballroomHover.setVisible(false);
-      
+
     } else if (clickedRectangle.getId().equals("aisle")) {
       aisleHover.setVisible(false);
 
