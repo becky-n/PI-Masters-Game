@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -73,6 +74,18 @@ public class LockController {
   private Pane mutePane;
   @FXML
   private Pane mapPane;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle leftButton;
+  @FXML
+  private Rectangle rightButton;
+  @FXML
+  private ImageView left;
+  @FXML
+  private ImageView right;
 
   
   // set the expected sequence to unlock the box
@@ -267,6 +280,17 @@ public class LockController {
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
+    backButton.toBack();
+    infoBox.toBack();
+    infoLabel.toBack();
+    key.toBack();
+    leftButton.toBack();
+    rightButton.toBack();
+    left.toBack();
+    right.toBack();
+    leftGlow.toBack();
+    rightGlow.toBack();
+    
     App.loadMap(mapPane);
 
   }

@@ -32,12 +32,12 @@
                   <DropShadow height="41.52" radius="18.795" width="35.66" />
                </effect>
             </ImageView>
-            <ImageView fitHeight="91.0" fitWidth="80.0" layoutX="230.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="left" fitHeight="91.0" fitWidth="80.0" layoutX="230.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/rotate.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="91.0" fitWidth="80.0" layoutX="583.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+            <ImageView fx:id="right" fitHeight="91.0" fitWidth="80.0" layoutX="583.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@../images/rotate.png" />
                </image>
@@ -60,7 +60,7 @@
             </ImageView>
             <Rectangle fx:id="leftButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="231.0" layoutY="239.0" onMouseClicked="#handleLeftRotate" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
             <Rectangle fx:id="rightButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="583.0" layoutY="237.0" onMouseClicked="#handleRightRotate" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" width="814.0">
+            <Rectangle fx:id="infoBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
                </effect>

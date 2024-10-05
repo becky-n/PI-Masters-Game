@@ -22,7 +22,7 @@
                </image>
             </ImageView>
             <Pane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.65" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
+            <Rectangle fx:id="filter" arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.65" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
             <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
             <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
                <image>
@@ -64,7 +64,7 @@
                   <Image url="@../images/glass3.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b3" height="112.0" layoutX="42.0" layoutY="434.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+            <Rectangle fx:id="infoBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b3" height="112.0" layoutX="42.0" layoutY="434.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
                </effect>

@@ -22,8 +22,7 @@
                </image>
             </ImageView>
             <Pane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="380.0" fitWidth="368.0" layoutX="141.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="box" fitHeight="380.0" fitWidth="368.0" layoutX="141.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/box14.png" />
                </image>
@@ -33,7 +32,7 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+            <Rectangle fx:id="infoBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
                </effect>

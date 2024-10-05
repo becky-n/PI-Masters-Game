@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -65,6 +66,15 @@ public class SafeController {
   private Pane mutePane;
   @FXML
   private Pane mapPane;
+  @FXML
+  private ImageView pattern;
+  @FXML
+  private ImageView box;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle infoBox;
+
 
   private MediaPlayer buttonClickSound;
 
@@ -189,6 +199,15 @@ public class SafeController {
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
+    backButton.toBack();
+    infoLabel.toBack();
+    infoBox.toBack();
+    target.toBack();
+    key.toBack();
+    pattern.toBack();
+    box.toBack();
+    
+    
     App.loadMap(mapPane);
 
   }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
@@ -57,6 +59,10 @@ public class WindowController {
   @FXML
   private ImageView glass5;
   @FXML
+  private ImageView glass6;
+  @FXML
+  private ImageView glass7;
+  @FXML
   private Label infoLabel;
   @FXML
   private ImageView fabric;
@@ -70,6 +76,12 @@ public class WindowController {
   private Pane mutePane;
   @FXML
   private Pane mapPane;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle filter;
 
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
@@ -238,6 +250,19 @@ public class WindowController {
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.play();
+    backButton.toBack();
+    infoBox.toBack();
+    infoLabel.toBack();
+    glass1.toBack();
+    glass2.toBack();
+    glass3.toBack();
+    glass4.toBack();
+    glass5.toBack();
+    fabric.toBack();
+    glass7.toBack();
+    glass6.toBack();
+    filter.toBack();
+
     App.loadMap(mapPane);
 
   }
