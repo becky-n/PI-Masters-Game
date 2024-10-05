@@ -150,6 +150,24 @@ public class MapController {
       case "crime":
         App.setRoot("crime");
         break;
+      case "letter":
+        App.setRoot("letter");
+        break;
+        case "letterCloseUp":
+        App.setRoot("letterCloseUp");
+        break;
+      case "lock":
+        App.setRoot("lock");
+        break;
+      case "safe":
+        App.setRoot("safe");
+        break;
+      case "unlockBox":
+        App.setRoot("unlockBox");
+        break;
+      case "window":
+        App.setRoot("window");
+        break;
     }
   }
 }
