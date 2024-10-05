@@ -63,6 +63,8 @@ public class SafeController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
 
   private MediaPlayer buttonClickSound;
 
@@ -95,10 +97,6 @@ public class SafeController {
     App.setRedCircle(redCircle, clock);
 
     App.loadHintsBox(instructionsPane);
-
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
 
     App.timer(timerLabel);
 
@@ -180,5 +178,18 @@ public class SafeController {
   private void offHover(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    App.loadMap(mapPane);
+
   }
 }

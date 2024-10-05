@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
@@ -74,6 +75,12 @@ public class LetterCloseUpController {
   private Rectangle envelopeCloseUpRec;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private ImageView match;
+  @FXML
+  private Button backButton;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -103,9 +110,8 @@ public class LetterCloseUpController {
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     // Set the envelope image
     envelopeCloseUp.setImage(image);
-    Navigation nav = new Navigation();
-    // Set the menu button
-    nav.setMenu(menuButton);
+    
+    
     eraseCanvas.setDisable(true);
     // If the letter not been burnt, set instructions box
     if (burnt == false) {
@@ -201,6 +207,30 @@ public class LetterCloseUpController {
       matchSound.play();
       setMatchboxCursor();
     }
+
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    envelopeCloseUp.toBack();
+    letterOpenedReveal.toBack();
+    letterOpened.toBack();
+    envelopeCloseUpRec.toBack();
+    eraseCanvas.toBack();
+    match.toBack();
+    matchBox.toBack();
+    instructionsBox.toBack();
+    infoLabel.toBack();
+    backButton.toBack();
+    App.loadMap(mapPane);
+    
 
   }
 

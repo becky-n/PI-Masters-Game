@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
@@ -28,6 +29,8 @@ public class AisleController {
   private Label timerLabel;
   @FXML
   private Pane chatPane;
+  @FXML
+  private Pane mapPane;
   @FXML
   private Pane clueMenu;
   @FXML
@@ -71,10 +74,6 @@ public class AisleController {
     // load the chat
     App.openChat("Gerald", chatPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
   }
 
@@ -89,6 +88,20 @@ public class AisleController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    chatPane.toBack();
+    App.loadMap(mapPane);
+
   }
 
 }

@@ -71,6 +71,9 @@ public class LockController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+
   
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
@@ -121,9 +124,6 @@ public class LockController {
 
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
 
     App.timer(timerLabel);
 
@@ -255,6 +255,19 @@ public class LockController {
     // play the button click sound
     buttonClickSound.play();
     App.guessClick();
+
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    App.loadMap(mapPane);
 
   }
 }

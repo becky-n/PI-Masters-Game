@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -22,6 +21,7 @@
                   <Image url="@../images/floorboards.png" />
                </image>
             </ImageView>
+            <Pane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e270b" height="606.0" layoutX="-7.0" layoutY="-6.0" opacity="0.65" stroke="#a36e27" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
             <Pane fx:id="instructionsPane" layoutX="78.0" layoutY="21.0" prefHeight="66.0" prefWidth="445.0" />
             <ImageView fx:id="fabric" fitHeight="216.0" fitWidth="324.0" layoutX="302.0" layoutY="154.0" onMouseClicked="#onFabricClick" onMouseEntered="#onHoverFabric" onMouseExited="#offHoverFabric" preserveRatio="true">
@@ -79,11 +79,6 @@
                   <Font name="Georgia Bold" size="14.0" />
                </font>
             </Button>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </MenuButton>
             <Circle fx:id="redCircle" layoutX="843.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-opacity: .5;" />
             <Label fx:id="timerLabel" alignment="CENTER" layoutX="809.0" layoutY="22.0" prefHeight="65.0" prefWidth="68.0" textFill="WHITE">
                <font>
@@ -105,6 +100,21 @@
                </effect>
             </ImageView>
             <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="35.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="164.0">
+               <effect>
+                  <BoxBlur height="0.0" width="52.81" />
+               </effect>
+            </Rectangle>
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="16.0" prefHeight="42.0" prefWidth="152.0" text="Crime Scene" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="mapClose" fitHeight="57.0" fitWidth="96.0" layoutX="25.0" layoutY="59.0" onMouseClicked="#handleMapClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/mapIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

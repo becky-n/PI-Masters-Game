@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
@@ -41,7 +43,15 @@ public class LetterController {
   @FXML
   private ImageView envelope;
   @FXML
+  private Rectangle envelopeRec;
+  @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private Rectangle instructionsBox;
+  @FXML
+  private Button backButton;
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -65,8 +75,6 @@ public class LetterController {
     App.setSounds(sounds);
     App.muteSound();
 
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
     // Load the clue menu
     App.handleClueMenu(clueMenu);
     // Load the hints box
@@ -90,6 +98,24 @@ public class LetterController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.play();
+    instructionsBox.toBack();
+    infoLabel.toBack();
+    backButton.toBack();
+    envelopeRec.toBack();
+    envelope.toBack();
+    App.loadMap(mapPane);
 
   }
 
