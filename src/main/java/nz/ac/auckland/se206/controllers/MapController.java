@@ -1,44 +1,29 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
-
 
 public class MapController {
   private static GameStateContext context = new GameStateContext();
 
   @FXML
-  private Rectangle aisle;
+  private Polygon aisleHover;
   @FXML
-  private Rectangle crime;
+  private Polygon crimeHover;
   @FXML
-  private Rectangle lobby;
+  private Polygon lobbyHover;
   @FXML
-  private Rectangle ballroom;
-
+  private Polygon ballroomHover;
 
   // Sound effects
   private MediaPlayer buttonClickSound;
-  private MediaPlayer twinkleSound;
-  private MediaPlayer paperSound;
-  private MediaPlayer glassSound;
-  private MediaPlayer boxSound;
 
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
@@ -48,33 +33,19 @@ public class MapController {
    */
   @FXML
   private void initialize() throws IOException {
-    // set circle colour for time almost out
-    
+    // set hover polys invisible
+    aisleHover.setVisible(false);
+    crimeHover.setVisible(false);
+    lobbyHover.setVisible(false);
+    ballroomHover.setVisible(false);
 
-    // Initialize media resources using MediaPlayer
+    // Any required initialization code can be placed here
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
-    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
-    Media paperMedia = new Media(getClass().getResource("/sounds/paper.mp3").toString());
-    Media glassMedia = new Media(getClass().getResource("/sounds/glass.mp3").toString());
-    Media boxMedia = new Media(getClass().getResource("/sounds/box.mp3").toString());
-
-    // Initialize all MediaPlayer instances
     buttonClickSound = new MediaPlayer(buttonClickMedia);
-    twinkleSound = new MediaPlayer(twinkleMedia);
-    paperSound = new MediaPlayer(paperMedia);
-    glassSound = new MediaPlayer(glassMedia);
-    boxSound = new MediaPlayer(boxMedia);
 
-    
-    ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
-    sounds.add(buttonClickSound);
-    sounds.add(twinkleSound);
-    sounds.add(paperSound);
-    sounds.add(glassSound);
-    sounds.add(boxSound);
-
-    App.setSounds(sounds);
-
+    // add sound to array
+    App.addSound(buttonClickSound);
+    App.muteSound();
   }
 
   /**
@@ -89,14 +60,16 @@ public class MapController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("ballroom")) {
-      
+      ballroomHover.setVisible(true);
+
     } else if (clickedRectangle.getId().equals("aisle")) {
-    
-      
+      aisleHover.setVisible(true);
+
     } else if (clickedRectangle.getId().equals("lobby")) {
-      
-    }else if(clickedRectangle.getId().equals("crime")) {
-      
+      lobbyHover.setVisible(true);
+
+    } else if (clickedRectangle.getId().equals("crime")) {
+      crimeHover.setVisible(true);
     }
   }
 
@@ -112,14 +85,16 @@ public class MapController {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
     if (clickedRectangle.getId().equals("ballroom")) {
-      
+      ballroomHover.setVisible(false);
+
     } else if (clickedRectangle.getId().equals("aisle")) {
-    
-      
+      aisleHover.setVisible(false);
+
     } else if (clickedRectangle.getId().equals("lobby")) {
-      
-    }else if(clickedRectangle.getId().equals("crime")) {
-      
+      lobbyHover.setVisible(false);
+
+    } else if (clickedRectangle.getId().equals("crime")) {
+      crimeHover.setVisible(false);
     }
   }
 
@@ -144,20 +119,20 @@ public class MapController {
       App.setRoot("aisle");
     } else if (clickedRectangle.getId().equals("lobby")) {
       App.setRoot("lobby");
-    }else if(clickedRectangle.getId().equals("crime")) {
+    } else if (clickedRectangle.getId().equals("crime")) {
       App.setRoot("crime");
     }
 
-}
+  }
 
-/**
+  /**
    * Handles the back button click event.
    *
    * @throws IOException if there is an I/O error
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
     App.setRoot("crime");
