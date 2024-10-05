@@ -96,7 +96,7 @@ public class LetterCloseUpController {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(matchSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -242,7 +242,6 @@ public class LetterCloseUpController {
       erase(event);
       // Check if the click is within a specific area (e.g., a rectangle or a shape)
       if (isInsideArea(x, y) && !displayed) {
-        System.out.println("inside area");
         App.animateText("interesting, I wonder who wrote this...", infoLabel);
         displayed = true;
       }
@@ -311,7 +310,7 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     matchSound.stop();
     buttonClickSound.play();
@@ -341,7 +340,7 @@ public class LetterCloseUpController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     boolean successfulGuess = App.guessClick();
     if (successfulGuess) {
