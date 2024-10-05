@@ -228,7 +228,6 @@ public class LetterCloseUpController {
       erase(event);
       // Check if the click is within a specific area (e.g., a rectangle or a shape)
       if (isInsideArea(x, y) && !displayed) {
-        System.out.println("inside area");
         App.animateText("interesting, I wonder who wrote this...", infoLabel);
         displayed = true;
       }
