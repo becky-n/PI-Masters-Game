@@ -120,15 +120,34 @@ public class MapController {
 
     // set clue scene based on clicked rectangle
     if (clickedRectangle.getId().equals("ballroom")) {
-      App.setRoot("ballroom");
+      // check if already in ballroom
+      if (room instanceof BallroomController) {
+        onBack();
+      } else {
+        App.setRoot("ballroom");
+      }
     } else if (clickedRectangle.getId().equals("aisle")) {
-      App.setRoot("aisle");
+      // check if already in aisle
+      if (room instanceof AisleController) {
+        onBack();
+      } else {
+        App.setRoot("aisle");
+      }
     } else if (clickedRectangle.getId().equals("lobby")) {
-      App.setRoot("lobby");
+      // check if already in lobby
+      if (room instanceof LobbyController) {
+        onBack();
+      } else {
+        App.setRoot("lobby");
+      }
     } else if (clickedRectangle.getId().equals("crime")) {
-      App.setRoot("crime");
+      // check if already in crime
+      if (room instanceof CrimeController) {
+        onBack();
+      } else {
+        App.setRoot("crime");
+      }
     }
-
   }
 
   /**
