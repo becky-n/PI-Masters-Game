@@ -135,6 +135,21 @@ public class MapController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
-    App.setRoot("crime");
+    String currentSceneId = App.getCurrentSceneId();
+
+    switch(currentSceneId){
+      case "ballroom":
+        App.setRoot("ballroom");
+        break;
+      case "aisle":
+        App.setRoot("aisle");
+        break;
+      case "lobby":
+        App.setRoot("lobby");
+        break;
+      case "crime":
+        App.setRoot("crime");
+        break;
+    }
   }
 }
