@@ -82,7 +82,7 @@
             <Font name="Georgia Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="mapClose" fitHeight="57.0" fitWidth="96.0" layoutX="25.0" layoutY="59.0" onMouseClicked="#handleMapClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mapClose" fitHeight="70.0" fitWidth="96.0" layoutX="25.0" layoutY="59.0" onMouseClicked="#handleMapClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/mapIcon.png" />
          </image>
