@@ -166,6 +166,7 @@ public class UnlockBoxController extends MapRooms {
       infoBox.toBack();
       infoLabel.toBack();
       ringBox.toBack();
+      closeUp.toBack();
 
       App.loadMap(mapPane, this);
       MapController.toggleMapOpen();
@@ -180,6 +181,7 @@ public class UnlockBoxController extends MapRooms {
     MapController.toggleMapOpen();
 
     ringBox.toFront();
+    closeUp.toFront();
     infoBox.toFront();
     infoLabel.toFront();
     backButton.toFront();
