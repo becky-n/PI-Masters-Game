@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
@@ -15,6 +16,8 @@ public class InstructionsController {
 
   @FXML
   private Label instructionsLabel;
+  @FXML
+  private Circle circle;
 
   private MediaPlayer buttonClickSound;
 
@@ -67,6 +70,16 @@ public class InstructionsController {
       textArea.setVisible(true);
       instructionsLabel.setVisible(true);
     }
+  }
+
+  @FXML
+  public void handleEnter() {
+    circle.setOpacity(0.6);
+  }
+
+  @FXML
+  public void handleExit() {
+    circle.setOpacity(0.8);
   }
 
   /**

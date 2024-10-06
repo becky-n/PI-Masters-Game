@@ -52,6 +52,8 @@ public class LetterController extends MapRooms {
   private Rectangle instructionsBox;
   @FXML
   private Button backButton;
+  @FXML
+  private ImageView mapClose;
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -81,6 +83,9 @@ public class LetterController extends MapRooms {
     App.loadHintsBox(instructionsPane);
     // Load the chat
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
+    
     App.animateText("Interesting, I wonder what this envelope contains...", infoLabel);
   }
 

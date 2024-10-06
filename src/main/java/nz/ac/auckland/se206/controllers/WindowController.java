@@ -82,6 +82,8 @@ public class WindowController extends MapRooms {
   private Button backButton;
   @FXML
   private Rectangle filter;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
@@ -154,6 +156,8 @@ public class WindowController extends MapRooms {
     App.muteSound();
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**

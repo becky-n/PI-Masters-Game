@@ -48,6 +48,8 @@ public class UnlockBoxController extends MapRooms {
   private Button backButton;
   @FXML
   private ImageView ringBox;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
@@ -88,6 +90,8 @@ public class UnlockBoxController extends MapRooms {
     App.loadHintsBox(instructionsPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
   }
 

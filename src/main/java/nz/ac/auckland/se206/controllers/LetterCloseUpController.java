@@ -81,6 +81,8 @@ public class LetterCloseUpController extends MapRooms {
   private ImageView match;
   @FXML
   private Button backButton;
+  @FXML
+  private ImageView mapClose;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -122,6 +124,9 @@ public class LetterCloseUpController extends MapRooms {
     App.loadHintsBox(instructionsPane);
     // Load the timer
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
+    
     // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(

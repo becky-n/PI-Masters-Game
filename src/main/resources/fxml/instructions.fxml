@@ -7,7 +7,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.InstructionsController">
    <children>
       <Rectangle fx:id="textArea" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="57.0" layoutX="123.0" layoutY="52.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="529.0">
@@ -20,12 +19,12 @@
             <Font name="Georgia" size="18.0" />
          </font>
       </Label>
-      <Circle fill="#00000092" layoutX="382.0" layoutY="21.0" onMouseClicked="#hintClicked" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fx:id="circle" fill="#00000092" layoutX="382.0" layoutY="21.0" onMouseClicked="#hintClicked" onMouseEntered="#handleEnter" onMouseExited="#handleExit" radius="19.0" stroke="WHITE" strokeType="INSIDE" />
       <Label layoutX="376.0" layoutY="1.0" text="?" textFill="#fff9f9">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="38.0" layoutX="364.0" layoutY="2.0" onMouseClicked="#hintClicked" stroke="TRANSPARENT" strokeType="INSIDE" width="38.0" />
+      <Rectangle fx:id="clickRect" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="38.0" layoutX="364.0" layoutY="2.0" onMouseClicked="#hintClicked" onMouseEntered="#handleEnter" onMouseExited="#handleExit" stroke="TRANSPARENT" strokeType="INSIDE" width="38.0" />
    </children>
 </Pane>

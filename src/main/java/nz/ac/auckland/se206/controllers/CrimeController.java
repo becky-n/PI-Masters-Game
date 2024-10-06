@@ -89,6 +89,8 @@ public class CrimeController extends MapRooms {
   private Rectangle glass;
   @FXML
   private Rectangle letter;
+  @FXML
+  private ImageView mapClose;
 
   // Sound effects
   private MediaPlayer buttonClickSound;
@@ -147,9 +149,7 @@ public class CrimeController extends MapRooms {
 
     App.timer(timerLabel);
 
-    // if(TimerManager.timedUp()){
-    // redCircle.setVisible(true);
-    // }
+    App.mapHoverImage(mapClose);
 
   }
 
