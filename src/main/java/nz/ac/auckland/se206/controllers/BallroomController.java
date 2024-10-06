@@ -97,9 +97,14 @@ public class BallroomController extends MapRooms {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    chatPane.toBack();
-    App.loadMap(mapPane, this);
 
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      chatPane.toBack();
+      App.loadMap(mapPane, this); // open map
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -107,6 +112,8 @@ public class BallroomController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+    
     chatPane.toFront();
     mutePane.toFront();
   }

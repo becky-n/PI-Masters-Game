@@ -255,19 +255,25 @@ public class WindowController extends MapRooms {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    backButton.toBack();
-    infoBox.toBack();
-    infoLabel.toBack();
-    glass1.toBack();
-    glass2.toBack();
-    glass3.toBack();
-    glass4.toBack();
-    glass5.toBack();
-    fabric.toBack();
-    glass7.toBack();
-    glass6.toBack();
 
-    App.loadMap(mapPane, this);
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      backButton.toBack();
+      infoBox.toBack();
+      infoLabel.toBack();
+      glass1.toBack();
+      glass2.toBack();
+      glass3.toBack();
+      glass4.toBack();
+      glass5.toBack();
+      fabric.toBack();
+      glass7.toBack();
+      glass6.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -275,6 +281,8 @@ public class WindowController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     fabric.toFront();
     glass1.toFront();
     glass2.toFront();

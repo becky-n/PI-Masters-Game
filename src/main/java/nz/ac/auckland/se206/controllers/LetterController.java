@@ -85,7 +85,7 @@ public class LetterController extends MapRooms {
     App.timer(timerLabel);
 
     App.mapHoverImage(mapClose);
-    
+
     App.animateText("Interesting, I wonder what this envelope contains...", infoLabel);
   }
 
@@ -116,13 +116,18 @@ public class LetterController extends MapRooms {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    instructionsBox.toBack();
-    infoLabel.toBack();
-    backButton.toBack();
-    envelopeRec.toBack();
-    envelope.toBack();
-    App.loadMap(mapPane, this);
 
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      instructionsBox.toBack();
+      infoLabel.toBack();
+      backButton.toBack();
+      envelopeRec.toBack();
+      envelope.toBack();
+      App.loadMap(mapPane, this); // open map
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -157,6 +162,8 @@ public class LetterController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     envelope.toFront();
     envelopeRec.toFront();
     backButton.toFront();
