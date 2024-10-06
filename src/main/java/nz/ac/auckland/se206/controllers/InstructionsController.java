@@ -74,7 +74,7 @@ public class InstructionsController {
 
   @FXML
   public void handleEnter() {
-    circle.setOpacity(0.6);
+    circle.setOpacity(1);
   }
 
   @FXML
