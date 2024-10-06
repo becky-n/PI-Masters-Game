@@ -158,12 +158,18 @@ public class UnlockBoxController extends MapRooms {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    backButton.toBack();
-    infoBox.toBack();
-    infoLabel.toBack();
-    ringBox.toBack();
 
-    App.loadMap(mapPane, this);
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      backButton.toBack();
+      infoBox.toBack();
+      infoLabel.toBack();
+      ringBox.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -171,6 +177,8 @@ public class UnlockBoxController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     ringBox.toFront();
     infoBox.toFront();
     infoLabel.toFront();

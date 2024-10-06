@@ -153,22 +153,34 @@ public class CrimeController extends MapRooms {
 
   }
 
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    App.loadMap(mapPane, this);
 
-    // Disable interactions with clue rectangles
-    safe.setDisable(true);
-    glass.setDisable(true);
-    letter.setDisable(true);
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      App.loadMap(mapPane, this); // open map
 
-    // Optionally hide the glow effects or set them invisible
-    safeGlow.setVisible(false);
-    glassPileGlow.setVisible(false);
-    invitationGlow.setVisible(false);
+      // Disable interactions with clue rectangles
+      safe.setDisable(true);
+      glass.setDisable(true);
+      letter.setDisable(true);
 
+      // Optionally hide the glow effects or set them invisible
+      safeGlow.setVisible(false);
+      glassPileGlow.setVisible(false);
+      invitationGlow.setVisible(false);
+
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -287,6 +299,8 @@ public class CrimeController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     // enable interactions with clue rectangles
     safe.setDisable(false);
     glass.setDisable(false);

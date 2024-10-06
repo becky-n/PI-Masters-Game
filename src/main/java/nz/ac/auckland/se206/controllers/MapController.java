@@ -14,6 +14,15 @@ import nz.ac.auckland.se206.MapRooms;
 
 public class MapController {
   private static GameStateContext context = new GameStateContext();
+  public static boolean mapOpen = false;
+
+  /**
+   * Toggles the map open or closed.
+   */
+  public static void toggleMapOpen() {
+    mapOpen = !mapOpen;
+    System.out.println("Map open: " + mapOpen);
+  }
 
   @FXML
   private Polygon aisleHover;
@@ -24,11 +33,8 @@ public class MapController {
   @FXML
   private Polygon ballroomHover;
 
-  // Sound effects
   private MediaPlayer buttonClickSound;
-
   private MapRooms room;
-
   private Pane pane;
 
   /**
@@ -112,7 +118,9 @@ public class MapController {
    */
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
+    toggleMapOpen();
 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
 
     // get clicked rectangle and handle click

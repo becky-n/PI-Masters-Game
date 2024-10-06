@@ -203,15 +203,22 @@ public class SafeController extends MapRooms {
   private void handleMapClick(MouseEvent event) throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    backButton.toBack();
-    infoLabel.toBack();
-    infoBox.toBack();
-    target.toBack();
-    key.toBack();
-    pattern.toBack();
-    box.toBack();
 
-    App.loadMap(mapPane, this);
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+
+      backButton.toBack();
+      infoLabel.toBack();
+      infoBox.toBack();
+      target.toBack();
+      key.toBack();
+      pattern.toBack();
+      box.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -219,6 +226,8 @@ public class SafeController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     box.toFront();
     pattern.toFront();
     target.toFront();

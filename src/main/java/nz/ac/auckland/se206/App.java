@@ -276,6 +276,7 @@ public class App extends Application {
    * @param room
    */
   public static void unloadMap(Pane pane, MapRooms room) {
+    System.out.println("Unloading map");
     room.onMapBack();
     pane.getChildren().clear();
   }

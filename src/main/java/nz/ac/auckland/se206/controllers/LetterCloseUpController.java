@@ -126,7 +126,7 @@ public class LetterCloseUpController extends MapRooms {
     App.timer(timerLabel);
 
     App.mapHoverImage(mapClose);
-    
+
     // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
@@ -222,19 +222,26 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
+
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
-    envelopeCloseUp.toBack();
-    letterOpenedReveal.toBack();
-    letterOpened.toBack();
-    envelopeCloseUpRec.toBack();
-    eraseCanvas.toBack();
-    match.toBack();
-    matchBox.toBack();
-    instructionsBox.toBack();
-    infoLabel.toBack();
-    backButton.toBack();
-    App.loadMap(mapPane, this);
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      envelopeCloseUp.toBack();
+      letterOpenedReveal.toBack();
+      letterOpened.toBack();
+      envelopeCloseUpRec.toBack();
+      eraseCanvas.toBack();
+      match.toBack();
+      matchBox.toBack();
+      instructionsBox.toBack();
+      infoLabel.toBack();
+      backButton.toBack();
+      App.loadMap(mapPane, this);// open map
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -388,6 +395,8 @@ public class LetterCloseUpController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    MapController.toggleMapOpen();
+
     backButton.toFront();
     envelopeCloseUp.toFront();
     letterOpenedReveal.toFront();
