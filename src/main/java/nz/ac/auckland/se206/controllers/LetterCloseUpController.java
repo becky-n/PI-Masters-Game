@@ -222,6 +222,7 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     envelopeCloseUp.toBack();
     letterOpenedReveal.toBack();

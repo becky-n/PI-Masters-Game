@@ -112,6 +112,7 @@ public class MapController {
    */
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
+
     buttonClickSound.play();
 
     // get clicked rectangle and handle click
@@ -158,8 +159,8 @@ public class MapController {
   @FXML
   private void onBack() throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
-
     buttonClickSound.play();
+
     App.unloadMap(pane, room);
   }
 

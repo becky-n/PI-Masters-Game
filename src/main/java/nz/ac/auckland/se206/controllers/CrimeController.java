@@ -155,6 +155,7 @@ public class CrimeController extends MapRooms {
 
   @FXML
   private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.loadMap(mapPane, this);
 
@@ -226,6 +227,8 @@ public class CrimeController extends MapRooms {
    */
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    twinkleSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     twinkleSound.play();
 
