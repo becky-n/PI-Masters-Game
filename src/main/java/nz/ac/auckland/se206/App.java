@@ -69,8 +69,10 @@ public class App extends Application {
    * @param mapClose
    * @throws IOException
    */
-  public static void intialiseControllers(Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
-      List<MediaPlayer> sounds, Pane mutePane, Label timerLabel, ImageView mapClose) throws IOException {
+  public static void intialiseControllers(
+      Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
+      List<MediaPlayer> sounds, Pane mutePane, Label timerLabel,
+      ImageView mapClose) throws IOException {
     handleClueMenu(clueMenu); // Load the clue menu
     setRedCircle(redCircle, clock); // set circle colour for time almost out
     loadHintsBox(instructionsPane); // Load the hints box
@@ -89,7 +91,8 @@ public class App extends Application {
    * @param chatPane
    * @throws IOException
    */
-  public static void handleMapClickSuspect(Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
+  public static void handleMapClickSuspect(
+      Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
     if (MapController.mapOpen) {
       unloadMap(mapPane, room); // close map
     } else {

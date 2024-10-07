@@ -129,7 +129,8 @@ public class LockController extends MapRooms {
     App.animateText(
         "Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
   }
 
