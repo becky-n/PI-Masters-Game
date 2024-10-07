@@ -459,13 +459,15 @@ public class App extends Application {
   }
 
   /**
-   * Sets up hover effects for the given ImageView. When the mouse enters the ImageView,
-   * the image is changed to "mapHover.png". When the mouse exits the ImageView, the image
+   * Sets up hover effects for the given ImageView. When the mouse enters the
+   * ImageView,
+   * the image is changed to "mapHover.png". When the mouse exits the ImageView,
+   * the image
    * is changed back to "mapIcon.png".
    *
    * @param mapHover the ImageView to which the hover effects will be applied
    */
-  public static void mapHoverImage(ImageView mapClose){
+  public static void mapHoverImage(ImageView mapClose) {
     mapClose.setOnMouseEntered(event -> {
       mapClose.setImage(new Image("/images/mapHover.png"));
     });
@@ -530,5 +532,5 @@ public class App extends Application {
   public static List<MediaPlayer> getActiveSounds() {
     return sounds; // assuming you store them in a list called activeSounds
   }
-  
+
 }

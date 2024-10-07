@@ -34,9 +34,12 @@ public class TimesUpController {
   @FXML
   public void initialize() throws IOException {
 
-    Media backgroundMusicMedia = new Media(getClass().getResource("/sounds/sad-music.mp3").toString());
-    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
-    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media backgroundMusicMedia = new Media(
+        getClass().getResource("/sounds/sad-music.mp3").toString());
+    Media buttonClickMedia = new Media(
+        getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(
+        getClass().getResource("/sounds/twinkle.mp3").toString());
 
     backgroundMusic = new MediaPlayer(backgroundMusicMedia);
     buttonClickSound = new MediaPlayer(buttonClickMedia);
@@ -52,7 +55,7 @@ public class TimesUpController {
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
     sounds.add(backgroundMusic);
-    
+
     App.setSounds(sounds);
     App.muteSound();
   }

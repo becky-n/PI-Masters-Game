@@ -19,9 +19,9 @@ public class TimerManager {
 
   // Static Fields
   private static TimerManager instance;
-  public static boolean timed=false;
+  public static boolean timed = false;
 
-  public static boolean timedUp(){
+  public static boolean timedUp() {
     return timed;
   }
 
@@ -49,8 +49,8 @@ public class TimerManager {
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       timeRemaining.set(timeRemaining.get() - 1);
 
-      if(timeRemaining.get()<=30){
-        timed=true;
+      if (timeRemaining.get() <= 30) {
+        timed = true;
       }
 
       if (GuessController.inGuessingState()) {

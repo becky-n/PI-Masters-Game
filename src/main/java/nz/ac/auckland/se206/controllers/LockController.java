@@ -129,7 +129,8 @@ public class LockController extends MapRooms {
     leftGlow.setVisible(false);
     rightGlow.setVisible(false);
 
-    App.animateText("Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
+    App.animateText(
+        "Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
 
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
