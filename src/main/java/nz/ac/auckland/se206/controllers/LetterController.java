@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class LetterController {
+public class LetterController extends MapRooms {
 
   // Static Fields
   public static boolean burnt;
@@ -41,7 +43,17 @@ public class LetterController {
   @FXML
   private ImageView envelope;
   @FXML
+  private Rectangle envelopeRec;
+  @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private Rectangle instructionsBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private ImageView mapClose;
 
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
@@ -52,7 +64,7 @@ public class LetterController {
   public void initialize() throws IOException {
     // set circle colour for time almost out
     App.setRedCircle(redCircle, clock);
-    
+
     // Load the sound effects
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
     buttonClickSound = new MediaPlayer(buttonClickMedia);
@@ -61,18 +73,19 @@ public class LetterController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
     // Load the clue menu
     App.handleClueMenu(clueMenu);
     // Load the hints box
     App.loadHintsBox(instructionsPane);
     // Load the chat
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
+
     App.animateText("Interesting, I wonder what this envelope contains...", infoLabel);
   }
 
@@ -94,13 +107,37 @@ public class LetterController {
   }
 
   /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      instructionsBox.toBack();
+      infoLabel.toBack();
+      backButton.toBack();
+      envelopeRec.toBack();
+      envelope.toBack();
+      App.loadMap(mapPane, this); // open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
    * Handles the back button click event.
    * 
    * @throws IOException if there is an I/O error
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     // Play button click sound
     buttonClickSound.play();
@@ -115,8 +152,23 @@ public class LetterController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    envelope.toFront();
+    envelopeRec.toFront();
+    backButton.toFront();
+    instructionsBox.toFront();
+    infoLabel.toFront();
+    mutePane.toFront();
   }
 }

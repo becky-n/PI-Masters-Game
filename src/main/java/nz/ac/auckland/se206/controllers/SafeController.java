@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -16,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * The SafeController class is responsible for managing the interactions and
@@ -28,7 +29,7 @@ import nz.ac.auckland.se206.Navigation;
  * interaction
  * with the target, as well as handling various button click events.
  */
-public class SafeController {
+public class SafeController extends MapRooms {
   public static boolean unlocked = false;
   private static GameStateContext context = new GameStateContext();
 
@@ -63,6 +64,18 @@ public class SafeController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private ImageView pattern;
+  @FXML
+  private ImageView box;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -83,7 +96,7 @@ public class SafeController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -96,11 +109,9 @@ public class SafeController {
 
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
     // Make the key draggable
     DraggableMaker dm = new DraggableMaker();
@@ -138,7 +149,7 @@ public class SafeController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
     App.setRoot("crime");
@@ -152,7 +163,7 @@ public class SafeController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
   }
@@ -180,5 +191,50 @@ public class SafeController {
   private void offHover(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
     context.handleClueClick(event, clickedRectangle.getId());
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+
+      backButton.toBack();
+      infoLabel.toBack();
+      infoBox.toBack();
+      target.toBack();
+      key.toBack();
+      pattern.toBack();
+      box.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    box.toFront();
+    pattern.toFront();
+    target.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    mutePane.toFront();
+    key.toFront();
   }
 }

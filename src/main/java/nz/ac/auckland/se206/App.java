@@ -30,6 +30,7 @@ import nz.ac.auckland.se206.controllers.CrimeController;
 import nz.ac.auckland.se206.controllers.GuessController;
 import nz.ac.auckland.se206.controllers.LetterCloseUpController;
 import nz.ac.auckland.se206.controllers.LockController;
+import nz.ac.auckland.se206.controllers.MapController;
 import nz.ac.auckland.se206.controllers.TabletController;
 import nz.ac.auckland.se206.controllers.TimesUpController;
 import nz.ac.auckland.se206.controllers.WindowController;
@@ -248,6 +249,39 @@ public class App extends Application {
   }
 
   /**
+   * Loads the hints box into the provided pane.
+   * 
+   * @param pane the pane where the hints box will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
+  public static void loadMap(Pane pane, MapRooms room) throws IOException {
+    // Load the hints box
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/map.fxml"));
+    Pane mapPane = loader.load();
+    MapController map = loader.getController();
+
+    pane.getChildren().clear();
+    pane.getChildren().add(mapPane);
+
+    // Set the room and pane in the map controller
+    map.setRoom(room);
+    map.setPane(pane);
+
+  }
+
+  /**
+   * Unloads the map from the provided pane.
+   * 
+   * @param pane
+   * @param room
+   */
+  public static void unloadMap(Pane pane, MapRooms room) {
+    System.out.println("Unloading map");
+    room.onMapBack();
+    pane.getChildren().clear();
+  }
+
+  /**
    * Updates the instructions in the hints box.
    * 
    * @param newHint the new hint to display in the hints box
@@ -425,6 +459,23 @@ public class App extends Application {
     fadeOut.play();
   }
 
+  /**
+   * Sets up hover effects for the given ImageView. When the mouse enters the ImageView,
+   * the image is changed to "mapHover.png". When the mouse exits the ImageView, the image
+   * is changed back to "mapIcon.png".
+   *
+   * @param mapHover the ImageView to which the hover effects will be applied
+   */
+  public static void mapHoverImage(ImageView mapClose){
+    mapClose.setOnMouseEntered(event -> {
+      mapClose.setImage(new Image("/images/mapHover.png"));
+    });
+
+    mapClose.setOnMouseExited(event -> {
+      mapClose.setImage(new Image("/images/mapIcon.png"));
+    });
+  }
+
   public static String getCurrentSceneId() {
     return currentSceneId;
   }
@@ -476,4 +527,9 @@ public class App extends Application {
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
   }
+
+  public static List<MediaPlayer> getActiveSounds() {
+    return sounds; // assuming you store them in a list called activeSounds
+  }
+  
 }

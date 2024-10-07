@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
@@ -17,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Lock scene.
@@ -25,7 +26,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class LockController {
+public class LockController extends MapRooms {
   public static boolean safeUnlocked = false;
   private static GameStateContext context = new GameStateContext();
 
@@ -71,7 +72,23 @@ public class LockController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
-  
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle leftButton;
+  @FXML
+  private Rectangle rightButton;
+  @FXML
+  private ImageView left;
+  @FXML
+  private ImageView right;
+  @FXML
+  private ImageView mapClose;
+
   // set the expected sequence to unlock the box
   private List<String> expectedSequence = List.of("left", "left", "right", "left");
   private List<String> userSequence = new ArrayList<>();
@@ -104,7 +121,7 @@ public class LockController {
     sounds.add(buttonClickSound);
     sounds.add(unlockSound);
     sounds.add(keySound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -121,11 +138,9 @@ public class LockController {
 
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
   }
 
@@ -137,7 +152,7 @@ public class LockController {
    */
   @FXML
   private void handleLeftRotate() {
-    keySound.seek(javafx.util.Duration.ZERO); 
+    keySound.seek(javafx.util.Duration.ZERO);
     keySound.play();
     angle -= 90; // Rotate left by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -152,7 +167,7 @@ public class LockController {
    */
   @FXML
   private void handleRightRotate() {
-    keySound.seek(javafx.util.Duration.ZERO); 
+    keySound.seek(javafx.util.Duration.ZERO);
     keySound.play();
     angle += 90; // Rotate right by 90 degrees
     rotateImage(15, 75, Rotate.Z_AXIS);
@@ -257,4 +272,55 @@ public class LockController {
     App.guessClick();
 
   }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      backButton.toBack();
+      infoBox.toBack();
+      infoLabel.toBack();
+      key.toBack();
+      leftButton.toBack();
+      rightButton.toBack();
+      left.toBack();
+      right.toBack();
+      leftGlow.toBack();
+      rightGlow.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    rightGlow.toFront();
+    right.toFront();
+    leftGlow.toFront();
+    left.toFront();
+    rightButton.toFront();
+    leftButton.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    key.toFront();
+    mutePane.toFront();
+  }
+
 }

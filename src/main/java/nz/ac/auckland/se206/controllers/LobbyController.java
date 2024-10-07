@@ -7,12 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Lobby scene.
@@ -20,7 +21,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class LobbyController {
+public class LobbyController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -38,6 +39,10 @@ public class LobbyController {
   private Pane mutePane;
   @FXML
   private Pane instructionsPane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -65,18 +70,16 @@ public class LobbyController {
     App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
-
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
 
     // load the chat
     App.openChat("Jesin", chatPane);
 
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**
@@ -87,9 +90,39 @@ public class LobbyController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      chatPane.toBack();
+      App.loadMap(mapPane, this); // open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    chatPane.toFront();
+    mutePane.toFront();
   }
 
 }

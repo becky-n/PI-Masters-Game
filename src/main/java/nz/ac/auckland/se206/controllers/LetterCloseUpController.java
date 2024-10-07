@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
@@ -18,10 +19,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 import nz.ac.auckland.se206.TimerManager;
 
-public class LetterCloseUpController {
+public class LetterCloseUpController extends MapRooms {
 
   // Static Fields
   public static boolean burnt = false;
@@ -76,6 +77,14 @@ public class LetterCloseUpController {
   private Pane mutePane;
   @FXML
   private ImageView matchCursorOverlay;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private ImageView match;
+  @FXML
+  private Button backButton;
+  @FXML
+  private ImageView mapClose;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -105,9 +114,7 @@ public class LetterCloseUpController {
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     // Set the envelope image
     envelopeCloseUp.setImage(image);
-    Navigation nav = new Navigation();
-    // Set the menu button
-    nav.setMenu(menuButton);
+
     eraseCanvas.setDisable(true);
     // If the letter not been burnt, set instructions box
     if (burnt == false) {
@@ -119,6 +126,9 @@ public class LetterCloseUpController {
     App.loadHintsBox(instructionsPane);
     // Load the timer
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
+
     // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {
       Image imageHidden = new Image(getClass().getResource(
@@ -230,6 +240,48 @@ public class LetterCloseUpController {
       // Hide the match image overlay
       matchCursorOverlay.setVisible(false);
       matchBoxClicked = false; // Reset the state
+    }
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      envelopeCloseUp.toBack();
+      letterOpenedReveal.toBack();
+      letterOpened.toBack();
+      envelopeCloseUpRec.toBack();
+      eraseCanvas.toBack();
+      match.toBack();
+      matchBox.toBack();
+      instructionsBox.toBack();
+      infoLabel.toBack();
+      backButton.toBack();
+      App.loadMap(mapPane, this);// open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Sets the cursor to the matchbox image.
+   */
+  private void setMatchboxCursor() {
+    // Load custom cursor image
+    Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
+    ImageCursor customCursor = new ImageCursor(cursorImage);
+    if (envelopeCloseUp.getScene() != null) {
+      envelopeCloseUp.getScene().setCursor(customCursor);
     }
   }
 
@@ -351,5 +403,25 @@ public class LetterCloseUpController {
       matchSound.stop();
       System.out.println("successful guess");
     }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    backButton.toFront();
+    envelopeCloseUp.toFront();
+    letterOpenedReveal.toFront();
+    letterOpened.toFront();
+    envelopeCloseUpRec.toFront();
+    eraseCanvas.toFront();
+    match.toFront();
+    matchBox.toFront();
+    instructionsBox.toFront();
+    infoLabel.toFront();
+    mutePane.toFront();
   }
 }

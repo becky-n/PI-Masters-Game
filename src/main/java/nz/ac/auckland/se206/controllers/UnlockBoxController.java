@@ -4,18 +4,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class UnlockBoxController {
+public class UnlockBoxController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -35,6 +38,18 @@ public class UnlockBoxController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private ImageView box;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private ImageView ringBox;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
@@ -60,7 +75,7 @@ public class UnlockBoxController {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
-    
+
     App.setSounds(sounds);
     App.muteSound();
 
@@ -74,11 +89,9 @@ public class UnlockBoxController {
 
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
 
   }
 
@@ -89,7 +102,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void onBack() throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     buttonClickSound.play();
     App.setRoot("crime");
@@ -103,7 +116,7 @@ public class UnlockBoxController {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     // play the button click sound
     buttonClickSound.play();
     App.guessClick();
@@ -133,6 +146,46 @@ public class UnlockBoxController {
     twinkleSound.stop();
     closeUp.setImage(null);
 
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      backButton.toBack();
+      infoBox.toBack();
+      infoLabel.toBack();
+      ringBox.toBack();
+      closeUp.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    ringBox.toFront();
+    closeUp.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
+    mutePane.toFront();
   }
 
 }

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -22,18 +21,19 @@
                   <Image url="@../images/safeBackground.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="273.0" fitWidth="351.0" layoutX="155.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+            <Pane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0" />
+            <ImageView fx:id="box" fitHeight="273.0" fitWidth="351.0" layoutX="155.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/boxClosed3.png" />
                </image>
             </ImageView>
             <Rectangle fx:id="target" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="58.0" layoutX="303.0" layoutY="254.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
+            <Rectangle fx:id="infoBox" arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="112.0" layoutX="42.0" layoutY="444.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="814.0">
                <effect>
                   <BoxBlur height="0.0" width="78.73" />
                </effect>
             </Rectangle>
-            <Label fx:id="infoLabel" alignment="CENTER" layoutX="75.0" layoutY="467.0" prefHeight="65.0" prefWidth="748.0" textFill="WHITE">
+            <Label fx:id="infoLabel" alignment="CENTER" layoutX="71.0" layoutY="468.0" prefHeight="65.0" prefWidth="748.0" textFill="WHITE">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
@@ -55,13 +55,8 @@
                   <Font name="Georgia Bold" size="18.0" />
                </font>
             </Label>
-            <MenuButton fx:id="menuButton" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="Bridal Suite (Crime Scene)" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="18.0" />
-               </font>
-            </MenuButton>
             <Pane fx:id="clueMenu" layoutX="803.0" layoutY="103.0" prefHeight="341.0" prefWidth="80.0" />
-            <ImageView fitHeight="112.0" fitWidth="104.0" layoutX="105.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" rotate="-4.4">
+            <ImageView fx:id="pattern" fitHeight="112.0" fitWidth="104.0" layoutX="105.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" rotate="-4.4">
                <image>
                   <Image url="@../images/password.png" />
                </image>
@@ -80,6 +75,21 @@
                </image>
             </ImageView>
             <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
+            <ImageView fx:id="mapClose" fitHeight="70.0" fitWidth="96.0" layoutX="25.0" layoutY="59.0" onMouseClicked="#handleMapClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/mapIcon.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="35.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="313.0">
+               <effect>
+                  <BoxBlur height="0.0" width="52.81" />
+               </effect>
+            </Rectangle>
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="15.0" prefHeight="42.0" prefWidth="299.0" text="The Bridal Suite (Crime Scene)" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </StackPane>

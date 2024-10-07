@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="558.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MapController">
+   <children>
+      <Pane fx:id="map" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="897.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="668.0" layoutX="-53.0" layoutY="-32.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="992.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="29.0" layoutX="391.0" layoutY="76.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="137.0">
+               <effect>
+                  <BoxBlur height="0.0" width="52.81" />
+               </effect>
+            </Rectangle>
+            <Label fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="69.0" prefHeight="42.0" prefWidth="115.0" text="Map" textAlignment="CENTER" textFill="#d7ae19" wrapText="true">
+               <font>
+                  <Font name="Georgia Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="414.0" fitWidth="437.0" layoutX="244.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/map.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" layoutX="244.0" layoutY="537.0" mnemonicParsing="false" onAction="#onBack" prefHeight="29.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-width: 2;" stylesheets="@../css/style.css" text="back">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="102.0" fitWidth="130.0" layoutX="563.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true" rotate="5.0">
+               <image>
+                  <Image url="@../images/note11.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="77.0" layoutX="560.0" layoutY="419.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" rotate="5.0" stroke="BLACK" strokeType="INSIDE" width="69.0" />
+            <ImageView fitHeight="105.0" fitWidth="83.0" layoutX="287.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" rotate="2.0">
+               <image>
+                  <Image url="@../images/andreaPhoto.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="97.0" fitWidth="88.0" layoutX="420.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="6.7">
+               <image>
+                  <Image url="@../images/geraldPhoto.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="110.0" fitWidth="113.0" layoutX="544.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
+               <image>
+                  <Image url="@../images/jesinPhoto.png" />
+               </image>
+            </ImageView>
+            <Polygon fx:id="ballroomHover" fill="WHITE" layoutX="189.0" layoutY="265.0" opacity="0.6" points="75.66665649414062, -70.00001525878906, 72.33334350585938, 31.33331298828125, 90.0, 50.0, 200.0, 50.0, 202.0, -74.66667175292969, 188.33334350585938, -84.00001525878906, 95.66665649414062, -84.00001525878906" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+            <Polygon fx:id="aisleHover" fill="WHITE" layoutX="316.0" layoutY="248.0" opacity="0.6" points="92.66668701171875, 64.0, 96.33334350585938, 67.0, 202.33331298828125, 67.0, 205.6666259765625, 60.666656494140625, 205.6666259765625, -57.33332824707031, 96.33334350585938, -57.33332824707031, 92.66668701171875, -54.33332824707031" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+            <Polygon fx:id="lobbyHover" fill="WHITE" layoutX="462.0" layoutY="269.0" opacity="0.6" points="79.0, -78.66667175292969, 79.0, 45.0, 189.33331298828125, 45.0, 205.6666259765625, 27.66668701171875, 202.33331298828125, -74.66667175292969, 183.0, -87.66667175292969, 89.6666259765625, -87.66667175292969" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+            <Polygon fx:id="crimeHover" fill="WHITE" layoutX="469.0" layoutY="279.0" opacity="0.6" points="94.111083984375, 204.5555419921875, 94.111083984375, 241.6666259765625, 208.99993896484375, 241.6666259765625, 209.0, 191.22219848632812, 209.0, 140.11111450195312, 205.6666259765625, 140.11111450195312, 94.111083984375, 140.11111450195312" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+            <Rectangle fx:id="lobby" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="133.0" layoutX="540.0" layoutY="182.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+            <Rectangle fx:id="aisle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="132.0" layoutX="407.0" layoutY="188.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+            <Rectangle fx:id="ballroom" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="131.0" layoutX="266.0" layoutY="184.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+            <Rectangle fx:id="crime" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="561.0" layoutY="416.0" onMouseClicked="#handleClueClick" onMouseEntered="#onHover" onMouseExited="#offHover" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>

@@ -7,12 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Aisle scene.
@@ -20,7 +21,7 @@ import nz.ac.auckland.se206.Navigation;
  * timer,
  * navigating menus, and updating hints.
  */
-public class AisleController {
+public class AisleController extends MapRooms {
 
   @FXML
   private MenuButton menuButton;
@@ -28,6 +29,8 @@ public class AisleController {
   private Label timerLabel;
   @FXML
   private Pane chatPane;
+  @FXML
+  private Pane mapPane;
   @FXML
   private Pane clueMenu;
   @FXML
@@ -38,6 +41,8 @@ public class AisleController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
 
@@ -71,11 +76,9 @@ public class AisleController {
     // load the chat
     App.openChat("Gerald", chatPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**
@@ -91,4 +94,34 @@ public class AisleController {
     App.guessClick();
   }
 
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      chatPane.toBack();
+      App.loadMap(mapPane, this); // open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+    
+    chatPane.toFront();
+    mutePane.toFront();
+  }
 }
