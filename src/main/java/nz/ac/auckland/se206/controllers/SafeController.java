@@ -99,7 +99,8 @@ public class SafeController extends MapRooms {
 
     App.animateText("There appears to be a key! Would this unlock the jewellery box?", infoLabel);
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
     // Make the key draggable
     DraggableMaker dm = new DraggableMaker();
