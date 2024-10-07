@@ -131,6 +131,7 @@ public class MapController {
     if (clickedRectangle.getId().equals("ballroom")) {
       // check if already in ballroom
       if (room instanceof BallroomController) {
+        toggleMapOpen();
         onBack();
       } else {
         App.setRoot("ballroom");
@@ -138,6 +139,7 @@ public class MapController {
     } else if (clickedRectangle.getId().equals("aisle")) {
       // check if already in aisle
       if (room instanceof AisleController) {
+        toggleMapOpen();
         onBack();
       } else {
         App.setRoot("aisle");
@@ -145,6 +147,7 @@ public class MapController {
     } else if (clickedRectangle.getId().equals("lobby")) {
       // check if already in lobby
       if (room instanceof LobbyController) {
+        toggleMapOpen();
         onBack();
       } else {
         App.setRoot("lobby");
@@ -152,6 +155,7 @@ public class MapController {
     } else if (clickedRectangle.getId().equals("crime")) {
       // check if already in crime
       if (room instanceof CrimeController) {
+        toggleMapOpen();
         onBack();
       } else {
         App.setRoot("crime");
