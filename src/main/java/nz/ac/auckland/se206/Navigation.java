@@ -64,7 +64,7 @@ public class Navigation {
       default:
         menuButton.getItems().addAll(jesin, gerald, andrea);
     }
-    
+
     // Set the action
     gerald.setOnAction(e -> {
       changeScene("aisle");
@@ -89,7 +89,7 @@ public class Navigation {
     menuButton.setOnShowing(e -> {
       buttonClickSound.seek(javafx.util.Duration.ZERO); // Reset the sound to the start
       buttonClickSound.play(); // Play the click sound when the menu is shown
-  });
+    });
   }
 
   /*

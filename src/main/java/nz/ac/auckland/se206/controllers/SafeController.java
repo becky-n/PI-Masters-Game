@@ -10,9 +10,9 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
@@ -226,8 +226,9 @@ public class SafeController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close map
     MapController.toggleMapOpen();
-
+    // Bring nodes to front
     box.toFront();
     pattern.toFront();
     target.toFront();

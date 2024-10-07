@@ -36,13 +36,16 @@ public class MenuController {
   @FXML
   public void initialize() throws IOException {
 
-    Media backgroundMusicMedia = new Media(getClass().getResource("/sounds/wedding_march.mp3").toString());
+    Media backgroundMusicMedia = new Media(
+        getClass().getResource("/sounds/wedding_march.mp3").toString());
     backgroundMusic = new MediaPlayer(backgroundMusicMedia);
 
-    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
+    Media buttonClickMedia = new Media(
+        getClass().getResource("/sounds/click.mp3").toString());
     buttonClickSound = new MediaPlayer(buttonClickMedia);
 
-    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media twinkleMedia = new Media(
+        getClass().getResource("/sounds/twinkle.mp3").toString());
     twinkleSound = new MediaPlayer(twinkleMedia);
 
     // create array of sounds and store

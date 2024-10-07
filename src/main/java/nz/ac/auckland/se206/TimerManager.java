@@ -19,9 +19,9 @@ public class TimerManager {
 
   // Static Fields
   private static TimerManager instance;
-  public static boolean timed=false;
+  public static boolean timed = false;
 
-  public static boolean timedUp(){
+  public static boolean timedUp() {
     return timed;
   }
 
@@ -37,11 +37,15 @@ public class TimerManager {
     return instance;
   }
 
+  public static void setTabletController(TabletController tabletController) {
+    instance.tablet = tabletController;
+  }
+
   private GameStateContext context = new GameStateContext();
   private Timeline timer;
   private IntegerProperty timeRemaining = new SimpleIntegerProperty();
-  private boolean running;
   private TabletController tablet;
+  private boolean running;
 
   // Constructor
   private TimerManager() {
@@ -49,8 +53,8 @@ public class TimerManager {
     timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
       timeRemaining.set(timeRemaining.get() - 1);
 
-      if(timeRemaining.get()<=30){
-        timed=true;
+      if (timeRemaining.get() <= 30) {
+        timed = true;
       }
 
       if (GuessController.inGuessingState()) {
@@ -92,10 +96,6 @@ public class TimerManager {
       }
     }));
     timer.setCycleCount(Timeline.INDEFINITE);
-  }
-
-  public static void setTabletController(TabletController tabletController) {
-    instance.tablet = tabletController;
   }
 
   /**

@@ -72,11 +72,16 @@ public class BackstoryController {
     App.setRedCircle(redCircle, clock);
 
     // Initialize media resources using MediaPlayer
-    Media screamMedia = new Media(getClass().getResource("/sounds/scream.mp3").toString());
-    Media backgroundMedia = new Media(getClass().getResource("/sounds/mystery_music.mp3").toString());
-    Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
-    Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
-    Media brideIntroMedia = new Media(getClass().getResource("/sounds/bride-intro.mp3").toString());
+    Media screamMedia = new Media(
+        getClass().getResource("/sounds/scream.mp3").toString());
+    Media backgroundMedia = new Media(
+        getClass().getResource("/sounds/mystery_music.mp3").toString());
+    Media buttonClickMedia = new Media(
+        getClass().getResource("/sounds/click.mp3").toString());
+    Media twinkleMedia = new Media(
+        getClass().getResource("/sounds/twinkle.mp3").toString());
+    Media brideIntroMedia = new Media(
+        getClass().getResource("/sounds/bride-intro.mp3").toString());
 
     // Initialize all MediaPlayer instances
     screamSound = new MediaPlayer(screamMedia);
