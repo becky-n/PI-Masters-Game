@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -76,6 +75,8 @@ public class LetterCloseUpController extends MapRooms {
   @FXML
   private Pane mutePane;
   @FXML
+  private ImageView matchCursorOverlay;
+  @FXML
   private Pane mapPane;
   @FXML
   private ImageView match;
@@ -83,6 +84,10 @@ public class LetterCloseUpController extends MapRooms {
   private Button backButton;
   @FXML
   private ImageView mapClose;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private Rectangle nameRect;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -136,6 +141,9 @@ public class LetterCloseUpController extends MapRooms {
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
+
+    // Set the matchCursorOverlay ImageView initially invisible
+    matchCursorOverlay.setVisible(false);
 
     // if time runs out
     TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
@@ -200,16 +208,45 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   public void handleMatchBoxClick(MouseEvent event) {
-    // check if envelope is open
+    // Check if envelope is open
     if (envelopeClicked < 2) {
       return;
     } else {
-      // Set the matchbox
+      // Set the matchbox clicked state
       matchBoxClicked = true;
+      matchSound.seek(javafx.util.Duration.ZERO);
+      buttonClickSound.seek(javafx.util.Duration.ZERO);
+      
       buttonClickSound.play();
       matchSound.play();
-    }
 
+      // Show the match image overlay and make it follow the cursor
+      matchCursorOverlay.setVisible(true);
+      matchCursorOverlay.setMouseTransparent(true); // Allow events to pass through it
+      matchCursorOverlay.setFitWidth(100);
+      matchCursorOverlay.setFitHeight(100);
+
+      // Move the image with the mouse on both move and drag
+      matchCursorOverlay.getScene().setOnMouseMoved(mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseDragged(mouseEvent -> moveImageWithCursor(mouseEvent));
+    }
+  }
+
+  // Helper method to move the image with the cursor
+  private void moveImageWithCursor(MouseEvent mouseEvent) {
+    matchCursorOverlay.setLayoutX(mouseEvent.getSceneX() - matchCursorOverlay.getFitWidth() / 2);
+    matchCursorOverlay.setLayoutY(mouseEvent.getSceneY() - matchCursorOverlay.getFitHeight() / 2);
+  }
+
+  /**
+   * Handle when the user releases the mouse or completes the action.
+   */
+  public void matchUseComplete() {
+    if (matchBoxClicked) {
+      // Hide the match image overlay
+      matchCursorOverlay.setVisible(false);
+      matchBoxClicked = false; // Reset the state
+    }
   }
 
   /**
@@ -239,18 +276,6 @@ public class LetterCloseUpController extends MapRooms {
       backButton.toBack();
       App.loadMap(mapPane, this);// open map
       MapController.toggleMapOpen();
-    }
-  }
-
-  /**
-   * Sets the cursor to the matchbox image.
-   */
-  private void setMatchboxCursor() {
-    // Load custom cursor image
-    Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    if (envelopeCloseUp.getScene() != null) {
-      envelopeCloseUp.getScene().setCursor(customCursor);
     }
   }
 
@@ -351,6 +376,7 @@ public class LetterCloseUpController extends MapRooms {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     matchSound.stop();
+    matchUseComplete();
     buttonClickSound.play();
 
     App.setRoot("crime");
@@ -391,5 +417,8 @@ public class LetterCloseUpController extends MapRooms {
     instructionsBox.toFront();
     infoLabel.toFront();
     mutePane.toFront();
+    nameRect.toFront();
+    nameLabel.toFront();
+    matchCursorOverlay.toFront();
   }
 }
