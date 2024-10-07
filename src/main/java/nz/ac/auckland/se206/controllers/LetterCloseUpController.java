@@ -227,8 +227,10 @@ public class LetterCloseUpController extends MapRooms {
       matchCursorOverlay.setFitHeight(100);
 
       // Move the image with the mouse on both move and drag
-      matchCursorOverlay.getScene().setOnMouseMoved(mouseEvent -> moveImageWithCursor(mouseEvent));
-      matchCursorOverlay.getScene().setOnMouseDragged(mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseMoved(
+          mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseDragged(
+          mouseEvent -> moveImageWithCursor(mouseEvent));
     }
   }
 
@@ -390,12 +392,14 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    // Play the button click sound
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
+    // Check if the guess is successful
     boolean successfulGuess = App.guessClick();
     if (successfulGuess) {
+      // Stop the match sound
       matchSound.stop();
-      System.out.println("successful guess");
     }
   }
 
@@ -404,8 +408,9 @@ public class LetterCloseUpController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close the map
     MapController.toggleMapOpen();
-
+    // Set the scene back to the crime scene
     backButton.toFront();
     envelopeCloseUp.toFront();
     letterOpenedReveal.toFront();
