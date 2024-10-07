@@ -153,7 +153,6 @@ public class LetterCloseUpController extends MapRooms {
    * @throws IOException if there is an I/O error
    */
   private void handleTimerExpired() {
-    setBackCursor();
     matchSound.stop();
   }
 
@@ -188,7 +187,7 @@ public class LetterCloseUpController extends MapRooms {
         eraseCanvas.setDisable(false);
         return;
       }
-      // create canvas for erasing the layer with fire cursor
+      // create canvas for erasing the layer
       createcanvas();
 
     }
@@ -205,11 +204,10 @@ public class LetterCloseUpController extends MapRooms {
     if (envelopeClicked < 2) {
       return;
     } else {
-      // Set the matchbox cursor
+      // Set the matchbox
       matchBoxClicked = true;
       buttonClickSound.play();
       matchSound.play();
-      setMatchboxCursor();
     }
 
   }
@@ -282,7 +280,6 @@ public class LetterCloseUpController extends MapRooms {
       erase(event);
       // Check if the click is within a specific area (e.g., a rectangle or a shape)
       if (isInsideArea(x, y) && !displayed) {
-        System.out.println("inside area");
         App.animateText("interesting, I wonder who wrote this...", infoLabel);
         displayed = true;
       }
@@ -347,7 +344,7 @@ public class LetterCloseUpController extends MapRooms {
   }
 
   /**
-   * Sets the cursor back to the default cursor.
+   * Sets the scene back to the crime scene.
    */
   @FXML
   private void onBack() throws IOException {
@@ -355,22 +352,8 @@ public class LetterCloseUpController extends MapRooms {
 
     matchSound.stop();
     buttonClickSound.play();
-    setBackCursor();
 
     App.setRoot("crime");
-  }
-
-  /**
-   * Sets the cursor back to the default cursor.
-   */
-  private void setBackCursor() {
-    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    // Set the cursor back to the default cursor
-    if (envelopeCloseUp.getScene() != null) {
-      envelopeCloseUp.getScene().setCursor(customCursor);
-    }
-    matchSound.stop();
   }
 
   /**

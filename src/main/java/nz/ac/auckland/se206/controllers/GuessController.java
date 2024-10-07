@@ -98,9 +98,6 @@ public class GuessController {
     App.setRedCircle(redCircle, clock);
 
     guess1 = true;
-    Image cursorImage = new Image(getClass().getResource("/images/magnifying.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    App.getScene().setCursor(customCursor);
     playAgainButton.setVisible(false);
     close.setVisible(false);
 

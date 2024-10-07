@@ -51,7 +51,6 @@ public class InstructionsController {
   public void updateInstructions(String instructions) {
     // Update the text whenever it changes in the HintsManager
     instructionsLabel.setText(instructions);
-    System.out.println("text setted");
 
   }
 
@@ -60,7 +59,7 @@ public class InstructionsController {
    */
   @FXML
   public void hintClicked() {
-    buttonClickSound.seek(javafx.util.Duration.ZERO); 
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     // Show the hints text area when the hints button is clicked
     if (textArea.isVisible()) {

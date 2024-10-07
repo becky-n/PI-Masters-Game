@@ -522,8 +522,6 @@ public class App extends Application {
     stage.show();
     stage.setOnCloseRequest(event -> handleWindowClose(event));
     root.requestFocus();
-    Image image = new Image(getClass().getResourceAsStream("/images/magnifying.png"));
-    scene.setCursor(new ImageCursor(image));
   }
 
   private void handleWindowClose(WindowEvent event) {
