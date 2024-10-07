@@ -529,4 +529,9 @@ public class App extends Application {
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
   }
+
+  public static List<MediaPlayer> getActiveSounds() {
+    return sounds; // assuming you store them in a list called activeSounds
+  }
+  
 }

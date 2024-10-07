@@ -119,6 +119,12 @@ public class MapController {
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
     toggleMapOpen();
+    //turn off any sounds currently playing
+    for (MediaPlayer sound : App.getActiveSounds()) {
+      if (sound.getStatus() == MediaPlayer.Status.PLAYING) {
+        sound.stop(); // Stop the currently playing sound
+      }
+    }
 
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
