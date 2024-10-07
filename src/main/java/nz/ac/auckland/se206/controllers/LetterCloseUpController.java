@@ -95,8 +95,6 @@ public class LetterCloseUpController extends MapRooms {
    * and loads the clue menu and hints box.
    */
   public void initialize() throws IOException {
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
 
     // Load the sound effects
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
@@ -111,9 +109,6 @@ public class LetterCloseUpController extends MapRooms {
     sounds.add(buttonClickSound);
     sounds.add(matchSound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
     Image image = new Image(getClass().getResource("/images/closed-envelope.png").toString());
     // Set the envelope image
     envelopeCloseUp.setImage(image);
@@ -123,14 +118,8 @@ public class LetterCloseUpController extends MapRooms {
     if (burnt == false) {
       App.animateText("let's see what's inside the envelope..", infoLabel);
     }
-    // Load the clue menu
-    App.handleClueMenu(clueMenu);
-    // Load the hints box
-    App.loadHintsBox(instructionsPane);
-    // Load the timer
-    App.timer(timerLabel);
 
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
     // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {

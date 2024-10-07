@@ -58,6 +58,61 @@ public class App extends Application {
   }
 
   /**
+   * Initialises the controller with the required components.
+   * 
+   * @param clueMenu
+   * @param redCircle
+   * @param clock
+   * @param instructionsPane
+   * @param sounds
+   * @param timerLabel
+   * @param mapClose
+   * @throws IOException
+   */
+  public static void intialiseControllers(Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
+      List<MediaPlayer> sounds, Pane mutePane, Label timerLabel, ImageView mapClose) throws IOException {
+    handleClueMenu(clueMenu); // Load the clue menu
+    setRedCircle(redCircle, clock); // set circle colour for time almost out
+    loadHintsBox(instructionsPane); // Load the hints box
+    handleMute(mutePane); // Load the mute button
+    setSounds(sounds); // Load the sounds
+    muteSound();
+    timer(timerLabel); // Start the timer
+    mapHoverImage(mapClose); // Set up hover effects for the map close button
+  }
+
+  /**
+   * Handles the map click event.
+   * 
+   * @param mapPane
+   * @param room
+   * @param chatPane
+   * @throws IOException
+   */
+  public static void handleMapClickSuspect(Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
+    if (MapController.mapOpen) {
+      unloadMap(mapPane, room); // close map
+    } else {
+      chatPane.toBack();
+      loadMap(mapPane, room); // open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the onMapBack click event.
+   * 
+   * @param chatPane
+   * @param mutePane
+   */
+  public static void onMapBackSuspect(Pane chatPane, Pane mutePane) {
+    MapController.toggleMapOpen();
+
+    chatPane.toFront();
+    mutePane.toFront();
+  }
+
+  /**
    * Sets the root of the scene to the specified FXML file.
    *
    * @param fxml the name of the FXML file (without extension)

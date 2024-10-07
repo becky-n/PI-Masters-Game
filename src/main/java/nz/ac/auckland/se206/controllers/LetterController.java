@@ -62,8 +62,6 @@ public class LetterController extends MapRooms {
    * @throws IOException if there is an I/O error during initialization
    */
   public void initialize() throws IOException {
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
 
     // Load the sound effects
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
@@ -74,17 +72,7 @@ public class LetterController extends MapRooms {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
-    // Load the clue menu
-    App.handleClueMenu(clueMenu);
-    // Load the hints box
-    App.loadHintsBox(instructionsPane);
-    // Load the chat
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
     App.animateText("Interesting, I wonder what this envelope contains...", infoLabel);
   }

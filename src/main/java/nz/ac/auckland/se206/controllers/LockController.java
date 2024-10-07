@@ -122,9 +122,6 @@ public class LockController extends MapRooms {
     sounds.add(unlockSound);
     sounds.add(keySound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
     // Hide the glow effect
     leftGlow.setVisible(false);
     rightGlow.setVisible(false);
@@ -132,16 +129,7 @@ public class LockController extends MapRooms {
     App.animateText(
         "Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
 
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
-
-    App.handleClueMenu(clueMenu);
-
-    App.loadHintsBox(instructionsPane);
-
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
   }
 
@@ -269,6 +257,7 @@ public class LockController extends MapRooms {
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
     // play the button click sound
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
 
