@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.ImageCursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -85,6 +84,10 @@ public class LetterCloseUpController extends MapRooms {
   private Button backButton;
   @FXML
   private ImageView mapClose;
+  @FXML
+  private Label nameLabel;
+  @FXML
+  private Rectangle nameRect;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -211,6 +214,9 @@ public class LetterCloseUpController extends MapRooms {
     } else {
       // Set the matchbox clicked state
       matchBoxClicked = true;
+      matchSound.seek(javafx.util.Duration.ZERO);
+      buttonClickSound.seek(javafx.util.Duration.ZERO);
+      
       buttonClickSound.play();
       matchSound.play();
 
@@ -270,18 +276,6 @@ public class LetterCloseUpController extends MapRooms {
       backButton.toBack();
       App.loadMap(mapPane, this);// open map
       MapController.toggleMapOpen();
-    }
-  }
-
-  /**
-   * Sets the cursor to the matchbox image.
-   */
-  private void setMatchboxCursor() {
-    // Load custom cursor image
-    Image cursorImage = new Image(getClass().getResource("/images/matchstick.png").toString());
-    ImageCursor customCursor = new ImageCursor(cursorImage);
-    if (envelopeCloseUp.getScene() != null) {
-      envelopeCloseUp.getScene().setCursor(customCursor);
     }
   }
 
@@ -423,5 +417,8 @@ public class LetterCloseUpController extends MapRooms {
     instructionsBox.toFront();
     infoLabel.toFront();
     mutePane.toFront();
+    nameRect.toFront();
+    nameLabel.toFront();
+    matchCursorOverlay.toFront();
   }
 }
