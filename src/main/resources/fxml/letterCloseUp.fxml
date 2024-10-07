@@ -77,5 +77,10 @@
          </effect>
       </ImageView>
       <Pane fx:id="mutePane" layoutX="830.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
+      <ImageView fx:id="matchCursorOverlay" fitHeight="150.0" fitWidth="200.0" layoutX="661.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/matchstick.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

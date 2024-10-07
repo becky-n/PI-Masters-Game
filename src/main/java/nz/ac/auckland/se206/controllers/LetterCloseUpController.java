@@ -74,6 +74,8 @@ public class LetterCloseUpController {
   private Rectangle envelopeCloseUpRec;
   @FXML
   private Pane mutePane;
+  @FXML
+  private ImageView matchCursorOverlay;
 
   /**
    * Initializes the LetterCloseUpController. Sets up the timer, menu navigation,
@@ -126,6 +128,9 @@ public class LetterCloseUpController {
       matchBox.setDisable(true);
       envelopeCloseUpRec.setDisable(true);
     }
+
+    // Set the matchCursorOverlay ImageView initially invisible
+    matchCursorOverlay.setVisible(false);
 
     // if time runs out
     TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
@@ -190,16 +195,42 @@ public class LetterCloseUpController {
    */
   @FXML
   public void handleMatchBoxClick(MouseEvent event) {
-    // check if envelope is open
+    // Check if envelope is open
     if (envelopeClicked < 2) {
       return;
     } else {
-      // Set the matchbox
+      // Set the matchbox clicked state
       matchBoxClicked = true;
       buttonClickSound.play();
       matchSound.play();
-    }
 
+      // Show the match image overlay and make it follow the cursor
+      matchCursorOverlay.setVisible(true);
+      matchCursorOverlay.setMouseTransparent(true); // Allow events to pass through it
+      matchCursorOverlay.setFitWidth(100);
+      matchCursorOverlay.setFitHeight(100);
+
+      // Move the image with the mouse on both move and drag
+      matchCursorOverlay.getScene().setOnMouseMoved(mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseDragged(mouseEvent -> moveImageWithCursor(mouseEvent));
+    }
+  }
+
+  // Helper method to move the image with the cursor
+  private void moveImageWithCursor(MouseEvent mouseEvent) {
+    matchCursorOverlay.setLayoutX(mouseEvent.getSceneX() - matchCursorOverlay.getFitWidth() / 2);
+    matchCursorOverlay.setLayoutY(mouseEvent.getSceneY() - matchCursorOverlay.getFitHeight() / 2);
+  }
+
+  /**
+   * Handle when the user releases the mouse or completes the action.
+   */
+  public void matchUseComplete() {
+    if (matchBoxClicked) {
+      // Hide the match image overlay
+      matchCursorOverlay.setVisible(false);
+      matchBoxClicked = false; // Reset the state
+    }
   }
 
   /**
@@ -299,6 +330,7 @@ public class LetterCloseUpController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
 
     matchSound.stop();
+    matchUseComplete();
     buttonClickSound.play();
 
     App.setRoot("crime");
