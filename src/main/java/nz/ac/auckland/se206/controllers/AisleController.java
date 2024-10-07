@@ -54,31 +54,18 @@ public class AisleController extends MapRooms {
    */
   @FXML
   private void initialize() throws IOException {
-    // Load the clue menu
-    App.handleClueMenu(clueMenu);
 
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
-
-    // Load the hints box
-    App.loadHintsBox(instructionsPane);
-
+    // set up audios
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
     buttonClickSound = new MediaPlayer(buttonClickMedia);
-
-    // create array of sounds and store
-    App.handleMute(mutePane);
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
-    App.setSounds(sounds);
-    App.muteSound();
 
     // load the chat
     App.openChat("Gerald", chatPane);
 
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    // initialise the controller
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**
@@ -105,13 +92,7 @@ public class AisleController extends MapRooms {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
 
-    if (MapController.mapOpen) {
-      App.unloadMap(mapPane, this); // close map
-    } else {
-      chatPane.toBack();
-      App.loadMap(mapPane, this); // open map
-      MapController.toggleMapOpen();
-    }
+    App.handleMapClickSuspect(mapPane, this, chatPane);
   }
 
   /**
@@ -119,9 +100,6 @@ public class AisleController extends MapRooms {
    */
   @Override
   public void onMapBack() {
-    MapController.toggleMapOpen();
-    
-    chatPane.toFront();
-    mutePane.toFront();
+    App.onMapBackSuspect(chatPane, mutePane);
   }
 }

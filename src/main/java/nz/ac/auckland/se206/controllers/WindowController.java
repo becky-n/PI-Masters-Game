@@ -97,9 +97,6 @@ public class WindowController extends MapRooms {
   @FXML
   private void initialize() throws IOException {
 
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
-
     // if they have already found the fabric
     if (fabricFound) {
       fabric.setImage(new Image("/images/fabric4.png"));
@@ -135,11 +132,6 @@ public class WindowController extends MapRooms {
     dm.makeDraggable(glass4);
     dm.makeDraggable(glass5);
 
-    // load the clue menu
-    App.handleClueMenu(clueMenu);
-
-    App.loadHintsBox(instructionsPane);
-
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());
     Media twinkleMedia = new Media(getClass().getResource("/sounds/twinkle.mp3").toString());
 
@@ -152,12 +144,7 @@ public class WindowController extends MapRooms {
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**

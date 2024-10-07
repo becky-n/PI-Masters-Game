@@ -58,6 +58,61 @@ public class App extends Application {
   }
 
   /**
+   * Initialises the controller with the required components.
+   * 
+   * @param clueMenu
+   * @param redCircle
+   * @param clock
+   * @param instructionsPane
+   * @param sounds
+   * @param timerLabel
+   * @param mapClose
+   * @throws IOException
+   */
+  public static void intialiseControllers(Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
+      List<MediaPlayer> sounds, Pane mutePane, Label timerLabel, ImageView mapClose) throws IOException {
+    handleClueMenu(clueMenu); // Load the clue menu
+    setRedCircle(redCircle, clock); // set circle colour for time almost out
+    loadHintsBox(instructionsPane); // Load the hints box
+    handleMute(mutePane); // Load the mute button
+    setSounds(sounds); // Load the sounds
+    muteSound();
+    timer(timerLabel); // Start the timer
+    mapHoverImage(mapClose); // Set up hover effects for the map close button
+  }
+
+  /**
+   * Handles the map click event.
+   * 
+   * @param mapPane
+   * @param room
+   * @param chatPane
+   * @throws IOException
+   */
+  public static void handleMapClickSuspect(Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
+    if (MapController.mapOpen) {
+      unloadMap(mapPane, room); // close map
+    } else {
+      chatPane.toBack();
+      loadMap(mapPane, room); // open map
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the onMapBack click event.
+   * 
+   * @param chatPane
+   * @param mutePane
+   */
+  public static void onMapBackSuspect(Pane chatPane, Pane mutePane) {
+    MapController.toggleMapOpen();
+
+    chatPane.toFront();
+    mutePane.toFront();
+  }
+
+  /**
    * Sets the root of the scene to the specified FXML file.
    *
    * @param fxml the name of the FXML file (without extension)
@@ -459,13 +514,15 @@ public class App extends Application {
   }
 
   /**
-   * Sets up hover effects for the given ImageView. When the mouse enters the ImageView,
-   * the image is changed to "mapHover.png". When the mouse exits the ImageView, the image
+   * Sets up hover effects for the given ImageView. When the mouse enters the
+   * ImageView,
+   * the image is changed to "mapHover.png". When the mouse exits the ImageView,
+   * the image
    * is changed back to "mapIcon.png".
    *
    * @param mapHover the ImageView to which the hover effects will be applied
    */
-  public static void mapHoverImage(ImageView mapClose){
+  public static void mapHoverImage(ImageView mapClose) {
     mapClose.setOnMouseEntered(event -> {
       mapClose.setImage(new Image("/images/mapHover.png"));
     });
@@ -530,5 +587,5 @@ public class App extends Application {
   public static List<MediaPlayer> getActiveSounds() {
     return sounds; // assuming you store them in a list called activeSounds
   }
-  
+
 }

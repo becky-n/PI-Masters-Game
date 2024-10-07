@@ -76,22 +76,9 @@ public class UnlockBoxController extends MapRooms {
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
     App.animateText("A white hair on the empty ring box, who does it belong to?", infoLabel);
 
-    // Load the clue menu
-    App.handleClueMenu(clueMenu);
-
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
-
-    App.loadHintsBox(instructionsPane);
-
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
   }
 

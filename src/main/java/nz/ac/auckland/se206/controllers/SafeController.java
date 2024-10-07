@@ -97,21 +97,9 @@ public class SafeController extends MapRooms {
     ArrayList<MediaPlayer> sounds = new ArrayList<MediaPlayer>();
     sounds.add(buttonClickSound);
 
-    App.setSounds(sounds);
-    App.muteSound();
-
     App.animateText("There appears to be a key! Would this unlock the jewellery box?", infoLabel);
-    // load the clue menu
-    App.handleClueMenu(clueMenu);
 
-    // set circle colour for time almost out
-    App.setRedCircle(redCircle, clock);
-
-    App.loadHintsBox(instructionsPane);
-
-    App.timer(timerLabel);
-
-    App.mapHoverImage(mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
     // Make the key draggable
     DraggableMaker dm = new DraggableMaker();
