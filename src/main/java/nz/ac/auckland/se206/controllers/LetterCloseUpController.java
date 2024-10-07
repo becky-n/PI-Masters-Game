@@ -13,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
@@ -205,7 +205,7 @@ public class LetterCloseUpController extends MapRooms {
       matchBoxClicked = true;
       matchSound.seek(javafx.util.Duration.ZERO);
       buttonClickSound.seek(javafx.util.Duration.ZERO);
-      
+
       buttonClickSound.play();
       matchSound.play();
 
@@ -216,8 +216,10 @@ public class LetterCloseUpController extends MapRooms {
       matchCursorOverlay.setFitHeight(100);
 
       // Move the image with the mouse on both move and drag
-      matchCursorOverlay.getScene().setOnMouseMoved(mouseEvent -> moveImageWithCursor(mouseEvent));
-      matchCursorOverlay.getScene().setOnMouseDragged(mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseMoved(
+          mouseEvent -> moveImageWithCursor(mouseEvent));
+      matchCursorOverlay.getScene().setOnMouseDragged(
+          mouseEvent -> moveImageWithCursor(mouseEvent));
     }
   }
 
@@ -353,8 +355,8 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void stopErasing(MouseEvent event) {
+    // Stop erasing
     isErasing = false;
-
   }
 
   /**
@@ -363,11 +365,11 @@ public class LetterCloseUpController extends MapRooms {
   @FXML
   private void onBack() throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
-
+    // Play button click sound and stop match sound
     matchSound.stop();
     matchUseComplete();
     buttonClickSound.play();
-
+    // Set the scene back to the crime scene
     App.setRoot("crime");
   }
 
@@ -379,12 +381,14 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void onHandleGuessClick(ActionEvent event) throws IOException {
+    // Play the button click sound
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
+    // Check if the guess is successful
     boolean successfulGuess = App.guessClick();
     if (successfulGuess) {
+      // Stop the match sound
       matchSound.stop();
-      System.out.println("successful guess");
     }
   }
 
@@ -393,8 +397,9 @@ public class LetterCloseUpController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close the map
     MapController.toggleMapOpen();
-
+    // Set the scene back to the crime scene
     backButton.toFront();
     envelopeCloseUp.toFront();
     letterOpenedReveal.toFront();

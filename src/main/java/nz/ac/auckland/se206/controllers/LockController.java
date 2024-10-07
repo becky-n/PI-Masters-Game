@@ -11,9 +11,9 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import nz.ac.auckland.se206.App;
@@ -126,7 +126,8 @@ public class LockController extends MapRooms {
     leftGlow.setVisible(false);
     rightGlow.setVisible(false);
 
-    App.animateText("Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
+    App.animateText(
+        "Try rotating the key, is there a pattern needed to unlock the box?", infoLabel);
 
     App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
@@ -297,8 +298,9 @@ public class LockController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // close map
     MapController.toggleMapOpen();
-
+    // set the elements to front
     rightGlow.toFront();
     right.toFront();
     leftGlow.toFront();

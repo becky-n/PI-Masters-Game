@@ -10,10 +10,10 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
 
@@ -150,8 +150,9 @@ public class LetterController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close the map
     MapController.toggleMapOpen();
-
+    // Bring the elements to the front
     envelope.toFront();
     envelopeRec.toFront();
     backButton.toFront();

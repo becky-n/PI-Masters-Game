@@ -11,10 +11,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
 
@@ -165,8 +165,9 @@ public class UnlockBoxController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // close the map
     MapController.toggleMapOpen();
-
+    // bring the elements to the front
     ringBox.toFront();
     closeUp.toFront();
     infoBox.toFront();
