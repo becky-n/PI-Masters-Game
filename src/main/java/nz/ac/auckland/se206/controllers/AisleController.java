@@ -65,7 +65,8 @@ public class AisleController extends MapRooms {
     App.openChat("Gerald", chatPane);
 
     // initialise the controller
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**

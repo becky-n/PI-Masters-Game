@@ -78,7 +78,8 @@ public class UnlockBoxController extends MapRooms {
 
     App.animateText("A white hair on the empty ring box, who does it belong to?", infoLabel);
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
   }
 

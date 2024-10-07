@@ -144,7 +144,8 @@ public class WindowController extends MapRooms {
     sounds.add(buttonClickSound);
     sounds.add(twinkleSound);
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**

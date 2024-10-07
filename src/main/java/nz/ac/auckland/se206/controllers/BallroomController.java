@@ -57,7 +57,8 @@ public class BallroomController extends MapRooms {
     App.openChat("Andrea", chatPane);
 
     // initialise the controller
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**

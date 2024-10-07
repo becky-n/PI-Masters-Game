@@ -136,7 +136,8 @@ public class CrimeController extends MapRooms {
     glassPileGlow.setVisible(false);
     invitationGlow.setVisible(false);
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
   }
 
   /**

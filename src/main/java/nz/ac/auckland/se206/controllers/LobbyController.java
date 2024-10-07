@@ -66,7 +66,8 @@ public class LobbyController extends MapRooms {
     App.openChat("Jesin", chatPane);
 
     // initialise the controller
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
   }
 

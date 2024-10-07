@@ -119,7 +119,8 @@ public class LetterCloseUpController extends MapRooms {
       App.animateText("let's see what's inside the envelope..", infoLabel);
     }
 
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(
+        clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
 
     // If the letter has been burnt, set the image to the hidden invitation
     if (burnt == true) {
