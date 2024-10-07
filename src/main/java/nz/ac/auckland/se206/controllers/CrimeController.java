@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
@@ -15,14 +14,14 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
 /**
  * Controller class for the Crime scene.
  * Manages the initialization of the scene, handling button clicks, and updating
  * UI elements.
  */
-public class CrimeController {
+public class CrimeController extends MapRooms {
   private static GameStateContext context = new GameStateContext();
   // set clues to false by default
   private static boolean safe1 = false;
@@ -63,8 +62,6 @@ public class CrimeController {
   }
 
   @FXML
-  private MenuButton menuButton;
-  @FXML
   private Label timerLabel;
   @FXML
   private Pane clueMenu;
@@ -77,6 +74,8 @@ public class CrimeController {
   @FXML
   private Pane instructionsPane;
   @FXML
+  private Pane mapPane;
+  @FXML
   private Circle redCircle;
   @FXML
   private ImageView clock;
@@ -84,6 +83,14 @@ public class CrimeController {
   private Pane mutePane;
   @FXML
   private ImageView glassPile;
+  @FXML
+  private Rectangle safe;
+  @FXML
+  private Rectangle glass;
+  @FXML
+  private Rectangle letter;
+  @FXML
+  private ImageView mapClose;
 
   // Sound effects
   private MediaPlayer buttonClickSound;
@@ -140,16 +147,40 @@ public class CrimeController {
     // load hints box
     App.loadHintsBox(instructionsPane);
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
 
-    // if(TimerManager.timedUp()){
-    //   redCircle.setVisible(true);
-    // }
+    App.mapHoverImage(mapClose);
 
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      App.loadMap(mapPane, this); // open map
+
+      // Disable interactions with clue rectangles
+      safe.setDisable(true);
+      glass.setDisable(true);
+      letter.setDisable(true);
+
+      // Optionally hide the glow effects or set them invisible
+      safeGlow.setVisible(false);
+      glassPileGlow.setVisible(false);
+      invitationGlow.setVisible(false);
+
+      MapController.toggleMapOpen();
+    }
   }
 
   /**
@@ -208,6 +239,8 @@ public class CrimeController {
    */
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    twinkleSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     twinkleSound.play();
 
@@ -259,6 +292,19 @@ public class CrimeController {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
     buttonClickSound.play();
     App.guessClick();
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    // enable interactions with clue rectangles
+    safe.setDisable(false);
+    glass.setDisable(false);
+    letter.setDisable(false);
   }
 
 }

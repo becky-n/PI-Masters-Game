@@ -4,19 +4,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
-import nz.ac.auckland.se206.Navigation;
+import nz.ac.auckland.se206.MapRooms;
 
-public class WindowController {
+public class WindowController extends MapRooms {
   public static boolean fabricFound = false;
 
   /**
@@ -56,6 +59,10 @@ public class WindowController {
   @FXML
   private ImageView glass5;
   @FXML
+  private ImageView glass6;
+  @FXML
+  private ImageView glass7;
+  @FXML
   private Label infoLabel;
   @FXML
   private ImageView fabric;
@@ -67,6 +74,16 @@ public class WindowController {
   private ImageView clock;
   @FXML
   private Pane mutePane;
+  @FXML
+  private Pane mapPane;
+  @FXML
+  private Rectangle infoBox;
+  @FXML
+  private Button backButton;
+  @FXML
+  private Rectangle filter;
+  @FXML
+  private ImageView mapClose;
 
   private MediaPlayer buttonClickSound;
   private MediaPlayer twinkleSound;
@@ -138,11 +155,9 @@ public class WindowController {
     App.setSounds(sounds);
     App.muteSound();
 
-    // Initialize the controller
-    Navigation nav = new Navigation();
-    nav.setMenu(menuButton);
-
     App.timer(timerLabel);
+
+    App.mapHoverImage(mapClose);
   }
 
   /**
@@ -228,6 +243,57 @@ public class WindowController {
 
     buttonClickSound.play();
     App.setRoot("crime");
+  }
+
+  /**
+   * Handles the event when the map is clicked.
+   * 
+   * @param event the MouseEvent that triggered this handler
+   * @throws IOException if an I/O error occurs during the map loading process
+   */
+  @FXML
+  private void handleMapClick(MouseEvent event) throws IOException {
+    buttonClickSound.seek(javafx.util.Duration.ZERO);
+    buttonClickSound.play();
+
+    if (MapController.mapOpen) {
+      App.unloadMap(mapPane, this); // close map
+    } else {
+      backButton.toBack();
+      infoBox.toBack();
+      infoLabel.toBack();
+      glass1.toBack();
+      glass2.toBack();
+      glass3.toBack();
+      glass4.toBack();
+      glass5.toBack();
+      fabric.toBack();
+      glass7.toBack();
+      glass6.toBack();
+
+      App.loadMap(mapPane, this);
+      MapController.toggleMapOpen();
+    }
+  }
+
+  /**
+   * Handles the back button click event.
+   */
+  @Override
+  public void onMapBack() {
+    MapController.toggleMapOpen();
+
+    fabric.toFront();
+    glass1.toFront();
+    glass2.toFront();
+    glass3.toFront();
+    glass4.toFront();
+    glass5.toFront();
+    glass7.toFront();
+    glass6.toFront();
+    infoBox.toFront();
+    infoLabel.toFront();
+    backButton.toFront();
   }
 
 }
