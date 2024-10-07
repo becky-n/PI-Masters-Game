@@ -162,8 +162,9 @@ public class LetterController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close the map
     MapController.toggleMapOpen();
-
+    // Bring the elements to the front
     envelope.toFront();
     envelopeRec.toFront();
     backButton.toFront();

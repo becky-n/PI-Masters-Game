@@ -281,8 +281,9 @@ public class WindowController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // close the map
     MapController.toggleMapOpen();
-
+    // bring the elements to the front
     fabric.toFront();
     glass1.toFront();
     glass2.toFront();

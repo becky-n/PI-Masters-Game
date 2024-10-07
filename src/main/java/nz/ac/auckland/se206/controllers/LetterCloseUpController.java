@@ -216,7 +216,7 @@ public class LetterCloseUpController extends MapRooms {
       matchBoxClicked = true;
       matchSound.seek(javafx.util.Duration.ZERO);
       buttonClickSound.seek(javafx.util.Duration.ZERO);
-      
+
       buttonClickSound.play();
       matchSound.play();
 
@@ -364,8 +364,8 @@ public class LetterCloseUpController extends MapRooms {
    */
   @FXML
   private void stopErasing(MouseEvent event) {
+    // Stop erasing
     isErasing = false;
-
   }
 
   /**
@@ -374,11 +374,11 @@ public class LetterCloseUpController extends MapRooms {
   @FXML
   private void onBack() throws IOException {
     buttonClickSound.seek(javafx.util.Duration.ZERO);
-
+    // Play button click sound and stop match sound
     matchSound.stop();
     matchUseComplete();
     buttonClickSound.play();
-
+    // Set the scene back to the crime scene
     App.setRoot("crime");
   }
 

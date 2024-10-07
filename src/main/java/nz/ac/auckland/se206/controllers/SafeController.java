@@ -226,8 +226,9 @@ public class SafeController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // Close map
     MapController.toggleMapOpen();
-
+    // Bring nodes to front
     box.toFront();
     pattern.toFront();
     target.toFront();

@@ -308,8 +308,9 @@ public class LockController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // close map
     MapController.toggleMapOpen();
-
+    // set the elements to front
     rightGlow.toFront();
     right.toFront();
     leftGlow.toFront();

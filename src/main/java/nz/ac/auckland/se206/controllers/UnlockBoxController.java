@@ -178,8 +178,9 @@ public class UnlockBoxController extends MapRooms {
    */
   @Override
   public void onMapBack() {
+    // close the map
     MapController.toggleMapOpen();
-
+    // bring the elements to the front
     ringBox.toFront();
     closeUp.toFront();
     infoBox.toFront();
