@@ -203,6 +203,19 @@ public class App extends Application {
     timeline.play();
   }
 
+  // display instruction box when there is less than 30 seconds left
+  public static void displayInstructionBox(String instructionText) {
+    // Add a listener to the timeRemainingProperty in TimerManager
+    TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
+      // Check if the new time is exactly 30 seconds
+      if (newTime.intValue() == 30) {
+        // Call the animateText method to animate the instructionText in the infoLabel
+        InstructionsManager.getInstance().updateInstructions(instructionText);
+        InstructionsManager.getInstance().showInstructions();
+      }
+    });
+  }
+
   /**
    * Sets the red circle and initiates a shaking animation on the clock ImageView
    * when the time remaining reaches 30 seconds.
@@ -463,6 +476,7 @@ public class App extends Application {
             timerManager.getTimeRemaining() / 60,
             timerManager.getTimeRemaining() % 60),
             timerManager.timeRemainingProperty()));
+    displayInstructionBox("Hurry up! Only 30 seconds left!");
   }
 
   /**
@@ -590,5 +604,4 @@ public class App extends Application {
   public static List<MediaPlayer> getActiveSounds() {
     return sounds; // assuming you store them in a list called activeSounds
   }
-
 }
