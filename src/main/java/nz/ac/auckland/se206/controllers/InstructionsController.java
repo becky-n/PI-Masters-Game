@@ -74,11 +74,17 @@ public class InstructionsController {
     }
   }
 
+  /**
+   * Handles the enter event for the hints button.
+   */
   @FXML
   public void handleEnter() {
     circle.setOpacity(1);
   }
 
+  /**
+   * Handles the exit event for the hints button.
+   */
   @FXML
   public void handleExit() {
     circle.setOpacity(0.8);
@@ -87,7 +93,6 @@ public class InstructionsController {
   /**
    * Returns whether the hints box is currently visible.
    * 
-   * @return true if the hints box is visible, false otherwise
    */
   public void showHintBox() {
     textArea.setVisible(true);
@@ -97,7 +102,6 @@ public class InstructionsController {
   /**
    * Returns whether the hints box is currently visible.
    * 
-   * @return true if the hints box is visible, false otherwise
    */
   public void hideHintBox() {
     textArea.setVisible(false);

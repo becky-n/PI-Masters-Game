@@ -153,7 +153,6 @@ public class LetterCloseUpController extends MapRooms {
   /**
    * Handles the clue menu when the timer expires.
    *
-   * @param pane the pane to display the clue menu
    * @throws IOException if there is an I/O error
    */
   private void handleTimerExpired() {

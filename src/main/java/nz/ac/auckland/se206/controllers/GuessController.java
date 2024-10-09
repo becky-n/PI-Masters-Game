@@ -23,7 +23,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 
-/*
+/**
  * Controller class for the Guess scene.
  */
 public class GuessController {
@@ -89,10 +89,9 @@ public class GuessController {
   private String suspect = "";
 
   /**
-   * Sets the game to the guessing state.
+   * Sets the game to the guessing state if the game is in the guessing state.
    *
-   * @param guess true if the game is in the guessing state, false otherwise
-   * @throws IOException
+   * @throws IOException if there is an I/O error
    */
   @FXML
   public void initialize() throws IOException {
