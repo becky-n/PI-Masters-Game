@@ -60,6 +60,14 @@ public class TimerManager {
       if (GuessController.inGuessingState()) {
         if (timeRemaining.get() <= 0) {
           timer.stop();
+          if(!GuessController.isGuessMade()){
+            try {
+              handleTimeOut();
+            } catch ( IOException e) {
+              e.printStackTrace();
+            }
+            return;
+          }
           try {
             handleTimeOutGuess();
           } catch (ApiProxyException | IOException e) {
