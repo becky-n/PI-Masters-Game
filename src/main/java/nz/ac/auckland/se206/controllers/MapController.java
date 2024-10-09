@@ -12,9 +12,10 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.MapRooms;
 
-/*
+/**
  * Controller class for the Map scene.
- * Manages the initialization of the scene, handling button clicks, and updating UI elements.
+ * Manages the initialization of the scene, handling button clicks, and updating
+ * UI elements.
  * 
  */
 public class MapController {

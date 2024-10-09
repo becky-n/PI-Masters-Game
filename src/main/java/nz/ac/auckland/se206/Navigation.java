@@ -12,15 +12,17 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 
-/*
- * Navigation class to handle the navigation between scenes
+/**
+ * The Navigation class provides functionalities to set up and manage navigation
+ * elements
+ * in the application, including setting up menu buttons with sound effects.
  */
 public class Navigation {
   private MediaPlayer buttonClickSound;
   private MediaPlayer doorSound;
 
-  /*
-   * Set the menu for the navigation
+  /**
+   * Set the menu for the given MenuButton
    * 
    * @param menuButton the MenuButton to set the menu for
    */

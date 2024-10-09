@@ -203,7 +203,12 @@ public class App extends Application {
     timeline.play();
   }
 
-  // display instruction box when there is less than 30 seconds left
+  /**
+   * Displays the instruction box with the specified text when the time remaining
+   * reaches 30 seconds.
+   *
+   * @param instructionText the text to display in the instruction box
+   */
   public static void displayInstructionBox(String instructionText) {
     // Add a listener to the timeRemainingProperty in TimerManager
     TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
@@ -460,6 +465,12 @@ public class App extends Application {
     pane.getChildren().add(menuPane);
   }
 
+  /**
+   * Loads the mute button into the provided pane.
+   * 
+   * @param pane the pane where the mute button will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
   public static void handleMute(Pane pane) throws IOException {
     // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/mute.fxml"));
@@ -469,6 +480,11 @@ public class App extends Application {
     pane.getChildren().add(mute);
   }
 
+  /**
+   * Starts the timer and binds the time remaining to the timer label.
+   * 
+   * @param timerLabel the label to which the time remaining will be bound
+   */
   public static void timer(Label timerLabel) {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
@@ -554,32 +570,65 @@ public class App extends Application {
     });
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static String getCurrentSceneId() {
     return currentSceneId;
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static Scene getScene() {
     return scene;
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static void setVolume(double volume) {
     App.volume = volume;
   }
 
+  /**
+   * Returns the current volume level.
+   * 
+   * @return the current volume level
+   */
   public static double getVolume() {
     return volume;
   }
 
+  /**
+   * Mutes or unmutes all sounds.
+   */
   public static void muteSound() {
     for (MediaPlayer sound : sounds) {
       sound.setVolume(volume);
     }
   }
 
+  /**
+   * Sets the list of active sounds.
+   * 
+   * @param sounds the list of active sounds
+   */
   public static void setSounds(List<MediaPlayer> sounds) {
     App.sounds = sounds;
   }
 
+  /**
+   * Adds a sound to the list of active sounds.
+   * 
+   * @param sound the sound to add
+   */
   public static void addSound(MediaPlayer sound) {
     sounds.add(sound);
   }

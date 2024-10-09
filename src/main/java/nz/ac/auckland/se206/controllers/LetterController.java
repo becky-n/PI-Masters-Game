@@ -17,6 +17,9 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
 
+/**
+ * Controller class for the Letter scene.
+ */
 public class LetterController extends MapRooms {
 
   // Static Fields
