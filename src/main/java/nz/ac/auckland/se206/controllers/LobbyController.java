@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.SuspectRooms;
 public class LobbyController extends SuspectRooms {
 
   /**
-   * Initializes the BallroomController.
+   * Initializes the BallroomController by setting the chat name to "Jesin".
    *
    * @throws IOException if there is an I/O error during initialization.
    */

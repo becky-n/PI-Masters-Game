@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
 
-/*
+/**
  * Controller class for the Instructions scene.
  */
 public class InstructionsController {
@@ -25,7 +25,7 @@ public class InstructionsController {
   private MediaPlayer buttonClickSound;
 
   /**
-   * Initializes the controller.
+   * Initializes the controller class and sets up the instructions text area.
    */
   public void initialize() {
 

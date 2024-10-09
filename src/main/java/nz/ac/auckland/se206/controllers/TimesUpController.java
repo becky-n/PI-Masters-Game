@@ -27,7 +27,7 @@ public class TimesUpController {
   private Pane mutePane;
 
   /**
-   * Initialises the menu scene.
+   * Initialises the menu scene by setting up the background music and sound.
    * 
    * @throws IOException
    */

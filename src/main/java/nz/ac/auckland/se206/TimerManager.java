@@ -13,7 +13,7 @@ import nz.ac.auckland.se206.controllers.GuessController;
 import nz.ac.auckland.se206.controllers.TabletController;
 
 /**
- * Manages the game timer.
+ * Manages the game timer and time-out events.
  */
 public class TimerManager {
 
@@ -112,7 +112,7 @@ public class TimerManager {
   }
 
   /**
-   * Stops the timer.
+   * Stops the timer while it is running
    */
   public void stop() {
     if (running) {

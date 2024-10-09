@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.SuspectRooms;
 public class AisleController extends SuspectRooms {
 
   /**
-   * Initializes the AisleController.
+   * Initializes the AisleController by setting the chat name to "Gerald".
    *
    * @throws IOException if there is an I/O error during initialization.
    */
