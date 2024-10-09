@@ -23,6 +23,9 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.TimerManager;
 
+/*
+ * Controller class for the Guess scene.
+ */
 public class GuessController {
   public static boolean play = false;
   // this field is used to determine if the game is in the guessing state

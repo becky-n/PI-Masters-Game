@@ -21,6 +21,9 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
 import nz.ac.auckland.se206.TimerManager;
 
+/*
+ * Controller for the LetterCloseUp room.
+ */
 public class LetterCloseUpController extends MapRooms {
 
   // Static Fields

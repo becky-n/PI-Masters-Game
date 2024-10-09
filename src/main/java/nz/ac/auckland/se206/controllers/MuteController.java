@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 
+/*
+ * Controller class for the Mute scene.
+ */
 public class MuteController {
   @FXML
   private ImageView mute;

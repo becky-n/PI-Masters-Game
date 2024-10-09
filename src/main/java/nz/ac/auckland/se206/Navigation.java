@@ -21,6 +21,8 @@ public class Navigation {
 
   /*
    * Set the menu for the navigation
+   * 
+   * @param menuButton the MenuButton to set the menu for
    */
   public void setMenu(MenuButton menuButton) {
     Media buttonClickMedia = new Media(getClass().getResource("/sounds/click.mp3").toString());

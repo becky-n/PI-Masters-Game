@@ -9,6 +9,9 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
 
+/*
+ * Controller class for the Instructions scene.
+ */
 public class InstructionsController {
 
   @FXML

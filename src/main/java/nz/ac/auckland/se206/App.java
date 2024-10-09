@@ -398,6 +398,11 @@ public class App extends Application {
     }
   }
 
+  /*
+   * handleGuessClick method checks if all suspects have been talked to and at
+   * least one clue has been found.
+   * 
+   */
   public static boolean guessClick() throws IOException {
     // Check if all suspects have been talked to and at least one clue has been
     // found
@@ -597,10 +602,21 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method is invoked when the application is about to close. It deallocates
+   * the synthesizer.
+   *
+   * @param event the window event that triggered the method
+   */
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
   }
 
+  /**
+   * Returns a list of all active sounds.
+   * 
+   * @return a list of all active sounds
+   */
   public static List<MediaPlayer> getActiveSounds() {
     return sounds; // assuming you store them in a list called activeSounds
   }
