@@ -18,8 +18,8 @@ public class PromptEngineering {
    * filled prompt.
    *
    * @param promptId the ID of the prompt template to load
-   * @param data     the data to fill into the template
-   * @return the filled prompt
+   * @param suspect  the suspect name to fill into the template
+   * @param guess    the guess to fill into the template
    * @throws IllegalArgumentException if there is an error loading or filling the
    *                                  template
    */
