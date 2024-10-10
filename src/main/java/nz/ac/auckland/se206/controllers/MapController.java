@@ -12,6 +12,12 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.MapRooms;
 
+/**
+ * Controller class for the Map scene.
+ * Manages the initialization of the scene, handling button clicks, and updating
+ * UI elements.
+ * 
+ */
 public class MapController {
   private static GameStateContext context = new GameStateContext();
   public static boolean mapOpen = false;
@@ -119,7 +125,7 @@ public class MapController {
   @FXML
   private void handleClueClick(MouseEvent event) throws IOException {
     toggleMapOpen();
-    //turn off any sounds currently playing
+    // turn off any sounds currently playing
     for (MediaPlayer sound : App.getActiveSounds()) {
       if (sound.getStatus() == MediaPlayer.Status.PLAYING) {
         sound.stop(); // Stop the currently playing sound

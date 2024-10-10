@@ -60,13 +60,13 @@ public class App extends Application {
   /**
    * Initialises the controller with the required components.
    * 
-   * @param clueMenu
-   * @param redCircle
-   * @param clock
-   * @param instructionsPane
-   * @param sounds
-   * @param timerLabel
-   * @param mapClose
+   * @param clueMenu         the clue menu pane
+   * @param redCircle        the red circle
+   * @param clock            the clock ImageView
+   * @param instructionsPane the instructions pane
+   * @param sounds           the list of active sounds
+   * @param timerLabel       the timer label
+   * @param mapClose         the map close button
    * @throws IOException
    */
   public static void intialiseControllers(
@@ -86,9 +86,9 @@ public class App extends Application {
   /**
    * Handles the map click event.
    * 
-   * @param mapPane
-   * @param room
-   * @param chatPane
+   * @param mapPane  the map pane
+   * @param room     the room
+   * @param chatPane the chat pane
    * @throws IOException
    */
   public static void handleMapClickSuspect(
@@ -105,8 +105,8 @@ public class App extends Application {
   /**
    * Handles the onMapBack click event.
    * 
-   * @param chatPane
-   * @param mutePane
+   * @param chatPane the chat pane
+   * @param mutePane the mute pane
    */
   public static void onMapBackSuspect(Pane chatPane, Pane mutePane) {
     MapController.toggleMapOpen();
@@ -142,7 +142,7 @@ public class App extends Application {
   /**
    * Changes the scene to the specified FXML file with a fade-in and fade-out
    * 
-   * @param scene
+   * @param scene the name of the FXML file (without extension)
    */
   public static void fadeScenes(String scene) {
     // Get root of the current scene
@@ -180,10 +180,11 @@ public class App extends Application {
   }
 
   /**
-   * Loads the clue menu into the specified pane.
+   * Animates the text in the specified label by displaying one character at a
+   * time.
    *
-   * @param pane the pane to which the clue menu should be added
-   * @throws IOException if there is an I/O error during loading the clue menu
+   * @param str       the text to animate
+   * @param infoLabel the label to display the text
    */
   public static void animateText(String str, Label infoLabel) {
     final IntegerProperty i = new SimpleIntegerProperty(0);
@@ -203,7 +204,12 @@ public class App extends Application {
     timeline.play();
   }
 
-  // display instruction box when there is less than 30 seconds left
+  /**
+   * Displays the instruction box with the specified text when the time remaining
+   * reaches 30 seconds.
+   *
+   * @param instructionText the text to display in the instruction box
+   */
   public static void displayInstructionBox(String instructionText) {
     // Add a listener to the timeRemainingProperty in TimerManager
     TimerManager.getInstance().timeRemainingProperty().addListener((obs, oldTime, newTime) -> {
@@ -342,8 +348,8 @@ public class App extends Application {
   /**
    * Unloads the map from the provided pane.
    * 
-   * @param pane
-   * @param room
+   * @param pane the pane from which the map will be unloaded
+   * @param room the room to which the map belongs
    */
   public static void unloadMap(Pane pane, MapRooms room) {
     System.out.println("Unloading map");
@@ -398,6 +404,11 @@ public class App extends Application {
     }
   }
 
+  /*
+   * handleGuessClick method checks if all suspects have been talked to and at
+   * least one clue has been found.
+   * 
+   */
   public static boolean guessClick() throws IOException {
     // Check if all suspects have been talked to and at least one clue has been
     // found
@@ -455,6 +466,12 @@ public class App extends Application {
     pane.getChildren().add(menuPane);
   }
 
+  /**
+   * Loads the mute button into the provided pane.
+   * 
+   * @param pane the pane where the mute button will be loaded
+   * @throws IOException if there is an I/O error during loading
+   */
   public static void handleMute(Pane pane) throws IOException {
     // Load the clue menu
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/mute.fxml"));
@@ -464,6 +481,11 @@ public class App extends Application {
     pane.getChildren().add(mute);
   }
 
+  /**
+   * Starts the timer and binds the time remaining to the timer label.
+   * 
+   * @param timerLabel the label to which the time remaining will be bound
+   */
   public static void timer(Label timerLabel) {
     TimerManager timerManager = TimerManager.getInstance();
     // Start the timer if it's the first scene
@@ -537,7 +559,7 @@ public class App extends Application {
    * the image
    * is changed back to "mapIcon.png".
    *
-   * @param mapHover the ImageView to which the hover effects will be applied
+   * @param mapClose the ImageView to which the hover effects should be applied
    */
   public static void mapHoverImage(ImageView mapClose) {
     mapClose.setOnMouseEntered(event -> {
@@ -549,32 +571,65 @@ public class App extends Application {
     });
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static String getCurrentSceneId() {
     return currentSceneId;
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static Scene getScene() {
     return scene;
   }
 
+  /**
+   * Sets the current scene ID.
+   * 
+   * @param sceneId the ID of the current scene
+   */
   public static void setVolume(double volume) {
     App.volume = volume;
   }
 
+  /**
+   * Returns the current volume level.
+   * 
+   * @return the current volume level
+   */
   public static double getVolume() {
     return volume;
   }
 
+  /**
+   * Mutes or unmutes all sounds.
+   */
   public static void muteSound() {
     for (MediaPlayer sound : sounds) {
       sound.setVolume(volume);
     }
   }
 
+  /**
+   * Sets the list of active sounds.
+   * 
+   * @param sounds the list of active sounds
+   */
   public static void setSounds(List<MediaPlayer> sounds) {
     App.sounds = sounds;
   }
 
+  /**
+   * Adds a sound to the list of active sounds.
+   * 
+   * @param sound the sound to add
+   */
   public static void addSound(MediaPlayer sound) {
     sounds.add(sound);
   }
@@ -597,10 +652,21 @@ public class App extends Application {
     root.requestFocus();
   }
 
+  /**
+   * This method is invoked when the application is about to close. It deallocates
+   * the synthesizer.
+   *
+   * @param event the window event that triggered the method
+   */
   private void handleWindowClose(WindowEvent event) {
     FreeTextToSpeech.deallocateSynthesizer();
   }
 
+  /**
+   * Returns a list of all active sounds.
+   * 
+   * @return a list of all active sounds
+   */
   public static List<MediaPlayer> getActiveSounds() {
     return sounds; // assuming you store them in a list called activeSounds
   }

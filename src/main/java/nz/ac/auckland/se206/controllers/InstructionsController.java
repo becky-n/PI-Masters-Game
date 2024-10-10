@@ -9,6 +9,9 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.InstructionsManager;
 
+/**
+ * Controller class for the Instructions scene.
+ */
 public class InstructionsController {
 
   @FXML
@@ -22,7 +25,7 @@ public class InstructionsController {
   private MediaPlayer buttonClickSound;
 
   /**
-   * Initializes the controller.
+   * Initializes the controller class and sets up the instructions text area.
    */
   public void initialize() {
 
@@ -71,11 +74,17 @@ public class InstructionsController {
     }
   }
 
+  /**
+   * Handles the enter event for the hints button.
+   */
   @FXML
   public void handleEnter() {
     circle.setOpacity(1);
   }
 
+  /**
+   * Handles the exit event for the hints button.
+   */
   @FXML
   public void handleExit() {
     circle.setOpacity(0.8);
@@ -84,7 +93,6 @@ public class InstructionsController {
   /**
    * Returns whether the hints box is currently visible.
    * 
-   * @return true if the hints box is visible, false otherwise
    */
   public void showHintBox() {
     textArea.setVisible(true);
@@ -94,7 +102,6 @@ public class InstructionsController {
   /**
    * Returns whether the hints box is currently visible.
    * 
-   * @return true if the hints box is visible, false otherwise
    */
   public void hideHintBox() {
     textArea.setVisible(false);

@@ -21,6 +21,12 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.MapRooms;
 import nz.ac.auckland.se206.TimerManager;
 
+/**
+ * The LetterCloseUpController class extends the MapRooms class and provides
+ * functionalities specific to the close-up view of a letter in the application.
+ * This class manages the state and behavior of the letter close-up, including
+ * handling whether the letter has been burnt or not.
+ */
 public class LetterCloseUpController extends MapRooms {
 
   // Static Fields
@@ -145,9 +151,8 @@ public class LetterCloseUpController extends MapRooms {
   }
 
   /**
-   * Handles the clue menu.
+   * Handles the clue menu when the timer expires.
    *
-   * @param pane the pane to display the clue menu
    * @throws IOException if there is an I/O error
    */
   private void handleTimerExpired() {

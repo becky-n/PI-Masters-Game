@@ -11,12 +11,12 @@ import nz.ac.auckland.se206.SuspectRooms;
 public class BallroomController extends SuspectRooms {
 
   /**
-   * Initializes the BallroomController.
+   * Initializes the BallroomController by setting the chat name to "Andrea".
    *
    * @throws IOException if there is an I/O error during initialization.
    */
   @FXML
   private void initialize() throws IOException {
-    initializeRoom("Andrea");  // Specific chat name for Ballroom
+    initializeRoom("Andrea"); // Specific chat name for Ballroom
   }
 }

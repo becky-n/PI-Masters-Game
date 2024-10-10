@@ -44,7 +44,7 @@ public class LockController extends MapRooms {
   }
 
   /**
-   * Resets the lock.
+   * Resets the lock to the locked state.
    */
   public static void resetLock() {
     safeUnlocked = false;

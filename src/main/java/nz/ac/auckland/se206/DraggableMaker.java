@@ -14,7 +14,7 @@ public class DraggableMaker {
   private MediaPlayer glassSound;
 
   /**
-   * Makes a node draggable.
+   * Makes a node draggable by the user.
    *
    * @param node the node to make draggable
    */
