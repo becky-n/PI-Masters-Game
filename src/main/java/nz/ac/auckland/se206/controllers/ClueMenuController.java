@@ -7,8 +7,7 @@ import javafx.scene.image.ImageView;
 /**
  * The ClueMenuController class is responsible for managing the clue menu in the
  * application.
- * It initializes the clues based on the game state and updates the clue images
- * accordingly.
+ * 
  */
 public class ClueMenuController {
 

@@ -162,8 +162,7 @@ public class LetterCloseUpController extends MapRooms {
   /**
    * Handles the clue menu.
    *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
+   * @param event the action event triggered by clicking the clue menu
    */
   @FXML
   public void envelopeClicked(MouseEvent event) {

@@ -29,7 +29,7 @@ public class TimesUpController {
   /**
    * Initialises the menu scene by setting up the background music and sound.
    * 
-   * @throws IOException
+   * @throws IOException if the media file is not found
    */
   @FXML
   public void initialize() throws IOException {

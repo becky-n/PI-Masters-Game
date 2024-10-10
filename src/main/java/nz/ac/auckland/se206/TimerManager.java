@@ -26,7 +26,7 @@ public class TimerManager {
   }
 
   /**
-   * Returns the TimerManager instance.
+   * Returns the TimerManager instance if it exists, otherwise creates a new.
    *
    * @return the TimerManager instance
    */
@@ -112,7 +112,7 @@ public class TimerManager {
   }
 
   /**
-   * Stops the timer while it is running
+   * Stops the timer while it is running.
    */
   public void stop() {
     if (running) {
