@@ -113,7 +113,7 @@ public class TabletController {
    * ChatCompletionRequest.
    *
    * @param suspect the suspect to set
-   * @throws IOException
+   * @throws IOException if there is an I/O error
    */
   public void setSuspect(String suspect, GuessController guess) throws IOException {
     // Set the suspect

@@ -160,7 +160,8 @@ public class LetterCloseUpController extends MapRooms {
   }
 
   /**
-   * Handles the clue menu.
+   * Handles the envelope click event. If the envelope is clicked once, open the
+   * envelope.
    *
    * @param event the action event triggered by clicking the clue menu
    */
@@ -247,7 +248,7 @@ public class LetterCloseUpController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */

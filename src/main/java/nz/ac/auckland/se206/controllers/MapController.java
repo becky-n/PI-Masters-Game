@@ -46,7 +46,7 @@ public class MapController {
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
    * and loads the clue menu and hints box.
-   * 
+   *
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML

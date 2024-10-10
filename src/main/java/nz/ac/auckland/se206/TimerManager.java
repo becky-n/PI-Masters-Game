@@ -28,7 +28,7 @@ public class TimerManager {
   /**
    * Returns the singleton instance of the TimerManager. If the instance does not
    * exist, it is created.
-   * 
+   *
    * @return the singleton instance of the TimerManager
    */
   public static synchronized TimerManager getInstance() {
@@ -110,7 +110,7 @@ public class TimerManager {
   /**
    * Starts the timer with the specified duration.
    *
-   * @param durationInSeconds
+   * @param durationInSeconds the duration in seconds
    */
   public void start(int durationInSeconds) {
     if (!running) {
@@ -121,7 +121,7 @@ public class TimerManager {
   }
 
   /**
-   * Stops the timer while it is running
+   * Stops the timer while it is running.
    */
   public void stop() {
     if (running) {

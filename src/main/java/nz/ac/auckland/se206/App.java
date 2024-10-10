@@ -406,7 +406,7 @@ public class App extends Application {
 
   /**
    * Handles the guess click event.
-   * 
+   *
    * @return true if the guess can be made, false otherwise
    * @throws IOException if the FXML file is not found
    */
@@ -581,8 +581,6 @@ public class App extends Application {
 
   /**
    * Sets the current scene ID.
-   *
-   * @param sceneId the ID of the current scene
    */
   public static Scene getScene() {
     return scene;

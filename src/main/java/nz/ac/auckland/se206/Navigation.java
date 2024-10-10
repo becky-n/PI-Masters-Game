@@ -22,8 +22,8 @@ public class Navigation {
   private MediaPlayer doorSound;
 
   /**
-   * Set the menu for the given MenuButton
-   * 
+   * Set the menu for the given MenuButton.
+   *
    * @param menuButton the MenuButton to set the menu for
    */
   public void setMenu(MenuButton menuButton) {
@@ -97,7 +97,7 @@ public class Navigation {
   }
 
   /*
-   * Create a custom MenuItem with a circular image and label
+   * Create a custom MenuItem with a circular image and label.
    */
   private MenuItem createCustomMenuItem(String text, String imagePath) {
     ImageView imageView = new ImageView(new Image(getClass().getResource(imagePath).toString()));
@@ -128,7 +128,7 @@ public class Navigation {
   }
 
   /*
-   * Change the scene
+   * Change the scene.
    */
   private void changeScene(String scene) {
     try {

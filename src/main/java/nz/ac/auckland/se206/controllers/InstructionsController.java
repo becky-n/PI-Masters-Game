@@ -48,7 +48,7 @@ public class InstructionsController {
 
   /**
    * Updates the instructions text area with the given instructions.
-   * 
+   *
    * @param instructions the instructions to display
    */
   public void updateInstructions(String instructions) {

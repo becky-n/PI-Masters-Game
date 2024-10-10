@@ -19,7 +19,7 @@ public class ClueMenuController {
   private ImageView clue3;
 
   /**
-   * Initialize the clues in the clue menu
+   * Initialize the clues in the clue menu.
    */
   public void initialize() {
     boolean[] clues = CrimeController.cluesGuessed();
