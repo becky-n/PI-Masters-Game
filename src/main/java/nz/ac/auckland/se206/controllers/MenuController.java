@@ -15,8 +15,7 @@ import nz.ac.auckland.se206.App;
 
 /**
  * Controller class for the menu view. Handles user interactions within the menu
- * where the user can
- * start the game.
+ * where the user can start the game.
  */
 public class MenuController {
   private MediaPlayer backgroundMusic;
@@ -30,8 +29,8 @@ public class MenuController {
 
   /**
    * Initialises the menu scene by setting up the background music and sound.
-   * 
-   * @throws IOException
+   *
+   * @throws IOException if the media file is not found
    */
   @FXML
   public void initialize() throws IOException {

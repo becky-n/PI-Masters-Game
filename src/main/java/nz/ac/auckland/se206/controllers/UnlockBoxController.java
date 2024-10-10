@@ -116,7 +116,7 @@ public class UnlockBoxController extends MapRooms {
 
   /**
    * Loads the hints box into the specified pane.
-   * 
+   *
    * @param pane the pane to which the hints box should be added
    * @throws IOException if there is an I/O error during loading the hints box
    */
@@ -129,7 +129,7 @@ public class UnlockBoxController extends MapRooms {
 
   /**
    * Handles the close button click event.
-   * 
+   *
    * @throws IOException if there is an I/O error
    */
   @FXML
@@ -141,7 +141,7 @@ public class UnlockBoxController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */

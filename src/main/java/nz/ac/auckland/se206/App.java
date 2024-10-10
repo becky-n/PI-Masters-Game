@@ -59,7 +59,7 @@ public class App extends Application {
 
   /**
    * Initialises the controller with the required components.
-   * 
+   *
    * @param clueMenu         the clue menu pane
    * @param redCircle        the red circle
    * @param clock            the clock ImageView
@@ -67,7 +67,7 @@ public class App extends Application {
    * @param sounds           the list of active sounds
    * @param timerLabel       the timer label
    * @param mapClose         the map close button
-   * @throws IOException if there is an I/O error
+   * @throws IOException if the FXML file is not found
    */
   public static void intialiseControllers(
       Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
@@ -85,11 +85,11 @@ public class App extends Application {
 
   /**
    * Handles the map click event.
-   * 
-   * @param mapPane  the map pane to be displayed
-   * @param room     the room to which the map belongs
-   * @param chatPane the chat pane to be displayed
-   * @throws IOException if there is an I/O error
+   *
+   * @param mapPane  the map pane
+   * @param room     the room
+   * @param chatPane the chat pane
+   * @throws IOException if the FXML file is not found
    */
   public static void handleMapClickSuspect(
       Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
@@ -104,7 +104,7 @@ public class App extends Application {
 
   /**
    * Handles the onMapBack click event.
-   * 
+   *
    * @param chatPane the chat pane
    * @param mutePane the mute pane
    */
@@ -141,7 +141,7 @@ public class App extends Application {
 
   /**
    * Changes the scene to the specified FXML file with a fade-in and fade-out
-   * 
+   *
    * @param scene the name of the FXML file (without extension)
    */
   public static void fadeScenes(String scene) {
@@ -312,7 +312,7 @@ public class App extends Application {
 
   /**
    * Loads the hints box into the provided pane.
-   * 
+   *
    * @param pane the pane where the hints box will be loaded
    * @throws IOException if there is an I/O error during loading
    */
@@ -326,7 +326,7 @@ public class App extends Application {
 
   /**
    * Loads the hints box into the provided pane.
-   * 
+   *
    * @param pane the pane where the hints box will be loaded
    * @throws IOException if there is an I/O error during loading
    */
@@ -347,7 +347,7 @@ public class App extends Application {
 
   /**
    * Unloads the map from the provided pane.
-   * 
+   *
    * @param pane the pane from which the map will be unloaded
    * @param room the room to which the map belongs
    */
@@ -359,7 +359,7 @@ public class App extends Application {
 
   /**
    * Updates the instructions in the hints box.
-   * 
+   *
    * @param newHint the new hint to display in the hints box
    */
   public static void updateHint(String newHint) {
@@ -405,10 +405,10 @@ public class App extends Application {
   }
 
   /**
-   * handleGuessClick method checks if all suspects have been talked to and at
-   * least one clue has been found.
+   * Handles the guess click event.
    * 
-   * @return true if all suspects have been talked to and at least one clue has
+   * @return true if the guess can be made, false otherwise
+   * @throws IOException if the FXML file is not found
    */
   public static boolean guessClick() throws IOException {
     // Check if all suspects have been talked to and at least one clue has been
@@ -454,7 +454,7 @@ public class App extends Application {
 
   /**
    * Loads the clue menu into the provided pane.
-   * 
+   *
    * @param pane the pane where the clue menu will be loaded
    * @throws IOException if there is an I/O error during loading
    */
@@ -469,7 +469,7 @@ public class App extends Application {
 
   /**
    * Loads the mute button into the provided pane.
-   * 
+   *
    * @param pane the pane where the mute button will be loaded
    * @throws IOException if there is an I/O error during loading
    */
@@ -484,7 +484,7 @@ public class App extends Application {
 
   /**
    * Starts the timer and binds the time remaining to the timer label.
-   * 
+   *
    * @param timerLabel the label to which the time remaining will be bound
    */
   public static void timer(Label timerLabel) {
@@ -573,27 +573,23 @@ public class App extends Application {
   }
 
   /**
-   * Sets the current scene ID.
-   * 
-   * @param sceneId the ID of the current scene
+   * Gets the current scene ID.
    */
   public static String getCurrentSceneId() {
     return currentSceneId;
   }
 
   /**
-   * Gets the current scene
-   * 
-   * @return the current scene
+   * Sets the current scene ID.
+   *
+   * @param sceneId the ID of the current scene
    */
   public static Scene getScene() {
     return scene;
   }
 
   /**
-   * Sets the curent scene volume level.
-   * 
-   * @param volume
+   * Sets the volume level.
    */
   public static void setVolume(double volume) {
     App.volume = volume;
@@ -601,7 +597,7 @@ public class App extends Application {
 
   /**
    * Returns the current volume level.
-   * 
+   *
    * @return the current volume level
    */
   public static double getVolume() {
@@ -619,7 +615,7 @@ public class App extends Application {
 
   /**
    * Sets the list of active sounds.
-   * 
+   *
    * @param sounds the list of active sounds
    */
   public static void setSounds(List<MediaPlayer> sounds) {
@@ -628,7 +624,7 @@ public class App extends Application {
 
   /**
    * Adds a sound to the list of active sounds.
-   * 
+   *
    * @param sound the sound to add
    */
   public static void addSound(MediaPlayer sound) {
@@ -665,7 +661,7 @@ public class App extends Application {
 
   /**
    * Returns a list of all active sounds.
-   * 
+   *
    * @return a list of all active sounds
    */
   public static List<MediaPlayer> getActiveSounds() {

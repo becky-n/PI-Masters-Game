@@ -183,7 +183,7 @@ public class SafeController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */

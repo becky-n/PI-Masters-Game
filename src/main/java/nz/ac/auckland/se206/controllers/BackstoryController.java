@@ -60,8 +60,8 @@ public class BackstoryController {
   /**
    * Initialises the backstory scene by setting up the scream sound, background
    * music.Also sets up the timer, mute button, and the skip button.
-   * 
-   * @throws IOException
+   *
+   * @throws IOException if there is an I/O error during scene transition
    */
   @FXML
   public void initialize() throws IOException {
@@ -171,7 +171,7 @@ public class BackstoryController {
 
   /**
    * Handles the start button press event and switches to the next scene.
-   * 
+   *
    * @param event the action event triggered by clicking the start button
    * @throws ApiProxyException if there is an API proxy error
    * @throws IOException       if there is an I/O error during scene transition

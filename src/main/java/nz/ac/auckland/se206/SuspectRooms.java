@@ -60,7 +60,8 @@ public abstract class SuspectRooms extends MapRooms {
     App.openChat(chatName, chatPane);
 
     // initialize the controller with shared components
-    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds, mutePane, timerLabel, mapClose);
+    App.intialiseControllers(clueMenu, redCircle, clock, instructionsPane, sounds,
+        mutePane, timerLabel, mapClose);
   }
 
   /**

@@ -41,16 +41,9 @@ public class CrimeController extends MapRooms {
   }
 
   /**
-   * This method returns an array of boolean values representing whether
-   * specific clues have been guessed. The array contains three elements:
-   * <ul>
-   * <li>clues[0] - represents whether clue1 (safe) has been guessed</li>
-   * <li>clues[1] - represents whether clue2 (glass) has been guessed</li>
-   * <li>clues[2] - represents whether clue3 (letter) has been guessed</li>
-   * </ul>
+   * Returns an array of booleans representing the clues that have been guessed.
    *
-   * @return a boolean array where each element indicates if a corresponding clue
-   *         has been guessed
+   * @return an array of booleans representing the clues that have been guessed
    */
   public static boolean[] cluesGuessed() {
     boolean[] clues = new boolean[3];
@@ -102,7 +95,7 @@ public class CrimeController extends MapRooms {
   /**
    * Initializes the CrimeController. Sets up the timer, menu navigation, chat,
    * and loads the clue menu and hints box.
-   * 
+   *
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML
@@ -142,7 +135,7 @@ public class CrimeController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */
