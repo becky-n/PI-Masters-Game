@@ -31,6 +31,12 @@ public class GuessController {
   // this field is used to determine if the game is in the guessing state
   public static boolean guess1 = false;
 
+  public static boolean guessMade = false;
+
+  public static boolean isGuessMade(){
+    return guessMade;
+  }
+
   /**
    * Returns whether the game is in the guessing state.
    *
@@ -156,6 +162,7 @@ public class GuessController {
    */
   @FXML
   private void handleGuessClick(MouseEvent event) throws IOException {
+    guessMade = true;
     // check if tablet is open
     if (isTabletOpen) {
       return;
