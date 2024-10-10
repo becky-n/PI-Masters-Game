@@ -67,7 +67,7 @@ public class App extends Application {
    * @param sounds           the list of active sounds
    * @param timerLabel       the timer label
    * @param mapClose         the map close button
-   * @throws IOException
+   * @throws IOException if there is an I/O error
    */
   public static void intialiseControllers(
       Pane clueMenu, Circle redCircle, ImageView clock, Pane instructionsPane,
@@ -86,10 +86,10 @@ public class App extends Application {
   /**
    * Handles the map click event.
    * 
-   * @param mapPane  the map pane
-   * @param room     the room
-   * @param chatPane the chat pane
-   * @throws IOException
+   * @param mapPane  the map pane to be displayed
+   * @param room     the room to which the map belongs
+   * @param chatPane the chat pane to be displayed
+   * @throws IOException if there is an I/O error
    */
   public static void handleMapClickSuspect(
       Pane mapPane, MapRooms room, Pane chatPane) throws IOException {
@@ -404,10 +404,11 @@ public class App extends Application {
     }
   }
 
-  /*
+  /**
    * handleGuessClick method checks if all suspects have been talked to and at
    * least one clue has been found.
    * 
+   * @return true if all suspects have been talked to and at least one clue has
    */
   public static boolean guessClick() throws IOException {
     // Check if all suspects have been talked to and at least one clue has been
@@ -581,18 +582,18 @@ public class App extends Application {
   }
 
   /**
-   * Sets the current scene ID.
+   * Gets the current scene
    * 
-   * @param sceneId the ID of the current scene
+   * @return the current scene
    */
   public static Scene getScene() {
     return scene;
   }
 
   /**
-   * Sets the current scene ID.
+   * Sets the curent scene volume level.
    * 
-   * @param sceneId the ID of the current scene
+   * @param volume
    */
   public static void setVolume(double volume) {
     App.volume = volume;

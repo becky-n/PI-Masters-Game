@@ -36,8 +36,7 @@ public class SafeController extends MapRooms {
   /**
    * Handles the clue menu button click event.
    *
-   * @param pane the pane to display the clue menu
-   * @throws IOException if there is an I/O error
+   * @return true if the box is unlocked, false otherwise
    */
   public static boolean isUnlocked() {
     return unlocked;
