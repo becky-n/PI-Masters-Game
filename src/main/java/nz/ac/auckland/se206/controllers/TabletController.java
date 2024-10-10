@@ -60,7 +60,7 @@ public class TabletController {
   private GuessController guess;
 
   /**
-   * Initializes the chat view.
+   * Initializes the chat view by setting up the background image and chat.
    *
    * @throws ApiProxyException if there is an error communicating with the API
    *                           proxy

@@ -58,7 +58,8 @@ public class BackstoryController {
       + "Can you talk with them and gather clues before it's too late?"; // string to animate
 
   /**
-   * Initialises the backstory scene.
+   * Initialises the backstory scene by setting up the scream sound, background
+   * music.Also sets up the timer, mute button, and the skip button.
    * 
    * @throws IOException
    */

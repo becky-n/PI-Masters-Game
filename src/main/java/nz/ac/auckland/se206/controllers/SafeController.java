@@ -158,7 +158,7 @@ public class SafeController extends MapRooms {
   }
 
   /**
-   * Handles the hover event.
+   * Handles the hover event when the mouse hovers over a clue.
    *
    * @param event the mouse event triggered by hovering over a clue
    * @throws IOException if there is an I/O error
@@ -171,7 +171,7 @@ public class SafeController extends MapRooms {
   }
 
   /**
-   * Handles the hover event.
+   * Handles the hover event for the clues when the mouse is not hovering.
    *
    * @param event the mouse event triggered by hovering over a clue
    * @throws IOException if there is an I/O error
