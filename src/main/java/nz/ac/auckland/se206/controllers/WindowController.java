@@ -19,6 +19,9 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.DraggableMaker;
 import nz.ac.auckland.se206.MapRooms;
 
+/**
+ * Controller class for the Window scene.
+ */
 public class WindowController extends MapRooms {
   public static boolean fabricFound = false;
 

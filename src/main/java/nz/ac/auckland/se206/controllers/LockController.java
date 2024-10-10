@@ -100,7 +100,7 @@ public class LockController extends MapRooms {
   /**
    * Initializes the LockController. Sets up the timer, menu navigation, chat,
    * and loads the clue menu and hints box.
-   * 
+   *
    * @throws IOException if there is an I/O error during initialization
    */
   @FXML
@@ -266,7 +266,7 @@ public class LockController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */

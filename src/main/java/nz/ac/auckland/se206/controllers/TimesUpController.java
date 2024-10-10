@@ -28,7 +28,7 @@ public class TimesUpController {
 
   /**
    * Initialises the menu scene by setting up the background music and sound.
-   * 
+   *
    * @throws IOException
    */
   @FXML
@@ -90,7 +90,7 @@ public class TimesUpController {
 
   /**
    * Sets the text of the info label.
-   * 
+   *
    * @param text the text to set
    */
   public void setInfoLabel(String text) {

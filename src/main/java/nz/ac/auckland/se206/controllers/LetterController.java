@@ -61,7 +61,7 @@ public class LetterController extends MapRooms {
   /**
    * Initializes the LetterController. Sets up the timer, menu navigation, chat,
    * and loads the clue menu and hints box.
-   * 
+   *
    * @throws IOException if there is an I/O error during initialization
    */
   public void initialize() throws IOException {
@@ -100,7 +100,7 @@ public class LetterController extends MapRooms {
 
   /**
    * Handles the event when the map is clicked.
-   * 
+   *
    * @param event the MouseEvent that triggered this handler
    * @throws IOException if an I/O error occurs during the map loading process
    */
@@ -124,7 +124,7 @@ public class LetterController extends MapRooms {
 
   /**
    * Handles the back button click event.
-   * 
+   *
    * @throws IOException if there is an I/O error
    */
   @FXML

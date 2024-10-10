@@ -26,9 +26,10 @@ public class TimerManager {
   }
 
   /**
-   * Returns the TimerManager instance.
-   *
-   * @return the TimerManager instance
+   * Returns the singleton instance of the TimerManager. If the instance does not
+   * exist, it is created.
+   * 
+   * @return the singleton instance of the TimerManager
    */
   public static synchronized TimerManager getInstance() {
     if (instance == null) {
@@ -60,10 +61,10 @@ public class TimerManager {
       if (GuessController.inGuessingState()) {
         if (timeRemaining.get() <= 0) {
           timer.stop();
-          if(!GuessController.isGuessMade()){
+          if (!GuessController.isGuessMade()) {
             try {
               handleTimeOut();
-            } catch ( IOException e) {
+            } catch (IOException e) {
               e.printStackTrace();
             }
             return;
@@ -109,7 +110,7 @@ public class TimerManager {
   /**
    * Starts the timer with the specified duration.
    *
-   * @param durationInSeconds the duration in seconds
+   * @param durationInSeconds
    */
   public void start(int durationInSeconds) {
     if (!running) {
